@@ -2,5 +2,5 @@ UnusedLocalVariable
 JUnitAssertionsShouldIncludeMessage
 MethodArgumentCouldBeFinal
 MethodNamingConventions
-DataflowAnomalyAnalysis
 LocalVariableCouldBeFinal
+DataflowAnomalyAnalysis
