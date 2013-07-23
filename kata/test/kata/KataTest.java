@@ -67,6 +67,7 @@ public class KataTest {
         tests.add(new Scenario(16, "XVI"));
         tests.add(new Scenario(17, "XVII"));
         tests.add(new Scenario(18, "XVIII"));
+        tests.add(new Scenario(19, "XIX"));
         runAllTests(tests);
     }
 
@@ -97,8 +98,8 @@ public class KataTest {
     }
     
     private int valueOfAfterDominantSymbol(String symbol, String romanNumeral) {
-        int lastIndexOfSymbol = romanNumeral.lastIndexOf(symbol);
-        String tail = romanNumeral.substring(lastIndexOfSymbol + 1);
+        int indexOfSymbol = romanNumeral.indexOf(symbol);
+        String tail = romanNumeral.substring(indexOfSymbol + 1);
         
         return romanToDecimal(tail);
     }
