@@ -74,7 +74,7 @@ public class KataTest {
         int result = 0;
 
         if (hasOnlyI(roman)) {
-            result = roman.length();
+            result = computeValueOfIbasedLiteral(roman);
         } else if (containsV(roman)){
             result = computeValueOfVbasedLiteral(roman);
         } else if (containsX(roman)) {
@@ -87,7 +87,7 @@ public class KataTest {
     private int valueOfIBefore(String symbol, String romanNumeral) {
         int indexOfSymbol = romanNumeral.indexOf(symbol);
         String front = romanNumeral.substring(0, indexOfSymbol);
-        int numerOfIs = front.length();
+        int numerOfIs = computeValueOfIbasedLiteral(front);
         
         return numerOfIs*VALUE_OF_I;
     }
@@ -95,7 +95,7 @@ public class KataTest {
     private int valueOfIAfter(String symbol, String romanNumeral) {
         int lastIndexOfSymbol = romanNumeral.lastIndexOf(symbol);
         String tail = romanNumeral.substring(lastIndexOfSymbol + 1);
-        int numerOfIs = tail.length();
+        int numerOfIs = computeValueOfIbasedLiteral(tail);
         
         return numerOfIs*VALUE_OF_I;
     }
@@ -124,5 +124,9 @@ public class KataTest {
         return VALUE_OF_X 
                 - valueOfIBefore("X", roman) 
                 + valueOfIAfter("X", roman);
+    }
+
+    private int computeValueOfIbasedLiteral(String roman) {
+        return roman.length();
     }
 }
