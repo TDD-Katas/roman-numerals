@@ -49,7 +49,14 @@ public class KataTest {
         int result = romanToDecimal(scenario.getRomanValue());
         
         //Then
-        return result == scenario.getDecimalValue();
+        boolean areEqual = result == scenario.getDecimalValue();
+        if (!areEqual) {
+            System.out.println("["+scenario.getRomanValue()+"] failed - "
+                    + "expected "+scenario.getDecimalValue()
+                    +" but got "+result);
+        }
+        
+        return areEqual;
     }
     
     @Test
@@ -68,11 +75,7 @@ public class KataTest {
         
         
         for (Scenario scenario : tests) {
-            boolean localResult = testForEquality(scenario);
-            if (!localResult) {
-                System.out.println("Failed test");
-            }
-            result = localResult && result;
+            result = testForEquality(scenario) && result;
         }
         
         assertTrue(result);

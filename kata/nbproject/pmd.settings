@@ -1,11 +1,12 @@
-JUnitTestsShouldIncludeAssert
-JUnit4TestShouldUseTestAnnotation
 TooManyMethods
+JUnit4TestShouldUseTestAnnotation
+JUnitTestsShouldIncludeAssert
+SystemPrintln
 UnusedLocalVariable
 JUnitAssertionsShouldIncludeMessage
 MethodArgumentCouldBeFinal
-UseIndexOfChar
 MethodNamingConventions
-BeanMembersShouldSerialize
-DataflowAnomalyAnalysis
+UseIndexOfChar
 LocalVariableCouldBeFinal
+DataflowAnomalyAnalysis
+BeanMembersShouldSerialize
