@@ -70,15 +70,7 @@ public class KataTest {
 
         if (hasOnlyI(roman)) {
             result = roman.length();
-        } else if ("IV".equals(roman)){
-            result = computeValueOfVbasedLiteral(roman);
-        } else if ("V".equals(roman)){
-            result = computeValueOfVbasedLiteral(roman);
-        } else if ("VI".equals(roman)){
-            result = computeValueOfVbasedLiteral(roman);
-        } else if ("VII".equals(roman)){
-            result = computeValueOfVbasedLiteral(roman);
-        } else if ("VIII".equals(roman)){
+        } else if (containsV(roman)){
             result = computeValueOfVbasedLiteral(roman);
         } else {
             result = 9;
@@ -101,6 +93,10 @@ public class KataTest {
         int numerOfIs = tail.length();
         
         return numerOfIs;
+    }
+    
+    private boolean containsV(String roman) {
+        return roman.contains("V");
     }
     
     private boolean hasOnlyI(String roman) {
