@@ -113,16 +113,24 @@ public class KataTest {
         } else if ("V".equals(roman)){
             result = getValueForV();
         } else if ("VI".equals(roman)){
-            result = getValueForV() + getValueForI();
+            result = getValueForV() + numberOfIAfterV(roman)*getValueForI();
         } else if ("VII".equals(roman)){
-            result = getValueForV() + 2*getValueForI();
+            result = getValueForV() + numberOfIAfterV(roman)*getValueForI();
         } else if ("VIII".equals(roman)){
-            result = getValueForV() + 3*getValueForI();
+            result = getValueForV() + numberOfIAfterV(roman)*getValueForI();
         } else {
             result = 9;
         }
 
         return result;
+    }
+    
+    private int numberOfIAfterV(String roman) {
+        int lastIndexOfV = roman.lastIndexOf("V");
+        String tail = roman.substring(lastIndexOfV + 1);
+        int numerOfIs = tail.length();
+        
+        return numerOfIs;
     }
     
     private boolean hasOnlyI(String roman) {
