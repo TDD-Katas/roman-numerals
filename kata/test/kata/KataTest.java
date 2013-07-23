@@ -22,20 +22,20 @@ public class KataTest {
      * Helper class for tests
      */
     private static class Scenario {
-        private final String roman;
-        private final int expectedDecimal;
+        private final String romanValue;
+        private final int decimalValue;
 
-        public Scenario(String roman, int expectedDecimal) {
-            this.roman = roman;
-            this.expectedDecimal = expectedDecimal;
+        public Scenario(String romanValue, int decimalValue) {
+            this.romanValue = romanValue;
+            this.decimalValue = decimalValue;
         }
 
-        public String getRoman() {
-            return roman;
+        public String getRomanValue() {
+            return romanValue;
         }
 
-        public int getExpectedDecimal() {
-            return expectedDecimal;
+        public int getDecimalValue() {
+            return decimalValue;
         }
     }
     
@@ -44,12 +44,12 @@ public class KataTest {
      * @param roman
      * @param expectedDecimal 
      */
-    private boolean runScenario(Scenario scenario) {
+    private boolean testForEquality(Scenario scenario) {
         //When
-        int result = romanToDecimal(scenario.getRoman());
+        int result = romanToDecimal(scenario.getRomanValue());
         
         //Then
-        return result == scenario.getExpectedDecimal();
+        return result == scenario.getDecimalValue();
     }
     
     @Test
@@ -68,7 +68,7 @@ public class KataTest {
         
         
         for (Scenario scenario : scenarios) {
-            result = runScenario(scenario) && result;
+            result = testForEquality(scenario) && result;
         }
         
         assertTrue(result);
