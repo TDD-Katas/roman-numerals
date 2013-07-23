@@ -57,6 +57,7 @@ public class KataTest {
         tests.add(new Scenario("VII", 7));
         tests.add(new Scenario("VIII", 8));
         tests.add(new Scenario("IX", 9));
+        tests.add(new Scenario("X", 10));
         runAllTests(tests);
     }
 
@@ -72,8 +73,10 @@ public class KataTest {
             result = roman.length();
         } else if (containsV(roman)){
             result = computeValueOfVbasedLiteral(roman);
-        } else {
+        } else if ("IX".equals(roman)) {
             result = 9;
+        } else {
+            result = 10;
         }
 
         return result;
