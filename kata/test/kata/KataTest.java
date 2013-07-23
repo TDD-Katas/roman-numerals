@@ -98,13 +98,13 @@ public class KataTest {
         if (isDominatedBy("C", getUnderminedSymbolBy("C"), roman)) {
             result = computeValueDominatedBy("C", roman);
         } else
-        if (isDominatedBy("L", "X", roman)) {
+        if (isDominatedBy("L", getUnderminedSymbolBy("L"), roman)) {
             result = computeValueDominatedBy("L", roman);
         } else
-        if (isDominatedBy("X", "I", roman)) {
+        if (isDominatedBy("X", getUnderminedSymbolBy("X"), roman)) {
             result = computeValueDominatedBy("X", roman);
         } else 
-        if (isDominatedBy("V", "I", roman)){
+        if (isDominatedBy("V", getUnderminedSymbolBy("V"), roman)){
             result = computeValueDominatedBy("V", roman);
         } else {
             result = computeValueOfIbasedLiteral(roman);
@@ -114,7 +114,20 @@ public class KataTest {
     }
     
     private String getUnderminedSymbolBy(String dominantSymbol) {
-        return "X";
+        if ("C".equals(dominantSymbol)) {
+            return "X";
+        } else
+        if ("L".equals(dominantSymbol)) {
+            return "X";
+        } else
+        if ("X".equals(dominantSymbol)) {
+            return "I";
+        } else
+        if ("V".equals(dominantSymbol)) {
+            return "I";
+        }
+        
+        return "I";
     }
     
     private int valueBeforeDominantSymbol(String symbol, String romanNumeral) {
