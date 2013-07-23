@@ -109,15 +109,15 @@ public class KataTest {
         if (hasOnlyI(roman)) {
             result = roman.length();
         } else if ("IV".equals(roman)){
-            result = getValueForV() - numberOfIBeforeV(roman)*getValueForI() + numberOfIAfterV(roman)*getValueForI();;
+            result = computeValueOfVbasedLiteral(roman);
         } else if ("V".equals(roman)){
-            result = getValueForV() - numberOfIBeforeV(roman)*getValueForI() + numberOfIAfterV(roman)*getValueForI();;
+            result = computeValueOfVbasedLiteral(roman);
         } else if ("VI".equals(roman)){
-            result = getValueForV() - numberOfIBeforeV(roman)*getValueForI() + numberOfIAfterV(roman)*getValueForI();
+            result = computeValueOfVbasedLiteral(roman);
         } else if ("VII".equals(roman)){
-            result = getValueForV() - numberOfIBeforeV(roman)*getValueForI() + numberOfIAfterV(roman)*getValueForI();
+            result = computeValueOfVbasedLiteral(roman);
         } else if ("VIII".equals(roman)){
-            result = getValueForV() - numberOfIBeforeV(roman)*getValueForI() + numberOfIAfterV(roman)*getValueForI();
+            result = computeValueOfVbasedLiteral(roman);
         } else {
             result = 9;
         }
@@ -152,5 +152,9 @@ public class KataTest {
 
     private int getValueForI() {
         return 1;
+    }
+
+    private int computeValueOfVbasedLiteral(String roman) {
+        return getValueForV() - numberOfIBeforeV(roman)*getValueForI() + numberOfIAfterV(roman)*getValueForI();
     }
 }
