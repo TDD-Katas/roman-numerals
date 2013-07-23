@@ -154,28 +154,27 @@ public class KataTest {
         return value;
     }
     
+    private int computeValueDominatedBy(String dominantSymbol, String roman) {
+        return getValueForSymbol(dominantSymbol)
+                - valueBeforeDominantSymbol(dominantSymbol, roman)
+                + valueOfAfterDominantSymbol(dominantSymbol, roman);
+    }
+    
+    
     private int computeValueOfVbasedLiteral(String roman) {
-        return getValueForSymbol("V")
-                - valueBeforeDominantSymbol("V", roman)
-                + valueOfAfterDominantSymbol("V", roman);
+        return computeValueDominatedBy("V", roman);
     }
 
     private int computeValueOfXbasedLiteral(String roman) {
-        return getValueForSymbol("X") 
-                - valueBeforeDominantSymbol("X", roman) 
-                + valueOfAfterDominantSymbol("X", roman);
+        return computeValueDominatedBy("X", roman);
     }
     
     private int computeValueOfLbasedLiteral(String roman) {
-        return getValueForSymbol("L") 
-                - valueBeforeDominantSymbol("L", roman) 
-                + valueOfAfterDominantSymbol("L", roman);
+        return computeValueDominatedBy("L", roman);
     }
     
     private int computeValueOfCbasedLiteral(String roman) {
-        return getValueForSymbol("C") 
-                - valueBeforeDominantSymbol("C", roman) 
-                + valueOfAfterDominantSymbol("C", roman);
+        return computeValueDominatedBy("C", roman);
     }
 
     private int computeValueOfIbasedLiteral(String roman) {
