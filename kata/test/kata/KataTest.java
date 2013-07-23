@@ -81,11 +81,11 @@ public class KataTest {
         } else if ("X".equals(roman)) {
             result = 10;
         } else if ("XI".equals(roman)) {
-            result = 11;
+            result = 10 + numberOfIAfterX(roman)*VALUE_OF_I;
         } else if ("XII".equals(roman)) {
-            result = 12;
+            result = 10 + numberOfIAfterX(roman)*VALUE_OF_I;
         } else if ("XIII".equals(roman)){
-            result = 13;
+            result = 10 + numberOfIAfterX(roman)*VALUE_OF_I;
         }
 
         return result;
@@ -102,6 +102,14 @@ public class KataTest {
     private int numberOfIAfterV(String roman) {
         int lastIndexOfV = roman.lastIndexOf("V");
         String tail = roman.substring(lastIndexOfV + 1);
+        int numerOfIs = tail.length();
+        
+        return numerOfIs;
+    }
+    
+    private int numberOfIAfterX(String roman) {
+        int lastIndexOfX = roman.lastIndexOf("X");
+        String tail = roman.substring(lastIndexOfX + 1);
         int numerOfIs = tail.length();
         
         return numerOfIs;
