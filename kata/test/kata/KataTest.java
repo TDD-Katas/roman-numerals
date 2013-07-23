@@ -100,20 +100,20 @@ public class KataTest {
         return numberOfIBefore("X", roman);
     }
     
-    private int numberOfIAfterV(String roman) {
-        int lastIndexOfV = roman.lastIndexOf("V");
-        String tail = roman.substring(lastIndexOfV + 1);
+    private int numberOfIAfterV(String symbol, String romanNumeral) {
+        int lastIndexOfSymbol = romanNumeral.lastIndexOf(symbol);
+        String tail = romanNumeral.substring(lastIndexOfSymbol + 1);
         int numerOfIs = tail.length();
         
         return numerOfIs;
     }
     
+    private int numberOfIAfterV(String roman) {
+        return numberOfIAfterV("V", roman);
+    }
+    
     private int numberOfIAfterX(String roman) {
-        int lastIndexOfX = roman.lastIndexOf("X");
-        String tail = roman.substring(lastIndexOfX + 1);
-        int numerOfIs = tail.length();
-        
-        return numerOfIs;
+        return numberOfIAfterV("X", roman);
     }
     
     private boolean containsX(String roman) {
