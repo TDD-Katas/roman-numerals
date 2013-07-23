@@ -88,9 +88,9 @@ public class KataTest {
 
         if (hasOnlyI(roman)) {
             result = computeValueOfIbasedLiteral(roman);
-        } else if (isDominatedByV(roman)){
+        } else if (isDominatedBy("V", roman)){
             result = computeValueOfVbasedLiteral(roman);
-        } else if (isDominatedByX(roman)) {
+        } else if (isDominatedBy("X", roman)) {
             result = computeValueOfXbasedLiteral(roman);
         }
 
@@ -111,12 +111,9 @@ public class KataTest {
         return romanToDecimal(tail);
     }
     
-    private boolean isDominatedByX(String roman) {
-        return roman.startsWith("X") || roman.startsWith("IX");
-    }
     
-    private boolean isDominatedByV(String roman) {
-        return roman.startsWith("V") || roman.startsWith("IV");
+    private boolean isDominatedBy(String symbol, String roman) {
+        return roman.startsWith(symbol) || roman.startsWith("I"+symbol);
     }
     
     private boolean hasOnlyI(String roman) {
