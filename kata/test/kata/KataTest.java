@@ -4,10 +4,6 @@
  */
 package kata;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -21,7 +17,7 @@ public class KataTest {
      * Test of main method, of class Kata.
      */
     @Test
-    public void testIto1() {
+    public void test_I() {
         //Given
         String roman = "I";
         int expected = 1;
