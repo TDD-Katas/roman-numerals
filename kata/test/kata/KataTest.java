@@ -76,16 +76,8 @@ public class KataTest {
             result = roman.length();
         } else if (containsV(roman)){
             result = computeValueOfVbasedLiteral(roman);
-        } else if ("IX".equals(roman)) {
-            result = 9;
-        } else if ("X".equals(roman)) {
-            result = 10;
-        } else if ("XI".equals(roman)) {
-            result = 10 + numberOfIAfterX(roman)*VALUE_OF_I;
-        } else if ("XII".equals(roman)) {
-            result = 10 + numberOfIAfterX(roman)*VALUE_OF_I;
-        } else if ("XIII".equals(roman)){
-            result = 10 + numberOfIAfterX(roman)*VALUE_OF_I;
+        } else if (containsX(roman)) {
+            result = 10 - numberOfIBeforeX(roman)*VALUE_OF_I + numberOfIAfterX(roman)*VALUE_OF_I;
         }
 
         return result;
@@ -94,6 +86,14 @@ public class KataTest {
     private int numberOfIBeforeV(String roman) {
         int indexOfV = roman.indexOf("V");
         String front = roman.substring(0, indexOfV);
+        int numerOfIs = front.length();
+        
+        return numerOfIs;
+    }
+    
+    private int numberOfIBeforeX(String roman) {
+        int indexOfX = roman.indexOf("X");
+        String front = roman.substring(0, indexOfX);
         int numerOfIs = front.length();
         
         return numerOfIs;
@@ -113,6 +113,10 @@ public class KataTest {
         int numerOfIs = tail.length();
         
         return numerOfIs;
+    }
+    
+    private boolean containsX(String roman) {
+        return roman.contains("X");
     }
     
     private boolean containsV(String roman) {
