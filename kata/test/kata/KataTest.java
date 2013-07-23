@@ -14,6 +14,19 @@ import static org.junit.Assert.*;
 public class KataTest {
     
     /**
+     * Utility method
+     * @param roman
+     * @param expectedDecimal 
+     */
+    private void testToDecimal(String roman, int expectedDecimal) {
+        //When
+        int result = romanToDecimal(roman);
+        
+        //Then
+        assertEquals(expectedDecimal,result);
+    }
+    
+    /**
      * Test of main method, of class Kata.
      */
     @Test
@@ -54,18 +67,13 @@ public class KataTest {
     }
     
     /**
-     * Utility method
-     * @param roman
-     * @param expectedDecimal 
+     * Test of main method, of class Kata.
      */
-    private void testToDecimal(String roman, int expectedDecimal) {
-        //When
-        int result = romanToDecimal(roman);
-        
-        //Then
-        assertEquals(expectedDecimal,result);
+    @Test
+    public void test_VI() {
+        testToDecimal("VI", 6);
     }
-
+    
     /**
      * Convert
      * @param roman
@@ -78,8 +86,10 @@ public class KataTest {
             result = roman.length();
         } else if ("IV".equals(roman)){
             result = 4;
-        } else {
+        } else if ("V".equals(roman)){
             result = 5;
+        } else {
+            result = 6;
         }
 
         return result;
