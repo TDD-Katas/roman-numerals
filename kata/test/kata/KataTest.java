@@ -131,14 +131,13 @@ public class KataTest {
         return roman.startsWith(symbol) || roman.startsWith(subdominance+symbol);
     }
     
-    private boolean hasOnlyI(String roman) {
-        return roman.matches("I+");
-    }
 
-    
+    private int getValueForSymbol(String symbol) {
+        return VALUE_OF_V;
+    }
     
     private int computeValueOfVbasedLiteral(String roman) {
-        return VALUE_OF_V 
+        return getValueForSymbol(roman)
                 - valueBeforeDominantSymbol("V", roman)
                 + valueOfAfterDominantSymbol("V", roman);
     }
