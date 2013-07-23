@@ -109,9 +109,9 @@ public class KataTest {
         if (hasOnlyI(roman)) {
             result = roman.length();
         } else if ("IV".equals(roman)){
-            result = getValueForV() - getValueForI();
+            result = getValueForV() - numberOfIBeforeV(roman)*getValueForI();
         } else if ("V".equals(roman)){
-            result = getValueForV();
+            result = getValueForV() - numberOfIBeforeV(roman)*getValueForI();
         } else if ("VI".equals(roman)){
             result = getValueForV() + numberOfIAfterV(roman)*getValueForI();
         } else if ("VII".equals(roman)){
@@ -124,6 +124,15 @@ public class KataTest {
 
         return result;
     }
+    
+    private int numberOfIBeforeV(String roman) {
+        int indexOfV = roman.indexOf("V");
+        String front = roman.substring(0, indexOfV);
+        int numerOfIs = front.length();
+        
+        return numerOfIs;
+    }
+    
     
     private int numberOfIAfterV(String roman) {
         int lastIndexOfV = roman.lastIndexOf("V");
