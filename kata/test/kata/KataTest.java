@@ -59,6 +59,7 @@ public class KataTest {
         tests.add(new Scenario(9, "IX"));
         tests.add(new Scenario(10, "X"));
         tests.add(new Scenario(11, "XI"));
+        tests.add(new Scenario(12, "XII"));
         runAllTests(tests);
     }
 
@@ -78,8 +79,10 @@ public class KataTest {
             result = 9;
         } else if ("X".equals(roman)) {
             result = 10;
-        } else {
+        } else if ("XI".equals(roman)) {
             result = 11;
+        } else {
+            result = 12;
         }
 
         return result;
