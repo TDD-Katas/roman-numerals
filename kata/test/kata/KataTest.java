@@ -76,6 +76,10 @@ public class KataTest {
         tests.add(new Scenario(34, "XXXIV"));
         tests.add(new Scenario(39, "XXXIX"));
         tests.add(new Scenario(40, "XL"));
+        tests.add(new Scenario(41, "XLI"));
+        tests.add(new Scenario(44, "XLIV"));
+        tests.add(new Scenario(59, "LIX"));
+        tests.add(new Scenario(70, "LXX"));
         runAllTests(tests);
     }
 
