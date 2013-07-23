@@ -42,17 +42,19 @@ public class KataTest {
      * @param roman
      * @param expectedDecimal 
      */
-    private void testToDecimal(Scenario scenarion) {
+    private boolean testToDecimal(Scenario scenario) {
         //When
-        int result = romanToDecimal(scenarion.getRoman());
+        int result = romanToDecimal(scenario.getRoman());
         
         //Then
-        assertEquals(scenarion.getExpectedDecimal(),result);
+        return result == scenario.getExpectedDecimal();
     }
     
     @Test
     public void test_I() {
-        testToDecimal(new Scenario("I", 1));
+        boolean result;
+        result = testToDecimal(new Scenario("I", 1));
+        assertTrue(result);
     }
     
     @Test
