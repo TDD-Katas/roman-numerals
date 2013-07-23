@@ -31,7 +31,7 @@ public class KataTest {
      */
     @Test
     public void test_I() {
-        testToDecimal("I", 1);
+        testToDecimal("I", getValueForI());
     }
     
     /**
@@ -63,7 +63,7 @@ public class KataTest {
      */
     @Test
     public void test_V() {
-        testToDecimal("V", 5);
+        testToDecimal("V", getValueForV());
     }
     
     /**
@@ -94,11 +94,11 @@ public class KataTest {
         if (hasOnlyI(roman)) {
             result = roman.length();
         } else if ("IV".equals(roman)){
-            result = 4;
+            result = getValueForV() - getValueForI();
         } else if ("V".equals(roman)){
-            result = 5;
+            result = getValueForV();
         } else if ("VI".equals(roman)){
-            result = 6;
+            result = getValueForV() + getValueForI();
         } else {
             result = 7;
         }
@@ -108,5 +108,13 @@ public class KataTest {
     
     private boolean hasOnlyI(String roman) {
         return roman.matches("I+");
+    }
+
+    private int getValueForV() {
+        return 5;
+    }
+
+    private int getValueForI() {
+        return 1;
     }
 }
