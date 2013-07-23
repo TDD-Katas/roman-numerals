@@ -84,16 +84,16 @@ public class KataTest {
      * @return 
      */
     private int romanToDecimal(String roman) {
-        int result = 0;
+        int result;
 
-        if (hasOnlyI(roman)) {
-            result = computeValueOfIbasedLiteral(roman);
+        if (isDominatedBy("X", roman)) {
+            result = computeValueOfXbasedLiteral(roman);
         } else if (isDominatedBy("V", roman)){
             result = computeValueOfVbasedLiteral(roman);
-        } else if (isDominatedBy("X", roman)) {
-            result = computeValueOfXbasedLiteral(roman);
+        } else {
+            result = computeValueOfIbasedLiteral(roman);
         }
-
+        
         return result;
     }
     
