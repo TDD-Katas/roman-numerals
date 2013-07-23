@@ -77,7 +77,7 @@ public class KataTest {
         } else if (containsV(roman)){
             result = computeValueOfVbasedLiteral(roman);
         } else if (containsX(roman)) {
-            result = 10 - numberOfIBeforeX(roman)*VALUE_OF_I + numberOfIAfterX(roman)*VALUE_OF_I;
+            result = computeValueOfXbasedLiteral(roman);
         }
 
         return result;
@@ -131,5 +131,9 @@ public class KataTest {
         return VALUE_OF_V 
                 - numberOfIBeforeV(roman)*VALUE_OF_I
                 + numberOfIAfterV(roman)*VALUE_OF_I;
+    }
+
+    private int computeValueOfXbasedLiteral(String roman) {
+        return 10 - numberOfIBeforeX(roman)*VALUE_OF_I + numberOfIAfterX(roman)*VALUE_OF_I;
     }
 }
