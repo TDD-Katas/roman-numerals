@@ -4,6 +4,8 @@
  */
 package kata;
 
+import java.util.LinkedList;
+import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -42,7 +44,7 @@ public class KataTest {
      * @param roman
      * @param expectedDecimal 
      */
-    private boolean testToDecimal(Scenario scenario) {
+    private boolean runScenario(Scenario scenario) {
         //When
         int result = romanToDecimal(scenario.getRoman());
         
@@ -53,15 +55,22 @@ public class KataTest {
     @Test
     public void testScenarios() {
         boolean result = true;
-        result = testToDecimal(new Scenario("I", 1)) && result;
-        result = testToDecimal(new Scenario("II", 2)) && result;
-        result = testToDecimal(new Scenario("III", 3)) && result;
-        result = testToDecimal(new Scenario("IV", 4)) && result;
-        result = testToDecimal(new Scenario("V", 5)) && result;
-        result = testToDecimal(new Scenario("VI", 6)) && result;
-        result = testToDecimal(new Scenario("VII", 7)) && result;
-        result = testToDecimal(new Scenario("VIII", 8)) && result;
-        result = testToDecimal(new Scenario("IX", 9)) && result;
+        List<Scenario> scenarios = new LinkedList<Scenario>();
+        scenarios.add(new Scenario("I", 1));
+        scenarios.add(new Scenario("II", 2));
+        scenarios.add(new Scenario("III", 3));
+        scenarios.add(new Scenario("IV", 4));
+        scenarios.add(new Scenario("V", 5));
+        scenarios.add(new Scenario("VI", 6));
+        scenarios.add(new Scenario("VII", 7));
+        scenarios.add(new Scenario("VIII", 8));
+        scenarios.add(new Scenario("IX", 9));
+        
+        
+        for (Scenario scenario : scenarios) {
+            result = runScenario(scenario) && result;
+        }
+        
         assertTrue(result);
     }
 
