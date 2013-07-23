@@ -75,9 +75,9 @@ public class KataTest {
 
         if (hasOnlyI(roman)) {
             result = computeValueOfIbasedLiteral(roman);
-        } else if (containsV(roman)){
+        } else if (isDominatedByV(roman)){
             result = computeValueOfVbasedLiteral(roman);
-        } else if (containsX(roman)) {
+        } else if (isDominatedByX(roman)) {
             result = computeValueOfXbasedLiteral(roman);
         }
 
@@ -100,12 +100,12 @@ public class KataTest {
         return numerOfIs*VALUE_OF_I;
     }
     
-    private boolean containsX(String roman) {
-        return roman.contains("X");
+    private boolean isDominatedByX(String roman) {
+        return roman.startsWith("X") || roman.startsWith("IX");
     }
     
-    private boolean containsV(String roman) {
-        return roman.contains("V");
+    private boolean isDominatedByV(String roman) {
+        return roman.startsWith("V") || roman.startsWith("IV");
     }
     
     private boolean hasOnlyI(String roman) {
