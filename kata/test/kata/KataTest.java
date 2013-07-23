@@ -16,6 +16,14 @@ import static org.junit.Assert.*;
 public class KataTest {
     private static final int VALUE_OF_V = 5;
     private static final int VALUE_OF_I = 1;
+
+    private void runAllTests(List<Scenario> tests) {
+        boolean result = true;
+        for (Scenario scenario : tests) {
+            result = testForEquality(scenario) && result;
+        }
+        assertTrue(result);
+    }
     
     
     /**
@@ -61,7 +69,6 @@ public class KataTest {
     
     @Test
     public void testScenarios() {
-        boolean result = true;
         List<Scenario> tests = new LinkedList<Scenario>();
         tests.add(new Scenario("I", 1));
         tests.add(new Scenario("II", 2));
@@ -72,13 +79,7 @@ public class KataTest {
         tests.add(new Scenario("VII", 7));
         tests.add(new Scenario("VIII", 8));
         tests.add(new Scenario("IX", 9));
-        
-        
-        for (Scenario scenario : tests) {
-            result = testForEquality(scenario) && result;
-        }
-        
-        assertTrue(result);
+        runAllTests(tests);
     }
 
     /**
