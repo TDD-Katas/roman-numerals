@@ -13,6 +13,11 @@ import static org.junit.Assert.*;
  */
 public class KataTest {
     
+    private int romanToDecimal(String roman) {
+        return 1;
+    }
+    
+    
     /**
      * Test of main method, of class Kata.
      */
@@ -23,7 +28,7 @@ public class KataTest {
         int expected = 1;
         
         //When
-        int result = 1;
+        int result = romanToDecimal(roman);
         
         //Then
         assertEquals(expected,result);
