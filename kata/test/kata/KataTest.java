@@ -39,15 +39,7 @@ public class KataTest {
      */
     @Test
     public void test_I() {
-        //Given
-        String roman = "I";
-        int expected = 1;
-        
-        //When
-        int result = romanToDecimal(roman);
-        
-        //Then
-        assertEquals(expected,result);
+        testToDecimal("I", 1);
     }
     
     /**
@@ -55,15 +47,7 @@ public class KataTest {
      */
     @Test
     public void test_II() {
-        //Given
-        String roman = "II";
-        int expected = 2;
-        
-        //When
-        int result = romanToDecimal(roman);
-        
-        //Then
-        assertEquals(expected,result);
+        testToDecimal("II", 2);
     }
     
     /**
@@ -71,14 +55,14 @@ public class KataTest {
      */
     @Test
     public void test_III() {
-        //Given
-        String roman = "III";
-        int expected = 3;
-        
+        testToDecimal("III", 3);
+    }
+    
+    private void testToDecimal(String roman, int expectedDecimal) {
         //When
         int result = romanToDecimal(roman);
         
         //Then
-        assertEquals(expected,result);
+        assertEquals(expectedDecimal,result);
     }
 }
