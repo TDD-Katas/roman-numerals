@@ -84,20 +84,20 @@ public class KataTest {
         return result;
     }
     
-    private int numberOfIBefore(String symbol, String romanNumeral) {
+    private int valueOfIBefore(String symbol, String romanNumeral) {
         int indexOfSymbol = romanNumeral.indexOf(symbol);
         String front = romanNumeral.substring(0, indexOfSymbol);
         int numerOfIs = front.length();
         
-        return numerOfIs;
+        return numerOfIs*VALUE_OF_I;
     }
     
-    private int numberOfIAfter(String symbol, String romanNumeral) {
+    private int valueOfIAfter(String symbol, String romanNumeral) {
         int lastIndexOfSymbol = romanNumeral.lastIndexOf(symbol);
         String tail = romanNumeral.substring(lastIndexOfSymbol + 1);
         int numerOfIs = tail.length();
         
-        return numerOfIs;
+        return numerOfIs*VALUE_OF_I;
     }
     
     private boolean containsX(String roman) {
@@ -116,13 +116,13 @@ public class KataTest {
     
     private int computeValueOfVbasedLiteral(String roman) {
         return VALUE_OF_V 
-                - numberOfIBefore("V", roman)*VALUE_OF_I
-                + numberOfIAfter("V", roman)*VALUE_OF_I;
+                - valueOfIBefore("V", roman)
+                + valueOfIAfter("V", roman);
     }
 
     private int computeValueOfXbasedLiteral(String roman) {
         return VALUE_OF_X 
-                - numberOfIBefore("X", roman)*VALUE_OF_I 
-                + numberOfIAfter("X", roman)*VALUE_OF_I;
+                - valueOfIBefore("X", roman) 
+                + valueOfIAfter("X", roman);
     }
 }
