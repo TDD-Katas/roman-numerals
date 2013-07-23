@@ -91,6 +91,14 @@ public class KataTest {
     }
     
     /**
+     * Test of main method, of class Kata.
+     */
+    @Test
+    public void test_IX() {
+        testToDecimal("IX", 9);
+    }
+    
+    /**
      * Convert
      * @param roman
      * @return 
@@ -108,8 +116,10 @@ public class KataTest {
             result = getValueForV() + getValueForI();
         } else if ("VII".equals(roman)){
             result = getValueForV() + 2*getValueForI();
+        } else if ("VIII".equals(roman)){
+            result = getValueForV() + 3*getValueForI();
         } else {
-            result = 8;
+            result = 9;
         }
 
         return result;
