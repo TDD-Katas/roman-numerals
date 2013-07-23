@@ -96,16 +96,16 @@ public class KataTest {
         int result;
 
         if (isDominatedBy("C", "X", roman)) {
-            result = computeValueOfCbasedLiteral(roman);
+            result = computeValueDominatedBy("C", roman);
         } else
         if (isDominatedBy("L", "X", roman)) {
-            result = computeValueOfLbasedLiteral(roman);
+            result = computeValueDominatedBy("L", roman);
         } else
         if (isDominatedBy("X", "I", roman)) {
-            result = computeValueOfXbasedLiteral(roman);
+            result = computeValueDominatedBy("X", roman);
         } else 
         if (isDominatedBy("V", "I", roman)){
-            result = computeValueOfVbasedLiteral(roman);
+            result = computeValueDominatedBy("V", roman);
         } else {
             result = computeValueOfIbasedLiteral(roman);
         }
@@ -160,23 +160,6 @@ public class KataTest {
                 + valueOfAfterDominantSymbol(dominantSymbol, roman);
     }
     
-    
-    private int computeValueOfVbasedLiteral(String roman) {
-        return computeValueDominatedBy("V", roman);
-    }
-
-    private int computeValueOfXbasedLiteral(String roman) {
-        return computeValueDominatedBy("X", roman);
-    }
-    
-    private int computeValueOfLbasedLiteral(String roman) {
-        return computeValueDominatedBy("L", roman);
-    }
-    
-    private int computeValueOfCbasedLiteral(String roman) {
-        return computeValueDominatedBy("C", roman);
-    }
-
     private int computeValueOfIbasedLiteral(String roman) {
         return roman.length();
     }
