@@ -51,52 +51,20 @@ public class KataTest {
     }
     
     @Test
-    public void test_I() {
-        boolean result;
-        result = testToDecimal(new Scenario("I", 1));
+    public void testScenarios() {
+        boolean result = true;
+        result = testToDecimal(new Scenario("I", 1)) && result;
+        result = testToDecimal(new Scenario("II", 2)) && result;
+        result = testToDecimal(new Scenario("III", 3)) && result;
+        result = testToDecimal(new Scenario("IV", 4)) && result;
+        result = testToDecimal(new Scenario("V", 5)) && result;
+        result = testToDecimal(new Scenario("VI", 6)) && result;
+        result = testToDecimal(new Scenario("VII", 7)) && result;
+        result = testToDecimal(new Scenario("VIII", 8)) && result;
+        result = testToDecimal(new Scenario("IX", 9)) && result;
         assertTrue(result);
     }
-    
-    @Test
-    public void test_II() {
-        testToDecimal(new Scenario("II", 2));
-    }
-    
-    @Test
-    public void test_III() {
-        testToDecimal(new Scenario("III", 3));
-    }
-    
-    @Test
-    public void test_IV() {
-        testToDecimal(new Scenario("IV", 4));
-    }
-    
-    @Test
-    public void test_V() {
-        testToDecimal(new Scenario("V", 5));
-    }
-    
-    @Test
-    public void test_VI() {
-        testToDecimal(new Scenario("VI", 6));
-    }
-    
-    @Test
-    public void test_VII() {
-        testToDecimal(new Scenario("VII", 7));
-    }
-    
-    @Test
-    public void test_VIII() {
-        testToDecimal(new Scenario("VIII", 8));
-    }
-    
-    @Test
-    public void test_IX() {
-        testToDecimal(new Scenario("IX", 9));
-    }
-    
+
     /**
      * Convert
      * @param roman
