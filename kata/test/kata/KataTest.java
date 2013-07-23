@@ -84,20 +84,20 @@ public class KataTest {
         return result;
     }
     
-    private int numberOfIBeforeV(String roman) {
-        int indexOfV = roman.indexOf("V");
-        String front = roman.substring(0, indexOfV);
+    private int numberOfIBefore(String symbol, String romanNumeral) {
+        int indexOfSymbol = romanNumeral.indexOf(symbol);
+        String front = romanNumeral.substring(0, indexOfSymbol);
         int numerOfIs = front.length();
         
         return numerOfIs;
     }
     
+    private int numberOfIBeforeV(String roman) {
+        return numberOfIBefore("V", roman);
+    }
+    
     private int numberOfIBeforeX(String roman) {
-        int indexOfX = roman.indexOf("X");
-        String front = roman.substring(0, indexOfX);
-        int numerOfIs = front.length();
-        
-        return numerOfIs;
+        return numberOfIBefore("X", roman);
     }
     
     private int numberOfIAfterV(String roman) {
