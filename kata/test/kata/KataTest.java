@@ -95,7 +95,7 @@ public class KataTest {
     private int romanToDecimal(String roman) {
         int result;
 
-        if (isDominatedBy("C", "X", roman)) {
+        if (isDominatedBy("C", getUnderminedSymbolBy("C"), roman)) {
             result = computeValueDominatedBy("C", roman);
         } else
         if (isDominatedBy("L", "X", roman)) {
@@ -111,6 +111,10 @@ public class KataTest {
         }
         
         return result;
+    }
+    
+    private String getUnderminedSymbolBy(String dominantSymbol) {
+        return "X";
     }
     
     private int valueBeforeDominantSymbol(String symbol, String romanNumeral) {
