@@ -11,7 +11,7 @@ class Scenario {
     private final String romanValue;
     private final int decimalValue;
 
-    public Scenario(String romanValue, int decimalValue) {
+    public Scenario(int decimalValue, String romanValue) {
         this.romanValue = romanValue;
         this.decimalValue = decimalValue;
     }

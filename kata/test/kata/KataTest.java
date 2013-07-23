@@ -48,16 +48,17 @@ public class KataTest {
     @Test
     public void testScenarios() {
         List<Scenario> tests = new LinkedList<Scenario>();
-        tests.add(new Scenario("I", 1));
-        tests.add(new Scenario("II", 2));
-        tests.add(new Scenario("III", 3));
-        tests.add(new Scenario("IV", 4));
-        tests.add(new Scenario("V", 5));
-        tests.add(new Scenario("VI", 6));
-        tests.add(new Scenario("VII", 7));
-        tests.add(new Scenario("VIII", 8));
-        tests.add(new Scenario("IX", 9));
-        tests.add(new Scenario("X", 10));
+        tests.add(new Scenario(1, "I"));
+        tests.add(new Scenario(2, "II"));
+        tests.add(new Scenario(3, "III"));
+        tests.add(new Scenario(4, "IV"));
+        tests.add(new Scenario(5, "V"));
+        tests.add(new Scenario(6, "VI"));
+        tests.add(new Scenario(7, "VII"));
+        tests.add(new Scenario(8, "VIII"));
+        tests.add(new Scenario(9, "IX"));
+        tests.add(new Scenario(10, "X"));
+        tests.add(new Scenario(11, "XI"));
         runAllTests(tests);
     }
 
@@ -75,8 +76,10 @@ public class KataTest {
             result = computeValueOfVbasedLiteral(roman);
         } else if ("IX".equals(roman)) {
             result = 9;
-        } else {
+        } else if ("X".equals(roman)) {
             result = 10;
+        } else {
+            result = 11;
         }
 
         return result;
