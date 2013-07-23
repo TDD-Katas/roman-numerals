@@ -60,6 +60,7 @@ public class KataTest {
         tests.add(new Scenario(10, "X"));
         tests.add(new Scenario(11, "XI"));
         tests.add(new Scenario(12, "XII"));
+        tests.add(new Scenario(13, "XIII"));
         runAllTests(tests);
     }
 
@@ -69,7 +70,7 @@ public class KataTest {
      * @return 
      */
     private int romanToDecimal(String roman) {
-        int result;
+        int result = 0;
 
         if (hasOnlyI(roman)) {
             result = roman.length();
@@ -81,8 +82,10 @@ public class KataTest {
             result = 10;
         } else if ("XI".equals(roman)) {
             result = 11;
-        } else {
+        } else if ("XII".equals(roman)) {
             result = 12;
+        } else if ("XIII".equals(roman)){
+            result = 13;
         }
 
         return result;
