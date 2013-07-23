@@ -14,24 +14,6 @@ import static org.junit.Assert.*;
 public class KataTest {
     
     /**
-     * Convert
-     * @param roman
-     * @return 
-     */
-    private int romanToDecimal(String roman) {
-        int result;
-
-        if (roman.matches("I+")) {
-            result = roman.length();
-        } else {
-            result = 4;
-        }
-
-
-        return result;
-    }
-    
-    /**
      * Test of main method, of class Kata.
      */
     @Test
@@ -74,5 +56,26 @@ public class KataTest {
         
         //Then
         assertEquals(expectedDecimal,result);
+    }
+
+    /**
+     * Convert
+     * @param roman
+     * @return 
+     */
+    private int romanToDecimal(String roman) {
+        int result;
+
+        if (hasOnlyI(roman)) {
+            result = roman.length();
+        } else {
+            result = 4;
+        }
+
+        return result;
+    }
+    
+    private boolean hasOnlyI(String roman) {
+        return roman.matches("I+");
     }
 }
