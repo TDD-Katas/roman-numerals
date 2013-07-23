@@ -14,9 +14,9 @@ import static org.junit.Assert.*;
  * @author Iulian Ghionoiu <iulian.ghionoiu@exenne.ro>
  */
 public class KataTest {
-    private static final int VALUE_OF_I = 1;
     private static final int VALUE_OF_V = 5;
     private static final int VALUE_OF_X = 10;
+    private static final int VALUE_OF_L = 50;
 
     private void runAllTests(List<Scenario> tests) {
         boolean result = true;
@@ -75,6 +75,7 @@ public class KataTest {
         tests.add(new Scenario(30, "XXX"));
         tests.add(new Scenario(34, "XXXIV"));
         tests.add(new Scenario(39, "XXXIX"));
+        tests.add(new Scenario(40, "XL"));
         runAllTests(tests);
     }
 
@@ -86,9 +87,13 @@ public class KataTest {
     private int romanToDecimal(String roman) {
         int result;
 
-        if (isDominatedBy("X", roman)) {
+        if (isDominatedBy("L", "X", roman)) {
+            result = computeValueOfLbasedLiteral(roman);
+        } else
+        if (isDominatedBy("X", "I", roman)) {
             result = computeValueOfXbasedLiteral(roman);
-        } else if (isDominatedBy("V", roman)){
+        } else 
+        if (isDominatedBy("V", "I", roman)){
             result = computeValueOfVbasedLiteral(roman);
         } else {
             result = computeValueOfIbasedLiteral(roman);
@@ -112,8 +117,8 @@ public class KataTest {
     }
     
     
-    private boolean isDominatedBy(String symbol, String roman) {
-        return roman.startsWith(symbol) || roman.startsWith("I"+symbol);
+    private boolean isDominatedBy(String symbol, String subdominance, String roman) {
+        return roman.startsWith(symbol) || roman.startsWith(subdominance+symbol);
     }
     
     private boolean hasOnlyI(String roman) {
@@ -132,6 +137,12 @@ public class KataTest {
         return VALUE_OF_X 
                 - valueBeforeDominantSymbol("X", roman) 
                 + valueOfAfterDominantSymbol("X", roman);
+    }
+    
+    private int computeValueOfLbasedLiteral(String roman) {
+        return VALUE_OF_L 
+                - valueBeforeDominantSymbol("L", roman) 
+                + valueOfAfterDominantSymbol("L", roman);
     }
 
     private int computeValueOfIbasedLiteral(String roman) {
