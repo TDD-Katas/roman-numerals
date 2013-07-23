@@ -22,11 +22,14 @@ public class KataTest {
      */
     @Test
     public void testIto1() {
+        //Given
         String roman = "I";
         int expected = 1;
         
+        //When
         int result = 1;
         
+        //Then
         assertEquals(expected,result);
     }
 }
