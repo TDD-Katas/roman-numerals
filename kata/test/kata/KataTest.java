@@ -133,14 +133,18 @@ public class KataTest {
     
 
     private int getValueForSymbol(String symbol) {
+        int value;
+        
         if ("X".equals(symbol)) {
-            return VALUE_OF_X;
+            value = VALUE_OF_X;
         } else
         if ("L".equals(symbol)) {
-            return VALUE_OF_L;
+            value = VALUE_OF_L;
+        } else {
+            value = VALUE_OF_V;
         }
         
-        return VALUE_OF_V;
+        return value;
     }
     
     private int computeValueOfVbasedLiteral(String roman) {
