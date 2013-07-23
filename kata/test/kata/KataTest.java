@@ -133,6 +133,13 @@ public class KataTest {
     
 
     private int getValueForSymbol(String symbol) {
+        if ("X".equals(symbol)) {
+            return VALUE_OF_X;
+        } else
+        if ("L".equals(symbol)) {
+            return VALUE_OF_L;
+        }
+        
         return VALUE_OF_V;
     }
     
@@ -143,13 +150,13 @@ public class KataTest {
     }
 
     private int computeValueOfXbasedLiteral(String roman) {
-        return VALUE_OF_X 
+        return getValueForSymbol("X") 
                 - valueBeforeDominantSymbol("X", roman) 
                 + valueOfAfterDominantSymbol("X", roman);
     }
     
     private int computeValueOfLbasedLiteral(String roman) {
-        return VALUE_OF_L 
+        return getValueForSymbol("L") 
                 - valueBeforeDominantSymbol("L", roman) 
                 + valueOfAfterDominantSymbol("L", roman);
     }
