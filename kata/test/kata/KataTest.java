@@ -15,62 +15,82 @@ public class KataTest {
     private static final int VALUE_OF_V = 5;
     private static final int VALUE_OF_I = 1;
     
+    private class Scenarion {
+        String roman;
+        int expectedDecimal;
+
+        public Scenarion(String roman, int expectedDecimal) {
+            this.roman = roman;
+            this.expectedDecimal = expectedDecimal;
+        }
+
+        public String getRoman() {
+            return roman;
+        }
+
+        public int getExpectedDecimal() {
+            return expectedDecimal;
+        }
+        
+        
+    }
+    
     /**
      * Utility method
      * @param roman
      * @param expectedDecimal 
      */
-    private void testToDecimal(String roman, int expectedDecimal) {
+    private void testToDecimal(Scenarion scenarion) {
         //When
-        int result = romanToDecimal(roman);
+        int result = romanToDecimal(scenarion.getRoman());
         
         //Then
-        assertEquals(expectedDecimal,result);
+        assertEquals(scenarion.getExpectedDecimal(),result);
     }
     
     @Test
     public void test_I() {
-        testToDecimal("I", 1);
+        testToDecimal(new Scenarion("I", 1));
     }
     
     @Test
     public void test_II() {
-        testToDecimal("II", 2);
+        testToDecimal(new Scenarion("II", 2));
     }
     
     @Test
     public void test_III() {
-        testToDecimal("III", 3);
+        testToDecimal(new Scenarion("III", 3));
     }
     
     @Test
     public void test_IV() {
-        testToDecimal("IV", 4);
+        testToDecimal(new Scenarion("IV", 4));
     }
     
     @Test
     public void test_V() {
-        testToDecimal("V", 5);
+        testToDecimal(new Scenarion("V", 5));
     }
     
     @Test
     public void test_VI() {
-        testToDecimal("VI", 6);
+        testToDecimal(new Scenarion("VI", 6));
     }
     
     @Test
     public void test_VII() {
-        testToDecimal("VII", 7);
+        testToDecimal(new Scenarion("VII", 7));
     }
     
     @Test
     public void test_VIII() {
-        testToDecimal("VIII", 8);
+        testToDecimal(new Scenarion("VIII", 8));
     }
     
     @Test
     public void test_IX() {
-        testToDecimal("IX", 9);
+        testToDecimal(new Scenarion("IX", 9));
     }
     
     /**
