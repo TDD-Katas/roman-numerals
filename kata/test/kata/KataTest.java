@@ -14,6 +14,7 @@ import static org.junit.Assert.*;
  * @author Iulian Ghionoiu <iulian.ghionoiu@exenne.ro>
  */
 public class KataTest {
+    private static final int VALUE_OF_I = 1;
     private static final int VALUE_OF_V = 5;
     private static final int VALUE_OF_X = 10;
     private static final int VALUE_OF_L = 50;
@@ -135,20 +136,26 @@ public class KataTest {
     private int getValueForSymbol(String symbol) {
         int value;
         
-        if ("X".equals(symbol)) {
-            value = VALUE_OF_X;
+        if ("C".equals(symbol)) {
+            value = VALUE_OF_C;
         } else
         if ("L".equals(symbol)) {
             value = VALUE_OF_L;
-        } else {
+        } else
+        if ("X".equals(symbol)) {
+            value = VALUE_OF_X;
+        } else
+        if ("V".equals(symbol)) {
             value = VALUE_OF_V;
+        } else {
+            value = VALUE_OF_I;
         }
         
         return value;
     }
     
     private int computeValueOfVbasedLiteral(String roman) {
-        return getValueForSymbol(roman)
+        return getValueForSymbol("V")
                 - valueBeforeDominantSymbol("V", roman)
                 + valueOfAfterDominantSymbol("V", roman);
     }
@@ -166,7 +173,7 @@ public class KataTest {
     }
     
     private int computeValueOfCbasedLiteral(String roman) {
-        return VALUE_OF_C 
+        return getValueForSymbol("C") 
                 - valueBeforeDominantSymbol("C", roman) 
                 + valueOfAfterDominantSymbol("C", roman);
     }
