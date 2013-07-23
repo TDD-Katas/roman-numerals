@@ -114,20 +114,22 @@ public class KataTest {
     }
     
     private String getUnderminedSymbolBy(String dominantSymbol) {
+        String underminedSymbol = "";
+        
         if ("C".equals(dominantSymbol)) {
-            return "X";
+            underminedSymbol = "X";
         } else
         if ("L".equals(dominantSymbol)) {
-            return "X";
+            underminedSymbol =  "X";
         } else
         if ("X".equals(dominantSymbol)) {
-            return "I";
+            underminedSymbol = "I";
         } else
         if ("V".equals(dominantSymbol)) {
-            return "I";
+            underminedSymbol =  "I";
         }
         
-        return "I";
+        return underminedSymbol;
     }
     
     private int valueBeforeDominantSymbol(String symbol, String romanNumeral) {
