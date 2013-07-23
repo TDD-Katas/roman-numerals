@@ -75,6 +75,15 @@ public class KataTest {
     }
     
     /**
+     * Test of main method, of class Kata.
+     */
+    @Test
+    public void test_VII() {
+        testToDecimal("VII", 7);
+    }
+    
+    
+    /**
      * Convert
      * @param roman
      * @return 
@@ -88,8 +97,10 @@ public class KataTest {
             result = 4;
         } else if ("V".equals(roman)){
             result = 5;
-        } else {
+        } else if ("VI".equals(roman)){
             result = 6;
+        } else {
+            result = 7;
         }
 
         return result;
