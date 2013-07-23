@@ -25,28 +25,6 @@ public class KataTest {
         assertTrue(result);
     }
     
-    
-    /**
-     * Helper class for tests
-     */
-    private static class Scenario {
-        private final String romanValue;
-        private final int decimalValue;
-
-        public Scenario(String romanValue, int decimalValue) {
-            this.romanValue = romanValue;
-            this.decimalValue = decimalValue;
-        }
-
-        public String getRomanValue() {
-            return romanValue;
-        }
-
-        public int getDecimalValue() {
-            return decimalValue;
-        }
-    }
-    
     /**
      * Utility method
      * @param roman
