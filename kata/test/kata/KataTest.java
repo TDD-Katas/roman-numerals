@@ -58,6 +58,7 @@ public class KataTest {
         testToDecimal("III", 3);
     }
     
+    
     private void testToDecimal(String roman, int expectedDecimal) {
         //When
         int result = romanToDecimal(roman);
