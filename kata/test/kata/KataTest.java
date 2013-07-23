@@ -109,15 +109,15 @@ public class KataTest {
         if (hasOnlyI(roman)) {
             result = roman.length();
         } else if ("IV".equals(roman)){
-            result = getValueForV() - numberOfIBeforeV(roman)*getValueForI();
+            result = getValueForV() - numberOfIBeforeV(roman)*getValueForI() + numberOfIAfterV(roman)*getValueForI();;
         } else if ("V".equals(roman)){
-            result = getValueForV() - numberOfIBeforeV(roman)*getValueForI();
+            result = getValueForV() - numberOfIBeforeV(roman)*getValueForI() + numberOfIAfterV(roman)*getValueForI();;
         } else if ("VI".equals(roman)){
-            result = getValueForV() + numberOfIAfterV(roman)*getValueForI();
+            result = getValueForV() - numberOfIBeforeV(roman)*getValueForI() + numberOfIAfterV(roman)*getValueForI();
         } else if ("VII".equals(roman)){
-            result = getValueForV() + numberOfIAfterV(roman)*getValueForI();
+            result = getValueForV() - numberOfIBeforeV(roman)*getValueForI() + numberOfIAfterV(roman)*getValueForI();
         } else if ("VIII".equals(roman)){
-            result = getValueForV() + numberOfIAfterV(roman)*getValueForI();
+            result = getValueForV() - numberOfIBeforeV(roman)*getValueForI() + numberOfIAfterV(roman)*getValueForI();
         } else {
             result = 9;
         }
