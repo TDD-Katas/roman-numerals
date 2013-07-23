@@ -12,6 +12,8 @@ import static org.junit.Assert.*;
  * @author Iulian Ghionoiu <iulian.ghionoiu@exenne.ro>
  */
 public class KataTest {
+    private static final int VALUE_OF_V = 5;
+    private static final int VALUE_OF_I = 1;
     
     /**
      * Utility method
@@ -31,7 +33,7 @@ public class KataTest {
      */
     @Test
     public void test_I() {
-        testToDecimal("I", getValueForI());
+        testToDecimal("I", 1);
     }
     
     /**
@@ -63,7 +65,7 @@ public class KataTest {
      */
     @Test
     public void test_V() {
-        testToDecimal("V", getValueForV());
+        testToDecimal("V", 5);
     }
     
     /**
@@ -146,15 +148,9 @@ public class KataTest {
         return roman.matches("I+");
     }
 
-    private int getValueForV() {
-        return 5;
-    }
-
-    private int getValueForI() {
-        return 1;
-    }
-
     private int computeValueOfVbasedLiteral(String roman) {
-        return getValueForV() - numberOfIBeforeV(roman)*getValueForI() + numberOfIAfterV(roman)*getValueForI();
+        return VALUE_OF_V 
+                - numberOfIBeforeV(roman)*VALUE_OF_I
+                + numberOfIAfterV(roman)*VALUE_OF_I;
     }
 }
