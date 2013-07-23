@@ -46,6 +46,14 @@ public class KataTest {
     }
     
     /**
+     * Test of main method, of class Kata.
+     */
+    @Test
+    public void test_V() {
+        testToDecimal("V", 5);
+    }
+    
+    /**
      * Utility method
      * @param roman
      * @param expectedDecimal 
@@ -68,8 +76,10 @@ public class KataTest {
 
         if (hasOnlyI(roman)) {
             result = roman.length();
-        } else {
+        } else if ("IV".equals(roman)){
             result = 4;
+        } else {
+            result = 5;
         }
 
         return result;
