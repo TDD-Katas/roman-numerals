@@ -14,8 +14,9 @@ import static org.junit.Assert.*;
  * @author Iulian Ghionoiu <iulian.ghionoiu@exenne.ro>
  */
 public class KataTest {
-    private static final int VALUE_OF_V = 5;
     private static final int VALUE_OF_I = 1;
+    private static final int VALUE_OF_V = 5;
+    private static final int VALUE_OF_X = 10;
 
     private void runAllTests(List<Scenario> tests) {
         boolean result = true;
@@ -134,6 +135,8 @@ public class KataTest {
     }
 
     private int computeValueOfXbasedLiteral(String roman) {
-        return 10 - numberOfIBeforeX(roman)*VALUE_OF_I + numberOfIAfterX(roman)*VALUE_OF_I;
+        return VALUE_OF_X 
+                - numberOfIBeforeX(roman)*VALUE_OF_I 
+                + numberOfIAfterX(roman)*VALUE_OF_I;
     }
 }
