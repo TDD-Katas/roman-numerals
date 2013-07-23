@@ -84,20 +84,18 @@ public class KataTest {
         return result;
     }
     
-    private int valueOfIBefore(String symbol, String romanNumeral) {
+    private int valueBeforeDominantSymbol(String symbol, String romanNumeral) {
         int indexOfSymbol = romanNumeral.indexOf(symbol);
         String front = romanNumeral.substring(0, indexOfSymbol);
-        int numerOfIs = computeValueOfIbasedLiteral(front);
         
-        return numerOfIs*VALUE_OF_I;
+        return romanToDecimal(front);
     }
     
-    private int valueOfIAfter(String symbol, String romanNumeral) {
+    private int valueOfAfterDominantSymbol(String symbol, String romanNumeral) {
         int lastIndexOfSymbol = romanNumeral.lastIndexOf(symbol);
         String tail = romanNumeral.substring(lastIndexOfSymbol + 1);
-        int numerOfIs = computeValueOfIbasedLiteral(tail);
         
-        return numerOfIs*VALUE_OF_I;
+        return romanToDecimal(tail);
     }
     
     private boolean isDominatedByX(String roman) {
@@ -116,14 +114,14 @@ public class KataTest {
     
     private int computeValueOfVbasedLiteral(String roman) {
         return VALUE_OF_V 
-                - valueOfIBefore("V", roman)
-                + valueOfIAfter("V", roman);
+                - valueBeforeDominantSymbol("V", roman)
+                + valueOfAfterDominantSymbol("V", roman);
     }
 
     private int computeValueOfXbasedLiteral(String roman) {
         return VALUE_OF_X 
-                - valueOfIBefore("X", roman) 
-                + valueOfIAfter("X", roman);
+                - valueBeforeDominantSymbol("X", roman) 
+                + valueOfAfterDominantSymbol("X", roman);
     }
 
     private int computeValueOfIbasedLiteral(String roman) {
