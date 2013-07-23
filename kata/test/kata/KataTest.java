@@ -17,6 +17,7 @@ public class KataTest {
     private static final int VALUE_OF_V = 5;
     private static final int VALUE_OF_X = 10;
     private static final int VALUE_OF_L = 50;
+    private static final int VALUE_OF_C = 100;
 
     private void runAllTests(List<Scenario> tests) {
         boolean result = true;
@@ -81,6 +82,7 @@ public class KataTest {
         tests.add(new Scenario(59, "LIX"));
         tests.add(new Scenario(70, "LXX"));
         tests.add(new Scenario(89, "LXXXIX"));
+        tests.add(new Scenario(90, "XC"));
         runAllTests(tests);
     }
 
@@ -92,6 +94,9 @@ public class KataTest {
     private int romanToDecimal(String roman) {
         int result;
 
+        if (isDominatedBy("C", "X", roman)) {
+            result = computeValueOfCbasedLiteral(roman);
+        } else
         if (isDominatedBy("L", "X", roman)) {
             result = computeValueOfLbasedLiteral(roman);
         } else
@@ -148,6 +153,12 @@ public class KataTest {
         return VALUE_OF_L 
                 - valueBeforeDominantSymbol("L", roman) 
                 + valueOfAfterDominantSymbol("L", roman);
+    }
+    
+    private int computeValueOfCbasedLiteral(String roman) {
+        return VALUE_OF_C 
+                - valueBeforeDominantSymbol("C", roman) 
+                + valueOfAfterDominantSymbol("C", roman);
     }
 
     private int computeValueOfIbasedLiteral(String roman) {
