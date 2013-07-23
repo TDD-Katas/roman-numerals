@@ -55,20 +55,24 @@ public class KataTest {
     @Test
     public void testScenarios() {
         boolean result = true;
-        List<Scenario> scenarios = new LinkedList<Scenario>();
-        scenarios.add(new Scenario("I", 1));
-        scenarios.add(new Scenario("II", 2));
-        scenarios.add(new Scenario("III", 3));
-        scenarios.add(new Scenario("IV", 4));
-        scenarios.add(new Scenario("V", 5));
-        scenarios.add(new Scenario("VI", 6));
-        scenarios.add(new Scenario("VII", 7));
-        scenarios.add(new Scenario("VIII", 8));
-        scenarios.add(new Scenario("IX", 9));
+        List<Scenario> tests = new LinkedList<Scenario>();
+        tests.add(new Scenario("I", 1));
+        tests.add(new Scenario("II", 2));
+        tests.add(new Scenario("III", 3));
+        tests.add(new Scenario("IV", 4));
+        tests.add(new Scenario("V", 5));
+        tests.add(new Scenario("VI", 6));
+        tests.add(new Scenario("VII", 7));
+        tests.add(new Scenario("VIII", 8));
+        tests.add(new Scenario("IX", 9));
         
         
-        for (Scenario scenario : scenarios) {
-            result = testForEquality(scenario) && result;
+        for (Scenario scenario : tests) {
+            boolean localResult = testForEquality(scenario);
+            if (!localResult) {
+                System.out.println("Failed test");
+            }
+            result = localResult && result;
         }
         
         assertTrue(result);
