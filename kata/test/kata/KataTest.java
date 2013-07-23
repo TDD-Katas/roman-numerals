@@ -28,73 +28,46 @@ public class KataTest {
         assertEquals(expectedDecimal,result);
     }
     
-    /**
-     * Test of main method, of class Kata.
-     */
     @Test
     public void test_I() {
         testToDecimal("I", 1);
     }
     
-    /**
-     * Test of main method, of class Kata.
-     */
     @Test
     public void test_II() {
         testToDecimal("II", 2);
     }
     
-    /**
-     * Test of main method, of class Kata.
-     */
     @Test
     public void test_III() {
         testToDecimal("III", 3);
     }
     
-    /**
-     * Test of main method, of class Kata.
-     */
     @Test
     public void test_IV() {
         testToDecimal("IV", 4);
     }
     
-    /**
-     * Test of main method, of class Kata.
-     */
     @Test
     public void test_V() {
         testToDecimal("V", 5);
     }
     
-    /**
-     * Test of main method, of class Kata.
-     */
     @Test
     public void test_VI() {
         testToDecimal("VI", 6);
     }
     
-    /**
-     * Test of main method, of class Kata.
-     */
     @Test
     public void test_VII() {
         testToDecimal("VII", 7);
     }
     
-    /**
-     * Test of main method, of class Kata.
-     */
     @Test
     public void test_VIII() {
         testToDecimal("VIII", 8);
     }
     
-    /**
-     * Test of main method, of class Kata.
-     */
     @Test
     public void test_IX() {
         testToDecimal("IX", 9);
@@ -134,7 +107,6 @@ public class KataTest {
         
         return numerOfIs;
     }
-    
     
     private int numberOfIAfterV(String roman) {
         int lastIndexOfV = roman.lastIndexOf("V");
