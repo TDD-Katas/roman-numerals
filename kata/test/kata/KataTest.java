@@ -19,15 +19,18 @@ public class KataTest {
      * @return 
      */
     private int romanToDecimal(String roman) {
+        int result;
+
         if ("I".equals(roman)) {
-            return 1;
-        } else 
-        if ("II".equals(roman)) {
-            return 2;
-        } else 
-        {
-            return 3;
+            result = 1;
+        } else if ("II".equals(roman)) {
+            result = 2;
+        } else {
+            result = 3;
         }
+
+
+        return result;
     }
     
     
