@@ -21,12 +21,8 @@ public class KataTest {
     private int romanToDecimal(String roman) {
         int result;
 
-        if ("I".equals(roman)) {
-            result = 1;
-        } else if ("II".equals(roman)) {
-            result = 2;
-        } else if ("III".equals(roman)) {
-            result = 3;
+        if (roman.matches("I+")) {
+            result = roman.length();
         } else {
             result = 4;
         }
