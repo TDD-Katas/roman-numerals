@@ -1,7 +1,8 @@
+JUnit4TestShouldUseTestAnnotation
 JUnitTestsShouldIncludeAssert
 UnusedLocalVariable
 JUnitAssertionsShouldIncludeMessage
 MethodArgumentCouldBeFinal
 MethodNamingConventions
-DataflowAnomalyAnalysis
 LocalVariableCouldBeFinal
+DataflowAnomalyAnalysis

@@ -25,14 +25,15 @@ public class KataTest {
             result = 1;
         } else if ("II".equals(roman)) {
             result = 2;
-        } else {
+        } else if ("III".equals(roman)) {
             result = 3;
+        } else {
+            result = 4;
         }
 
 
         return result;
     }
-    
     
     /**
      * Test of main method, of class Kata.
@@ -58,7 +59,19 @@ public class KataTest {
         testToDecimal("III", 3);
     }
     
+    /**
+     * Test of main method, of class Kata.
+     */
+    @Test
+    public void test_IV() {
+        testToDecimal("IV", 4);
+    }
     
+    /**
+     * Utility method
+     * @param roman
+     * @param expectedDecimal 
+     */
     private void testToDecimal(String roman, int expectedDecimal) {
         //When
         int result = romanToDecimal(roman);
