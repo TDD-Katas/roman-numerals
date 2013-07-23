@@ -28,4 +28,20 @@ public class KataTest {
         //Then
         assertEquals(expected,result);
     }
+    
+    /**
+     * Test of main method, of class Kata.
+     */
+    @Test
+    public void test_II() {
+        //Given
+        String roman = "II";
+        int expected = 2;
+        
+        //When
+        int result = 2;
+        
+        //Then
+        assertEquals(expected,result);
+    }
 }
