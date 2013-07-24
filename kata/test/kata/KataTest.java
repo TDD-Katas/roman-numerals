@@ -19,18 +19,24 @@ public class KataTest {
     private static final int VALUE_OF_X = 10;
     private static final int VALUE_OF_L = 50;
     private static final int VALUE_OF_C = 100;
-    private static final RomanSymbol ROMAN_C = new RomanSymbol("C", VALUE_OF_C);
-    private static final RomanSymbol ROMAN_X = new RomanSymbol("X", VALUE_OF_X);
-    private static final RomanSymbol ROMAN_L = new RomanSymbol("L", VALUE_OF_L);
-    private static final RomanSymbol ROMAN_V = new RomanSymbol("V", VALUE_OF_V);
-    private static final RomanSymbol ROMAN_I = new RomanSymbol("I", VALUE_OF_I);
+    private static final RomanSymbol ROMAN_C = new RomanSymbol("C", "X", 100);
+    private static final RomanSymbol ROMAN_L = new RomanSymbol("L", "X", 50);
+    private static final RomanSymbol ROMAN_X = new RomanSymbol("X", "I", 10);
+    private static final RomanSymbol ROMAN_V = new RomanSymbol("V", "I", 5);
+    private static final RomanSymbol ROMAN_I = new RomanSymbol("I", 1);
 
     private static class RomanSymbol {
         private final String symbol;
+        private final String inferiorSymbol;
         private final int value;
 
         public RomanSymbol(String symbol, int value) {
+            this(symbol, "", value);
+        }
+        
+        public RomanSymbol(String symbol, String inferiorSymbol, int value) {
             this.symbol = symbol;
+            this.inferiorSymbol = inferiorSymbol;
             this.value = value;
         }
 
