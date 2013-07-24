@@ -27,13 +27,18 @@ public class KataTest {
             this.symbol = symbol;
         }
 
+        public String getSymbol() {
+            return symbol;
+        }
+        
+
         @Override
         public int hashCode() {
             int hash = 7;
             hash = 89 * hash + (this.symbol != null ? this.symbol.hashCode() : 0);
             return hash;
         }
-
+        
         @Override
         public boolean equals(Object obj) {
             if (obj == null) {
@@ -125,16 +130,16 @@ public class KataTest {
     private int romanToDecimal(String roman) {
         int result;
 
-        if (isDominatedBy("C", getUnderminedSymbolBy("C"), roman)) {
+        if (isDominatedBy(new RomanSymbol("C"), new RomanSymbol("X"), roman)) {
             result = computeValueDominatedBy("C", roman);
         } else
-        if (isDominatedBy("L", getUnderminedSymbolBy("L"), roman)) {
+        if (isDominatedBy(new RomanSymbol("L"), new RomanSymbol("X"), roman)) {
             result = computeValueDominatedBy("L", roman);
         } else
-        if (isDominatedBy("X", getUnderminedSymbolBy("X"), roman)) {
+        if (isDominatedBy(new RomanSymbol("X"), new RomanSymbol("I"), roman)) {
             result = computeValueDominatedBy("X", roman);
         } else 
-        if (isDominatedBy("V", getUnderminedSymbolBy("V"), roman)){
+        if (isDominatedBy(new RomanSymbol("V"), new RomanSymbol("I"), roman)){
             result = computeValueDominatedBy("V", roman);
         } else {
             result = computeValueOfIbasedLiteral(roman);
@@ -177,8 +182,9 @@ public class KataTest {
     }
     
     
-    private boolean isDominatedBy(String symbol, String subdominance, String roman) {
-        return roman.startsWith(symbol) || roman.startsWith(subdominance+symbol);
+    private boolean isDominatedBy(RomanSymbol symbol, RomanSymbol subdominance, String roman) {
+        return roman.startsWith(symbol.getSymbol()) || 
+                roman.startsWith(subdominance.getSymbol()+symbol.getSymbol());
     }
     
 
