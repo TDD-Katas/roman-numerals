@@ -59,7 +59,9 @@ public class KataTest {
                 return false;
             }
             final RomanSymbol other = (RomanSymbol) obj;
-            if ((this.symbol == null) ? (other.symbol != null) : !this.symbol.equals(other.symbol)) {
+            if ((this.symbol == null) ? 
+                    (other.symbol != null) : 
+                    !this.symbol.equals(other.symbol)) {
                 return false;
             }
             if (this.value != other.value) {
@@ -146,16 +148,16 @@ public class KataTest {
         int result;
 
         if (isDominatedBy(ROMAN_C, ROMAN_X, roman)) {
-            result = computeValueDominatedBy("C", roman);
+            result = computeValueDominatedBy(ROMAN_C, roman);
         } else
         if (isDominatedBy(ROMAN_L, ROMAN_X, roman)) {
-            result = computeValueDominatedBy("L", roman);
+            result = computeValueDominatedBy(ROMAN_L, roman);
         } else
         if (isDominatedBy(ROMAN_X, ROMAN_I, roman)) {
-            result = computeValueDominatedBy("X", roman);
+            result = computeValueDominatedBy(ROMAN_X, roman);
         } else 
         if (isDominatedBy(ROMAN_V, ROMAN_I, roman)){
-            result = computeValueDominatedBy("V", roman);
+            result = computeValueDominatedBy(ROMAN_V, roman);
         } else {
             result = computeValueOfIbasedLiteral(roman);
         }
@@ -183,32 +185,10 @@ public class KataTest {
                 roman.startsWith(subdominance.getSymbol()+symbol.getSymbol());
     }
     
-
-    private int getValueForSymbol(String symbol) {
-        int value;
-        
-        if ("C".equals(symbol)) {
-            value = VALUE_OF_C;
-        } else
-        if ("L".equals(symbol)) {
-            value = VALUE_OF_L;
-        } else
-        if ("X".equals(symbol)) {
-            value = VALUE_OF_X;
-        } else
-        if ("V".equals(symbol)) {
-            value = VALUE_OF_V;
-        } else {
-            value = VALUE_OF_I;
-        }
-        
-        return value;
-    }
-    
-    private int computeValueDominatedBy(String dominantSymbol, String roman) {
-        return getValueForSymbol(dominantSymbol)
-                - valueBeforeDominantSymbol(dominantSymbol, roman)
-                + valueOfAfterDominantSymbol(dominantSymbol, roman);
+    private int computeValueDominatedBy(RomanSymbol dominantSymbol, String roman) {
+        return dominantSymbol.getValue()
+                - valueBeforeDominantSymbol(dominantSymbol.getSymbol(), roman)
+                + valueOfAfterDominantSymbol(dominantSymbol.getSymbol(), roman);
     }
     
     private int computeValueOfIbasedLiteral(String roman) {
