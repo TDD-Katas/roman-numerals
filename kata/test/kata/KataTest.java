@@ -37,15 +37,19 @@ public class KataTest {
         public String getSymbol() {
             return symbol;
         }
-        
+
+        public int getValue() {
+            return value;
+        }
 
         @Override
         public int hashCode() {
-            int hash = 7;
-            hash = 89 * hash + (this.symbol != null ? this.symbol.hashCode() : 0);
+            int hash = 5;
+            hash = 59 * hash + (this.symbol != null ? this.symbol.hashCode() : 0);
+            hash = 59 * hash + this.value;
             return hash;
         }
-        
+
         @Override
         public boolean equals(Object obj) {
             if (obj == null) {
@@ -58,8 +62,12 @@ public class KataTest {
             if ((this.symbol == null) ? (other.symbol != null) : !this.symbol.equals(other.symbol)) {
                 return false;
             }
+            if (this.value != other.value) {
+                return false;
+            }
             return true;
         }
+        
     }
     
     private void runAllTests(List<Scenario> tests) {
