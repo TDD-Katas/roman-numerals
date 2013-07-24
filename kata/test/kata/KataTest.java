@@ -157,16 +157,16 @@ public class KataTest {
     private int romanToDecimal(String roman) {
         int result;
 
-        if (isDominatedBy(ROMAN_C, roman)) {
+        if (ROMAN_C.dominates(roman)) {
             result = computeValueDominatedBy(ROMAN_C, roman);
         } else
-        if (isDominatedBy(ROMAN_L, roman)) {
+        if (ROMAN_L.dominates(roman)) {
             result = computeValueDominatedBy(ROMAN_L, roman);
         } else
-        if (isDominatedBy(ROMAN_X, roman)) {
+        if (ROMAN_X.dominates(roman)) {
             result = computeValueDominatedBy(ROMAN_X, roman);
         } else 
-        if (isDominatedBy(ROMAN_V, roman)){
+        if (ROMAN_V.dominates(roman)){
             result = computeValueDominatedBy(ROMAN_V, roman);
         } else {
             result = computeValueOfIbasedLiteral(roman);
@@ -187,11 +187,6 @@ public class KataTest {
         String tail = romanNumeral.substring(indexOfSymbol + 1);
         
         return romanToDecimal(tail);
-    }
-    
-    
-    private boolean isDominatedBy(RomanSymbol symbol, String roman) {
-        return symbol.dominates(roman);
     }
     
     private int computeValueDominatedBy(RomanSymbol dominantSymbol, String roman) {
