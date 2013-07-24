@@ -22,16 +22,16 @@ public class KataTest {
 
     private static class RomanSymbol {
         private final String symbol;
-        private final String inferiorSymbol;
+        private final String substractionSymbol;
         private final int value;
 
         public RomanSymbol(String symbol, int value) {
             this(symbol, "", value);
         }
         
-        public RomanSymbol(String symbol, String inferiorSymbol, int value) {
+        public RomanSymbol(String symbol, String substractionSymbol, int value) {
             this.symbol = symbol;
-            this.inferiorSymbol = inferiorSymbol;
+            this.substractionSymbol = substractionSymbol;
             this.value = value;
         }
 
@@ -39,8 +39,8 @@ public class KataTest {
             return symbol;
         }
 
-        public String getInferiorSymbol() {
-            return inferiorSymbol;
+        public String getSubstractionSymbol() {
+            return substractionSymbol;
         }
         
         public int getValue() {
@@ -187,7 +187,7 @@ public class KataTest {
     
     private boolean isDominatedBy(RomanSymbol symbol, String roman) {
         return roman.startsWith(symbol.getSymbol()) || 
-                roman.startsWith(symbol.getInferiorSymbol()+symbol.getSymbol());
+                roman.startsWith(symbol.getSubstractionSymbol()+symbol.getSymbol());
     }
     
     private int computeValueDominatedBy(RomanSymbol dominantSymbol, String roman) {

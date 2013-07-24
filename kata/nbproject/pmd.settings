@@ -10,6 +10,7 @@ JUnit4TestShouldUseTestAnnotation
 JUnitTestsShouldIncludeAssert
 UnusedLocalVariable
 JUnitAssertionsShouldIncludeMessage
+LongVariable
 UseIndexOfChar
 BeanMembersShouldSerialize
 OnlyOneReturn
