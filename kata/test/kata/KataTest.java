@@ -51,35 +51,6 @@ public class KataTest {
             return roman.startsWith(symbol) || 
                     roman.startsWith(substractionSymbol+symbol);
         }
-
-        @Override
-        public int hashCode() {
-            int hash = 5;
-            hash = 59 * hash + (this.symbol != null ? this.symbol.hashCode() : 0);
-            hash = 59 * hash + this.value;
-            return hash;
-        }
-
-        @Override
-        public boolean equals(Object obj) {
-            if (obj == null) {
-                return false;
-            }
-            if (getClass() != obj.getClass()) {
-                return false;
-            }
-            final RomanSymbol other = (RomanSymbol) obj;
-            if ((this.symbol == null) ? 
-                    (other.symbol != null) : 
-                    !this.symbol.equals(other.symbol)) {
-                return false;
-            }
-            if (this.value != other.value) {
-                return false;
-            }
-            return true;
-        }
-        
     }
     
     private void runAllTests(List<Scenario> tests) {
