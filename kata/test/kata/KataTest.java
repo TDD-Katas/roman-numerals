@@ -19,6 +19,10 @@ public class KataTest {
     private static final int VALUE_OF_X = 10;
     private static final int VALUE_OF_L = 50;
     private static final int VALUE_OF_C = 100;
+    public static final RomanSymbol ROMAN_C = new RomanSymbol("C");
+    public static final RomanSymbol ROMAN_X = new RomanSymbol("X");
+    public static final RomanSymbol ROMAN_L = new RomanSymbol("L");
+    public static final RomanSymbol ROMAN_I = new RomanSymbol("I");
 
     private static class RomanSymbol {
         private final String symbol;
@@ -129,17 +133,18 @@ public class KataTest {
      */
     private int romanToDecimal(String roman) {
         int result;
+        final RomanSymbol ROMAN_V = new RomanSymbol("V");
 
-        if (isDominatedBy(new RomanSymbol("C"), new RomanSymbol("X"), roman)) {
+        if (isDominatedBy(ROMAN_C, ROMAN_X, roman)) {
             result = computeValueDominatedBy("C", roman);
         } else
-        if (isDominatedBy(new RomanSymbol("L"), new RomanSymbol("X"), roman)) {
+        if (isDominatedBy(ROMAN_L, ROMAN_X, roman)) {
             result = computeValueDominatedBy("L", roman);
         } else
-        if (isDominatedBy(new RomanSymbol("X"), new RomanSymbol("I"), roman)) {
+        if (isDominatedBy(ROMAN_X, ROMAN_I, roman)) {
             result = computeValueDominatedBy("X", roman);
         } else 
-        if (isDominatedBy(new RomanSymbol("V"), new RomanSymbol("I"), roman)){
+        if (isDominatedBy(ROMAN_V, ROMAN_I, roman)){
             result = computeValueDominatedBy("V", roman);
         } else {
             result = computeValueOfIbasedLiteral(roman);
