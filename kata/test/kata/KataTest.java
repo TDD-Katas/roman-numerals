@@ -46,6 +46,11 @@ public class KataTest {
         public int getValue() {
             return value;
         }
+        
+        public boolean dominates(String roman) {
+            return roman.startsWith(symbol) || 
+                    roman.startsWith(substractionSymbol+symbol);
+        }
 
         @Override
         public int hashCode() {
@@ -186,8 +191,7 @@ public class KataTest {
     
     
     private boolean isDominatedBy(RomanSymbol symbol, String roman) {
-        return roman.startsWith(symbol.getSymbol()) || 
-                roman.startsWith(symbol.getSubstractionSymbol()+symbol.getSymbol());
+        return symbol.dominates(roman);
     }
     
     private int computeValueDominatedBy(RomanSymbol dominantSymbol, String roman) {
