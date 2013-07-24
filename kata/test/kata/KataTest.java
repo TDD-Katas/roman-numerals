@@ -14,11 +14,6 @@ import static org.junit.Assert.*;
  * @author Iulian Ghionoiu <iulian.ghionoiu@exenne.ro>
  */
 public class KataTest {
-    private static final int VALUE_OF_I = 1;
-    private static final int VALUE_OF_V = 5;
-    private static final int VALUE_OF_X = 10;
-    private static final int VALUE_OF_L = 50;
-    private static final int VALUE_OF_C = 100;
     private static final RomanSymbol ROMAN_C = new RomanSymbol("C", "X", 100);
     private static final RomanSymbol ROMAN_L = new RomanSymbol("L", "X", 50);
     private static final RomanSymbol ROMAN_X = new RomanSymbol("X", "I", 10);
@@ -44,6 +39,10 @@ public class KataTest {
             return symbol;
         }
 
+        public String getInferiorSymbol() {
+            return inferiorSymbol;
+        }
+        
         public int getValue() {
             return value;
         }
@@ -153,16 +152,16 @@ public class KataTest {
     private int romanToDecimal(String roman) {
         int result;
 
-        if (isDominatedBy(ROMAN_C, ROMAN_X, roman)) {
+        if (isDominatedBy(ROMAN_C, roman)) {
             result = computeValueDominatedBy(ROMAN_C, roman);
         } else
-        if (isDominatedBy(ROMAN_L, ROMAN_X, roman)) {
+        if (isDominatedBy(ROMAN_L, roman)) {
             result = computeValueDominatedBy(ROMAN_L, roman);
         } else
-        if (isDominatedBy(ROMAN_X, ROMAN_I, roman)) {
+        if (isDominatedBy(ROMAN_X, roman)) {
             result = computeValueDominatedBy(ROMAN_X, roman);
         } else 
-        if (isDominatedBy(ROMAN_V, ROMAN_I, roman)){
+        if (isDominatedBy(ROMAN_V, roman)){
             result = computeValueDominatedBy(ROMAN_V, roman);
         } else {
             result = computeValueOfIbasedLiteral(roman);
@@ -186,9 +185,9 @@ public class KataTest {
     }
     
     
-    private boolean isDominatedBy(RomanSymbol symbol, RomanSymbol subdominance, String roman) {
+    private boolean isDominatedBy(RomanSymbol symbol, String roman) {
         return roman.startsWith(symbol.getSymbol()) || 
-                roman.startsWith(subdominance.getSymbol()+symbol.getSymbol());
+                roman.startsWith(symbol.getInferiorSymbol()+symbol.getSymbol());
     }
     
     private int computeValueDominatedBy(RomanSymbol dominantSymbol, String roman) {
