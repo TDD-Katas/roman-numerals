@@ -3,6 +3,7 @@ TooManyMethods
 SystemPrintln
 MethodArgumentCouldBeFinal
 MethodNamingConventions
+ConfusingTernary
 LocalVariableCouldBeFinal
 DataflowAnomalyAnalysis
 JUnit4TestShouldUseTestAnnotation
@@ -11,3 +12,4 @@ UnusedLocalVariable
 JUnitAssertionsShouldIncludeMessage
 UseIndexOfChar
 BeanMembersShouldSerialize
+OnlyOneReturn
