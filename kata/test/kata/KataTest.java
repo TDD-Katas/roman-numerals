@@ -20,6 +20,36 @@ public class KataTest {
     private static final int VALUE_OF_L = 50;
     private static final int VALUE_OF_C = 100;
 
+    private static class RomanSymbol {
+        private final String symbol;
+
+        public RomanSymbol(String symbol) {
+            this.symbol = symbol;
+        }
+
+        @Override
+        public int hashCode() {
+            int hash = 7;
+            hash = 89 * hash + (this.symbol != null ? this.symbol.hashCode() : 0);
+            return hash;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (obj == null) {
+                return false;
+            }
+            if (getClass() != obj.getClass()) {
+                return false;
+            }
+            final RomanSymbol other = (RomanSymbol) obj;
+            if ((this.symbol == null) ? (other.symbol != null) : !this.symbol.equals(other.symbol)) {
+                return false;
+            }
+            return true;
+        }
+    }
+    
     private void runAllTests(List<Scenario> tests) {
         boolean result = true;
         for (Scenario scenario : tests) {
