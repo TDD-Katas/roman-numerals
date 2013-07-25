@@ -18,7 +18,7 @@ public class KataTest {
     private static final RomanSymbol ROMAN_L = new RomanSymbol("L", "X", 50);
     private static final RomanSymbol ROMAN_X = new RomanSymbol("X", "I", 10);
     private static final RomanSymbol ROMAN_V = new RomanSymbol("V", "I", 5);
-    private static final RomanSymbol ROMAN_I = new RomanSymbol("I", 1);
+    private static final RomanSymbol ROMAN_I = new RomanSymbol("I", 1); 
 
     private static class RomanSymbol {
         private final String symbol;
