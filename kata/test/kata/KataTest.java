@@ -19,6 +19,13 @@ public class KataTest {
     private static final RomanSymbol ROMAN_X = new RomanSymbol("X", "I", 10);
     private static final RomanSymbol ROMAN_V = new RomanSymbol("V", "I", 5);
     private static final RomanSymbol ROMAN_I = new RomanSymbol("I", 1); 
+    private static final RomanSymbol[] DOMINANT_SYMBOLS = new RomanSymbol[] {
+        ROMAN_C,
+        ROMAN_L,
+        ROMAN_X,
+        ROMAN_V,
+        ROMAN_I
+    };
 
     private static class RomanSymbol {
         private final String symbol;
@@ -132,21 +139,12 @@ public class KataTest {
         if (roman.length() == 0) {
             result = 0;
         } else {
-            RomanSymbol dominantSymbol;
-            
-            if (ROMAN_C.dominates(roman)) {
-                dominantSymbol = ROMAN_C;
-            } else
-            if (ROMAN_L.dominates(roman)) {
-                dominantSymbol = ROMAN_L;
-            } else
-            if (ROMAN_X.dominates(roman)) {
-                dominantSymbol = ROMAN_X;
-            } else 
-            if (ROMAN_V.dominates(roman)){
-                dominantSymbol = ROMAN_V;
-            } else {
-                dominantSymbol = ROMAN_I;
+            RomanSymbol dominantSymbol = ROMAN_I;
+            for (RomanSymbol romanSymbol : DOMINANT_SYMBOLS) {
+                if (romanSymbol.dominates(roman)) {
+                    dominantSymbol = romanSymbol;
+                    break;
+                }
             }
             
             result = computeValueDominatedBy(dominantSymbol, roman);
