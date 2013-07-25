@@ -9,21 +9,14 @@ package kata;
  * @author Iulian Ghionoiu <iulian.ghionoiu@exenne.ro>
  */
 public class RomanToDecimalConverter {
-    private static final RomanSymbol ROMAN_M = new RomanSymbol("M", "C", 1000);
-    private static final RomanSymbol ROMAN_D = new RomanSymbol("D", "C", 500);
-    private static final RomanSymbol ROMAN_C = new RomanSymbol("C", "X", 100);
-    private static final RomanSymbol ROMAN_L = new RomanSymbol("L", "X", 50);
-    private static final RomanSymbol ROMAN_X = new RomanSymbol("X", "I", 10);
-    private static final RomanSymbol ROMAN_V = new RomanSymbol("V", "I", 5);
-    private static final RomanSymbol ROMAN_I = new RomanSymbol("I", 1); 
     private static final RomanSymbol[] SYMBOL_VALUE_ORDER = new RomanSymbol[] {
-        ROMAN_M,
-        ROMAN_D,
-        ROMAN_C,
-        ROMAN_L,
-        ROMAN_X,
-        ROMAN_V,
-        ROMAN_I
+        new RomanSymbol("M", "C", 1000),
+        new RomanSymbol("D", "C", 500),
+        new RomanSymbol("C", "X", 100),
+        new RomanSymbol("L", "X", 50),
+        new RomanSymbol("X", "I", 10),
+        new RomanSymbol("V", "I", 5),
+        new RomanSymbol("I", 1)
     };
 
     /**
