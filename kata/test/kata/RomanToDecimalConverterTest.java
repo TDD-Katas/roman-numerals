@@ -20,7 +20,7 @@ public class RomanToDecimalConverterTest {
      * @return 
      */
     private int convert(String romanNumeral) throws InvalidRomanNumeralException {
-        return new RomanToDecimalConverter().convert(romanNumeral);
+        return new RomanToDecimalConverter().computeValueOf(romanNumeral);
     }
     
     @Test

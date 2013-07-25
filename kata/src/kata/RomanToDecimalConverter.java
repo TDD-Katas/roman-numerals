@@ -24,7 +24,7 @@ public class RomanToDecimalConverter {
      * @param romanNumeral
      * @return 
      */
-    public int convert(String romanNumeral) throws InvalidRomanNumeralException {
+    public int computeValueOf(String romanNumeral) throws InvalidRomanNumeralException {
         if (romanNumeral.length() == 0) {
             return 0;
         }
@@ -54,12 +54,16 @@ public class RomanToDecimalConverter {
 
     private int computeValueDominatedBy(RomanSymbol dominantSymbol, String romanNumeral) 
             throws InvalidRomanNumeralException {
-        int indexOfSymbol = romanNumeral.indexOf(dominantSymbol.getSymbol());
-        String front = romanNumeral.substring(0, indexOfSymbol);
-        String tail = romanNumeral.substring(indexOfSymbol + 1);
-        
+        int locationOfDominantSymbol = getLocationOfDominantSymbol(romanNumeral, dominantSymbol);
+        String frontNumeral = romanNumeral.substring(0, locationOfDominantSymbol);
+        String tailNumeral = romanNumeral.substring(locationOfDominantSymbol + 1);
         return dominantSymbol.getValue()
-                - convert(front)
-                + convert(tail);
+                - computeValueOf(frontNumeral)
+                + computeValueOf(tailNumeral);
     }    
+
+    private int getLocationOfDominantSymbol(String romanNumeral, RomanSymbol dominantSymbol) {
+        int locationOfDominantSymbol = romanNumeral.indexOf(dominantSymbol.getSymbol());
+        return locationOfDominantSymbol;
+    }
 }
