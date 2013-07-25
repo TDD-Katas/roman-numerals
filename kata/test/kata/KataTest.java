@@ -84,6 +84,7 @@ public class KataTest {
     @Test
     public void testScenarios() {
         List<Scenario> tests = new LinkedList<Scenario>();
+        tests.add(new Scenario(0, ""));
         tests.add(new Scenario(1, "I"));
         tests.add(new Scenario(2, "II"));
         tests.add(new Scenario(3, "III"));
@@ -128,6 +129,9 @@ public class KataTest {
     private int romanToDecimal(String roman) {
         int result;
 
+        if (roman.length() == 0) {
+            result = 0;
+        } else
         if (ROMAN_C.dominates(roman)) {
             result = computeValueDominatedBy(ROMAN_C, roman);
         } else
@@ -140,7 +144,7 @@ public class KataTest {
         if (ROMAN_V.dominates(roman)){
             result = computeValueDominatedBy(ROMAN_V, roman);
         } else {
-            result = computeValueOfIbasedLiteral(roman);
+            result = computeValueDominatedBy(ROMAN_I, roman);
         }
         
         return result;
