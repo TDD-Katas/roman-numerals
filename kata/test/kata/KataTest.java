@@ -162,6 +162,12 @@ public class KataTest {
         romanToDecimal("A");
     }
     
+    @Test(expected = InvalidRomanNumeralException.class)
+    public void testInvalidCharacterInNumeralThrowsExeception() 
+            throws InvalidRomanNumeralException {
+        romanToDecimal("XXXAIII");
+    }
+    
     /**
      * Convert
      * @param romanNumeral
