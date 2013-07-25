@@ -111,7 +111,7 @@ public class KataTest {
     }
     
     @Test
-    public void testScenarios() throws InvalidRomanNumeralException {
+    public void testValidRomanNumerals() throws InvalidRomanNumeralException {
         List<Scenario> tests = new LinkedList<Scenario>();
         tests.add(new Scenario(0, ""));
         tests.add(new Scenario(1, "I"));
@@ -156,6 +156,12 @@ public class KataTest {
         runAllTests(tests);
     }
 
+    @Test(expected = InvalidRomanNumeralException.class)
+    public void testInvalidCharacterThrowsExeception() 
+            throws InvalidRomanNumeralException {
+        romanToDecimal("A");
+    }
+    
     /**
      * Convert
      * @param romanNumeral
