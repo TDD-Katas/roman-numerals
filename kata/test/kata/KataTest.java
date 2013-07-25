@@ -14,13 +14,15 @@ import static org.junit.Assert.*;
  * @author Iulian Ghionoiu <iulian.ghionoiu@exenne.ro>
  */
 public class KataTest {
+    private static final RomanSymbol ROMAN_M = new RomanSymbol("M", "C", 1000);
     private static final RomanSymbol ROMAN_D = new RomanSymbol("D", "C", 500);
     private static final RomanSymbol ROMAN_C = new RomanSymbol("C", "X", 100);
     private static final RomanSymbol ROMAN_L = new RomanSymbol("L", "X", 50);
     private static final RomanSymbol ROMAN_X = new RomanSymbol("X", "I", 10);
     private static final RomanSymbol ROMAN_V = new RomanSymbol("V", "I", 5);
     private static final RomanSymbol ROMAN_I = new RomanSymbol("I", 1); 
-    private static final RomanSymbol[] DOMINANT_SYMBOLS = new RomanSymbol[] {
+    private static final RomanSymbol[] SYMBOL_VALUE_ORDER = new RomanSymbol[] {
+        ROMAN_M,
         ROMAN_D,
         ROMAN_C,
         ROMAN_L,
@@ -130,6 +132,8 @@ public class KataTest {
         tests.add(new Scenario(100, "C"));
         tests.add(new Scenario(140, "CXL"));
         tests.add(new Scenario(400, "CD"));
+        tests.add(new Scenario(555, "DLV"));
+        tests.add(new Scenario(900, "CM"));
         runAllTests(tests);
     }
 
@@ -145,7 +149,7 @@ public class KataTest {
             result = 0;
         } else {
             RomanSymbol dominantSymbol = ROMAN_I;
-            for (RomanSymbol romanSymbol : DOMINANT_SYMBOLS) {
+            for (RomanSymbol romanSymbol : SYMBOL_VALUE_ORDER) {
                 if (romanSymbol.dominates(roman)) {
                     dominantSymbol = romanSymbol;
                     break;
