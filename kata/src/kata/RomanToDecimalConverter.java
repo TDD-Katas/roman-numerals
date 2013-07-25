@@ -27,13 +27,13 @@ public class RomanToDecimalConverter {
         }
 
         //Convert
-        RomanSymbol dominantSymbol = identifyDominatingSymbol(romanNumeral);
+        RomanSymbol dominantSymbol = identifyDominantSymbol(romanNumeral);
         return computeValueDominatedBy(dominantSymbol, romanNumeral);
     }
     
     //~~~~~~~~~~~~~~~ Private
 
-    private RomanSymbol identifyDominatingSymbol(String romanNumeral)
+    private RomanSymbol identifyDominantSymbol(String romanNumeral)
             throws InvalidRomanNumeralException {
         RomanSymbol dominantSymbol = null;
         for (RomanSymbol romanSymbol : SYMBOL_VALUE_ORDER) {
