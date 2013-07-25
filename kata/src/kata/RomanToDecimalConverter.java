@@ -54,24 +54,12 @@ public class RomanToDecimalConverter {
 
     private int computeValueDominatedBy(RomanSymbol dominantSymbol, String romanNumeral) 
             throws InvalidRomanNumeralException {
-        return dominantSymbol.getValue()
-                - valueBeforeDominantSymbol(dominantSymbol.getSymbol(), romanNumeral)
-                + valueAfterDominantSymbol(dominantSymbol.getSymbol(), romanNumeral);
-    }    
-    
-    private int valueBeforeDominantSymbol(String symbol, String romanNumeral) 
-            throws InvalidRomanNumeralException {
-        int indexOfSymbol = romanNumeral.indexOf(symbol);
+        int indexOfSymbol = romanNumeral.indexOf(dominantSymbol.getSymbol());
         String front = romanNumeral.substring(0, indexOfSymbol);
-        
-        return convert(front);
-    }
-    
-    private int valueAfterDominantSymbol(String symbol, String romanNumeral) 
-            throws InvalidRomanNumeralException {
-        int indexOfSymbol = romanNumeral.indexOf(symbol);
         String tail = romanNumeral.substring(indexOfSymbol + 1);
         
-        return convert(tail);
-    }
+        return dominantSymbol.getValue()
+                - convert(front)
+                + convert(tail);
+    }    
 }
