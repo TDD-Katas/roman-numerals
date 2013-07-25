@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
  *
  * @author Iulian Ghionoiu <iulian.ghionoiu@exenne.ro>
  */
-public class KataTest {
+public class RomanToDecimalConverterTest {
     /**
      * Method under test
      * @param romanNumeral
@@ -23,10 +23,6 @@ public class KataTest {
         return new RomanToDecimalConverter().convert(romanNumeral);
     }
     
-    /**
-     * Only valid numerals
-     * @throws InvalidRomanNumeralException 
-     */
     @Test
     public void testValidRomanNumerals() throws InvalidRomanNumeralException {
         List<Scenario> tests = new LinkedList<Scenario>();
@@ -85,7 +81,13 @@ public class KataTest {
         convert("XXXAIII");
     }
     
+    //~~~~~~~~~~~~~~~~~~~ Test utils ~~~~
     
+    /**
+     * Running multiple scenarios
+     * @param tests
+     * @throws InvalidRomanNumeralException 
+     */
     private void runAllTests(List<Scenario> tests) throws InvalidRomanNumeralException {
         boolean result = true;
         for (Scenario scenario : tests) {
