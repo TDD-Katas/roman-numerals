@@ -64,12 +64,7 @@ public class KataTest {
         }
     }
     
-    private void runSingleTest(Scenario scenario) {
-        assertTrue(testForEquality(scenario));
-    }
-    
-    
-    private void runAllTests(List<Scenario> tests) {
+    private void runAllTests(List<Scenario> tests) throws InvalidRomanNumeral {
         boolean result = true;
         for (Scenario scenario : tests) {
             result = testForEquality(scenario) && result;
@@ -82,7 +77,7 @@ public class KataTest {
      * @param roman
      * @param expectedDecimal 
      */
-    private boolean testForEquality(Scenario scenario) {
+    private boolean testForEquality(Scenario scenario) throws InvalidRomanNumeral {
         //When
         int result = romanToDecimal(scenario.getRomanValue());
         
@@ -98,7 +93,7 @@ public class KataTest {
     }
     
     @Test
-    public void testScenarios() {
+    public void testScenarios() throws InvalidRomanNumeral {
         List<Scenario> tests = new LinkedList<Scenario>();
         tests.add(new Scenario(0, ""));
         tests.add(new Scenario(1, "I"));
@@ -145,46 +140,59 @@ public class KataTest {
 
     /**
      * Convert
-     * @param roman
+     * @param romanNumeral
      * @return 
      */
-    private int romanToDecimal(String roman) {
+    private int romanToDecimal(String romanNumeral) throws InvalidRomanNumeral {
         int result;
 
-        if (roman.length() == 0) {
+        if (romanNumeral.length() == 0) {
             result = 0;
         } else {
-            RomanSymbol dominantSymbol = ROMAN_I;
+            RomanSymbol dominantSymbol = null;
             for (RomanSymbol romanSymbol : SYMBOL_VALUE_ORDER) {
-                if (romanSymbol.dominates(roman)) {
+                if (romanSymbol.dominates(romanNumeral)) {
                     dominantSymbol = romanSymbol;
                     break;
                 }
             }
             
-            result = computeValueDominatedBy(dominantSymbol, roman);
+            if (dominantSymbol == null) {
+                throw new InvalidRomanNumeral();
+            }
+            
+            result = computeValueDominatedBy(dominantSymbol, romanNumeral);
         }
         
         return result;
     }
     
-    private int valueBeforeDominantSymbol(String symbol, String romanNumeral) {
+    private int valueBeforeDominantSymbol(String symbol, String romanNumeral) 
+            throws InvalidRomanNumeral {
         int indexOfSymbol = romanNumeral.indexOf(symbol);
         String front = romanNumeral.substring(0, indexOfSymbol);
         
         return romanToDecimal(front);
     }
     
-    private int valueAfterDominantSymbol(String symbol, String romanNumeral) {
+    private int valueAfterDominantSymbol(String symbol, String romanNumeral) 
+            throws InvalidRomanNumeral {
         int indexOfSymbol = romanNumeral.indexOf(symbol);
         String tail = romanNumeral.substring(indexOfSymbol + 1);
         
         return romanToDecimal(tail);
     }
     
-    private int computeValueDominatedBy(RomanSymbol dominantSymbol, String roman) {
+    private int computeValueDominatedBy(RomanSymbol dominantSymbol, String romanNumeral) 
+            throws InvalidRomanNumeral {
         return dominantSymbol.getValue()
-                - valueBeforeDominantSymbol(dominantSymbol.getSymbol(), roman)
-                + valueAfterDominantSymbol(dominantSymbol.getSymbol(), roman);
+                - valueBeforeDominantSymbol(dominantSymbol.getSymbol(), romanNumeral)
+                + valueAfterDominantSymbol(dominantSymbol.getSymbol(), romanNumeral);
+    }
+
+    private static class InvalidRomanNumeral extends Exception {
+
+        public InvalidRomanNumeral() {
+        }
     }
 }
