@@ -14,12 +14,14 @@ import static org.junit.Assert.*;
  * @author Iulian Ghionoiu <iulian.ghionoiu@exenne.ro>
  */
 public class KataTest {
+    private static final RomanSymbol ROMAN_D = new RomanSymbol("D", "C", 500);
     private static final RomanSymbol ROMAN_C = new RomanSymbol("C", "X", 100);
     private static final RomanSymbol ROMAN_L = new RomanSymbol("L", "X", 50);
     private static final RomanSymbol ROMAN_X = new RomanSymbol("X", "I", 10);
     private static final RomanSymbol ROMAN_V = new RomanSymbol("V", "I", 5);
     private static final RomanSymbol ROMAN_I = new RomanSymbol("I", 1); 
     private static final RomanSymbol[] DOMINANT_SYMBOLS = new RomanSymbol[] {
+        ROMAN_D,
         ROMAN_C,
         ROMAN_L,
         ROMAN_X,
@@ -127,6 +129,7 @@ public class KataTest {
         tests.add(new Scenario(90, "XC"));
         tests.add(new Scenario(100, "C"));
         tests.add(new Scenario(140, "CXL"));
+        tests.add(new Scenario(400, "CD"));
         runAllTests(tests);
     }
 
