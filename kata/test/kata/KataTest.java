@@ -93,7 +93,7 @@ public class KataTest {
     }
     
     @Test
-    public void testScenarios() {
+    public void testValidRomanNumbers() {
         List<Scenario> tests = new LinkedList<Scenario>();
         tests.add(new Scenario(0, ""));
         tests.add(new Scenario(1, "I"));
@@ -137,6 +137,12 @@ public class KataTest {
         tests.add(new Scenario(999, "CMXCIX"));
         runAllTests(tests);
     }
+    
+    @Test
+    public void testInvalidRomanNumbers() {
+        
+    }
+    
 
     /**
      * Convert
@@ -163,6 +169,12 @@ public class KataTest {
         return result;
     }
     
+    private int computeValueDominatedBy(RomanSymbol dominantSymbol, String roman) {
+        return dominantSymbol.getValue()
+                - valueBeforeDominantSymbol(dominantSymbol.getSymbol(), roman)
+                + valueAfterDominantSymbol(dominantSymbol.getSymbol(), roman);
+    }
+    
     private int valueBeforeDominantSymbol(String symbol, String romanNumeral) {
         int indexOfSymbol = romanNumeral.indexOf(symbol);
         String front = romanNumeral.substring(0, indexOfSymbol);
@@ -175,11 +187,5 @@ public class KataTest {
         String tail = romanNumeral.substring(indexOfSymbol + 1);
         
         return romanToDecimal(tail);
-    }
-    
-    private int computeValueDominatedBy(RomanSymbol dominantSymbol, String roman) {
-        return dominantSymbol.getValue()
-                - valueBeforeDominantSymbol(dominantSymbol.getSymbol(), roman)
-                + valueAfterDominantSymbol(dominantSymbol.getSymbol(), roman);
     }
 }
