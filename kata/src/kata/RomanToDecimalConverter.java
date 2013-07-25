@@ -25,16 +25,13 @@ public class RomanToDecimalConverter {
      * @return 
      */
     public int convert(String romanNumeral) throws InvalidRomanNumeralException {
-        int result;
-
         if (romanNumeral.length() == 0) {
-            result = 0;
-        } else {
-            RomanSymbol dominantSymbol = identifyDominatingSymbol(romanNumeral);
-            result = computeValueDominatedBy(dominantSymbol, romanNumeral);
+            return 0;
         }
         
-        return result;
+        //Convert
+        RomanSymbol dominantSymbol = identifyDominatingSymbol(romanNumeral);
+        return computeValueDominatedBy(dominantSymbol, romanNumeral);
     }    
     
     private RomanSymbol identifyDominatingSymbol(String romanNumeral) 
