@@ -9,7 +9,6 @@ package kata;
  * @author Iulian Ghionoiu <iulian.ghionoiu@exenne.ro>
  */
 public class RomanToDecimalConverter {
-
     private static final RomanSymbol[] SYMBOL_VALUE_ORDER = new RomanSymbol[]{
         new RomanSymbol("M", "C", 1000),
         new RomanSymbol("D", "C", 500),
@@ -20,12 +19,8 @@ public class RomanToDecimalConverter {
         new RomanSymbol("I", 1)
     };
 
-    /**
-     * Convert
-     *
-     * @param romanNumeral
-     * @return
-     */
+    //~~~~~~~~~~~~~~~ Public method
+    
     public int computeValueOf(String romanNumeral) throws InvalidRomanNumeralException {
         if (romanNumeral.length() == 0) {
             return 0;
@@ -35,6 +30,8 @@ public class RomanToDecimalConverter {
         RomanSymbol dominantSymbol = identifyDominatingSymbol(romanNumeral);
         return computeValueDominatedBy(dominantSymbol, romanNumeral);
     }
+    
+    //~~~~~~~~~~~~~~~ Private
 
     private RomanSymbol identifyDominatingSymbol(String romanNumeral)
             throws InvalidRomanNumeralException {
@@ -66,9 +63,7 @@ public class RomanToDecimalConverter {
 
     private int getLocationOfSymbol(String romanNumeral,
             RomanSymbol dominantSymbol) {
-        int locationOfDominantSymbol = romanNumeral
-                .indexOf(dominantSymbol.getSymbol());
-        return locationOfDominantSymbol;
+        return romanNumeral.indexOf(dominantSymbol.getSymbol());
     }
 
     private String getNumeralBefore(int position, String romanNumeral) {
