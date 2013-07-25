@@ -68,10 +68,6 @@ public class KataTest {
             return symbol;
         }
 
-        public String getSubstractionSymbol() {
-            return substractionSymbol;
-        }
-        
         public int getValue() {
             return value;
         }
@@ -210,8 +206,5 @@ public class KataTest {
     }
 
     private static class InvalidRomanNumeralException extends Exception {
-
-        public InvalidRomanNumeralException() {
-        }
     }
 }
