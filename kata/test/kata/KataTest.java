@@ -160,7 +160,7 @@ public class KataTest {
         return romanToDecimal(front);
     }
     
-    private int valueOfAfterDominantSymbol(String symbol, String romanNumeral) {
+    private int valueAfterDominantSymbol(String symbol, String romanNumeral) {
         int indexOfSymbol = romanNumeral.indexOf(symbol);
         String tail = romanNumeral.substring(indexOfSymbol + 1);
         
@@ -170,6 +170,6 @@ public class KataTest {
     private int computeValueDominatedBy(RomanSymbol dominantSymbol, String roman) {
         return dominantSymbol.getValue()
                 - valueBeforeDominantSymbol(dominantSymbol.getSymbol(), roman)
-                + valueOfAfterDominantSymbol(dominantSymbol.getSymbol(), roman);
+                + valueAfterDominantSymbol(dominantSymbol.getSymbol(), roman);
     }
 }
