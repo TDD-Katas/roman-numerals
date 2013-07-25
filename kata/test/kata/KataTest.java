@@ -14,98 +14,19 @@ import static org.junit.Assert.*;
  * @author Iulian Ghionoiu <iulian.ghionoiu@exenne.ro>
  */
 public class KataTest {
-    private static final RomanSymbol ROMAN_M = new RomanSymbol("M", "C", 1000);
-    private static final RomanSymbol ROMAN_D = new RomanSymbol("D", "C", 500);
-    private static final RomanSymbol ROMAN_C = new RomanSymbol("C", "X", 100);
-    private static final RomanSymbol ROMAN_L = new RomanSymbol("L", "X", 50);
-    private static final RomanSymbol ROMAN_X = new RomanSymbol("X", "I", 10);
-    private static final RomanSymbol ROMAN_V = new RomanSymbol("V", "I", 5);
-    private static final RomanSymbol ROMAN_I = new RomanSymbol("I", 1); 
-    private static final RomanSymbol[] SYMBOL_VALUE_ORDER = new RomanSymbol[] {
-        ROMAN_M,
-        ROMAN_D,
-        ROMAN_C,
-        ROMAN_L,
-        ROMAN_X,
-        ROMAN_V,
-        ROMAN_I
-    };
-
-    private RomanSymbol identifyDominatingSymbol(String romanNumeral) 
-            throws InvalidRomanNumeralException {
-        RomanSymbol dominantSymbol = null;
-        for (RomanSymbol romanSymbol : SYMBOL_VALUE_ORDER) {
-            if (romanSymbol.dominates(romanNumeral)) {
-                dominantSymbol = romanSymbol;
-                break;
-            }
-        }
-        
-        //Test for exception
-        if (dominantSymbol == null) {
-            throw new InvalidRomanNumeralException();
-        }
-        
-        return dominantSymbol;
-    }
-
-    private static class RomanSymbol {
-        private final String symbol;
-        private final String substractionSymbol;
-        private final int value;
-
-        public RomanSymbol(String symbol, int value) {
-            this(symbol, "", value);
-        }
-        
-        public RomanSymbol(String symbol, String substractionSymbol, int value) {
-            this.symbol = symbol;
-            this.substractionSymbol = substractionSymbol;
-            this.value = value;
-        }
-
-        public String getSymbol() {
-            return symbol;
-        }
-
-        public int getValue() {
-            return value;
-        }
-        
-        public boolean dominates(String roman) {
-            return roman.startsWith(symbol) || 
-                    roman.startsWith(substractionSymbol+symbol);
-        }
-    }
-    
-    private void runAllTests(List<Scenario> tests) throws InvalidRomanNumeralException {
-        boolean result = true;
-        for (Scenario scenario : tests) {
-            result = testForEquality(scenario) && result;
-        }
-        assertTrue(result);
+    /**
+     * Method under test
+     * @param romanNumeral
+     * @return 
+     */
+    private int convert(String romanNumeral) throws InvalidRomanNumeralException {
+        return new RomanToDecimalConverter().convert(romanNumeral);
     }
     
     /**
-     * Utility method
-     * @param roman
-     * @param expectedDecimal 
+     * Only valid numerals
+     * @throws InvalidRomanNumeralException 
      */
-    private boolean testForEquality(Scenario scenario) throws InvalidRomanNumeralException {
-        //When
-        int result = convert(scenario.getRomanValue());
-        
-        //Then
-        boolean areEqual = result == scenario.getDecimalValue();
-        if (!areEqual) {
-            System.out.println("["+scenario.getRomanValue()+"] failed - "
-                    + "expected "+scenario.getDecimalValue()
-                    +" but got "+result);
-        }
-        
-        return areEqual;
-    }
-    
     @Test
     public void testValidRomanNumerals() throws InvalidRomanNumeralException {
         List<Scenario> tests = new LinkedList<Scenario>();
@@ -164,13 +85,32 @@ public class KataTest {
         convert("XXXAIII");
     }
     
-    /**
-     * Convert
-     * @param romanNumeral
-     * @return 
-     */
-    public int convert(String romanNumeral) throws kata.InvalidRomanNumeralException {
-        return new RomanToDecimalConverter().convert(romanNumeral);
+    
+    private void runAllTests(List<Scenario> tests) throws InvalidRomanNumeralException {
+        boolean result = true;
+        for (Scenario scenario : tests) {
+            result = testForEquality(scenario) && result;
+        }
+        assertTrue(result);
     }
     
+    /**
+     * Utility method
+     * @param roman
+     * @param expectedDecimal 
+     */
+    private boolean testForEquality(Scenario scenario) throws InvalidRomanNumeralException {
+        //When
+        int result = convert(scenario.getRomanValue());
+        
+        //Then
+        boolean areEqual = result == scenario.getDecimalValue();
+        if (!areEqual) {
+            System.out.println("["+scenario.getRomanValue()+"] failed - "
+                    + "expected "+scenario.getDecimalValue()
+                    +" but got "+result);
+        }
+        
+        return areEqual;
+    }
 }
