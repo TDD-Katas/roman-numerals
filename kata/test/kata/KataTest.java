@@ -64,7 +64,7 @@ public class KataTest {
         }
     }
     
-    private void runAllTests(List<Scenario> tests) throws InvalidRomanNumeral {
+    private void runAllTests(List<Scenario> tests) throws InvalidRomanNumeralException {
         boolean result = true;
         for (Scenario scenario : tests) {
             result = testForEquality(scenario) && result;
@@ -77,7 +77,7 @@ public class KataTest {
      * @param roman
      * @param expectedDecimal 
      */
-    private boolean testForEquality(Scenario scenario) throws InvalidRomanNumeral {
+    private boolean testForEquality(Scenario scenario) throws InvalidRomanNumeralException {
         //When
         int result = romanToDecimal(scenario.getRomanValue());
         
@@ -93,7 +93,7 @@ public class KataTest {
     }
     
     @Test
-    public void testScenarios() throws InvalidRomanNumeral {
+    public void testScenarios() throws InvalidRomanNumeralException {
         List<Scenario> tests = new LinkedList<Scenario>();
         tests.add(new Scenario(0, ""));
         tests.add(new Scenario(1, "I"));
@@ -143,7 +143,7 @@ public class KataTest {
      * @param romanNumeral
      * @return 
      */
-    private int romanToDecimal(String romanNumeral) throws InvalidRomanNumeral {
+    private int romanToDecimal(String romanNumeral) throws InvalidRomanNumeralException {
         int result;
 
         if (romanNumeral.length() == 0) {
@@ -158,7 +158,7 @@ public class KataTest {
             }
             
             if (dominantSymbol == null) {
-                throw new InvalidRomanNumeral();
+                throw new InvalidRomanNumeralException();
             }
             
             result = computeValueDominatedBy(dominantSymbol, romanNumeral);
@@ -168,7 +168,7 @@ public class KataTest {
     }
     
     private int valueBeforeDominantSymbol(String symbol, String romanNumeral) 
-            throws InvalidRomanNumeral {
+            throws InvalidRomanNumeralException {
         int indexOfSymbol = romanNumeral.indexOf(symbol);
         String front = romanNumeral.substring(0, indexOfSymbol);
         
@@ -176,7 +176,7 @@ public class KataTest {
     }
     
     private int valueAfterDominantSymbol(String symbol, String romanNumeral) 
-            throws InvalidRomanNumeral {
+            throws InvalidRomanNumeralException {
         int indexOfSymbol = romanNumeral.indexOf(symbol);
         String tail = romanNumeral.substring(indexOfSymbol + 1);
         
@@ -184,15 +184,15 @@ public class KataTest {
     }
     
     private int computeValueDominatedBy(RomanSymbol dominantSymbol, String romanNumeral) 
-            throws InvalidRomanNumeral {
+            throws InvalidRomanNumeralException {
         return dominantSymbol.getValue()
                 - valueBeforeDominantSymbol(dominantSymbol.getSymbol(), romanNumeral)
                 + valueAfterDominantSymbol(dominantSymbol.getSymbol(), romanNumeral);
     }
 
-    private static class InvalidRomanNumeral extends Exception {
+    private static class InvalidRomanNumeralException extends Exception {
 
-        public InvalidRomanNumeral() {
+        public InvalidRomanNumeralException() {
         }
     }
 }
