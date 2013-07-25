@@ -52,18 +52,34 @@ public class RomanToDecimalConverter {
         return dominantSymbol;
     }
 
-    private int computeValueDominatedBy(RomanSymbol dominantSymbol, String romanNumeral) 
+    private int computeValueDominatedBy(RomanSymbol symbol, String romanNumeral) 
             throws InvalidRomanNumeralException {
-        int locationOfDominantSymbol = getLocationOfDominantSymbol(romanNumeral, dominantSymbol);
-        String frontNumeral = romanNumeral.substring(0, locationOfDominantSymbol);
-        String tailNumeral = romanNumeral.substring(locationOfDominantSymbol + 1);
-        return dominantSymbol.getValue()
+        int indexOfSymbol = getLocationOfSymbol(romanNumeral, symbol);
+        String frontNumeral = getRomanNumeralBeforeLocation( romanNumeral, indexOfSymbol);
+        String tailNumeral = getRomanNumeralAfterLocation(romanNumeral, indexOfSymbol);
+        return symbol.getValue()
                 - computeValueOf(frontNumeral)
                 + computeValueOf(tailNumeral);
     }    
 
-    private int getLocationOfDominantSymbol(String romanNumeral, RomanSymbol dominantSymbol) {
+    private int getLocationOfSymbol(
+            String romanNumeral, 
+            RomanSymbol dominantSymbol) {
         int locationOfDominantSymbol = romanNumeral.indexOf(dominantSymbol.getSymbol());
         return locationOfDominantSymbol;
+    }
+
+    private String getRomanNumeralBeforeLocation(
+            String romanNumeral, 
+            int locationOfDominantSymbol) {
+        String frontNumeral = romanNumeral.substring(0, locationOfDominantSymbol);
+        return frontNumeral;
+    }
+
+    private String getRomanNumeralAfterLocation(
+            String romanNumeral, 
+            int locationOfDominantSymbol) {
+        String tailNumeral = romanNumeral.substring(locationOfDominantSymbol + 1);
+        return tailNumeral;
     }
 }
