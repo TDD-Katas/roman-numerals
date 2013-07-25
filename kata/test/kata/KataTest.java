@@ -31,6 +31,24 @@ public class KataTest {
         ROMAN_I
     };
 
+    private RomanSymbol identifyDominatingSymbol(String romanNumeral) 
+            throws InvalidRomanNumeralException {
+        RomanSymbol dominantSymbol = null;
+        for (RomanSymbol romanSymbol : SYMBOL_VALUE_ORDER) {
+            if (romanSymbol.dominates(romanNumeral)) {
+                dominantSymbol = romanSymbol;
+                break;
+            }
+        }
+        
+        //Test for exception
+        if (dominantSymbol == null) {
+            throw new InvalidRomanNumeralException();
+        }
+        
+        return dominantSymbol;
+    }
+
     private static class RomanSymbol {
         private final String symbol;
         private final String substractionSymbol;
@@ -149,18 +167,7 @@ public class KataTest {
         if (romanNumeral.length() == 0) {
             result = 0;
         } else {
-            RomanSymbol dominantSymbol = null;
-            for (RomanSymbol romanSymbol : SYMBOL_VALUE_ORDER) {
-                if (romanSymbol.dominates(romanNumeral)) {
-                    dominantSymbol = romanSymbol;
-                    break;
-                }
-            }
-            
-            if (dominantSymbol == null) {
-                throw new InvalidRomanNumeralException();
-            }
-            
+            RomanSymbol dominantSymbol = identifyDominatingSymbol(romanNumeral);
             result = computeValueDominatedBy(dominantSymbol, romanNumeral);
         }
         
