@@ -169,8 +169,4 @@ public class KataTest {
                 - valueBeforeDominantSymbol(dominantSymbol.getSymbol(), roman)
                 + valueOfAfterDominantSymbol(dominantSymbol.getSymbol(), roman);
     }
-    
-    private int computeValueOfIbasedLiteral(String roman) {
-        return roman.length();
-    }
 }
