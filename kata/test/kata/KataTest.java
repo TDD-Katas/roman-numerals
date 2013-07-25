@@ -131,20 +131,25 @@ public class KataTest {
 
         if (roman.length() == 0) {
             result = 0;
-        } else
-        if (ROMAN_C.dominates(roman)) {
-            result = computeValueDominatedBy(ROMAN_C, roman);
-        } else
-        if (ROMAN_L.dominates(roman)) {
-            result = computeValueDominatedBy(ROMAN_L, roman);
-        } else
-        if (ROMAN_X.dominates(roman)) {
-            result = computeValueDominatedBy(ROMAN_X, roman);
-        } else 
-        if (ROMAN_V.dominates(roman)){
-            result = computeValueDominatedBy(ROMAN_V, roman);
         } else {
-            result = computeValueDominatedBy(ROMAN_I, roman);
+            RomanSymbol dominantSymbol;
+            
+            if (ROMAN_C.dominates(roman)) {
+                dominantSymbol = ROMAN_C;
+            } else
+            if (ROMAN_L.dominates(roman)) {
+                dominantSymbol = ROMAN_L;
+            } else
+            if (ROMAN_X.dominates(roman)) {
+                dominantSymbol = ROMAN_X;
+            } else 
+            if (ROMAN_V.dominates(roman)){
+                dominantSymbol = ROMAN_V;
+            } else {
+                dominantSymbol = ROMAN_I;
+            }
+            
+            result = computeValueDominatedBy(dominantSymbol, roman);
         }
         
         return result;
