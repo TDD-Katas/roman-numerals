@@ -64,6 +64,11 @@ public class KataTest {
         }
     }
     
+    private void runSingleTest(Scenario scenario) {
+        assertTrue(testForEquality(scenario));
+    }
+    
+    
     private void runAllTests(List<Scenario> tests) {
         boolean result = true;
         for (Scenario scenario : tests) {
