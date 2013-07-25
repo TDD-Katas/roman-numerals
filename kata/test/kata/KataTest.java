@@ -134,6 +134,7 @@ public class KataTest {
         tests.add(new Scenario(400, "CD"));
         tests.add(new Scenario(555, "DLV"));
         tests.add(new Scenario(900, "CM"));
+        tests.add(new Scenario(999, "CMXCIX"));
         runAllTests(tests);
     }
 
