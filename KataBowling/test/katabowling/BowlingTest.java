@@ -31,7 +31,7 @@ public class BowlingTest {
     @Test
     public void testTwoFrameGameOpenFrame() {
         ScoreStrategy scoreStrategy;
-        scoreStrategy = getStrategyForRolls();
+        scoreStrategy = new OpenFrameScoreStrategy();
         assertGameScoreEquals(0, rolls(0, 0, 0, 0), scoreStrategy);
         assertGameScoreEquals(1, rolls(0, 0, 1, 0), scoreStrategy);
         assertGameScoreEquals(4, rolls(1, 1, 1, 1), scoreStrategy);
@@ -53,7 +53,7 @@ public class BowlingTest {
         int[] rolls = rolls(0, 0, 0, 0);
         Class expectedStrategy = OpenFrameScoreStrategy.class;
         
-        result = getStrategyForRolls();
+        result = getStrategyForRolls(rolls);
         
         assertTrue(expectedStrategy.isInstance(result));
     }
@@ -64,7 +64,7 @@ public class BowlingTest {
         int[] rolls = rolls(0, 0, 1, 0);
         Class expectedStrategy = OpenFrameScoreStrategy.class;
         
-        result = getStrategyForRolls();
+        result = getStrategyForRolls(rolls);
         
         assertTrue(expectedStrategy.isInstance(result));
     }
@@ -75,37 +75,20 @@ public class BowlingTest {
         int[] rolls = rolls(1, 1, 1, 1);
         Class expectedStrategy = OpenFrameScoreStrategy.class;
         
-        result = getStrategyForRolls();
+        result = getStrategyForRolls(rolls);
         
         assertTrue(expectedStrategy.isInstance(result));
     }
     
-    @Test
-    public void testGetStrategyForRolls4() {
-        ScoreStrategy result = null;
-        int[] rolls = rolls(1, 9, 1, 1);
-        Class expectedStrategy = SpareScoreStrategy.class;
-        
-        result = new SpareScoreStrategy();
-        
-        assertTrue(expectedStrategy.isInstance(result));
-    }
-
     private void assertGameScoreEquals(int expectedScore, int[] rolls, ScoreStrategy scoreStrategy) {
         int score = scoreStrategy.computeScore(rolls);
         assertThat(score, equalTo(expectedScore));
     }
 
-    private OpenFrameScoreStrategy getStrategyForRolls() {
-        return new OpenFrameScoreStrategy();
-    }
-
     //~~~~~~~~~~~~~~~~ Production code ~~~~~~~~~~~
-    enum FirstFrameType {
-
-        OPEN,
-        SPARE,
-        STRIKE
+    
+    private ScoreStrategy getStrategyForRolls(int[] rolls) {
+        return new OpenFrameScoreStrategy();
     }
 
     interface ScoreStrategy {
