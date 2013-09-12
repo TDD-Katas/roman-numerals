@@ -72,7 +72,13 @@ public class BowlingTest {
     }
     
     private void assertTwoFrameGameFirstFrameOpenScoreEquals(int expectedScore, int[] rolls, String firstFrameType) {
-        int score = getSumOfRolls(rolls);
+        int score;
+        if ("open".equals(firstFrameType)) {
+            score = getSumOfRolls(rolls);
+        } else {
+            score = -1;
+            fail("Invalid type");
+        }
 
         assertThat(score, equalTo(expectedScore));
     }
