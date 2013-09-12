@@ -50,7 +50,7 @@ public class BowlingTest {
     
     @Test
     public void testTwoFrameGameStrikeFirst() {
-        String firstFrameType = "spare";
+        String firstFrameType = "strike";
         assertTwoFrameGameFirstFrameStrikeScoreEquals(16, rolls(10, 2, 1), firstFrameType);
         assertTwoFrameGameFirstFrameStrikeScoreEquals(20, rolls(10, 3, 2), firstFrameType);
         assertTwoFrameGameFirstFrameStrikeScoreEquals(24, rolls(10, 1, 6), firstFrameType);
@@ -84,14 +84,27 @@ public class BowlingTest {
     }
     
     private void assertTwoFrameGameFirstFrameSpareScoreEquals(int expectedScore, int[] rolls, String firstFrameType) {
-        int score = computeScoreForSpareInFirstFrame(rolls);
-
+        int score;
+        if ("spare".equals(firstFrameType)) {
+            score = computeScoreForSpareInFirstFrame(rolls);
+        } else {
+            score = -1;
+            fail("Invalid type");
+        }
+        
         assertThat(score, equalTo(expectedScore));
     }
     
     private void assertTwoFrameGameFirstFrameStrikeScoreEquals(int expectedScore, int[] rolls, String firstFrameType) {
-        int score = computeScoreForStrikeInFirstFrame(rolls);
-
+        int score;
+        if ("strike".equals(firstFrameType)) {
+            score = computeScoreForStrikeInFirstFrame(rolls);
+        } else {
+            score = -1;
+            fail("Invalid type");
+        }
+        
+        
         assertThat(score, equalTo(expectedScore));
     }
     
