@@ -169,7 +169,9 @@ public class BowlingTest {
     
     private int getScoreForCurrentFrame(int frameSize, int[] rolls) {
         int scoreForCurrentFrame = 0;
-        for (int i = 0; i < frameSize; i++) {
+        int start = 0;
+        int end = frameSize;
+        for (int i = start; i < end; i++) {
             scoreForCurrentFrame += rolls[i];
         }
         return scoreForCurrentFrame;
@@ -177,8 +179,10 @@ public class BowlingTest {
 
     private int computeBonusRollsScore(int numberOfBonusRolls, int[] rolls) {
         int bonusRollsScore = 0;
-        for (int i = 0; i < numberOfBonusRolls; i++) {
-            bonusRollsScore += rolls[2-i];
+        int start = 3-numberOfBonusRolls;
+        int end = 3;
+        for (int i = start; i < end; i++) {
+            bonusRollsScore += rolls[i];
         }
         return bonusRollsScore;
     }
