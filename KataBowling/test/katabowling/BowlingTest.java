@@ -117,6 +117,20 @@ public class BowlingTest {
     
     //~~~~~~~~~~~~~~~~ Production code ~~~~~~~~~~~
     
+    static class Rolls {
+        int[] rolls;
+
+        private Rolls(int ... rolls) {
+            this.rolls = rolls;
+        }
+        
+        public static Rolls create(int ... rolls) {
+            return new Rolls(rolls);
+        }
+        
+        
+    }
+    
     private FrameType getFrameTypeForRolls(int[] rolls) {
         FrameType frameType;
         if (rolls[0] == 10) {
