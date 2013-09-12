@@ -34,9 +34,10 @@ public class BowlingTest {
     
     @Test
     public void testTwoFrameGameOpenFrame() {
-        assertTwoFrameGameFirstFrameOpenScoreEquals(0, rolls(0, 0, 0, 0));
-        assertTwoFrameGameFirstFrameOpenScoreEquals(1, rolls(0, 0, 1, 0));
-        assertTwoFrameGameFirstFrameOpenScoreEquals(4, rolls(1, 1, 1, 1));
+        String firstFrameType = "open";
+        assertTwoFrameGameFirstFrameOpenScoreEquals(0, rolls(0, 0, 0, 0), firstFrameType);
+        assertTwoFrameGameFirstFrameOpenScoreEquals(1, rolls(0, 0, 1, 0), firstFrameType);
+        assertTwoFrameGameFirstFrameOpenScoreEquals(4, rolls(1, 1, 1, 1), firstFrameType);
     }
     
     @Test
@@ -68,7 +69,7 @@ public class BowlingTest {
         assertThat(score, equalTo(expectedScore));
     }
     
-    private void assertTwoFrameGameFirstFrameOpenScoreEquals(int expectedScore, int[] rolls) {
+    private void assertTwoFrameGameFirstFrameOpenScoreEquals(int expectedScore, int[] rolls, String firstFrameType) {
         int score = getSumOfRolls(rolls);
 
         assertThat(score, equalTo(expectedScore));
