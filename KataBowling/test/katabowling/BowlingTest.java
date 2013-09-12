@@ -57,6 +57,7 @@ public class BowlingTest {
         assertGetStrategyForRollsEquals(strategyClass, rolls(1, 9, 1, 1));
         strategyClass = StrikeScoreStrategy.class;
         assertGetStrategyForRollsEquals(strategyClass, rolls(10, 3, 2));
+        //assertGetStrategyForRollsEquals(strategyClass, rolls(10, 0, 0));
     }
     
     private void assertGameScoreEquals(int expectedScore, int[] rolls, ScoreStrategy scoreStrategy) {
@@ -67,7 +68,9 @@ public class BowlingTest {
    private void assertGetStrategyForRollsEquals(Class expectedStrategy, int[] rolls) {
         ScoreStrategy result = getStrategyForRolls(rolls);
         
-        assertTrue("Score strategy is not of required type", expectedStrategy.isInstance(result));
+        assertTrue("Score strategy is not of required type, "
+                + "expected = "+expectedStrategy.getSimpleName()+
+                ", found = "+result.getClass().getSimpleName(), expectedStrategy.isInstance(result));
     }
 
     //~~~~~~~~~~~~~~~~ Production code ~~~~~~~~~~~
