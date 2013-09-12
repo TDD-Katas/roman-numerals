@@ -48,7 +48,7 @@ public class BowlingTest {
     }
 
     @Test
-    public void testGetStrategyForRolls() {
+    public void testGetFrameTypeForRolls() {
         FrameType frameType;
         frameType = FrameType.OPEN;
         assertGetFrameTypeForRollsEquals(frameType, rolls(0, 0));
@@ -60,30 +60,9 @@ public class BowlingTest {
         assertGetFrameTypeForRollsEquals(frameType, rolls(10));
     }
     
-    @Test
-    public void testGetFrameTypeForRolls() {
-        Class strategyClass;
-        strategyClass = OpenFrameScoreStrategy.class;
-        assertGetStrategyForRollsEquals(strategyClass, rolls(0, 0));
-        assertGetStrategyForRollsEquals(strategyClass, rolls(1, 1));
-        strategyClass = SpareScoreStrategy.class;
-        assertGetStrategyForRollsEquals(strategyClass, rolls(1, 9));
-        strategyClass = StrikeScoreStrategy.class;
-        assertGetStrategyForRollsEquals(strategyClass, rolls(10));
-        assertGetStrategyForRollsEquals(strategyClass, rolls(10));
-    }
-
     private void assertGameScoreEquals(int expectedScore, int[] rolls, ScoreStrategy scoreStrategy) {
         int score = scoreStrategy.computeScore(rolls);
         assertThat(score, equalTo(expectedScore));
-    }
-
-    private void assertGetStrategyForRollsEquals(Class expectedStrategy, int[] rolls) {
-        ScoreStrategy result = getStrategyForRolls(rolls);
-
-        assertTrue("Score strategy is not of required type, "
-                + "expected = " + expectedStrategy.getSimpleName()
-                + ", found = " + result.getClass().getSimpleName(), expectedStrategy.isInstance(result));
     }
 
     private void assertGetFrameTypeForRollsEquals(FrameType frameType, int[] rolls) {
@@ -91,8 +70,6 @@ public class BowlingTest {
 
         assertThat(result, equalTo(frameType));
     }
-    
-    
     
     //~~~~~~~~~~~~~~~~ Production code ~~~~~~~~~~~
     
@@ -106,16 +83,6 @@ public class BowlingTest {
         return FrameType.OPEN;
     }
     
-    private ScoreStrategy getStrategyForRolls(int[] rolls) {
-        if (rolls[0] == 10) {
-            return new StrikeScoreStrategy();
-        } else if (rolls[0] + rolls[1] == 10) {
-            return new SpareScoreStrategy();
-        }
-
-        return new OpenFrameScoreStrategy();
-    }
-
     interface ScoreStrategy {
 
         int computeScore(int[] rolls);
@@ -133,32 +100,7 @@ public class BowlingTest {
 
         @Override
         public int computeScore(int[] rolls) {
-            ScoreStrategy scoreStrategy = getStrategyForRolls(rolls);
-            return scoreStrategy.computeScore(rolls);
-        }
-    }
-
-    class OpenFrameScoreStrategy implements ScoreStrategy {
-
-        @Override
-        public int computeScore(int[] rolls) {
-            return computeScoreWithOpenFrameFirst(rolls);
-        }
-    }
-
-    class SpareScoreStrategy implements ScoreStrategy {
-
-        @Override
-        public int computeScore(int[] rolls) {
-            return computeScoreWithSpareFirst(rolls);
-        }
-    }
-
-    class StrikeScoreStrategy implements ScoreStrategy {
-
-        @Override
-        public int computeScore(int[] rolls) {
-            return computeScoreWithStrikeFirst(rolls);
+            return computeScoreForRolls(rolls);
         }
     }
 
