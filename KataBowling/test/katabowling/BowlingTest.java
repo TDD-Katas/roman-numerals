@@ -35,27 +35,27 @@ public class BowlingTest {
     @Test
     public void testTwoFrameGameOpenFrame() {
         String firstFrameType = "open";
-        assertTwoFrameGameFirstFrameOpenScoreEquals(0, rolls(0, 0, 0, 0), firstFrameType);
-        assertTwoFrameGameFirstFrameOpenScoreEquals(1, rolls(0, 0, 1, 0), firstFrameType);
-        assertTwoFrameGameFirstFrameOpenScoreEquals(4, rolls(1, 1, 1, 1), firstFrameType);
+        assertTwoFrameGameScoreEquals(0, rolls(0, 0, 0, 0), firstFrameType);
+        assertTwoFrameGameScoreEquals(1, rolls(0, 0, 1, 0), firstFrameType);
+        assertTwoFrameGameScoreEquals(4, rolls(1, 1, 1, 1), firstFrameType);
     }
     
     @Test
     public void testTwoFrameGameSpareFirst() {
         String firstFrameType = "spare";
-        assertTwoFrameGameFirstFrameSpareScoreEquals(13, rolls(1, 9, 1, 1), firstFrameType);
-        assertTwoFrameGameFirstFrameSpareScoreEquals(15, rolls(1, 9, 2, 1), firstFrameType);
-        assertTwoFrameGameFirstFrameSpareScoreEquals(18, rolls(1, 9, 3, 2), firstFrameType);
+        assertTwoFrameGameScoreEquals(13, rolls(1, 9, 1, 1), firstFrameType);
+        assertTwoFrameGameScoreEquals(15, rolls(1, 9, 2, 1), firstFrameType);
+        assertTwoFrameGameScoreEquals(18, rolls(1, 9, 3, 2), firstFrameType);
     }
     
     @Test
     public void testTwoFrameGameStrikeFirst() {
         String firstFrameType = "strike";
-        assertTwoFrameGameFirstFrameStrikeScoreEquals(16, rolls(10, 2, 1), firstFrameType);
-        assertTwoFrameGameFirstFrameStrikeScoreEquals(20, rolls(10, 3, 2), firstFrameType);
-        assertTwoFrameGameFirstFrameStrikeScoreEquals(24, rolls(10, 1, 6), firstFrameType);
-        assertTwoFrameGameFirstFrameStrikeScoreEquals(32, rolls(10, 1, 9, 2), firstFrameType);
-        assertTwoFrameGameFirstFrameStrikeScoreEquals(34, rolls(10, 10, 1, 2), firstFrameType);
+        assertTwoFrameGameScoreEquals(16, rolls(10, 2, 1), firstFrameType);
+        assertTwoFrameGameScoreEquals(20, rolls(10, 3, 2), firstFrameType);
+        assertTwoFrameGameScoreEquals(24, rolls(10, 1, 6), firstFrameType);
+        assertTwoFrameGameScoreEquals(32, rolls(10, 1, 9, 2), firstFrameType);
+        assertTwoFrameGameScoreEquals(34, rolls(10, 10, 1, 2), firstFrameType);
     }
     
     
@@ -71,32 +71,14 @@ public class BowlingTest {
         assertThat(score, equalTo(expectedScore));
     }
     
-    private void assertTwoFrameGameFirstFrameOpenScoreEquals(int expectedScore, int[] rolls, String firstFrameType) {
+    private void assertTwoFrameGameScoreEquals(int expectedScore, int[] rolls, String firstFrameType) {
         int score;
         if ("open".equals(firstFrameType)) {
             score = getSumOfRolls(rolls);
-        } else {
-            score = -1;
-            fail("Invalid type");
-        }
-
-        assertThat(score, equalTo(expectedScore));
-    }
-    
-    private void assertTwoFrameGameFirstFrameSpareScoreEquals(int expectedScore, int[] rolls, String firstFrameType) {
-        int score;
+        } else
         if ("spare".equals(firstFrameType)) {
             score = computeScoreForSpareInFirstFrame(rolls);
-        } else {
-            score = -1;
-            fail("Invalid type");
-        }
-        
-        assertThat(score, equalTo(expectedScore));
-    }
-    
-    private void assertTwoFrameGameFirstFrameStrikeScoreEquals(int expectedScore, int[] rolls, String firstFrameType) {
-        int score;
+        } else
         if ("strike".equals(firstFrameType)) {
             score = computeScoreForStrikeInFirstFrame(rolls);
         } else {
