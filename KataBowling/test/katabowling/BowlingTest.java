@@ -40,33 +40,10 @@ public class BowlingTest {
     }
     
     @Test
-    public void testTwoFrameGameSpare1() {
-        int[] rolls = rolls(1, 9, 1, 1);
-        int expectedScore = 13;
-        
-        int score = computeScoreForSpareInFirstFrame(rolls);
-
-        assertThat(score, equalTo(expectedScore));
-    }
-    
-    @Test
-    public void testTwoFrameGameSpare2() {
-        int[] rolls = rolls(1, 9, 2, 1);
-        int expectedScore = 15;
-        
-        int score = computeScoreForSpareInFirstFrame(rolls);
-
-        assertThat(score, equalTo(expectedScore));
-    }
-    
-    @Test
-    public void testTwoFrameGameSpare3() {
-        int[] rolls = rolls(1, 9, 3, 2);
-        int expectedScore = 18;
-        
-        int score = computeScoreForSpareInFirstFrame(rolls);
-
-        assertThat(score, equalTo(expectedScore));
+    public void testTwoFrameGameSpare() {
+        assertTwoFrameGameFirstFrameSpareScoreEquals(13, rolls(1, 9, 1, 1));
+        assertTwoFrameGameFirstFrameSpareScoreEquals(15, rolls(1, 9, 2, 1));
+        assertTwoFrameGameFirstFrameSpareScoreEquals(18, rolls(1, 9, 3, 2));
     }
     
     //~~~~~~~~~~~~~~~~ Test helpers ~~~~~~~~~~~
@@ -86,7 +63,13 @@ public class BowlingTest {
 
         assertThat(score, equalTo(expectedScore));
     }
+    
+    private void assertTwoFrameGameFirstFrameSpareScoreEquals(int expectedScore, int[] rolls) {
+        int score = computeScoreForSpareInFirstFrame(rolls);
 
+        assertThat(score, equalTo(expectedScore));
+    }
+    
     //~~~~~~~~~~~~~~~~ Production code ~~~~~~~~~~~
     
     private int computeScoreWhenOpenFrameFirst(int[] rolls) {
