@@ -19,7 +19,7 @@ public class OneFrameGameTest {
         assertScoreEquals(0, rolls(0, 0));
         assertScoreEquals(1, rolls(1, 0));
         assertScoreEquals(2, rolls(2, 0));
-        assertScoreEquals(1, rolls(1, 0));
+        assertScoreEquals(1, rolls(0, 1));
     }
     
     @Test
