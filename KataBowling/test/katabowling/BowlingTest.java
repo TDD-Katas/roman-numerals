@@ -66,6 +66,16 @@ public class BowlingTest {
         assertThat(score, equalTo(expectedScore));
     }
     
+    @Test
+    public void testTwoFrameGameStrikeFirst3() {
+        int [] rolls = rolls(10, 2, 1);
+        int expectedScore = 16;
+        
+        int score = computeScoreWhenOpenFrameFirst(rolls) + 3;
+
+        assertThat(score, equalTo(expectedScore));
+    }
+    
     //~~~~~~~~~~~~~~~~ Test helpers ~~~~~~~~~~~
     
     private int[] rolls(int ... rolls) {
