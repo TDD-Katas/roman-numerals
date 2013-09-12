@@ -47,11 +47,17 @@ public class BowlingTest {
     }
     
     @Test
-    public void testMultiFrameGame() {
+    public void testThreeFrameGame() {
         int gameFrames = 3;
         assertGameScoreEquals(0, rolls(0, 0, 0, 0, 0, 0), gameFrames);
         assertGameScoreEquals(13, rolls(0, 0, 1, 9, 1, 1), gameFrames);
         assertGameScoreEquals(63, rolls(10, 10, 10, 1, 1), gameFrames);
+    }
+    
+    @Test
+    public void testTenFrameGame() {
+        int gameFrames = 10;
+        assertGameScoreEquals(300, rolls(10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10), gameFrames);
     }
 
     @Test
