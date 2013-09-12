@@ -29,24 +29,24 @@ public class BowlingTest {
     @Test
     public void testTwoFrameGameOpenFrame() {
         {
-            FirstFrameType firstFrameType = FirstFrameType.OPEN;
-            assertTwoFrameGameScoreEquals(0, rolls(0, 0, 0, 0), firstFrameType);
-            assertTwoFrameGameScoreEquals(1, rolls(0, 0, 1, 0), firstFrameType);
-            assertTwoFrameGameScoreEquals(4, rolls(1, 1, 1, 1), firstFrameType);
+            ScoreStrategy scoreStrategy = new OpenFrameScoreStrategy();
+            assertTwoFrameGameScoreEquals(0, rolls(0, 0, 0, 0), scoreStrategy);
+            assertTwoFrameGameScoreEquals(1, rolls(0, 0, 1, 0), scoreStrategy);
+            assertTwoFrameGameScoreEquals(4, rolls(1, 1, 1, 1), scoreStrategy);
         }
         {
-            FirstFrameType firstFrameType = FirstFrameType.SPARE;
-            assertTwoFrameGameScoreEquals(13, rolls(1, 9, 1, 1), firstFrameType);
-            assertTwoFrameGameScoreEquals(15, rolls(1, 9, 2, 1), firstFrameType);
-            assertTwoFrameGameScoreEquals(18, rolls(1, 9, 3, 2), firstFrameType);
+            ScoreStrategy scoreStrategy = new SpareScoreStrategy();
+            assertTwoFrameGameScoreEquals(13, rolls(1, 9, 1, 1), scoreStrategy);
+            assertTwoFrameGameScoreEquals(15, rolls(1, 9, 2, 1), scoreStrategy);
+            assertTwoFrameGameScoreEquals(18, rolls(1, 9, 3, 2), scoreStrategy);
         }
         {
-            FirstFrameType firstFrameType = FirstFrameType.STRIKE;
-            assertTwoFrameGameScoreEquals(16, rolls(10, 2, 1), firstFrameType);
-            assertTwoFrameGameScoreEquals(20, rolls(10, 3, 2), firstFrameType);
-            assertTwoFrameGameScoreEquals(24, rolls(10, 1, 6), firstFrameType);
-            assertTwoFrameGameScoreEquals(32, rolls(10, 1, 9, 2), firstFrameType);
-            assertTwoFrameGameScoreEquals(34, rolls(10, 10, 1, 2), firstFrameType);
+            ScoreStrategy scoreStrategy = new StrikeScoreStrategy();
+            assertTwoFrameGameScoreEquals(16, rolls(10, 2, 1), scoreStrategy);
+            assertTwoFrameGameScoreEquals(20, rolls(10, 3, 2), scoreStrategy);
+            assertTwoFrameGameScoreEquals(24, rolls(10, 1, 6), scoreStrategy);
+            assertTwoFrameGameScoreEquals(32, rolls(10, 1, 9, 2), scoreStrategy);
+            assertTwoFrameGameScoreEquals(34, rolls(10, 10, 1, 2), scoreStrategy);
         }
     }
 
@@ -56,25 +56,8 @@ public class BowlingTest {
         assertThat(score, equalTo(expectedScore));
     }
 
-    private void assertTwoFrameGameScoreEquals(int expectedScore, int[] rolls, FirstFrameType firstFrameType) {
-        int score;
-        ScoreStrategy scoreStrategy;
-        switch (firstFrameType) {
-            case OPEN:
-                scoreStrategy = new OpenFrameScoreStrategy();
-                break;
-            case SPARE:
-                scoreStrategy = new SpareScoreStrategy();
-                break;
-            case STRIKE:
-                scoreStrategy = new StrikeScoreStrategy();
-                break;
-            default:
-                scoreStrategy = null;
-                fail("Invalid type");
-        }
-
-        score = scoreStrategy.computeScore(rolls);
+    private void assertTwoFrameGameScoreEquals(int expectedScore, int[] rolls, ScoreStrategy scoreStrategy) {
+        int score = scoreStrategy.computeScore(rolls);
         assertThat(score, equalTo(expectedScore));
     }
 
