@@ -16,20 +16,24 @@ public class OneFrameGameTest {
 
     @Test
     public void testTwoZerosScoreZero() {
-        assertScoreEquals(0, new int[]{0, 0});
+        assertScoreEquals(0, rolls(0, 0));
     }
 
     @Test
     public void testOneAndZeroScoreOne() {
-        assertScoreEquals(1, new int[]{1, 0});
+        assertScoreEquals(1, rolls(1, 0));
     }
 
     @Test
     public void testTwoAndZeroScoreTwo() {
-        assertScoreEquals(2, new int[]{2, 0});
+        assertScoreEquals(2, rolls(2, 0));
     }
 
     //~~~~~~~~~~~~~~~~ Test helpers ~~~~~~~~~~~
+    
+    private int[] rolls(int ... rolls) {
+        return rolls;
+    }
     
     private void assertScoreEquals(int expectedScore, int[] rolls) {
         int score = computeScore(rolls);
@@ -38,7 +42,10 @@ public class OneFrameGameTest {
     }
 
     //~~~~~~~~~~~~~~~~ Production code ~~~~~~~~~~~
+    
     private int computeScore(int[] rolls) {
         return rolls[0];
     }
+
+
 }
