@@ -34,9 +34,9 @@ public class BowlingTest {
     
     @Test
     public void testTwoFrameGameOpenFrame() {
-        assertTwoFrameGameScoreEquals(0, rolls(0, 0, 0, 0));
-        assertTwoFrameGameScoreEquals(1, rolls(0, 0, 1, 0));
-        assertTwoFrameGameScoreEquals(4, rolls(1, 1, 1, 1));
+        assertTwoFrameGameFirstFrameOpenScoreEquals(0, rolls(0, 0, 0, 0));
+        assertTwoFrameGameFirstFrameOpenScoreEquals(1, rolls(0, 0, 1, 0));
+        assertTwoFrameGameFirstFrameOpenScoreEquals(4, rolls(1, 1, 1, 1));
     }
     
     @Test
@@ -63,13 +63,13 @@ public class BowlingTest {
     }
     
     private void assertOneFrameGameScoreEquals(int expectedScore, int[] rolls) {
-        int score = computeScoreWhenOpenFrameFirst(rolls);
+        int score = getSumOfRolls(rolls);
 
         assertThat(score, equalTo(expectedScore));
     }
     
-    private void assertTwoFrameGameScoreEquals(int expectedScore, int[] rolls) {
-        int score = computeScoreWhenOpenFrameFirst(rolls);
+    private void assertTwoFrameGameFirstFrameOpenScoreEquals(int expectedScore, int[] rolls) {
+        int score = getSumOfRolls(rolls);
 
         assertThat(score, equalTo(expectedScore));
     }
@@ -88,20 +88,19 @@ public class BowlingTest {
     
     //~~~~~~~~~~~~~~~~ Production code ~~~~~~~~~~~
     
-    private int computeScoreWhenOpenFrameFirst(int[] rolls) {
+    private int getSumOfRolls(int[] rolls) {
         int score = 0;
         for (int i : rolls) {
             score += i;
         }
-        
         return score;
     }
 
     private int computeScoreForSpareInFirstFrame(int[] rolls) {
-        return computeScoreWhenOpenFrameFirst(rolls) + rolls[2];
+        return getSumOfRolls(rolls) + rolls[2];
     }
 
     private int computeScoreForStrikeInFirstFrame(int[] rolls) {
-        return computeScoreWhenOpenFrameFirst(rolls) + rolls[1] + rolls[2];
+        return getSumOfRolls(rolls) + rolls[1] + rolls[2];
     }
 }
