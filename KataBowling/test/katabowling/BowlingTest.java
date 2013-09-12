@@ -17,15 +17,15 @@ public class BowlingTest {
 
     @Test
     public void testOneFrameGame() {
-        ScoreStrategy scoreStrategy = new OneFrameGameScoreStrategy();
-        assertGameScoreEquals(0, rolls(0, 0), scoreStrategy);
-        assertGameScoreEquals(1, rolls(1, 0), scoreStrategy);
-        assertGameScoreEquals(2, rolls(2, 0), scoreStrategy);
-        assertGameScoreEquals(1, rolls(0, 1), scoreStrategy);
+        int gameFrames = 1;
+        assertGameScoreEquals(0, rolls(0, 0), gameFrames);
+        assertGameScoreEquals(1, rolls(1, 0), gameFrames);
+        assertGameScoreEquals(2, rolls(2, 0), gameFrames);
+        assertGameScoreEquals(1, rolls(0, 1), gameFrames);
         //Spare
-        assertGameScoreEquals(11, rolls(1, 9, 1), scoreStrategy);
+        assertGameScoreEquals(11, rolls(1, 9, 1), gameFrames);
         //Strike
-        assertGameScoreEquals(12, rolls(10, 1, 1), scoreStrategy);
+        assertGameScoreEquals(12, rolls(10, 1, 1), gameFrames);
     }
 
     @Test
@@ -149,16 +149,15 @@ public class BowlingTest {
     }
     
     private int computeScore(int framesLeft, int[] rolls) {
-        FrameType frameType = getFrameTypeForRolls(rolls);
-        int frameSize = frameType.getFrameSize();
-        int numberOfBonusRolls = frameType.getBonusRolls();
-        int scoreForCurrentFrame = getScoreForCurrentFrame(frameSize, rolls);
-        int[] nextFrame = getNextFrames(rolls, frameSize);
-        int bonusRollsScore = computeBonusRollsScore(numberOfBonusRolls, rolls);
-        
-        if (framesLeft == 2) {
-            return scoreForCurrentFrame + bonusRollsScore + getFinalFrameScore(nextFrame);
+        if (framesLeft == 1) {
+            return getFinalFrameScore(rolls);
         } else {
+            FrameType frameType = getFrameTypeForRolls(rolls);
+            int frameSize = frameType.getFrameSize();
+            int numberOfBonusRolls = frameType.getBonusRolls();
+            int scoreForCurrentFrame = getScoreForCurrentFrame(frameSize, rolls);
+            int[] nextFrame = getNextFrames(rolls, frameSize);
+            int bonusRollsScore = computeBonusRollsScore(numberOfBonusRolls, rolls);
             return scoreForCurrentFrame + bonusRollsScore + computeScore(framesLeft-1, nextFrame);
         }
     }
