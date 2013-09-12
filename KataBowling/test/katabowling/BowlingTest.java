@@ -136,11 +136,20 @@ public class BowlingTest {
         return rolls;
     }
     
-    interface FrameType {
-        int getFrameSize();
-        int getNumberOfBonusRolls();
+    enum FrameType {
+        OPEN;
+
+        //Members
+        int frameSize;
+        int bonusRolls;
+        
+        int getFrameSize() {
+            return frameSize;
+        }
+        int getBonusRolls(){
+            return bonusRolls;
+        }
     }
-    
     
 
     private int computeScoreWithOpenFrameFirst(int[] rolls) {
