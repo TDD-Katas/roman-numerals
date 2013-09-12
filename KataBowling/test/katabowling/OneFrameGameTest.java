@@ -17,12 +17,8 @@ public class OneFrameGameTest {
     
     @Test
     public void testTwoZerosScoreZero() {
-        //Given
-        int[] rolls = new int[] {0,0};
-        int score = -1;
-        
         //When
-        score = 0;
+        int score = 0;
         
         //Then
         assertThat(score, equalTo(0));
@@ -30,12 +26,8 @@ public class OneFrameGameTest {
     
     @Test
     public void testOneAndZeroScoreOne() {
-        //Given
-        int[] rolls = new int[] {1, 0};
-        int score = -1;
-        
         //When
-        score = 1;
+        int score = 1;
         
         //Then
         assertThat(score, equalTo(1));
