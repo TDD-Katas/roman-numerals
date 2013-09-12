@@ -60,7 +60,8 @@ public class BowlingTest {
         int score;
         switch (firstFrameType) {
             case OPEN:
-                score = getSumOfRolls(rolls);
+                ScoreStrategy scoreStrategy = new OpenFrameScoreStrategy();
+                score = scoreStrategy.computeScore(rolls);
                 break;
             case SPARE:
                 score = computeScoreForSpareInFirstFrame(rolls);
@@ -83,6 +84,18 @@ public class BowlingTest {
         SPARE,
         STRIKE
     }
+    
+    interface ScoreStrategy {
+        int computeScore(int[] rolls);
+    }
+    
+    class OpenFrameScoreStrategy implements ScoreStrategy {
+        @Override
+        public int computeScore(int[] rolls) {
+            return getSumOfRolls(rolls);
+        }
+    }
+    
     
     private int[] rolls(int... rolls) {
         return rolls;
