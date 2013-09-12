@@ -50,8 +50,9 @@ public class BowlingTest {
     @Test
     public void testThreeFrameGameOpenFrame() {
         ScoreStrategy scoreStrategy;
-        scoreStrategy = new TwoFrameGameScoreStrategy();
+        scoreStrategy = new ThreeFrameGameScoreStrategy();
         assertGameScoreEquals(0, rolls(0, 0, 0, 0, 0, 0), scoreStrategy);
+        assertGameScoreEquals(13, rolls(0, 0, 1, 9, 1, 1), scoreStrategy);
     }
 
     @Test
@@ -165,9 +166,9 @@ public class BowlingTest {
         int frameSize = frameType.getFrameSize();
         int numberOfBonusRolls = frameType.getBonusRolls();
         int scoreForCurrentFrame = getScoreForCurrentFrame(frameSize, rolls);
-        int[] finalFrame = getNextFrames(rolls, frameSize);
+        int[] nextFrame = getNextFrames(rolls, frameSize);
         int bonusRollsScore = computeBonusRollsScore(numberOfBonusRolls, rolls);
-        return scoreForCurrentFrame + bonusRollsScore + getFinalFrameScore(finalFrame);
+        return scoreForCurrentFrame + bonusRollsScore + computeScoreForRolls(nextFrame);
     }
 
     private int[] getNextFrames(int[] rolls, int frameSize) {
