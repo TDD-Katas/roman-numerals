@@ -48,13 +48,43 @@ public class BowlingTest {
     }
     
     @Test
-    public void testGetStrategyForRolls() {
+    public void testGetStrategyForRolls1() {
         ScoreStrategy result = null;
         int[] rolls = rolls(0, 0, 0, 0);
         
         result = new OpenFrameScoreStrategy();
         
         assertTrue(result instanceof OpenFrameScoreStrategy);
+    }
+    
+    @Test
+    public void testGetStrategyForRolls2() {
+        ScoreStrategy result = null;
+        int[] rolls = rolls(0, 0, 1, 0);
+        
+        result = new OpenFrameScoreStrategy();
+        
+        assertTrue(result instanceof OpenFrameScoreStrategy);
+    }
+    
+    @Test
+    public void testGetStrategyForRolls3() {
+        ScoreStrategy result = null;
+        int[] rolls = rolls(1, 1, 1, 1);
+        
+        result = new OpenFrameScoreStrategy();
+        
+        assertTrue(result instanceof OpenFrameScoreStrategy);
+    }
+    
+    @Test
+    public void testGetStrategyForRolls4() {
+        ScoreStrategy result = null;
+        int[] rolls = rolls(1, 9, 1, 1);
+        
+        result = new SpareScoreStrategy();
+        
+        assertTrue(result instanceof SpareScoreStrategy);
     }
 
     private void assertGameScoreEquals(int expectedScore, int[] rolls, ScoreStrategy scoreStrategy) {
