@@ -139,19 +139,24 @@ public class BowlingTest {
             }
             return score;
         }
-    }
-    
-    private FrameType getFrameTypeForRolls(int[] rolls) {
+        
+    public FrameType getFrameType() {
         FrameType frameType;
-        if (rolls[0] == 10) {
+        if (rollsArray[0] == 10) {
             frameType = FrameType.STRIKE;
-        } else if (rolls[0] + rolls[1] == 10) {
+        } else if (rollsArray[0] + rollsArray[1] == 10) {
             frameType = FrameType.SPARE;
         } else {
             frameType = FrameType.OPEN;
         }
 
         return frameType;
+    }
+    }
+    
+    private FrameType getFrameTypeForRolls(int[] rolls) {
+        Rolls localrolls = new Rolls(rolls);
+        return localrolls.getFrameType();
     }
     
     private int[] rolls(int... rolls) {
