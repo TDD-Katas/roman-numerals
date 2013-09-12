@@ -105,7 +105,8 @@ public class BowlingTest {
     }
     
     private void assertGameScoreEquals(int expectedScore, int[] rolls, int gameFrames) {
-        int score = computeScore(gameFrames, rolls);
+        Rolls localRolls = new Rolls(rolls);
+        int score = computeScore(gameFrames, localRolls);
         assertThat(score, equalTo(expectedScore));
     }
     
@@ -141,18 +142,18 @@ public class BowlingTest {
             return score;
         }
         
-    public FrameType getFrameType() {
-        FrameType frameType;
-        if (rollsArray[0] == 10) {
-            frameType = FrameType.STRIKE;
-        } else if (rollsArray[0] + rollsArray[1] == 10) {
-            frameType = FrameType.SPARE;
-        } else {
-            frameType = FrameType.OPEN;
-        }
+        public FrameType getFrameType() {
+            FrameType frameType;
+            if (rollsArray[0] == 10) {
+                frameType = FrameType.STRIKE;
+            } else if (rollsArray[0] + rollsArray[1] == 10) {
+                frameType = FrameType.SPARE;
+            } else {
+                frameType = FrameType.OPEN;
+            }
 
-        return frameType;
-    }
+            return frameType;
+        }
     }
     
     private FrameType getFrameTypeForRolls(Rolls rolls) {
@@ -188,21 +189,20 @@ public class BowlingTest {
 
     //~~~~~~~~~~ Score methods ~~~~~~~
     
-    private int computeScore(int framesLeft, int[] rolls) {
+    private int computeScore(int framesLeft, Rolls rolls) {
         if (framesLeft == 1) {
-            Rolls localRolls = new Rolls(rolls);
-            return getFinalFrameScore(localRolls);
+            return getFinalFrameScore(rolls);
         } else {
-            Rolls localRolls = new Rolls(rolls);
-            FrameType frameType = getFrameTypeForRolls(localRolls);
+            FrameType frameType = getFrameTypeForRolls(rolls);
             int frameSize = frameType.getFrameSize();
-            int scoreForCurrentFrame = getScoreForCurrentFrame(frameSize, localRolls);
+            int scoreForCurrentFrame = getScoreForCurrentFrame(frameSize, rolls);
             
             int numberOfBonusRolls = frameType.getBonusRolls();
-            int bonusRollsScore = computeBonusRollsScore(numberOfBonusRolls, localRolls);
+            int bonusRollsScore = computeBonusRollsScore(numberOfBonusRolls, rolls);
             
-            int[] nextFrame = getNextFrames(rolls, frameSize);
-            return scoreForCurrentFrame + bonusRollsScore + computeScore(framesLeft-1, nextFrame);
+            int[] nextFrame = getNextFrames(rolls.rollsArray, frameSize);
+            Rolls nextRolls = new Rolls(nextFrame);
+            return scoreForCurrentFrame + bonusRollsScore + computeScore(framesLeft-1, nextRolls);
         }
     }
 
