@@ -50,11 +50,6 @@ public class BowlingTest {
         }
     }
 
-    //~~~~~~~~~~~~~~~~ Test helpers ~~~~~~~~~~~
-    private int[] rolls(int... rolls) {
-        return rolls;
-    }
-
     private void assertOneFrameGameScoreEquals(int expectedScore, int[] rolls) {
         int score = getSumOfRolls(rolls);
 
@@ -74,11 +69,15 @@ public class BowlingTest {
             fail("Invalid type");
         }
 
-
         assertThat(score, equalTo(expectedScore));
     }
 
     //~~~~~~~~~~~~~~~~ Production code ~~~~~~~~~~~
+    
+    private int[] rolls(int... rolls) {
+        return rolls;
+    }
+    
     private int getSumOfRolls(int[] rolls) {
         int score = 0;
         for (int i : rolls) {
