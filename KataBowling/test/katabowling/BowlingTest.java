@@ -194,7 +194,7 @@ public class BowlingTest {
             int scoreForCurrentFrame = getScoreForCurrentFrame(frameSize, localRolls);
             
             int numberOfBonusRolls = frameType.getBonusRolls();
-            int bonusRollsScore = computeBonusRollsScore(numberOfBonusRolls, rolls);
+            int bonusRollsScore = computeBonusRollsScore(numberOfBonusRolls, localRolls);
             
             int[] nextFrame = getNextFrames(rolls, frameSize);
             return scoreForCurrentFrame + bonusRollsScore + computeScore(framesLeft-1, nextFrame);
@@ -211,11 +211,10 @@ public class BowlingTest {
         return rolls.getSum(start, end);
     }
 
-    private int computeBonusRollsScore(int numberOfBonusRolls, int[] rolls) {
-        Rolls localRolls = new Rolls(rolls);
+    private int computeBonusRollsScore(int numberOfBonusRolls, Rolls rolls) {
         int start = 3 - numberOfBonusRolls;
         int end = 3;
-        return localRolls.getSum(start, end);
+        return rolls.getSum(start, end);
     }
 
     private int getFinalFrameScore(Rolls rolls) {
