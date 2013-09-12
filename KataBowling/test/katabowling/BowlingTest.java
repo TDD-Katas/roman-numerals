@@ -78,6 +78,18 @@ public class BowlingTest {
         }
         assertGameScoreEquals(90, rolls, gameFrames);
     }
+    
+    @Test
+    public void testFiveGame() {
+        int gameFrames = 10;
+        int gameRolls = 21;
+        
+        int[] rolls = new int[gameRolls];
+        for (int i = 0; i < rolls.length; i++) {
+            rolls[i] = 5;
+        }
+        assertGameScoreEquals(150, rolls, gameFrames);
+    }
 
     @Test
     public void testGetFrameTypeForRolls() {
