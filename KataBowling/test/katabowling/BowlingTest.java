@@ -120,7 +120,7 @@ public class BowlingTest {
     static class Rolls {
         int[] rolls;
 
-        private Rolls(int ... rolls) {
+        public Rolls(int ... rolls) {
             this.rolls = rolls;
         }
         
@@ -198,25 +198,23 @@ public class BowlingTest {
     }
 
     private int getScoreForCurrentFrame(int frameSize, int[] rolls) {
+        Rolls localRolls = new Rolls(rolls);
         int start = 0;
         int end = frameSize;
-        return getSumOfRolls(rolls, start, end);
+        return localRolls.getSumOfRolls(start, end);
     }
 
     private int computeBonusRollsScore(int numberOfBonusRolls, int[] rolls) {
+        Rolls localRolls = new Rolls(rolls);
         int start = 3 - numberOfBonusRolls;
         int end = 3;
-        return getSumOfRolls(rolls, start, end);
+        return localRolls.getSumOfRolls(start, end);
     }
 
     private int getFinalFrameScore(int[] rolls) {
+        Rolls localRolls = new Rolls(rolls);
         int start = 0;
         int end = rolls.length;
-        return getSumOfRolls(rolls, start, end);
-    }
-
-    private int getSumOfRolls(int[] rolls, int start, int end) {
-        Rolls localRolls = new Rolls(rolls);
         return localRolls.getSumOfRolls(start, end);
     }
 }
