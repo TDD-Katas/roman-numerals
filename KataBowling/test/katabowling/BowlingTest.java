@@ -153,7 +153,7 @@ public class BowlingTest {
             return frameType;
         }
         
-        public Rolls getNextFrames() {
+        public Rolls getNextFramesRolls() {
             FrameType frameType = getFrameType();
             int frameSize = frameType.getFrameSize();
             
@@ -219,7 +219,7 @@ public class BowlingTest {
             score = getFinalFrameScore(rolls);
         } else {
             int totalScoreForCurrentFrame = rolls.computeTotalScoreForFrame();
-            Rolls nextRolls = rolls.getNextFrames();
+            Rolls nextRolls = rolls.getNextFramesRolls();
             int scoreForOtherFrames = computeScore(framesLeft-1, nextRolls);
             
             score = totalScoreForCurrentFrame + scoreForOtherFrames;
