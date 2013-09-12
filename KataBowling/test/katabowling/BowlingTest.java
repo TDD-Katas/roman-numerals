@@ -49,40 +49,28 @@ public class BowlingTest {
     
     @Test
     public void testGetStrategyForRolls1() {
-        ScoreStrategy result = null;
-        int[] rolls = rolls(0, 0, 0, 0);
-        Class expectedStrategy = OpenFrameScoreStrategy.class;
-        
-        result = getStrategyForRolls(rolls);
-        
-        assertTrue(expectedStrategy.isInstance(result));
+        assertGetStrategyForRollsEquals(OpenFrameScoreStrategy.class, rolls(0, 0, 0, 0));
     }
     
     @Test
     public void testGetStrategyForRolls2() {
-        ScoreStrategy result = null;
-        int[] rolls = rolls(0, 0, 1, 0);
-        Class expectedStrategy = OpenFrameScoreStrategy.class;
-        
-        result = getStrategyForRolls(rolls);
-        
-        assertTrue(expectedStrategy.isInstance(result));
+        assertGetStrategyForRollsEquals(OpenFrameScoreStrategy.class, rolls(0, 0, 1, 0));
     }
     
     @Test
     public void testGetStrategyForRolls3() {
-        ScoreStrategy result = null;
-        int[] rolls = rolls(1, 1, 1, 1);
-        Class expectedStrategy = OpenFrameScoreStrategy.class;
-        
-        result = getStrategyForRolls(rolls);
-        
-        assertTrue(expectedStrategy.isInstance(result));
+        assertGetStrategyForRollsEquals(OpenFrameScoreStrategy.class, rolls(1, 1, 1, 1));
     }
     
     private void assertGameScoreEquals(int expectedScore, int[] rolls, ScoreStrategy scoreStrategy) {
         int score = scoreStrategy.computeScore(rolls);
         assertThat(score, equalTo(expectedScore));
+    }
+    
+   private void assertGetStrategyForRollsEquals(Class expectedStrategy, int[] rolls) {
+        ScoreStrategy result = getStrategyForRolls(rolls);
+        
+        assertTrue(expectedStrategy.isInstance(result));
     }
 
     //~~~~~~~~~~~~~~~~ Production code ~~~~~~~~~~~
