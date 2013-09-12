@@ -112,8 +112,7 @@ public class BowlingTest {
 
         @Override
         public int computeScore(int[] rolls) {
-            int[] finalFrame = Arrays.copyOfRange(rolls, 2, rolls.length);
-            return rolls[0] + rolls[1] + getFinalFrameScore(finalFrame);
+            return computeScoreWithOpenFrameFirst(rolls);
         }
     }
 
@@ -121,8 +120,7 @@ public class BowlingTest {
 
         @Override
         public int computeScore(int[] rolls) {
-            int[] finalFrame = Arrays.copyOfRange(rolls, 2, rolls.length);
-            return rolls[0] + rolls[1] + rolls[2] + getFinalFrameScore(finalFrame);
+            return computeScoreWithSpareFirst(rolls);
         }
     }
 
@@ -130,8 +128,7 @@ public class BowlingTest {
 
         @Override
         public int computeScore(int[] rolls) {
-            int[] finalFrame = Arrays.copyOfRange(rolls, 1, rolls.length);
-            return rolls[0] + rolls[1] + rolls[2] + getFinalFrameScore(finalFrame);
+            return computeScoreWithStrikeFirst(rolls);
         }
     }
 
@@ -139,6 +136,21 @@ public class BowlingTest {
         return rolls;
     }
 
+    private int computeScoreWithOpenFrameFirst(int[] rolls) {
+        int[] finalFrame = Arrays.copyOfRange(rolls, 2, rolls.length);
+        return rolls[0] + rolls[1] + getFinalFrameScore(finalFrame);
+    }
+    
+    private int computeScoreWithSpareFirst(int[] rolls) {
+        int[] finalFrame = Arrays.copyOfRange(rolls, 2, rolls.length);
+        return rolls[0] + rolls[1] + rolls[2] + getFinalFrameScore(finalFrame);
+    }
+    
+    private int computeScoreWithStrikeFirst(int[] rolls) {
+            int[] finalFrame = Arrays.copyOfRange(rolls, 1, rolls.length);
+            return rolls[0] + rolls[1] + rolls[2] + getFinalFrameScore(finalFrame);
+    }
+    
     private int getFinalFrameScore(int[] rolls) {
         int score = 0;
         for (int i : rolls) {
