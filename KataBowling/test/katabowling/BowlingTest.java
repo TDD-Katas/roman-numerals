@@ -49,6 +49,19 @@ public class BowlingTest {
 
     @Test
     public void testGetStrategyForRolls() {
+        FrameType frameType;
+        frameType = FrameType.OPEN;
+        assertGetFrameTypeForRollsEquals(frameType, rolls(0, 0));
+        assertGetFrameTypeForRollsEquals(frameType, rolls(1, 1));
+        frameType = FrameType.SPARE;
+        assertGetFrameTypeForRollsEquals(frameType, rolls(1, 9));
+        frameType = FrameType.STRIKE;
+        assertGetFrameTypeForRollsEquals(frameType, rolls(10));
+        assertGetFrameTypeForRollsEquals(frameType, rolls(10));
+    }
+    
+    @Test
+    public void testGetFrameTypeForRolls() {
         Class strategyClass;
         strategyClass = OpenFrameScoreStrategy.class;
         assertGetStrategyForRollsEquals(strategyClass, rolls(0, 0));
