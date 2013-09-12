@@ -17,15 +17,7 @@ public class OneFrameGameTest {
     @Test
     public void testTwoZerosScoreZero() {
         assertScoreEquals(0, rolls(0, 0));
-    }
-
-    @Test
-    public void testOneAndZeroScoreOne() {
         assertScoreEquals(1, rolls(1, 0));
-    }
-
-    @Test
-    public void testTwoAndZeroScoreTwo() {
         assertScoreEquals(2, rolls(2, 0));
     }
 
