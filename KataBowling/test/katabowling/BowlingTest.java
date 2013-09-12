@@ -137,15 +137,23 @@ public class BowlingTest {
     }
     
     enum FrameType {
-        OPEN;
+        OPEN(2, 0),
+        SPARE(2, 1),
+        STRIKE(1, 2);
 
         //Members
         int frameSize;
         int bonusRolls;
+
+        private FrameType(int frameSize, int bonusRolls) {
+            this.frameSize = frameSize;
+            this.bonusRolls = bonusRolls;
+        }
         
         int getFrameSize() {
             return frameSize;
         }
+        
         int getBonusRolls(){
             return bonusRolls;
         }
@@ -153,8 +161,9 @@ public class BowlingTest {
     
 
     private int computeScoreWithOpenFrameFirst(int[] rolls) {
-        int frameSize = 2;
-        int numberOfBonusRolls = 0;
+        FrameType frameType = FrameType.OPEN;
+        int frameSize = frameType.getFrameSize();
+        int numberOfBonusRolls = frameType.getBonusRolls();
         return computeScoreForRolls(frameSize, rolls, numberOfBonusRolls);
     }
     
