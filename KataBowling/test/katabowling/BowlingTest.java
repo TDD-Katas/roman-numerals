@@ -216,9 +216,10 @@ public class BowlingTest {
             int scoreForCurrentFrame = rolls.getScoreForCurrentFrame();
             
             int bonusRollsScore = rolls.computeBonusRollsScore();
+            int totalScoreForCurrentFrame = scoreForCurrentFrame + bonusRollsScore;
             
             Rolls nextRolls = rolls.getNextFrames();
-            return scoreForCurrentFrame + bonusRollsScore + computeScore(framesLeft-1, nextRolls);
+            return totalScoreForCurrentFrame + computeScore(framesLeft-1, nextRolls);
         }
     }
 
