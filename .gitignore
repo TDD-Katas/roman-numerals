@@ -1,0 +1,9 @@
+*.class
+*~
+.sonar
+*.ser
+USER_DATA/
+private/
+build/
+dist/
+coverage/
