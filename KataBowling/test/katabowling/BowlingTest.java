@@ -110,7 +110,8 @@ public class BowlingTest {
     }
     
     private void assertGetFrameTypeForRollsEquals(FrameType frameType, int[] rolls) {
-        FrameType result = getFrameTypeForRolls(rolls);
+        Rolls localRolls = new Rolls(rolls);
+        FrameType result = getFrameTypeForRolls(localRolls);
 
         assertThat(result, equalTo(frameType));
     }
@@ -154,9 +155,8 @@ public class BowlingTest {
     }
     }
     
-    private FrameType getFrameTypeForRolls(int[] rolls) {
-        Rolls localrolls = new Rolls(rolls);
-        return localrolls.getFrameType();
+    private FrameType getFrameTypeForRolls(Rolls rolls) {
+        return rolls.getFrameType();
     }
     
     private int[] rolls(int... rolls) {
@@ -194,7 +194,7 @@ public class BowlingTest {
             return getFinalFrameScore(localRolls);
         } else {
             Rolls localRolls = new Rolls(rolls);
-            FrameType frameType = getFrameTypeForRolls(rolls);
+            FrameType frameType = getFrameTypeForRolls(localRolls);
             int frameSize = frameType.getFrameSize();
             int scoreForCurrentFrame = getScoreForCurrentFrame(frameSize, localRolls);
             
