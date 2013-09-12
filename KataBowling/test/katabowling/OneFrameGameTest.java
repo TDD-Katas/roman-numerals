@@ -27,4 +27,17 @@ public class OneFrameGameTest {
         //Then
         assertThat(score, equalTo(0));
     }
+    
+    @Test
+    public void testOneAndZeroScoreOne() {
+        //Given
+        int[] rolls = new int[] {1, 0};
+        int score = -1;
+        
+        //When
+        score = 1;
+        
+        //Then
+        assertThat(score, equalTo(1));
+    }
 }
