@@ -116,7 +116,7 @@ public class BowlingTest {
     }
     
     class ThreeFrameGameScoreStrategy implements ScoreStrategy {
-        private int numberOfFrames;
+        private final int numberOfFrames;
 
         public ThreeFrameGameScoreStrategy(int numberOfFrames) {
             this.numberOfFrames = numberOfFrames;
@@ -173,7 +173,12 @@ public class BowlingTest {
         int scoreForCurrentFrame = getScoreForCurrentFrame(frameSize, rolls);
         int[] nextFrame = getNextFrames(rolls, frameSize);
         int bonusRollsScore = computeBonusRollsScore(numberOfBonusRolls, rolls);
-        return scoreForCurrentFrame + bonusRollsScore + computeScoreForRolls(nextFrame);
+        
+        if (framesLeft == 2) {
+            return scoreForCurrentFrame + bonusRollsScore + getFinalFrameScore(nextFrame);
+        } else {
+            return scoreForCurrentFrame + bonusRollsScore + computeScoreForRollsThreeFrame(framesLeft-1, nextFrame);
+        }
     }
 
     private int[] getNextFrames(int[] rolls, int frameSize) {

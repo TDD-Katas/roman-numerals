@@ -1,3 +1,4 @@
-MethodArgumentCouldBeFinal
 LongVariable
+MethodArgumentCouldBeFinal
+BeanMembersShouldSerialize
 LocalVariableCouldBeFinal
