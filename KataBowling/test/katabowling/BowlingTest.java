@@ -118,7 +118,7 @@ public class BowlingTest {
 
         @Override
         public int computeScore(int[] rolls) {
-            return computeScoreForRolls(rolls);
+            return computeScoreForRollsThreeFrame(rolls);
         }
     }
 
@@ -151,6 +151,16 @@ public class BowlingTest {
 
     //~~~~~~~~~~ Score methods ~~~~~~~
     private int computeScoreForRolls(int[] rolls) {
+        FrameType frameType = getFrameTypeForRolls(rolls);
+        int frameSize = frameType.getFrameSize();
+        int numberOfBonusRolls = frameType.getBonusRolls();
+        int scoreForCurrentFrame = getScoreForCurrentFrame(frameSize, rolls);
+        int[] finalFrame = getNextFrames(rolls, frameSize);
+        int bonusRollsScore = computeBonusRollsScore(numberOfBonusRolls, rolls);
+        return scoreForCurrentFrame + bonusRollsScore + getFinalFrameScore(finalFrame);
+    }
+    
+    private int computeScoreForRollsThreeFrame(int[] rolls) {
         FrameType frameType = getFrameTypeForRolls(rolls);
         int frameSize = frameType.getFrameSize();
         int numberOfBonusRolls = frameType.getBonusRolls();
