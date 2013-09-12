@@ -63,7 +63,7 @@ public class BowlingTest {
         for (int i = 0; i < rolls.length; i++) {
             rolls[i] = 10;
         }
-        assertGameScoreEquals(300, rolls, gameFrames);
+        assertGameScoreEquals(300, Rolls.create(rolls), gameFrames);
     }
     
     @Test
@@ -76,7 +76,7 @@ public class BowlingTest {
             rolls[2*i] = 9;
             rolls[2*i+1] = 0;
         }
-        assertGameScoreEquals(90, rolls, gameFrames);
+        assertGameScoreEquals(90, Rolls.create(rolls), gameFrames);
     }
     
     @Test
@@ -88,7 +88,7 @@ public class BowlingTest {
         for (int i = 0; i < rolls.length; i++) {
             rolls[i] = 5;
         }
-        assertGameScoreEquals(150, rolls, gameFrames);
+        assertGameScoreEquals(150, Rolls.create(rolls), gameFrames);
     }
 
     @Test
@@ -104,15 +104,13 @@ public class BowlingTest {
         assertGetFrameTypeForRollsEquals(frameType, rolls(10));
     }
     
-    private void assertGameScoreEquals(int expectedScore, int[] rolls, int gameFrames) {
-        Rolls localRolls = new Rolls(rolls);
-        int score = computeScore(gameFrames, localRolls);
+    private void assertGameScoreEquals(int expectedScore, Rolls rolls, int gameFrames) {
+        int score = computeScore(gameFrames, rolls);
         assertThat(score, equalTo(expectedScore));
     }
     
-    private void assertGetFrameTypeForRollsEquals(FrameType frameType, int[] rolls) {
-        Rolls localRolls = new Rolls(rolls);
-        FrameType result = getFrameTypeForRolls(localRolls);
+    private void assertGetFrameTypeForRollsEquals(FrameType frameType, Rolls rolls) {
+        FrameType result = getFrameTypeForRolls(rolls);
 
         assertThat(result, equalTo(frameType));
     }
@@ -160,8 +158,8 @@ public class BowlingTest {
         return rolls.getFrameType();
     }
     
-    private int[] rolls(int... rolls) {
-        return rolls;
+    private Rolls rolls(int... rolls) {
+        return Rolls.create(rolls);
     }
 
     enum FrameType {
