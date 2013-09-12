@@ -32,6 +32,11 @@ public class BowlingTest {
         assertOneFrameGameScoreEquals(12, rolls(10, 1, 1));
     }
     
+    @Test
+    public void testTwoFrameGameOpenFrame() {
+        assertTwoFrameGameScoreEquals(0, rolls(0, 0, 0, 0));
+    }
+    
     //~~~~~~~~~~~~~~~~ Test helpers ~~~~~~~~~~~
     
     private int[] rolls(int ... rolls) {
@@ -39,6 +44,12 @@ public class BowlingTest {
     }
     
     private void assertOneFrameGameScoreEquals(int expectedScore, int[] rolls) {
+        int score = computeScore(rolls);
+
+        assertThat(score, equalTo(expectedScore));
+    }
+    
+    private void assertTwoFrameGameScoreEquals(int expectedScore, int[] rolls) {
         int score = computeScore(rolls);
 
         assertThat(score, equalTo(expectedScore));
