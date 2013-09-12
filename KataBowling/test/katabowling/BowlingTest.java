@@ -190,22 +190,20 @@ public class BowlingTest {
     }
 
     private int computeScoreWithOpenFrameFirst(int[] rolls) {
-        FrameType frameType = FrameType.OPEN;
-        return computeScoreForRolls(frameType, rolls);
+        return computeScoreForRolls(rolls);
     }
 
     private int computeScoreWithSpareFirst(int[] rolls) {
-        FrameType frameType = FrameType.SPARE;
-        return computeScoreForRolls(frameType, rolls);
+        return computeScoreForRolls(rolls);
     }
 
     private int computeScoreWithStrikeFirst(int[] rolls) {
-        FrameType frameType = FrameType.STRIKE;
-        return computeScoreForRolls(frameType, rolls);
+        return computeScoreForRolls(rolls);
     }
 
     //~~~~~~~~~~ Score methods ~~~~~~~
-    private int computeScoreForRolls(FrameType frameType, int[] rolls) {
+    private int computeScoreForRolls(int[] rolls) {
+        FrameType frameType = getFrameTypeForRolls(rolls);
         int frameSize = frameType.getFrameSize();
         int numberOfBonusRolls = frameType.getBonusRolls();
         int scoreForCurrentFrame = getScoreForCurrentFrame(frameSize, rolls);
