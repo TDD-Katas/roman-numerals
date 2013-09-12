@@ -4,6 +4,7 @@
  */
 package katabowling;
 
+import java.util.Arrays;
 import static org.hamcrest.core.IsEqual.*;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -68,7 +69,7 @@ public class BowlingTest {
 
         @Override
         public int computeScore(int[] rolls) {
-            return getSumOfRolls(rolls);
+            return getFinalFrameScore(rolls);
         }
     }
 
@@ -76,7 +77,7 @@ public class BowlingTest {
 
         @Override
         public int computeScore(int[] rolls) {
-            return getSumOfRolls(rolls);
+            return getFinalFrameScore(rolls);
         }
     }
 
@@ -84,7 +85,8 @@ public class BowlingTest {
 
         @Override
         public int computeScore(int[] rolls) {
-            return getSumOfRolls(rolls) + rolls[2];
+            int[] finalFrame = Arrays.copyOfRange(rolls, 2, rolls.length);
+            return rolls[0] + rolls[1] + rolls[2] + getFinalFrameScore(finalFrame);
         }
     }
 
@@ -92,7 +94,7 @@ public class BowlingTest {
 
         @Override
         public int computeScore(int[] rolls) {
-            return getSumOfRolls(rolls) + rolls[1] + rolls[2];
+            return getFinalFrameScore(rolls) + rolls[1] + rolls[2];
         }
     }
 
@@ -100,7 +102,7 @@ public class BowlingTest {
         return rolls;
     }
 
-    private int getSumOfRolls(int[] rolls) {
+    private int getFinalFrameScore(int[] rolls) {
         int score = 0;
         for (int i : rolls) {
             score += i;
