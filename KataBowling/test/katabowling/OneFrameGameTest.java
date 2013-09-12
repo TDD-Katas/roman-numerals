@@ -32,4 +32,13 @@ public class OneFrameGameTest {
         //Then
         assertThat(score, equalTo(1));
     }
+    
+    @Test
+    public void testTwoAndZeroScoreTwo() {
+        //When
+        int score = 2;
+        
+        //Then
+        assertThat(score, equalTo(2));
+    }
 }
