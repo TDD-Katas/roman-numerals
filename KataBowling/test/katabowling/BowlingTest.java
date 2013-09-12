@@ -86,21 +86,7 @@ public class BowlingTest {
         return new OpenFrameScoreStrategy();
     }
 
-    private int getScoreForCurrentFrame(int frameSize, int[] rolls) {
-        int scoreForCurrentFrame = 0;
-        for (int i = 0; i < frameSize; i++) {
-            scoreForCurrentFrame += rolls[i];
-        }
-        return scoreForCurrentFrame;
-    }
 
-    private int computeBonusRollsScore(int numberOfBonusRolls, int[] rolls) {
-        int bonusRollsScore = 0;
-        for (int i = 0; i < numberOfBonusRolls; i++) {
-            bonusRollsScore += rolls[2-i];
-        }
-        return bonusRollsScore;
-    }
 
 
 
@@ -172,6 +158,8 @@ public class BowlingTest {
         return computeScoreForRolls(frameSize, rolls, numberOfBonusRolls);
     }
     
+    //~~~~~~~~~~ Score methods ~~~~~~~
+    
      private int computeScoreForRolls(int frameSize, int[] rolls, int numberOfBonusRolls) {
         int scoreForCurrentFrame = getScoreForCurrentFrame(frameSize, rolls);
         int[] finalFrame = Arrays.copyOfRange(rolls, frameSize, rolls.length);
@@ -179,6 +167,22 @@ public class BowlingTest {
         return scoreForCurrentFrame + bonusRollsScore + getFinalFrameScore(finalFrame);
     }
     
+    private int getScoreForCurrentFrame(int frameSize, int[] rolls) {
+        int scoreForCurrentFrame = 0;
+        for (int i = 0; i < frameSize; i++) {
+            scoreForCurrentFrame += rolls[i];
+        }
+        return scoreForCurrentFrame;
+    }
+
+    private int computeBonusRollsScore(int numberOfBonusRolls, int[] rolls) {
+        int bonusRollsScore = 0;
+        for (int i = 0; i < numberOfBonusRolls; i++) {
+            bonusRollsScore += rolls[2-i];
+        }
+        return bonusRollsScore;
+    }
+     
     private int getFinalFrameScore(int[] rolls) {
         int score = 0;
         for (int i : rolls) {
