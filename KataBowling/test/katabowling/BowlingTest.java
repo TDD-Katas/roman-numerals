@@ -29,7 +29,7 @@ public class BowlingTest {
     }
 
     @Test
-    public void testTwoFrameGameOpenFrame() {
+    public void testTwoFrameGame() {
         int gameFrames = 2;
         assertGameScoreEquals(0, rolls(0, 0, 0, 0), gameFrames);
         assertGameScoreEquals(1, rolls(0, 0, 1, 0), gameFrames);
@@ -47,10 +47,11 @@ public class BowlingTest {
     }
     
     @Test
-    public void testThreeFrameGameOpenFrame() {
+    public void testMultiFrameGame() {
         int gameFrames = 3;
         assertGameScoreEquals(0, rolls(0, 0, 0, 0, 0, 0), gameFrames);
         assertGameScoreEquals(13, rolls(0, 0, 1, 9, 1, 1), gameFrames);
+        assertGameScoreEquals(63, rolls(10, 10, 10, 1, 1), gameFrames);
     }
 
     @Test
