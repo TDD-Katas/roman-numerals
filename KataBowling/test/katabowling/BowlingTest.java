@@ -148,6 +148,7 @@ public class BowlingTest {
         int frameSize = 2;
         int scoreForCurrentFrame = getScoreForCurrentFrame(frameSize, rolls);
         int[] finalFrame = Arrays.copyOfRange(rolls, frameSize, rolls.length);
+        int bonusRollsScore = 0;
         return scoreForCurrentFrame + getFinalFrameScore(finalFrame);
     }
     
@@ -155,14 +156,16 @@ public class BowlingTest {
         int frameSize = 2;
         int scoreForCurrentFrame = getScoreForCurrentFrame(frameSize, rolls);
         int[] finalFrame = Arrays.copyOfRange(rolls, frameSize, rolls.length);
-        return scoreForCurrentFrame + rolls[2] + getFinalFrameScore(finalFrame);
+        int bonusRollsScore = rolls[2];
+        return scoreForCurrentFrame + bonusRollsScore + getFinalFrameScore(finalFrame);
     }
     
     private int computeScoreWithStrikeFirst(int[] rolls) {
         int frameSize = 1;
         int scoreForCurrentFrame = getScoreForCurrentFrame(frameSize, rolls);
         int[] finalFrame = Arrays.copyOfRange(rolls, frameSize, rolls.length);
-        return scoreForCurrentFrame + rolls[1] + rolls[2] + getFinalFrameScore(finalFrame);
+        int bonusRollsScore = rolls[1] + rolls[2];
+        return scoreForCurrentFrame + bonusRollsScore + getFinalFrameScore(finalFrame);
     }
     
     private int getFinalFrameScore(int[] rolls) {
