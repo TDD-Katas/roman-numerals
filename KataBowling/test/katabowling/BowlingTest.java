@@ -116,15 +116,15 @@ public class BowlingTest {
     }
     
     class ThreeFrameGameScoreStrategy implements ScoreStrategy {
-        int gameFrames;
+        private int numberOfFrames;
 
-        public ThreeFrameGameScoreStrategy(int gameFrames) {
-            this.gameFrames = gameFrames;
+        public ThreeFrameGameScoreStrategy(int numberOfFrames) {
+            this.numberOfFrames = numberOfFrames;
         }
         
         @Override
         public int computeScore(int[] rolls) {
-            return computeScoreForRollsThreeFrame(gameFrames, rolls);
+            return computeScoreForRollsThreeFrame(numberOfFrames, rolls);
         }
     }
 
