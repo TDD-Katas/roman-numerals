@@ -105,7 +105,8 @@ public class BowlingTest {
     }
     
     private void assertGameScoreEquals(int expectedScore, Rolls rolls, int gameFrames) {
-        int score = computeScore(gameFrames, rolls);
+        BowlingScoring bowlingScoring = new BowlingScoring(gameFrames);
+        int score = bowlingScoring.score(rolls);
         assertThat(score, equalTo(expectedScore));
     }
     
@@ -214,13 +215,17 @@ public class BowlingTest {
     //~~~~~~~~~~ Score methods ~~~~~~~
     
     class BowlingScoring {
-        int frames;
+        private final int gameFrames;
 
-        public BowlingScoring(int frames) {
-            this.frames = frames;
+        public BowlingScoring(int gameFrames) {
+            this.gameFrames = gameFrames;
         }
         
-        public int computeScore(int framesLeft, Rolls rolls) {
+        public int score(Rolls rolls) {
+            return computeScore(gameFrames, rolls);
+        }
+        
+        private int computeScore(int framesLeft, Rolls rolls) {
             int score;
             if (framesLeft == 1) {
                 score = getFinalFrameScore(rolls);
@@ -235,14 +240,8 @@ public class BowlingTest {
             return score;
         }
         
-        
         private int getFinalFrameScore(Rolls rolls) {
             return rolls.getSum();
         }
-    }
-    
-    private int computeScore(int framesLeft, Rolls rolls) {
-        BowlingScoring bowlingScoring = new BowlingScoring(framesLeft);
-        return bowlingScoring.computeScore(framesLeft, rolls);
     }
 }
