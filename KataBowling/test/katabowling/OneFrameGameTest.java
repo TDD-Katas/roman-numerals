@@ -15,12 +15,17 @@ import static org.junit.Assert.*;
 public class OneFrameGameTest {
 
     @Test
-    public void testTwoZerosScoreZero() {
+    public void testFirstRollLessThanNineSecondRollZero() {
         assertScoreEquals(0, rolls(0, 0));
         assertScoreEquals(1, rolls(1, 0));
         assertScoreEquals(2, rolls(2, 0));
     }
 
+    @Test
+    public void testFirstRollZeroSecondLessThanNine() {
+        assertScoreEquals(1, rolls(1, 0));
+    }
+    
     //~~~~~~~~~~~~~~~~ Test helpers ~~~~~~~~~~~
     
     private int[] rolls(int ... rolls) {
@@ -36,7 +41,7 @@ public class OneFrameGameTest {
     //~~~~~~~~~~~~~~~~ Production code ~~~~~~~~~~~
     
     private int computeScore(int[] rolls) {
-        return rolls[0];
+        return rolls[0] + rolls[1];
     }
 
 
