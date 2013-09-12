@@ -46,6 +46,13 @@ public class BowlingTest {
         assertGameScoreEquals(32, rolls(10, 1, 9, 2), scoreStrategy);
         assertGameScoreEquals(34, rolls(10, 10, 1, 2), scoreStrategy);
     }
+    
+    @Test
+    public void testThreeFrameGameOpenFrame() {
+        ScoreStrategy scoreStrategy;
+        scoreStrategy = new TwoFrameGameScoreStrategy();
+        assertGameScoreEquals(0, rolls(0, 0, 0, 0, 0, 0), scoreStrategy);
+    }
 
     @Test
     public void testGetFrameTypeForRolls() {
@@ -100,6 +107,14 @@ public class BowlingTest {
     }
 
     class TwoFrameGameScoreStrategy implements ScoreStrategy {
+
+        @Override
+        public int computeScore(int[] rolls) {
+            return computeScoreForRolls(rolls);
+        }
+    }
+    
+    class ThreeFrameGameScoreStrategy implements ScoreStrategy {
 
         @Override
         public int computeScore(int[] rolls) {
