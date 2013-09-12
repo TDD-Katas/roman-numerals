@@ -214,14 +214,18 @@ public class BowlingTest {
     //~~~~~~~~~~ Score methods ~~~~~~~
     
     private int computeScore(int framesLeft, Rolls rolls) {
+        int score;
         if (framesLeft == 1) {
-            return getFinalFrameScore(rolls);
+            score = getFinalFrameScore(rolls);
         } else {
             int totalScoreForCurrentFrame = rolls.computeTotalScoreForFrame();
-            
             Rolls nextRolls = rolls.getNextFrames();
-            return totalScoreForCurrentFrame + computeScore(framesLeft-1, nextRolls);
+            int scoreForOtherFrames = computeScore(framesLeft-1, nextRolls);
+            
+            score = totalScoreForCurrentFrame + scoreForOtherFrames;
         }
+        
+        return score;
     }
 
     private int getFinalFrameScore(Rolls rolls) {
