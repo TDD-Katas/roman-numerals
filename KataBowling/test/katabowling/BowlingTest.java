@@ -29,19 +29,19 @@ public class BowlingTest {
     @Test
     public void testTwoFrameGameOpenFrame() {
         {
-            String firstFrameType = "open";
+            FirstFrameType firstFrameType = FirstFrameType.OPEN;
             assertTwoFrameGameScoreEquals(0, rolls(0, 0, 0, 0), firstFrameType);
             assertTwoFrameGameScoreEquals(1, rolls(0, 0, 1, 0), firstFrameType);
             assertTwoFrameGameScoreEquals(4, rolls(1, 1, 1, 1), firstFrameType);
         }
         {
-            String firstFrameType = "spare";
+            FirstFrameType firstFrameType = FirstFrameType.SPARE;
             assertTwoFrameGameScoreEquals(13, rolls(1, 9, 1, 1), firstFrameType);
             assertTwoFrameGameScoreEquals(15, rolls(1, 9, 2, 1), firstFrameType);
             assertTwoFrameGameScoreEquals(18, rolls(1, 9, 3, 2), firstFrameType);
         }
         {
-            String firstFrameType = "strike";
+            FirstFrameType firstFrameType = FirstFrameType.STRIKE;
             assertTwoFrameGameScoreEquals(16, rolls(10, 2, 1), firstFrameType);
             assertTwoFrameGameScoreEquals(20, rolls(10, 3, 2), firstFrameType);
             assertTwoFrameGameScoreEquals(24, rolls(10, 1, 6), firstFrameType);
@@ -56,23 +56,33 @@ public class BowlingTest {
         assertThat(score, equalTo(expectedScore));
     }
 
-    private void assertTwoFrameGameScoreEquals(int expectedScore, int[] rolls, String firstFrameType) {
+    private void assertTwoFrameGameScoreEquals(int expectedScore, int[] rolls, FirstFrameType firstFrameType) {
         int score;
-        if ("open".equals(firstFrameType)) {
-            score = getSumOfRolls(rolls);
-        } else if ("spare".equals(firstFrameType)) {
-            score = computeScoreForSpareInFirstFrame(rolls);
-        } else if ("strike".equals(firstFrameType)) {
-            score = computeScoreForStrikeInFirstFrame(rolls);
-        } else {
-            score = -1;
-            fail("Invalid type");
+        switch (firstFrameType) {
+            case OPEN:
+                score = getSumOfRolls(rolls);
+                break;
+            case SPARE:
+                score = computeScoreForSpareInFirstFrame(rolls);
+                break;
+            case STRIKE:
+                score = computeScoreForStrikeInFirstFrame(rolls);
+                break;
+            default:
+                score = -1;
+                fail("Invalid type");
         }
 
         assertThat(score, equalTo(expectedScore));
     }
 
     //~~~~~~~~~~~~~~~~ Production code ~~~~~~~~~~~
+    
+    enum FirstFrameType {
+        OPEN,
+        SPARE,
+        STRIKE
+    }
     
     private int[] rolls(int... rolls) {
         return rolls;
