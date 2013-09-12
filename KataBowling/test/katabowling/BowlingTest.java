@@ -120,9 +120,11 @@ public class BowlingTest {
     
     static class Rolls {
         private final int[] rollsArray;
+        private final FrameType frameType;
 
         public Rolls(int ... rolls) {
             this.rollsArray = rolls;
+            this.frameType = getFrameType();
         }
         
         public static Rolls create(int ... rolls) {
@@ -130,22 +132,19 @@ public class BowlingTest {
         }
         
         private FrameType getFrameType() {
-            FrameType frameType;
+            FrameType localFrameType;
             if (rollsArray[0] == 10) {
-                frameType = FrameType.STRIKE;
+                localFrameType = FrameType.STRIKE;
             } else if (rollsArray[0] + rollsArray[1] == 10) {
-                frameType = FrameType.SPARE;
+                localFrameType = FrameType.SPARE;
             } else {
-                frameType = FrameType.OPEN;
+                localFrameType = FrameType.OPEN;
             }
-
-            return frameType;
+            return localFrameType;
         }
         
         public Rolls getNextFramesRolls() {
-            FrameType frameType = getFrameType();
             int frameSize = frameType.getFrameSize();
-            
             int[] newArray = Arrays.copyOfRange(rollsArray, frameSize, rollsArray.length);
             return Rolls.create(newArray);
         }
@@ -163,16 +162,12 @@ public class BowlingTest {
         //~~~~ COmputing methods
         
         private int getSumForCurrentFrame() {
-            FrameType frameType = getFrameType();
-            int frameSize = frameType.getFrameSize();
-            
             int start = 0;
-            int end = frameSize;
+            int end = frameType.getFrameSize();
             return getSum(start, end);
         }
         
         private int computeBonusRollsScore() {
-            FrameType frameType = getFrameType();
             int numberOfBonusRolls = frameType.getBonusRolls();
             
             int start = 3 - numberOfBonusRolls;
