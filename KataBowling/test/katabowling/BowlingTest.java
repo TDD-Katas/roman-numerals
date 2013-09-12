@@ -57,11 +57,26 @@ public class BowlingTest {
     @Test
     public void testPerfectGame() {
         int gameFrames = 10;
-        int[] rolls = new int[10];
+        int gameRolls = 12;
+        
+        int[] rolls = new int[gameRolls];
         for (int i = 0; i < rolls.length; i++) {
             rolls[i] = 10;
         }
         assertGameScoreEquals(300, rolls, gameFrames);
+    }
+    
+    @Test
+    public void testNineGame() {
+        int gameFrames = 10;
+        int gameRolls = 20;
+        
+        int[] rolls = new int[gameRolls];
+        for (int i = 0; i < gameRolls/2; i++) {
+            rolls[2*i] = 9;
+            rolls[2*i+1] = 0;
+        }
+        assertGameScoreEquals(90, rolls, gameFrames);
     }
 
     @Test
