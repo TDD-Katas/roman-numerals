@@ -131,18 +131,6 @@ public class BowlingTest {
         }
     }
 
-    private int computeScoreWithOpenFrameFirst(int[] rolls) {
-        return computeScoreForRolls(rolls);
-    }
-
-    private int computeScoreWithSpareFirst(int[] rolls) {
-        return computeScoreForRolls(rolls);
-    }
-
-    private int computeScoreWithStrikeFirst(int[] rolls) {
-        return computeScoreForRolls(rolls);
-    }
-
     //~~~~~~~~~~ Score methods ~~~~~~~
     private int computeScoreForRolls(int[] rolls) {
         FrameType frameType = getFrameTypeForRolls(rolls);
