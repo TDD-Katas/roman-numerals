@@ -122,6 +122,8 @@ public class BowlingTest {
         private final int[] rollsArray;
         private final FrameType frameType;
 
+        //~~~~ Construction area
+        
         public Rolls(int ... rolls) {
             this.rollsArray = rolls;
             this.frameType = getFrameType();
