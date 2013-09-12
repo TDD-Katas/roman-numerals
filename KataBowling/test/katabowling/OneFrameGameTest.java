@@ -18,30 +18,33 @@ public class OneFrameGameTest {
     @Test
     public void testTwoZerosScoreZero() {
         int [] rolls = new int[] {0,0};
+        int expectedScore = 0;
         
         int score = computeScore(rolls);
         
-        assertThat(score, equalTo(0));
+        assertThat(score, equalTo(expectedScore));
     }
     
     @Test
     public void testOneAndZeroScoreOne() {
         int [] rolls = new int[] {1,0};
+        int expectedScore = 1;
         
         int score = computeScore(rolls);
         
-        assertThat(score, equalTo(1));
+        assertThat(score, equalTo(expectedScore));
     }
     
     @Test
     public void testTwoAndZeroScoreTwo() {
         int [] rolls = new int[] {2,0};
+        int expectedScore = 2;
         
         int score = computeScore(rolls);
         
-        assertThat(score, equalTo(2));
+        assertThat(score, equalTo(expectedScore));
     }
-
+    
     //~~~~~~~~~~~~~~~~ Production code ~~~~~~~~~~~
     
     private int computeScore(int[] rolls) {
