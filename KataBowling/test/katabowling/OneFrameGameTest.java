@@ -19,7 +19,7 @@ public class OneFrameGameTest {
     public void testTwoZerosScoreZero() {
         int [] rolls = new int[] {0,0};
         
-        int score = rolls[0];
+        int score = computeScore(rolls);
         
         assertThat(score, equalTo(0));
     }
@@ -28,7 +28,7 @@ public class OneFrameGameTest {
     public void testOneAndZeroScoreOne() {
         int [] rolls = new int[] {1,0};
         
-        int score = rolls[0];
+        int score = computeScore(rolls);
         
         assertThat(score, equalTo(1));
     }
@@ -37,8 +37,14 @@ public class OneFrameGameTest {
     public void testTwoAndZeroScoreTwo() {
         int [] rolls = new int[] {2,0};
         
-        int score = rolls[0];
+        int score = computeScore(rolls);
         
         assertThat(score, equalTo(2));
+    }
+
+    //~~~~~~~~~~~~~~~~ Production code ~~~~~~~~~~~
+    
+    private int computeScore(int[] rolls) {
+        return rolls[0];
     }
 }
