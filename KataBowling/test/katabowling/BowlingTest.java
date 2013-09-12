@@ -135,6 +135,13 @@ public class BowlingTest {
     private int[] rolls(int... rolls) {
         return rolls;
     }
+    
+    interface FrameType {
+        int getFrameSize();
+        int getNumberOfBonusRolls();
+    }
+    
+    
 
     private int computeScoreWithOpenFrameFirst(int[] rolls) {
         int frameSize = 2;
