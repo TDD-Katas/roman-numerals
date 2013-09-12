@@ -86,7 +86,7 @@ public class BowlingTest {
         return new OpenFrameScoreStrategy();
     }
 
-    private int getRollsSum(int start, int end, int[] rolls) {
+    private int getSumOfRolls(int[] rolls, int start, int end) {
         int score = 0;
         for (int i = start; i < end; i++) {
             score += rolls[i];
@@ -178,18 +178,18 @@ public class BowlingTest {
     private int getScoreForCurrentFrame(int frameSize, int[] rolls) {
         int start = 0;
         int end = frameSize;
-        return getRollsSum(start, end, rolls);
+        return getSumOfRolls(rolls, start, end);
     }
 
     private int computeBonusRollsScore(int numberOfBonusRolls, int[] rolls) {
         int start = 3-numberOfBonusRolls;
         int end = 3;
-        return getRollsSum(start, end, rolls);
+        return getSumOfRolls(rolls, start, end);
     }
      
     private int getFinalFrameScore(int[] rolls) {
         int start = 0;
         int end = rolls.length;
-        return getRollsSum(start, end, rolls);
+        return getSumOfRolls(rolls, start, end);
     }
 }
