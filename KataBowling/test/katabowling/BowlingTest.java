@@ -48,9 +48,11 @@ public class BowlingTest {
     
     @Test
     public void testTwoFrameGameStrikeFirst() {
+        assertTwoFrameGameFirstFrameStrikeScoreEquals(16, rolls(10, 2, 1));
         assertTwoFrameGameFirstFrameStrikeScoreEquals(20, rolls(10, 3, 2));
         assertTwoFrameGameFirstFrameStrikeScoreEquals(24, rolls(10, 1, 6));
-        assertTwoFrameGameFirstFrameStrikeScoreEquals(16, rolls(10, 2, 1));
+        assertTwoFrameGameFirstFrameStrikeScoreEquals(32, rolls(10, 1, 9, 2));
+        assertTwoFrameGameFirstFrameStrikeScoreEquals(34, rolls(10, 10, 1, 2));
     }
     
     
