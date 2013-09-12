@@ -214,7 +214,7 @@ public class BowlingTest {
 
     //~~~~~~~~~~ Score methods ~~~~~~~
     
-    class BowlingScoring {
+    static class BowlingScoring {
         private final int gameFrames;
 
         public BowlingScoring(int gameFrames) {
@@ -228,20 +228,24 @@ public class BowlingTest {
         private int computeScore(int framesLeft, Rolls rolls) {
             int score;
             if (framesLeft == 1) {
-                score = getFinalFrameScore(rolls);
+                score = computeFinalFrameScore(rolls);
             } else {
-                int totalScoreForCurrentFrame = rolls.computeTotalScoreForFrame();
-                Rolls nextRolls = rolls.getNextFramesRolls();
-                int scoreForOtherFrames = computeScore(framesLeft-1, nextRolls);
-
-                score = totalScoreForCurrentFrame + scoreForOtherFrames;
+                score = computeRegularFrameScore(rolls, framesLeft);
             }
-
             return score;
         }
         
-        private int getFinalFrameScore(Rolls rolls) {
+        private int computeFinalFrameScore(Rolls rolls) {
             return rolls.getSum();
+        }
+
+        private int computeRegularFrameScore(Rolls rolls, int framesLeft) {
+            int score;
+            int totalScoreForCurrentFrame = rolls.computeTotalScoreForFrame();
+            Rolls nextRolls = rolls.getNextFramesRolls();
+            int scoreForOtherFrames = computeScore(framesLeft-1, nextRolls);
+            score = totalScoreForCurrentFrame + scoreForOtherFrames;
+            return score;
         }
     }
 }
