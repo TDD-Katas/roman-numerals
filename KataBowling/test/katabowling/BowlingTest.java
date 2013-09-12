@@ -73,7 +73,26 @@ public class BowlingTest {
                 + ", found = " + result.getClass().getSimpleName(), expectedStrategy.isInstance(result));
     }
 
+    private void assertGetFrameTypeForRollsEquals(FrameType frameType, int[] rolls) {
+        FrameType result = getFrameTypeForRolls(rolls);
+
+        assertThat(result, equalTo(frameType));
+    }
+    
+    
+    
     //~~~~~~~~~~~~~~~~ Production code ~~~~~~~~~~~
+    
+    private FrameType getFrameTypeForRolls(int[] rolls) {
+        if (rolls[0] == 10) {
+            return FrameType.STRIKE;
+        } else if (rolls[0] + rolls[1] == 10) {
+            return FrameType.SPARE;
+        }
+
+        return FrameType.OPEN;
+    }
+    
     private ScoreStrategy getStrategyForRolls(int[] rolls) {
         if (rolls[0] == 10) {
             return new StrikeScoreStrategy();
