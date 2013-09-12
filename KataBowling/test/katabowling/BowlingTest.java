@@ -31,15 +31,15 @@ public class BowlingTest {
     @Test
     public void testTwoFrameGameOpenFrame() {
         ScoreStrategy scoreStrategy;
-        scoreStrategy = new OpenFrameScoreStrategy();
+        scoreStrategy = new TwoFrameGameScoreStrategy();
         assertGameScoreEquals(0, rolls(0, 0, 0, 0), scoreStrategy);
         assertGameScoreEquals(1, rolls(0, 0, 1, 0), scoreStrategy);
         assertGameScoreEquals(4, rolls(1, 1, 1, 1), scoreStrategy);
-        scoreStrategy = new SpareScoreStrategy();
+        //Spare
         assertGameScoreEquals(13, rolls(1, 9, 1, 1), scoreStrategy);
         assertGameScoreEquals(15, rolls(1, 9, 2, 1), scoreStrategy);
         assertGameScoreEquals(18, rolls(1, 9, 3, 2), scoreStrategy);
-        scoreStrategy = new StrikeScoreStrategy();
+        //Strike
         assertGameScoreEquals(16, rolls(10, 2, 1), scoreStrategy);
         assertGameScoreEquals(20, rolls(10, 3, 2), scoreStrategy);
         assertGameScoreEquals(24, rolls(10, 1, 6), scoreStrategy);
@@ -99,6 +99,15 @@ public class BowlingTest {
         }
     }
 
+    class TwoFrameGameScoreStrategy implements ScoreStrategy {
+
+        @Override
+        public int computeScore(int[] rolls) {
+            ScoreStrategy scoreStrategy = getStrategyForRolls(rolls);
+            return scoreStrategy.computeScore(rolls);
+        }
+    }
+    
     class OpenFrameScoreStrategy implements ScoreStrategy {
 
         @Override
