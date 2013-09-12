@@ -17,28 +17,28 @@ public class OneFrameGameTest {
     
     @Test
     public void testTwoZerosScoreZero() {
-        //When
-        int score = 0;
+        int [] rolls = new int[] {0,0};
         
-        //Then
+        int score = rolls[0];
+        
         assertThat(score, equalTo(0));
     }
     
     @Test
     public void testOneAndZeroScoreOne() {
-        //When
-        int score = 1;
+        int [] rolls = new int[] {1,0};
         
-        //Then
+        int score = rolls[0];
+        
         assertThat(score, equalTo(1));
     }
     
     @Test
     public void testTwoAndZeroScoreTwo() {
-        //When
-        int score = 2;
+        int [] rolls = new int[] {2,0};
         
-        //Then
+        int score = rolls[0];
+        
         assertThat(score, equalTo(2));
     }
 }
