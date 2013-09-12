@@ -30,21 +30,20 @@ public class BowlingTest {
 
     @Test
     public void testTwoFrameGameOpenFrame() {
-        ScoreStrategy scoreStrategy;
-        scoreStrategy = new TwoFrameGameScoreStrategy();
-        assertGameScoreEquals(0, rolls(0, 0, 0, 0), scoreStrategy);
-        assertGameScoreEquals(1, rolls(0, 0, 1, 0), scoreStrategy);
-        assertGameScoreEquals(4, rolls(1, 1, 1, 1), scoreStrategy);
+        int gameFrames = 2;
+        assertGameScoreEquals(0, rolls(0, 0, 0, 0), gameFrames);
+        assertGameScoreEquals(1, rolls(0, 0, 1, 0), gameFrames);
+        assertGameScoreEquals(4, rolls(1, 1, 1, 1), gameFrames);
         //Spare
-        assertGameScoreEquals(13, rolls(1, 9, 1, 1), scoreStrategy);
-        assertGameScoreEquals(15, rolls(1, 9, 2, 1), scoreStrategy);
-        assertGameScoreEquals(18, rolls(1, 9, 3, 2), scoreStrategy);
+        assertGameScoreEquals(13, rolls(1, 9, 1, 1), gameFrames);
+        assertGameScoreEquals(15, rolls(1, 9, 2, 1), gameFrames);
+        assertGameScoreEquals(18, rolls(1, 9, 3, 2), gameFrames);
         //Strike
-        assertGameScoreEquals(16, rolls(10, 2, 1), scoreStrategy);
-        assertGameScoreEquals(20, rolls(10, 3, 2), scoreStrategy);
-        assertGameScoreEquals(24, rolls(10, 1, 6), scoreStrategy);
-        assertGameScoreEquals(32, rolls(10, 1, 9, 2), scoreStrategy);
-        assertGameScoreEquals(34, rolls(10, 10, 1, 2), scoreStrategy);
+        assertGameScoreEquals(16, rolls(10, 2, 1), gameFrames);
+        assertGameScoreEquals(20, rolls(10, 3, 2), gameFrames);
+        assertGameScoreEquals(24, rolls(10, 1, 6), gameFrames);
+        assertGameScoreEquals(32, rolls(10, 1, 9, 2), gameFrames);
+        assertGameScoreEquals(34, rolls(10, 10, 1, 2), gameFrames);
     }
     
     @Test
@@ -73,7 +72,7 @@ public class BowlingTest {
     }
     
     private void assertGameScoreEquals(int expectedScore, int[] rolls, int gameFrames) {
-        int score = computeScoreForRollsThreeFrame(gameFrames, rolls);
+        int score = computeScore(gameFrames, rolls);
         assertThat(score, equalTo(expectedScore));
     }
     
@@ -108,27 +107,6 @@ public class BowlingTest {
         @Override
         public int computeScore(int[] rolls) {
             return getFinalFrameScore(rolls);
-        }
-    }
-
-    class TwoFrameGameScoreStrategy implements ScoreStrategy {
-
-        @Override
-        public int computeScore(int[] rolls) {
-            return computeScoreForRolls(rolls);
-        }
-    }
-    
-    class ThreeFrameGameScoreStrategy implements ScoreStrategy {
-        private final int numberOfFrames;
-
-        public ThreeFrameGameScoreStrategy(int numberOfFrames) {
-            this.numberOfFrames = numberOfFrames;
-        }
-        
-        @Override
-        public int computeScore(int[] rolls) {
-            return computeScoreForRollsThreeFrame(numberOfFrames, rolls);
         }
     }
 
@@ -170,7 +148,7 @@ public class BowlingTest {
         return scoreForCurrentFrame + bonusRollsScore + getFinalFrameScore(finalFrame);
     }
     
-    private int computeScoreForRollsThreeFrame(int framesLeft, int[] rolls) {
+    private int computeScore(int framesLeft, int[] rolls) {
         FrameType frameType = getFrameTypeForRolls(rolls);
         int frameSize = frameType.getFrameSize();
         int numberOfBonusRolls = frameType.getBonusRolls();
@@ -181,7 +159,7 @@ public class BowlingTest {
         if (framesLeft == 2) {
             return scoreForCurrentFrame + bonusRollsScore + getFinalFrameScore(nextFrame);
         } else {
-            return scoreForCurrentFrame + bonusRollsScore + computeScoreForRollsThreeFrame(framesLeft-1, nextFrame);
+            return scoreForCurrentFrame + bonusRollsScore + computeScore(framesLeft-1, nextFrame);
         }
     }
 
