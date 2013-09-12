@@ -63,7 +63,7 @@ public class BowlingTest {
    private void assertGetStrategyForRollsEquals(Class expectedStrategy, int[] rolls) {
         ScoreStrategy result = getStrategyForRolls(rolls);
         
-        assertTrue(expectedStrategy.isInstance(result));
+        assertTrue("Score strategy is not of required type", expectedStrategy.isInstance(result));
     }
 
     //~~~~~~~~~~~~~~~~ Production code ~~~~~~~~~~~
