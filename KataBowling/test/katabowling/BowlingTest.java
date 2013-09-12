@@ -46,6 +46,16 @@ public class BowlingTest {
         assertGameScoreEquals(32, rolls(10, 1, 9, 2), scoreStrategy);
         assertGameScoreEquals(34, rolls(10, 10, 1, 2), scoreStrategy);
     }
+    
+    @Test
+    public void testGetStrategyForRolls() {
+        ScoreStrategy result = null;
+        int[] rolls = rolls(0, 0, 0, 0);
+        
+        result = new OpenFrameScoreStrategy();
+        
+        assertTrue(result instanceof OpenFrameScoreStrategy);
+    }
 
     private void assertGameScoreEquals(int expectedScore, int[] rolls, ScoreStrategy scoreStrategy) {
         int score = scoreStrategy.computeScore(rolls);
