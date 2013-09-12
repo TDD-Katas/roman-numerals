@@ -42,18 +42,20 @@ public class BowlingTest {
     
     @Test
     public void testTwoFrameGameSpareFirst() {
-        assertTwoFrameGameFirstFrameSpareScoreEquals(13, rolls(1, 9, 1, 1));
-        assertTwoFrameGameFirstFrameSpareScoreEquals(15, rolls(1, 9, 2, 1));
-        assertTwoFrameGameFirstFrameSpareScoreEquals(18, rolls(1, 9, 3, 2));
+        String firstFrameType = "spare";
+        assertTwoFrameGameFirstFrameSpareScoreEquals(13, rolls(1, 9, 1, 1), firstFrameType);
+        assertTwoFrameGameFirstFrameSpareScoreEquals(15, rolls(1, 9, 2, 1), firstFrameType);
+        assertTwoFrameGameFirstFrameSpareScoreEquals(18, rolls(1, 9, 3, 2), firstFrameType);
     }
     
     @Test
     public void testTwoFrameGameStrikeFirst() {
-        assertTwoFrameGameFirstFrameStrikeScoreEquals(16, rolls(10, 2, 1));
-        assertTwoFrameGameFirstFrameStrikeScoreEquals(20, rolls(10, 3, 2));
-        assertTwoFrameGameFirstFrameStrikeScoreEquals(24, rolls(10, 1, 6));
-        assertTwoFrameGameFirstFrameStrikeScoreEquals(32, rolls(10, 1, 9, 2));
-        assertTwoFrameGameFirstFrameStrikeScoreEquals(34, rolls(10, 10, 1, 2));
+        String firstFrameType = "spare";
+        assertTwoFrameGameFirstFrameStrikeScoreEquals(16, rolls(10, 2, 1), firstFrameType);
+        assertTwoFrameGameFirstFrameStrikeScoreEquals(20, rolls(10, 3, 2), firstFrameType);
+        assertTwoFrameGameFirstFrameStrikeScoreEquals(24, rolls(10, 1, 6), firstFrameType);
+        assertTwoFrameGameFirstFrameStrikeScoreEquals(32, rolls(10, 1, 9, 2), firstFrameType);
+        assertTwoFrameGameFirstFrameStrikeScoreEquals(34, rolls(10, 10, 1, 2), firstFrameType);
     }
     
     
@@ -75,13 +77,13 @@ public class BowlingTest {
         assertThat(score, equalTo(expectedScore));
     }
     
-    private void assertTwoFrameGameFirstFrameSpareScoreEquals(int expectedScore, int[] rolls) {
+    private void assertTwoFrameGameFirstFrameSpareScoreEquals(int expectedScore, int[] rolls, String firstFrameType) {
         int score = computeScoreForSpareInFirstFrame(rolls);
 
         assertThat(score, equalTo(expectedScore));
     }
     
-    private void assertTwoFrameGameFirstFrameStrikeScoreEquals(int expectedScore, int[] rolls) {
+    private void assertTwoFrameGameFirstFrameStrikeScoreEquals(int expectedScore, int[] rolls, String firstFrameType) {
         int score = computeScoreForStrikeInFirstFrame(rolls);
 
         assertThat(score, equalTo(expectedScore));
