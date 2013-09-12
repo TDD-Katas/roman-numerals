@@ -55,9 +55,13 @@ public class BowlingTest {
     }
     
     @Test
-    public void testTenFrameGame() {
+    public void testPerfectGame() {
         int gameFrames = 10;
-        assertGameScoreEquals(300, rolls(10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10), gameFrames);
+        int[] rolls = new int[10];
+        for (int i = 0; i < rolls.length; i++) {
+            rolls[i] = 10;
+        }
+        assertGameScoreEquals(300, rolls, gameFrames);
     }
 
     @Test
