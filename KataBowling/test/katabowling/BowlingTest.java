@@ -51,7 +51,7 @@ public class BowlingTest {
         int [] rolls = rolls(10, 3, 2);
         int expectedScore = 20;
         
-        int score = computeScoreWhenOpenFrameFirst(rolls) + 5;
+        int score = computeScoreForStrikeFirst(rolls);
 
         assertThat(score, equalTo(expectedScore));
     }
@@ -61,7 +61,7 @@ public class BowlingTest {
         int [] rolls = rolls(10, 1, 6);
         int expectedScore = 24;
         
-        int score = computeScoreWhenOpenFrameFirst(rolls) + 7;
+        int score = computeScoreForStrikeFirst(rolls);
 
         assertThat(score, equalTo(expectedScore));
     }
@@ -71,7 +71,7 @@ public class BowlingTest {
         int [] rolls = rolls(10, 2, 1);
         int expectedScore = 16;
         
-        int score = computeScoreWhenOpenFrameFirst(rolls) + 3;
+        int score = computeScoreForStrikeFirst(rolls);
 
         assertThat(score, equalTo(expectedScore));
     }
@@ -113,5 +113,9 @@ public class BowlingTest {
 
     private int computeScoreForSpareInFirstFrame(int[] rolls) {
         return computeScoreWhenOpenFrameFirst(rolls) + rolls[2];
+    }
+
+    private int computeScoreForStrikeFirst(int[] rolls) {
+        return computeScoreWhenOpenFrameFirst(rolls) + rolls[1] + rolls[2];
     }
 }
