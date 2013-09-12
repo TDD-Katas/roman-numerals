@@ -222,16 +222,6 @@ public class BowlingTest {
         }
     }
 
-    private int[] getNextFrames(int[] rolls, int frameSize) {
-        return Arrays.copyOfRange(rolls, frameSize, rolls.length);
-    }
-
-    private int computeBonusRollsScore(int numberOfBonusRolls, Rolls rolls) {
-        int start = 3 - numberOfBonusRolls;
-        int end = 3;
-        return rolls.getSum(start, end);
-    }
-
     private int getFinalFrameScore(Rolls rolls) {
         return rolls.getSum();
     }
