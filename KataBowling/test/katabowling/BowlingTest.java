@@ -40,11 +40,21 @@ public class BowlingTest {
     }
     
     @Test
-    public void testTwoFrameGameSpare() {
+    public void testTwoFrameGameSpare1() {
         int[] rolls = rolls(1, 9, 1, 1);
         int expectedScore = 13;
         
         int score = computeScore(rolls) + 1;
+
+        assertThat(score, equalTo(expectedScore));
+    }
+    
+    @Test
+    public void testTwoFrameGameSpare2() {
+        int[] rolls = rolls(1, 9, 2, 2);
+        int expectedScore = 16;
+        
+        int score = computeScore(rolls) + 2;
 
         assertThat(score, equalTo(expectedScore));
     }
