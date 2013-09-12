@@ -128,6 +128,10 @@ public class BowlingTest {
             return new Rolls(rolls);
         }
         
+        public int getSum() {
+            return getSum(0, rollsArray.length);
+        }
+        
         public int getSum(int start, int end) {
             int score = 0;
             for (int i = start; i < end; i++) {
@@ -181,7 +185,8 @@ public class BowlingTest {
     
     private int computeScore(int framesLeft, int[] rolls) {
         if (framesLeft == 1) {
-            return getFinalFrameScore(rolls);
+            Rolls localRolls = new Rolls(rolls);
+            return getFinalFrameScore(localRolls);
         } else {
             FrameType frameType = getFrameTypeForRolls(rolls);
             int frameSize = frameType.getFrameSize();
@@ -211,10 +216,7 @@ public class BowlingTest {
         return localRolls.getSum(start, end);
     }
 
-    private int getFinalFrameScore(int[] rolls) {
-        Rolls localRolls = new Rolls(rolls);
-        int start = 0;
-        int end = rolls.length;
-        return localRolls.getSum(start, end);
+    private int getFinalFrameScore(Rolls rolls) {
+        return rolls.getSum();
     }
 }
