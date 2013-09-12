@@ -40,10 +40,20 @@ public class BowlingTest {
     }
     
     @Test
-    public void testTwoFrameGameSpare() {
+    public void testTwoFrameGameSpareFirst() {
         assertTwoFrameGameFirstFrameSpareScoreEquals(13, rolls(1, 9, 1, 1));
         assertTwoFrameGameFirstFrameSpareScoreEquals(15, rolls(1, 9, 2, 1));
         assertTwoFrameGameFirstFrameSpareScoreEquals(18, rolls(1, 9, 3, 2));
+    }
+    
+    @Test
+    public void testTwoFrameGameStrikeFirst() {
+        int [] rolls = rolls(10, 3, 2);
+        int expectedScore = 20;
+        
+        int score = 20;
+
+        assertThat(score, equalTo(expectedScore));
     }
     
     //~~~~~~~~~~~~~~~~ Test helpers ~~~~~~~~~~~
