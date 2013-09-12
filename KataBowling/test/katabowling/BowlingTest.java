@@ -49,10 +49,13 @@ public class BowlingTest {
     
     @Test
     public void testGetStrategyForRolls() {
-        Class openFrameStrategy = OpenFrameScoreStrategy.class;
-        assertGetStrategyForRollsEquals(openFrameStrategy, rolls(0, 0, 0, 0));
-        assertGetStrategyForRollsEquals(openFrameStrategy, rolls(0, 0, 1, 0));
-        assertGetStrategyForRollsEquals(openFrameStrategy, rolls(1, 1, 1, 1));
+        Class strategyClass;
+        strategyClass = OpenFrameScoreStrategy.class;
+        assertGetStrategyForRollsEquals(strategyClass, rolls(0, 0, 0, 0));
+        assertGetStrategyForRollsEquals(strategyClass, rolls(0, 0, 1, 0));
+        assertGetStrategyForRollsEquals(strategyClass, rolls(1, 1, 1, 1));
+        strategyClass = SpareScoreStrategy.class;
+        assertGetStrategyForRollsEquals(strategyClass, rolls(1, 9, 1, 1));
     }
     
     private void assertGameScoreEquals(int expectedScore, int[] rolls, ScoreStrategy scoreStrategy) {
@@ -69,6 +72,10 @@ public class BowlingTest {
     //~~~~~~~~~~~~~~~~ Production code ~~~~~~~~~~~
     
     private ScoreStrategy getStrategyForRolls(int[] rolls) {
+        if (rolls[0] + rolls[1] == 10) {
+            return new SpareScoreStrategy();
+        }
+        
         return new OpenFrameScoreStrategy();
     }
 
