@@ -169,6 +169,15 @@ public class BowlingTest {
             int end = frameSize;
             return getSum(start, end);
         }
+        
+        private int computeBonusRollsScore() {
+            FrameType frameType = getFrameType();
+            int numberOfBonusRolls = frameType.getBonusRolls();
+            
+            int start = 3 - numberOfBonusRolls;
+            int end = 3;
+            return getSum(start, end);
+        }
     }
     
     private Rolls rolls(int... rolls) {
@@ -204,11 +213,9 @@ public class BowlingTest {
         if (framesLeft == 1) {
             return getFinalFrameScore(rolls);
         } else {
-            FrameType frameType = rolls.getFrameType();
             int scoreForCurrentFrame = rolls.getScoreForCurrentFrame();
             
-            int numberOfBonusRolls = frameType.getBonusRolls();
-            int bonusRollsScore = computeBonusRollsScore(numberOfBonusRolls, rolls);
+            int bonusRollsScore = rolls.computeBonusRollsScore();
             
             Rolls nextRolls = rolls.getNextFrames();
             return scoreForCurrentFrame + bonusRollsScore + computeScore(framesLeft-1, nextRolls);
