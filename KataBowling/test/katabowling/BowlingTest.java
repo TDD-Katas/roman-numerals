@@ -74,13 +74,16 @@ public class BowlingTest {
     //~~~~~~~~~~~~~~~~ Production code ~~~~~~~~~~~
     
     private FrameType getFrameTypeForRolls(int[] rolls) {
+        FrameType frameType;
         if (rolls[0] == 10) {
-            return FrameType.STRIKE;
+            frameType = FrameType.STRIKE;
         } else if (rolls[0] + rolls[1] == 10) {
-            return FrameType.SPARE;
+            frameType = FrameType.SPARE;
+        } else {
+            frameType = FrameType.OPEN;
         }
 
-        return FrameType.OPEN;
+        return frameType;
     }
     
     interface ScoreStrategy {
