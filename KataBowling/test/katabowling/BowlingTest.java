@@ -30,7 +30,7 @@ public class BowlingTest {
     @Test
     public void testTwoFrameGameOpenFrame() {
         ScoreStrategy scoreStrategy;
-        scoreStrategy = new OneFrameGameScoreStrategy();
+        scoreStrategy = new OpenFrameScoreStrategy();
         assertGameScoreEquals(0, rolls(0, 0, 0, 0), scoreStrategy);
         assertGameScoreEquals(1, rolls(0, 0, 1, 0), scoreStrategy);
         assertGameScoreEquals(4, rolls(1, 1, 1, 1), scoreStrategy);
@@ -84,7 +84,7 @@ public class BowlingTest {
 
         @Override
         public int computeScore(int[] rolls) {
-            return computeScoreForSpareInFirstFrame(rolls);
+            return getSumOfRolls(rolls) + rolls[2];
         }
     }
 
@@ -92,7 +92,7 @@ public class BowlingTest {
 
         @Override
         public int computeScore(int[] rolls) {
-            return computeScoreForStrikeInFirstFrame(rolls);
+            return getSumOfRolls(rolls) + rolls[1] + rolls[2];
         }
     }
 
@@ -106,13 +106,5 @@ public class BowlingTest {
             score += i;
         }
         return score;
-    }
-
-    private int computeScoreForSpareInFirstFrame(int[] rolls) {
-        return getSumOfRolls(rolls) + rolls[2];
-    }
-
-    private int computeScoreForStrikeInFirstFrame(int[] rolls) {
-        return getSumOfRolls(rolls) + rolls[1] + rolls[2];
     }
 }
