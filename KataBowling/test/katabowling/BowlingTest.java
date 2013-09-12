@@ -51,20 +51,22 @@ public class BowlingTest {
     public void testGetStrategyForRolls1() {
         ScoreStrategy result = null;
         int[] rolls = rolls(0, 0, 0, 0);
+        Class expectedStrategy = OpenFrameScoreStrategy.class;
         
         result = new OpenFrameScoreStrategy();
         
-        assertTrue(result instanceof OpenFrameScoreStrategy);
+        assertTrue(expectedStrategy.isInstance(result));
     }
     
     @Test
     public void testGetStrategyForRolls2() {
         ScoreStrategy result = null;
         int[] rolls = rolls(0, 0, 1, 0);
+        Class expectedStrategy = OpenFrameScoreStrategy.class;
         
         result = new OpenFrameScoreStrategy();
         
-        assertTrue(result instanceof OpenFrameScoreStrategy);
+        assertTrue(expectedStrategy.isInstance(result));
     }
     
     @Test
