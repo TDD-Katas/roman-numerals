@@ -29,7 +29,7 @@ public class BowlingTest {
     @Test
     public void testTwoFrameGameOpenFrame() {
         {
-            ScoreStrategy scoreStrategy = new OpenFrameScoreStrategy();
+            ScoreStrategy scoreStrategy = new OneFrameGameScoreStrategy();
             assertTwoFrameGameScoreEquals(0, rolls(0, 0, 0, 0), scoreStrategy);
             assertTwoFrameGameScoreEquals(1, rolls(0, 0, 1, 0), scoreStrategy);
             assertTwoFrameGameScoreEquals(4, rolls(1, 1, 1, 1), scoreStrategy);
@@ -71,6 +71,13 @@ public class BowlingTest {
     
     interface ScoreStrategy {
         int computeScore(int[] rolls);
+    }
+    
+    class OneFrameGameScoreStrategy implements ScoreStrategy {
+        @Override
+        public int computeScore(int[] rolls) {
+            return getSumOfRolls(rolls);
+        }
     }
     
     class OpenFrameScoreStrategy implements ScoreStrategy {
