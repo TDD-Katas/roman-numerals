@@ -185,8 +185,9 @@ public class BowlingTest {
      
     private int getFinalFrameScore(int[] rolls) {
         int score = 0;
-        for (int i : rolls) {
-            score += i;
+        for (int i = 0; i < rolls.length; i++) {
+            score += rolls[i];
+            
         }
         return score;
     }
