@@ -128,7 +128,13 @@ public class BowlingTest {
             return new Rolls(rolls);
         }
         
-        
+        public int getSumOfRolls(int start, int end) {
+            int score = 0;
+            for (int i = start; i < end; i++) {
+                score += rolls[i];
+            }
+            return score;
+        }
     }
     
     private FrameType getFrameTypeForRolls(int[] rolls) {
@@ -210,10 +216,7 @@ public class BowlingTest {
     }
 
     private int getSumOfRolls(int[] rolls, int start, int end) {
-        int score = 0;
-        for (int i = start; i < end; i++) {
-            score += rolls[i];
-        }
-        return score;
+        Rolls localRolls = new Rolls(rolls);
+        return localRolls.getSumOfRolls(start, end);
     }
 }
