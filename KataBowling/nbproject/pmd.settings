@@ -1,4 +1,5 @@
-LongVariable
 MethodArgumentCouldBeFinal
-BeanMembersShouldSerialize
+LongVariable
+DataflowAnomalyAnalysis
 LocalVariableCouldBeFinal
+BeanMembersShouldSerialize

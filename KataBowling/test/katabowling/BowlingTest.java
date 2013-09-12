@@ -59,11 +59,11 @@ public class BowlingTest {
         int gameFrames = 10;
         int gameRolls = 12;
         
-        int[] rolls = new int[gameRolls];
-        for (int i = 0; i < rolls.length; i++) {
-            rolls[i] = 10;
+        int[] rollsArray = new int[gameRolls];
+        for (int i = 0; i < rollsArray.length; i++) {
+            rollsArray[i] = 10;
         }
-        assertGameScoreEquals(300, Rolls.create(rolls), gameFrames);
+        assertGameScoreEquals(300, Rolls.create(rollsArray), gameFrames);
     }
     
     @Test
@@ -71,12 +71,12 @@ public class BowlingTest {
         int gameFrames = 10;
         int gameRolls = 20;
         
-        int[] rolls = new int[gameRolls];
+        int[] rollsArray = new int[gameRolls];
         for (int i = 0; i < gameRolls/2; i++) {
-            rolls[2*i] = 9;
-            rolls[2*i+1] = 0;
+            rollsArray[2*i] = 9;
+            rollsArray[2*i+1] = 0;
         }
-        assertGameScoreEquals(90, Rolls.create(rolls), gameFrames);
+        assertGameScoreEquals(90, Rolls.create(rollsArray), gameFrames);
     }
     
     @Test
@@ -84,11 +84,11 @@ public class BowlingTest {
         int gameFrames = 10;
         int gameRolls = 21;
         
-        int[] rolls = new int[gameRolls];
-        for (int i = 0; i < rolls.length; i++) {
-            rolls[i] = 5;
+        int[] rollsArray = new int[gameRolls];
+        for (int i = 0; i < rollsArray.length; i++) {
+            rollsArray[i] = 5;
         }
-        assertGameScoreEquals(150, Rolls.create(rolls), gameFrames);
+        assertGameScoreEquals(150, Rolls.create(rollsArray), gameFrames);
     }
 
     @Test
