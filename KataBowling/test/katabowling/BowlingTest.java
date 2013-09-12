@@ -47,11 +47,21 @@ public class BowlingTest {
     }
     
     @Test
-    public void testTwoFrameGameStrikeFirst() {
+    public void testTwoFrameGameStrikeFirst1() {
         int [] rolls = rolls(10, 3, 2);
         int expectedScore = 20;
         
-        int score = 20;
+        int score = computeScoreWhenOpenFrameFirst(rolls) + 5;
+
+        assertThat(score, equalTo(expectedScore));
+    }
+    
+    @Test
+    public void testTwoFrameGameStrikeFirst2() {
+        int [] rolls = rolls(10, 1, 6);
+        int expectedScore = 24;
+        
+        int score = computeScoreWhenOpenFrameFirst(rolls) + 7;
 
         assertThat(score, equalTo(expectedScore));
     }
