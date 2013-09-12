@@ -58,22 +58,23 @@ public class BowlingTest {
 
     private void assertTwoFrameGameScoreEquals(int expectedScore, int[] rolls, FirstFrameType firstFrameType) {
         int score;
+        ScoreStrategy scoreStrategy;
         switch (firstFrameType) {
             case OPEN:
-                ScoreStrategy scoreStrategy = new OpenFrameScoreStrategy();
-                score = scoreStrategy.computeScore(rolls);
+                scoreStrategy = new OpenFrameScoreStrategy();
                 break;
             case SPARE:
-                score = computeScoreForSpareInFirstFrame(rolls);
+                scoreStrategy = new SpareScoreStrategy();
                 break;
             case STRIKE:
-                score = computeScoreForStrikeInFirstFrame(rolls);
+                scoreStrategy = new StrikeScoreStrategy();
                 break;
             default:
-                score = -1;
+                scoreStrategy = null;
                 fail("Invalid type");
         }
 
+        score = scoreStrategy.computeScore(rolls);
         assertThat(score, equalTo(expectedScore));
     }
 
@@ -96,6 +97,19 @@ public class BowlingTest {
         }
     }
     
+    class SpareScoreStrategy implements ScoreStrategy {
+        @Override
+        public int computeScore(int[] rolls) {
+            return computeScoreForSpareInFirstFrame(rolls);
+        }
+    }
+    
+    class StrikeScoreStrategy implements ScoreStrategy {
+        @Override
+        public int computeScore(int[] rolls) {
+            return computeScoreForStrikeInFirstFrame(rolls);
+        }
+    }
     
     private int[] rolls(int... rolls) {
         return rolls;
