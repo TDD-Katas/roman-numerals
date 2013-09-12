@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
  *
  * @author Iulian Ghionoiu <iulian.ghionoiu@exenne.ro>
  */
-public class BowlingTest {
+public class BowlingScoringTest {
 
     @Test
     public void testOneFrameGame() {
