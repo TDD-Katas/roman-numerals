@@ -152,6 +152,11 @@ public class BowlingTest {
 
             return frameType;
         }
+        
+        private Rolls getNextFrames(int frameSize) {
+            int[] newArray = Arrays.copyOfRange(rollsArray, frameSize, rollsArray.length);
+            return Rolls.create(newArray);
+        }
     }
     
     private FrameType getFrameTypeForRolls(Rolls rolls) {
@@ -198,8 +203,7 @@ public class BowlingTest {
             int numberOfBonusRolls = frameType.getBonusRolls();
             int bonusRollsScore = computeBonusRollsScore(numberOfBonusRolls, rolls);
             
-            int[] nextFrame = getNextFrames(rolls.rollsArray, frameSize);
-            Rolls nextRolls = new Rolls(nextFrame);
+            Rolls nextRolls = rolls.getNextFrames(frameSize);
             return scoreForCurrentFrame + bonusRollsScore + computeScore(framesLeft-1, nextRolls);
         }
     }
