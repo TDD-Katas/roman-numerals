@@ -118,20 +118,20 @@ public class BowlingTest {
     //~~~~~~~~~~~~~~~~ Production code ~~~~~~~~~~~
     
     static class Rolls {
-        int[] rolls;
+        private final int[] rollsArray;
 
         public Rolls(int ... rolls) {
-            this.rolls = rolls;
+            this.rollsArray = rolls;
         }
         
         public static Rolls create(int ... rolls) {
             return new Rolls(rolls);
         }
         
-        public int getSumOfRolls(int start, int end) {
+        public int getSum(int start, int end) {
             int score = 0;
             for (int i = start; i < end; i++) {
-                score += rolls[i];
+                score += rollsArray[i];
             }
             return score;
         }
@@ -201,20 +201,20 @@ public class BowlingTest {
         Rolls localRolls = new Rolls(rolls);
         int start = 0;
         int end = frameSize;
-        return localRolls.getSumOfRolls(start, end);
+        return localRolls.getSum(start, end);
     }
 
     private int computeBonusRollsScore(int numberOfBonusRolls, int[] rolls) {
         Rolls localRolls = new Rolls(rolls);
         int start = 3 - numberOfBonusRolls;
         int end = 3;
-        return localRolls.getSumOfRolls(start, end);
+        return localRolls.getSum(start, end);
     }
 
     private int getFinalFrameScore(int[] rolls) {
         Rolls localRolls = new Rolls(rolls);
         int start = 0;
         int end = rolls.length;
-        return localRolls.getSumOfRolls(start, end);
+        return localRolls.getSum(start, end);
     }
 }
