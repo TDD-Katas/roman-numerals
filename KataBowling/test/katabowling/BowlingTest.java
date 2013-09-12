@@ -35,6 +35,8 @@ public class BowlingTest {
     @Test
     public void testTwoFrameGameOpenFrame() {
         assertTwoFrameGameScoreEquals(0, rolls(0, 0, 0, 0));
+        assertTwoFrameGameScoreEquals(1, rolls(0, 0, 1, 0));
+        assertTwoFrameGameScoreEquals(4, rolls(1, 1, 1, 1));
     }
     
     //~~~~~~~~~~~~~~~~ Test helpers ~~~~~~~~~~~
