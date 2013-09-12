@@ -15,20 +15,21 @@ import static org.junit.Assert.*;
 public class OneFrameGameTest {
 
     @Test
-    public void testFirstRollLessThanNineSecondRollZero() {
+    public void testOpenFrame() {
         assertScoreEquals(0, rolls(0, 0));
         assertScoreEquals(1, rolls(1, 0));
         assertScoreEquals(2, rolls(2, 0));
-    }
-
-    @Test
-    public void testFirstRollZeroSecondLessThanNine() {
         assertScoreEquals(1, rolls(1, 0));
     }
     
     @Test
-    public void testFirstNonZeroTotalSumIsTen() {
+    public void testSpare() {
         assertScoreEquals(11, rolls(1, 9, 1));
+    }
+    
+    @Test
+    public void testStrike() {
+        assertScoreEquals(12, rolls(10, 1, 1));
     }
     
     //~~~~~~~~~~~~~~~~ Test helpers ~~~~~~~~~~~
