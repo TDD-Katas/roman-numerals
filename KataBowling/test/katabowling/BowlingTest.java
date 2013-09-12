@@ -102,6 +102,8 @@ public class BowlingTest {
         return bonusRollsScore;
     }
 
+
+
     interface ScoreStrategy {
 
         int computeScore(int[] rolls);
@@ -155,27 +157,22 @@ public class BowlingTest {
     private int computeScoreWithOpenFrameFirst(int[] rolls) {
         int frameSize = 2;
         int numberOfBonusRolls = 0;
-        
-        int scoreForCurrentFrame = getScoreForCurrentFrame(frameSize, rolls);
-        int[] finalFrame = Arrays.copyOfRange(rolls, frameSize, rolls.length);
-        int bonusRollsScore = computeBonusRollsScore(numberOfBonusRolls, rolls);
-        return scoreForCurrentFrame + getFinalFrameScore(finalFrame);
+        return computeScoreForRolls(frameSize, rolls, numberOfBonusRolls);
     }
     
     private int computeScoreWithSpareFirst(int[] rolls) {
         int frameSize = 2;
         int numberOfBonusRolls = 1;
-        
-        int scoreForCurrentFrame = getScoreForCurrentFrame(frameSize, rolls);
-        int[] finalFrame = Arrays.copyOfRange(rolls, frameSize, rolls.length);
-        int bonusRollsScore = computeBonusRollsScore(numberOfBonusRolls, rolls);
-        return scoreForCurrentFrame + bonusRollsScore + getFinalFrameScore(finalFrame);
+        return computeScoreForRolls(frameSize, rolls, numberOfBonusRolls);
     }
     
     private int computeScoreWithStrikeFirst(int[] rolls) {
         int frameSize = 1;
         int numberOfBonusRolls = 2;
-        
+        return computeScoreForRolls(frameSize, rolls, numberOfBonusRolls);
+    }
+    
+     private int computeScoreForRolls(int frameSize, int[] rolls, int numberOfBonusRolls) {
         int scoreForCurrentFrame = getScoreForCurrentFrame(frameSize, rolls);
         int[] finalFrame = Arrays.copyOfRange(rolls, frameSize, rolls.length);
         int bonusRollsScore = computeBonusRollsScore(numberOfBonusRolls, rolls);
