@@ -66,11 +66,6 @@ public class BowlingTest {
         assertGetFrameTypeForRollsEquals(frameType, rolls(10));
     }
     
-    private void assertGameScoreEquals(int expectedScore, int[] rolls, ScoreStrategy scoreStrategy) {
-        int score = scoreStrategy.computeScore(rolls);
-        assertThat(score, equalTo(expectedScore));
-    }
-    
     private void assertGameScoreEquals(int expectedScore, int[] rolls, int gameFrames) {
         int score = computeScore(gameFrames, rolls);
         assertThat(score, equalTo(expectedScore));
@@ -97,19 +92,6 @@ public class BowlingTest {
         return frameType;
     }
     
-    interface ScoreStrategy {
-
-        int computeScore(int[] rolls);
-    }
-
-    class OneFrameGameScoreStrategy implements ScoreStrategy {
-
-        @Override
-        public int computeScore(int[] rolls) {
-            return getFinalFrameScore(rolls);
-        }
-    }
-
     private int[] rolls(int... rolls) {
         return rolls;
     }
@@ -138,15 +120,6 @@ public class BowlingTest {
     }
 
     //~~~~~~~~~~ Score methods ~~~~~~~
-    private int computeScoreForRolls(int[] rolls) {
-        FrameType frameType = getFrameTypeForRolls(rolls);
-        int frameSize = frameType.getFrameSize();
-        int numberOfBonusRolls = frameType.getBonusRolls();
-        int scoreForCurrentFrame = getScoreForCurrentFrame(frameSize, rolls);
-        int[] finalFrame = getNextFrames(rolls, frameSize);
-        int bonusRollsScore = computeBonusRollsScore(numberOfBonusRolls, rolls);
-        return scoreForCurrentFrame + bonusRollsScore + getFinalFrameScore(finalFrame);
-    }
     
     private int computeScore(int framesLeft, int[] rolls) {
         if (framesLeft == 1) {
