@@ -110,7 +110,7 @@ public class BowlingTest {
     }
     
     private void assertGetFrameTypeForRollsEquals(FrameType frameType, Rolls rolls) {
-        FrameType result = getFrameTypeForRolls(rolls);
+        FrameType result = rolls.getFrameType();
 
         assertThat(result, equalTo(frameType));
     }
@@ -153,14 +153,16 @@ public class BowlingTest {
             return frameType;
         }
         
-        private Rolls getNextFrames(int frameSize) {
+        public Rolls getNextFrames(int frameSize) {
             int[] newArray = Arrays.copyOfRange(rollsArray, frameSize, rollsArray.length);
             return Rolls.create(newArray);
         }
-    }
-    
-    private FrameType getFrameTypeForRolls(Rolls rolls) {
-        return rolls.getFrameType();
+        
+        public int getScoreForCurrentFrame(int frameSize) {
+            int start = 0;
+            int end = frameSize;
+            return getSum(start, end);
+        }
     }
     
     private Rolls rolls(int... rolls) {
@@ -196,9 +198,9 @@ public class BowlingTest {
         if (framesLeft == 1) {
             return getFinalFrameScore(rolls);
         } else {
-            FrameType frameType = getFrameTypeForRolls(rolls);
+            FrameType frameType = rolls.getFrameType();
             int frameSize = frameType.getFrameSize();
-            int scoreForCurrentFrame = getScoreForCurrentFrame(frameSize, rolls);
+            int scoreForCurrentFrame = rolls.getScoreForCurrentFrame(frameSize);
             
             int numberOfBonusRolls = frameType.getBonusRolls();
             int bonusRollsScore = computeBonusRollsScore(numberOfBonusRolls, rolls);
@@ -210,12 +212,6 @@ public class BowlingTest {
 
     private int[] getNextFrames(int[] rolls, int frameSize) {
         return Arrays.copyOfRange(rolls, frameSize, rolls.length);
-    }
-
-    private int getScoreForCurrentFrame(int frameSize, Rolls rolls) {
-        int start = 0;
-        int end = frameSize;
-        return rolls.getSum(start, end);
     }
 
     private int computeBonusRollsScore(int numberOfBonusRolls, Rolls rolls) {
