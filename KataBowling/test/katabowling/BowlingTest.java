@@ -49,10 +49,9 @@ public class BowlingTest {
     
     @Test
     public void testThreeFrameGameOpenFrame() {
-        ScoreStrategy scoreStrategy;
-        scoreStrategy = new ThreeFrameGameScoreStrategy(3);
-        assertGameScoreEquals(0, rolls(0, 0, 0, 0, 0, 0), scoreStrategy);
-        assertGameScoreEquals(13, rolls(0, 0, 1, 9, 1, 1), scoreStrategy);
+        int gameFrames = 3;
+        assertGameScoreEquals(0, rolls(0, 0, 0, 0, 0, 0), gameFrames);
+        assertGameScoreEquals(13, rolls(0, 0, 1, 9, 1, 1), gameFrames);
     }
 
     @Test
@@ -72,7 +71,12 @@ public class BowlingTest {
         int score = scoreStrategy.computeScore(rolls);
         assertThat(score, equalTo(expectedScore));
     }
-
+    
+    private void assertGameScoreEquals(int expectedScore, int[] rolls, int gameFrames) {
+        int score = computeScoreForRollsThreeFrame(gameFrames, rolls);
+        assertThat(score, equalTo(expectedScore));
+    }
+    
     private void assertGetFrameTypeForRollsEquals(FrameType frameType, int[] rolls) {
         FrameType result = getFrameTypeForRolls(rolls);
 
