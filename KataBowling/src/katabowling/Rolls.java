@@ -1,14 +1,7 @@
 package katabowling;
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
 import java.util.Arrays;
 
-//~~~~~~~~~~~~~~~~ Production code ~~~~~~~~~~~
 
 class Rolls {
     private final int[] rollsArray;

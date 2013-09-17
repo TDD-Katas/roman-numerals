@@ -6,17 +6,20 @@ package katabowling;
  */
 
 
-//~~~~~~~~~~ Score methods ~~~~~~~
-
 class BowlingScoring {
     private final int gameFrames;
+    
     public BowlingScoring(int gameFrames) {
         this.gameFrames = gameFrames;
     }
+    
+    //~~~ Public method
 
     public int score(Rolls rolls) {
         return computeScore(gameFrames, rolls);
     }
+    
+    //~~~ Implementation
 
     private int computeScore(int framesLeft, Rolls rolls) {
         int score;

@@ -1,10 +1,5 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package katabowling;
 
-import java.util.Arrays;
 import static org.hamcrest.core.IsEqual.*;
 import org.junit.Test;
 import static org.junit.Assert.*;
