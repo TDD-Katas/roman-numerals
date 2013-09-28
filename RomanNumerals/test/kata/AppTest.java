@@ -14,29 +14,44 @@ import static org.junit.Assert.*;
 public class AppTest {
     
     @Test
-    public void I_is_1() {
+    public void value_of_I_is_1() {
         String symbol = "I";
         
-        int value = 1;
+        int value = getValueOf(symbol);
         
         assertEquals(1,value);
     }
     
     @Test
-    public void V_is_5() {
+    public void value_of_V_is_5() {
         String symbol = "V";
         
-        int value = 5;
+        int value = getValueOf(symbol);
         
         assertEquals(5,value);
     }
     
     @Test
-    public void X_is_10() {
-        String symbol = "V";
+    public void value_of_X_is_10() {
+        String symbol = "X";
         
-        int value = 10;
+        int value = getValueOf(symbol);
         
         assertEquals(10,value);
+    }
+
+    protected int getValueOf(String symbol) {
+        if ("I".equals(symbol)) {
+            return 1;
+        } else 
+        if ("V".equals(symbol)) {
+            return 5;
+        } else 
+        if ("X".equals(symbol)) {
+            return 10;
+        } 
+        
+        
+        return 1;
     }
 }
