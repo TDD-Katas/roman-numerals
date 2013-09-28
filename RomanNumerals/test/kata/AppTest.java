@@ -61,10 +61,7 @@ public class AppTest {
     
     @Test
     public void I_can_be_substracted_from_V() {
-        String leftSymbol = "I";
-        String rightSymbol = "V";
-        
-        boolean canBePlaced = canSubstractSymbol(leftSymbol, rightSymbol);
+        boolean canBePlaced = romanSymbol("V").canSubstract(romanSymbol("I"));
         
         assertThat(canBePlaced, is(true));
     }
@@ -176,10 +173,13 @@ public class AppTest {
         }
     }
 
+
+    protected RomanSymbol romanSymbol(String symbol) {
+        return RomanSymbol.fromString(symbol);
+    }
     
     protected int valueOf(String symbol) {
-        RomanSymbol romanLiteral = RomanSymbol.fromString(symbol);
-        return romanLiteral.getValue();
+        return romanSymbol(symbol).getValue();
     }
 
     
