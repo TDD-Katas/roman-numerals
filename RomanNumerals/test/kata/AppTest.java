@@ -93,7 +93,7 @@ public class AppTest {
     @Test
     public void symbol_can_be_placed_before_if_it_is_heigher() {
         Symbol leftSymbol = spy(concreteRomanSymbol());
-        Symbol rightSymbol = mock(Symbol.class);
+        Symbol rightSymbol = mockRomanSymbol();
         when(leftSymbol.getValue()).thenReturn(2);
         when(rightSymbol.getValue()).thenReturn(1);
         
@@ -105,7 +105,7 @@ public class AppTest {
     @Test
     public void symbol_can_be_placed_before_if_it_is_equal() {
         Symbol leftSymbol = spy(concreteRomanSymbol());
-        Symbol rightSymbol = mock(Symbol.class);
+        Symbol rightSymbol = mockRomanSymbol();
         when(leftSymbol.getValue()).thenReturn(1);
         when(rightSymbol.getValue()).thenReturn(1);
         
@@ -117,7 +117,7 @@ public class AppTest {
     @Test
     public void symbol_can_be_placed_before_if_is_substractable_symbol() {
         Symbol leftSymbol = spy(concreteRomanSymbol());
-        Symbol rightSymbol = mock(Symbol.class);
+        Symbol rightSymbol = mockRomanSymbol();
         when(rightSymbol.canSubstract(leftSymbol)).thenReturn(true);
 
         boolean canBePlaced = leftSymbol.canBePlacedBefore(rightSymbol);
@@ -128,6 +128,10 @@ public class AppTest {
 
     protected Symbol concreteRomanSymbol() {
         return RomanSymbolFactory.fromString("I");
+    }
+
+    protected Symbol mockRomanSymbol() {
+        return mock(Symbol.class);
     }
     
     //~~~~~~~
