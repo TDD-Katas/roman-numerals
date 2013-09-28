@@ -151,6 +151,28 @@ public class AppTest {
         
         int value;
 
+        public static RomanLiteral fromString(String symbol) {
+            RomanLiteral romanLiteral = RomanLiteral.I;
+            if ("I".equals(symbol)) {
+                romanLiteral = RomanLiteral.I;
+            } else if ("V".equals(symbol)) {
+                romanLiteral = RomanLiteral.V;
+            } else if ("X".equals(symbol)) {
+                romanLiteral = RomanLiteral.X;
+            } else if ("L".equals(symbol)) {
+                romanLiteral = RomanLiteral.L;
+            } else if ("C".equals(symbol)) {
+                romanLiteral = RomanLiteral.C;
+            } else if ("D".equals(symbol)) {
+                romanLiteral = RomanLiteral.D;
+            } else if ("M".equals(symbol)) {
+                romanLiteral = RomanLiteral.M;
+            }
+
+
+            return romanLiteral;
+        }
+        
         private RomanLiteral(int value) {
             this.value = value;
         }
@@ -162,25 +184,7 @@ public class AppTest {
 
     
     protected int valueOf(String symbol) {
-        int symbolValue = 0;
-        RomanLiteral romanLiteral = RomanLiteral.I;
-        if ("I".equals(symbol)) {
-            romanLiteral = RomanLiteral.I;
-        } else if ("V".equals(symbol)) {
-            romanLiteral = RomanLiteral.V;
-        } else if ("X".equals(symbol)) {
-            romanLiteral = RomanLiteral.X;
-        } else if ("L".equals(symbol)) {
-            romanLiteral = RomanLiteral.L;
-        } else if ("C".equals(symbol)) {
-            romanLiteral = RomanLiteral.C;
-        } else if ("D".equals(symbol)) {
-            romanLiteral = RomanLiteral.D;
-        } else if ("M".equals(symbol)) {
-            romanLiteral = RomanLiteral.M;
-        }
-
-
+        RomanLiteral romanLiteral = RomanLiteral.fromString(symbol);
         return romanLiteral.getValue();
     }
 
