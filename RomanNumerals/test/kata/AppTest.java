@@ -92,6 +92,9 @@ public class AppTest {
 
     @Test
     public void symbol_can_be_placed_before_if_it_is_heigher() {
+        Symbol leftSymbol = mock(Symbol.class);
+        Symbol rightSymbol = mock(Symbol.class);
+        
         boolean leftSymbolIsHigherthanRightSymbol = true;
 
         boolean canBePlaced = leftSymbolIsHigherthanRightSymbol;
@@ -160,18 +163,11 @@ public class AppTest {
         }
     }
 
-    protected RomanSymbol romanSymbol(String symbol) {
+    protected Symbol romanSymbol(String symbol) {
         return RomanSymbol.fromString(symbol);
     }
 
     protected int valueOf(String symbol) {
         return romanSymbol(symbol).getValue();
-    }
-
-    protected boolean canSubstractSymbol(String leftSymbol, String rightSymbol) {
-        RomanSymbol rightLiteral = RomanSymbol.fromString(rightSymbol);
-        RomanSymbol leftLiteral = RomanSymbol.fromString(leftSymbol);
-
-        return rightLiteral.canSubstract(leftLiteral);
     }
 }
