@@ -75,7 +75,7 @@ public class AppTest {
     }
     
     @Test
-    public void X_can_be_substracted_from_L() {
+    public void L_can_substract_X() {
         String leftSymbol = "X";
         String rightSymbol = "L";
         
@@ -85,7 +85,7 @@ public class AppTest {
     }
     
     @Test
-    public void X_can_be_substracted_from_C() {
+    public void C_can_substract_X() {
         String leftSymbol = "X";
         String rightSymbol = "C";
         
@@ -95,7 +95,7 @@ public class AppTest {
     }
     
     @Test
-    public void C_can_be_substracted_from_D() {
+    public void D_can_substract_C() {
         String leftSymbol = "C";
         String rightSymbol = "D";
         
@@ -105,7 +105,7 @@ public class AppTest {
     }
     
     @Test
-    public void C_can_be_substracted_from_M() {
+    public void M_can_substract_C() {
         String leftSymbol = "C";
         String rightSymbol = "M";
         
