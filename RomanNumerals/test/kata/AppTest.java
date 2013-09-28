@@ -90,16 +90,25 @@ public class AppTest {
     }
 
     @Test
-    public void symbol_can_be_placed_before_lower_or_equal_symbol() {
-        boolean leftSymbolIsHigherOrEqualThanRightSymbol = true;
+    public void symbol_can_be_placed_before_if_it_is_heigher() {
+        boolean leftSymbolIsHigherthanRightSymbol = true;
 
-        boolean canBePlaced = leftSymbolIsHigherOrEqualThanRightSymbol;
+        boolean canBePlaced = leftSymbolIsHigherthanRightSymbol;
+
+        assertThat(canBePlaced, is(true));
+    }
+    
+    @Test
+    public void symbol_can_be_placed_before_if_it_is_equal() {
+        boolean leftSymbolIsHigherthanRightSymbol = true;
+
+        boolean canBePlaced = leftSymbolIsHigherthanRightSymbol;
 
         assertThat(canBePlaced, is(true));
     }
 
     @Test
-    public void symbol_can_be_placed_before_substractable_symbol() {
+    public void symbol_can_be_placed_before_if_is_substractable_symbol() {
         boolean leftSymbolCanBeSubstractedFromRightSymbol = true;
 
         boolean canBePlaced = leftSymbolCanBeSubstractedFromRightSymbol;
