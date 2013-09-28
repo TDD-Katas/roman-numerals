@@ -137,6 +137,7 @@ public class AppTest {
     interface Symbol {
         int getValue();
         boolean canSubstract(Symbol symbol);
+        boolean canBePlacedBefore(Symbol symbol);
     }
     
     enum RomanSymbol implements Symbol{
@@ -172,6 +173,16 @@ public class AppTest {
 
         public boolean canSubstract(Symbol literalToSubstract) {
             return substractionLiteral.equals(literalToSubstract);
+        }
+        
+        public boolean canBePlacedBefore(Symbol rightSymbol) {
+            if (rightSymbol.canSubstract(this)) {
+                return true;
+            } else if (this.getValue() > rightSymbol.getValue()) {
+                return true;
+            }
+
+            return false;
         }
     }
 
