@@ -60,14 +60,12 @@ public class AppTest {
     }
     
     @Test
-    public void I_can_be_substracted_from_V() {
-        boolean canBePlaced = romanSymbol("V").canSubstract(romanSymbol("I"));
-        
-        assertThat(canBePlaced, is(true));
+    public void V_can_substract_I() {
+        assertTrue(romanSymbol("V").canSubstract(romanSymbol("I")));
     }
     
     @Test
-    public void I_can_be_substracted_from_X() {
+    public void X_can_substract_I() {
         String leftSymbol = "I";
         String rightSymbol = "X";
         
