@@ -21,4 +21,13 @@ public class AppTest {
         
         assertEquals(1,value);
     }
+    
+    @Test
+    public void V_is_5() {
+        String symbol = "V";
+        
+        int value = 5;
+        
+        assertEquals(5,value);
+    }
 }
