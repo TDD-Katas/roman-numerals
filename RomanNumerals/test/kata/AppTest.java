@@ -60,61 +60,61 @@ public class AppTest {
     }
     
     @Test
-    public void I_can_be_placed_before_V() {
+    public void I_can_be_substracted_from_V() {
         String leftSymbol = "I";
         String rightSymbol = "V";
         
-        boolean canBePlaced = canSymbolBePlacedBefore(rightSymbol, leftSymbol);
+        boolean canBePlaced = canSymbolBeSubstractedFrom(rightSymbol, leftSymbol);
         
         assertThat(canBePlaced, is(true));
     }
     
     @Test
-    public void I_can_be_placed_before_X() {
+    public void I_can_be_substracted_from_X() {
         String leftSymbol = "I";
         String rightSymbol = "X";
         
-        boolean canBePlaced = canSymbolBePlacedBefore(rightSymbol, leftSymbol);
+        boolean canBePlaced = canSymbolBeSubstractedFrom(rightSymbol, leftSymbol);
         
         assertThat(canBePlaced, is(true));
     }
     
     @Test
-    public void X_can_be_placed_before_L() {
+    public void X_can_be_substracted_from_L() {
         String leftSymbol = "X";
         String rightSymbol = "L";
         
-        boolean canBePlaced = canSymbolBePlacedBefore(rightSymbol, leftSymbol);
+        boolean canBePlaced = canSymbolBeSubstractedFrom(rightSymbol, leftSymbol);
         
         assertThat(canBePlaced, is(true));
     }
     
     @Test
-    public void X_can_be_placed_before_C() {
+    public void X_can_be_substracted_from_C() {
         String leftSymbol = "X";
         String rightSymbol = "C";
         
-        boolean canBePlaced = canSymbolBePlacedBefore(rightSymbol, leftSymbol);
+        boolean canBePlaced = canSymbolBeSubstractedFrom(rightSymbol, leftSymbol);
         
         assertThat(canBePlaced, is(true));
     }
     
     @Test
-    public void C_can_be_placed_before_D() {
+    public void C_can_be_substracted_from_D() {
         String leftSymbol = "C";
         String rightSymbol = "D";
         
-        boolean canBePlaced = canSymbolBePlacedBefore(rightSymbol, leftSymbol);
+        boolean canBePlaced = canSymbolBeSubstractedFrom(rightSymbol, leftSymbol);
         
         assertThat(canBePlaced, is(true));
     }
     
     @Test
-    public void C_can_be_placed_before_M() {
+    public void C_can_be_substracted_from_M() {
         String leftSymbol = "C";
         String rightSymbol = "M";
         
-        boolean canBePlaced = canSymbolBePlacedBefore(rightSymbol, leftSymbol);
+        boolean canBePlaced = canSymbolBeSubstractedFrom(rightSymbol, leftSymbol);
         
         assertThat(canBePlaced, is(true));
     }
@@ -129,10 +129,10 @@ public class AppTest {
     }
     
     @Test
-    public void symbol_can_be_placed_before_dominant_symbol() {
-        boolean rightSymbolDominatesLeftSymbol = true;
+    public void symbol_can_be_placed_before_symbol_as_substraction_symbol() {
+        boolean leftSymbolCanBeSubstractedFromRightSymbol = true;
         
-        boolean canBePlaced = rightSymbolDominatesLeftSymbol;
+        boolean canBePlaced = leftSymbolCanBeSubstractedFromRightSymbol;
         
         assertThat(canBePlaced, is(true));
     }
@@ -173,7 +173,7 @@ public class AppTest {
     }
 
     
-    protected boolean canSymbolBePlacedBefore(String rightSymbol, String leftSymbol) {
+    protected boolean canSymbolBeSubstractedFrom(String rightSymbol, String leftSymbol) {
         if ("I".equals(leftSymbol)) {
             if ("V".equals(rightSymbol)) {
                 return true;
