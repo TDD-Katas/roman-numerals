@@ -69,6 +69,16 @@ public class AppTest {
         assertThat(canBePlaced, is(true));
     }
     
+    @Test
+    public void I_can_be_placed_before_X() {
+        String leftSymbol = "I";
+        String rightSymbol = "X";
+        
+        boolean canBePlaced = canSymbolBePlacedBefore(rightSymbol, leftSymbol);
+        
+        assertThat(canBePlaced, is(true));
+    }
+    
     
     //~~~~~~~
 
@@ -97,6 +107,9 @@ public class AppTest {
     protected boolean canSymbolBePlacedBefore(String rightSymbol, String leftSymbol) {
         if ("I".equals(leftSymbol)) {
             if ("V".equals(rightSymbol)) {
+                return true;
+            } else
+            if ("X".equals(rightSymbol)) {
                 return true;
             }
         }
