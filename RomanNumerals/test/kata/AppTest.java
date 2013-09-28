@@ -61,10 +61,10 @@ public class AppTest {
     
     @Test
     public void I_can_be_placed_before_V() {
-        String symbol1 = "I";
-        String symbol2 = "V";
+        String leftSymbol = "I";
+        String rightSymbol = "V";
         
-        boolean canBePlaced = true;
+        boolean canBePlaced = canSymbolBePlacedBefore(rightSymbol, leftSymbol);
         
         assertThat(canBePlaced, is(true));
     }
@@ -92,5 +92,9 @@ public class AppTest {
 
 
         return symbolValue;
+    }
+
+    protected boolean canSymbolBePlacedBefore(String rightSymbol, String leftSymbol) {
+        return true;
     }
 }
