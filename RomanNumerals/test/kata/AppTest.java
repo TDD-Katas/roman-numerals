@@ -30,4 +30,13 @@ public class AppTest {
         
         assertEquals(5,value);
     }
+    
+    @Test
+    public void X_is_10() {
+        String symbol = "V";
+        
+        int value = 10;
+        
+        assertEquals(10,value);
+    }
 }
