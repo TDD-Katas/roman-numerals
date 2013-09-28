@@ -141,7 +141,13 @@ public class AppTest {
     //~~~~~~~
         
     enum RomanLiteral {
-        I(1);
+        I(1),
+        V(5),
+        X(10),
+        L(50),
+        C(100),
+        D(500),
+        M(1000);
         
         int value;
 
@@ -158,19 +164,19 @@ public class AppTest {
     protected int valueOf(String symbol) {
         int symbolValue = 0;
         if ("I".equals(symbol)) {
-            symbolValue = RomanLiteral.I.getValue();;
+            symbolValue = RomanLiteral.I.getValue();
         } else if ("V".equals(symbol)) {
-            symbolValue = 5;
+            symbolValue = RomanLiteral.V.getValue();
         } else if ("X".equals(symbol)) {
-            symbolValue = 10;
+            symbolValue = RomanLiteral.X.getValue();
         } else if ("L".equals(symbol)) {
-            symbolValue = 50;
+            symbolValue = RomanLiteral.L.getValue();
         } else if ("C".equals(symbol)) {
-            symbolValue = 100;
+            symbolValue = RomanLiteral.C.getValue();
         } else if ("D".equals(symbol)) {
-            symbolValue = 500;
+            symbolValue = RomanLiteral.D.getValue();
         } else if ("M".equals(symbol)) {
-            symbolValue = 1000;
+            symbolValue = RomanLiteral.M.getValue();
         }
 
 
