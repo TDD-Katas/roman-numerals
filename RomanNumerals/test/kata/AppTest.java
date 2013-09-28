@@ -118,7 +118,13 @@ public class AppTest {
     }
     
     //~~~~~~~
-    enum RomanSymbol {
+    
+    interface Symbol {
+        int getValue();
+        boolean canSubstract(Symbol symbol);
+    }
+    
+    enum RomanSymbol implements Symbol{
 
         I(1, null),
         V(5, I),
@@ -145,11 +151,11 @@ public class AppTest {
             this.substractionLiteral = substractionLiteral;
         }
 
-        int getValue() {
+        public int getValue() {
             return value;
         }
 
-        public boolean canSubstract(RomanSymbol literalToSubstract) {
+        public boolean canSubstract(Symbol literalToSubstract) {
             return substractionLiteral.equals(literalToSubstract);
         }
     }
