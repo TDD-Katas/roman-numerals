@@ -64,7 +64,7 @@ public class AppTest {
         String leftSymbol = "I";
         String rightSymbol = "V";
         
-        boolean canBePlaced = canSymbolBeSubstractedFrom(rightSymbol, leftSymbol);
+        boolean canBePlaced = canSubstractSymbol(leftSymbol, rightSymbol);
         
         assertThat(canBePlaced, is(true));
     }
@@ -74,7 +74,7 @@ public class AppTest {
         String leftSymbol = "I";
         String rightSymbol = "X";
         
-        boolean canBePlaced = canSymbolBeSubstractedFrom(rightSymbol, leftSymbol);
+        boolean canBePlaced = canSubstractSymbol(leftSymbol, rightSymbol);
         
         assertThat(canBePlaced, is(true));
     }
@@ -84,7 +84,7 @@ public class AppTest {
         String leftSymbol = "X";
         String rightSymbol = "L";
         
-        boolean canBePlaced = canSymbolBeSubstractedFrom(rightSymbol, leftSymbol);
+        boolean canBePlaced = canSubstractSymbol(leftSymbol, rightSymbol);
         
         assertThat(canBePlaced, is(true));
     }
@@ -94,7 +94,7 @@ public class AppTest {
         String leftSymbol = "X";
         String rightSymbol = "C";
         
-        boolean canBePlaced = canSymbolBeSubstractedFrom(rightSymbol, leftSymbol);
+        boolean canBePlaced = canSubstractSymbol(leftSymbol, rightSymbol);
         
         assertThat(canBePlaced, is(true));
     }
@@ -104,7 +104,7 @@ public class AppTest {
         String leftSymbol = "C";
         String rightSymbol = "D";
         
-        boolean canBePlaced = canSymbolBeSubstractedFrom(rightSymbol, leftSymbol);
+        boolean canBePlaced = canSubstractSymbol(leftSymbol, rightSymbol);
         
         assertThat(canBePlaced, is(true));
     }
@@ -114,7 +114,7 @@ public class AppTest {
         String leftSymbol = "C";
         String rightSymbol = "M";
         
-        boolean canBePlaced = canSymbolBeSubstractedFrom(rightSymbol, leftSymbol);
+        boolean canBePlaced = canSubstractSymbol(leftSymbol, rightSymbol);
         
         assertThat(canBePlaced, is(true));
     }
@@ -178,7 +178,7 @@ public class AppTest {
 
     
     
-    protected boolean canSymbolBeSubstractedFrom(String rightSymbol, String leftSymbol) {
+    protected boolean canSubstractSymbol(String leftSymbol, String rightSymbol) {
         if ("V".equals(rightSymbol) || "I".equals(leftSymbol)) {
             return true;
         } else
