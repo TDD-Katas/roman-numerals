@@ -107,6 +107,16 @@ public class AppTest {
         assertThat(canBePlaced, is(true));
     }
 
+    @Test
+    public void symbol_is_higher_if_value_is_higher() {
+        int symbol1Value = 3;
+        int symbol2Value = 2;
+        
+        boolean isHigher = symbol1Value > symbol2Value;
+
+        assertThat(isHigher, is(true));
+    }
+    
     //~~~~~~~
     enum RomanSymbol {
 
