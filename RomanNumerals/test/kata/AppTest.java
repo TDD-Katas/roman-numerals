@@ -141,15 +141,16 @@ public class AppTest {
     //~~~~~~~
         
     enum RomanLiteral {
-        I(1),
-        V(5),
-        X(10),
-        L(50),
-        C(100),
-        D(500),
-        M(1000);
+        I(1, null),
+        V(5, I),
+        X(10,I),
+        L(50, X),
+        C(100, X),
+        D(500, C),
+        M(1000, C);
         
         int value;
+        RomanLiteral substractionLiteral;
 
         public static RomanLiteral fromString(String symbol) {
             RomanLiteral chosenLiteral = null;
@@ -161,12 +162,17 @@ public class AppTest {
             return chosenLiteral;
         }
         
-        private RomanLiteral(int value) {
+        private RomanLiteral(int value, RomanLiteral substractionLiteral) {
             this.value = value;
+            this.substractionLiteral = substractionLiteral;
         }
         
         int getValue() {
             return value;
+        }
+
+        public RomanLiteral getSubstractionLiteral() {
+            return substractionLiteral;
         }
     }
 
@@ -179,22 +185,12 @@ public class AppTest {
     
     
     protected boolean canSubstractSymbol(String leftSymbol, String rightSymbol) {
-        if ("V".equals(rightSymbol) || "I".equals(leftSymbol)) {
-            return true;
-        } else
-        if ("X".equals(rightSymbol) || "I".equals(leftSymbol)) {
-            return true;
-        } else
-        if ("L".equals(rightSymbol) || "X".equals(leftSymbol)) {
-            return true;
-        } else
-        if ("C".equals(rightSymbol) || "X".equals(leftSymbol)) {
-            return true;
-        } else
-        if ("D".equals(rightSymbol) || "C".equals(leftSymbol)) {
-            return true;
-        } else
-        if ("M".equals(rightSymbol) || "C".equals(leftSymbol)) {
+        RomanLiteral rightLiteral = RomanLiteral.fromString(rightSymbol);
+        RomanLiteral leftLiteral = RomanLiteral.fromString(leftSymbol);
+        
+        RomanLiteral substractionLiteral = rightLiteral.getSubstractionLiteral();
+        
+        if (substractionLiteral.equals(leftLiteral)) {
             return true;
         }
         
