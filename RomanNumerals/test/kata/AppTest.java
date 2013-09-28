@@ -95,6 +95,12 @@ public class AppTest {
     }
 
     protected boolean canSymbolBePlacedBefore(String rightSymbol, String leftSymbol) {
-        return true;
+        if ("I".equals(leftSymbol)) {
+            if ("V".equals(rightSymbol)) {
+                return true;
+            }
+        }
+        
+        return false;
     }
 }
