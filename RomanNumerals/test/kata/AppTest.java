@@ -119,6 +119,15 @@ public class AppTest {
         assertThat(canBePlaced, is(true));
     }
     
+    @Test
+    public void higher_symbol_can_be_placed_before_lower_symbol() {
+        boolean leftSymbolIsHigher = true;
+        
+        boolean canBePlaced = leftSymbolIsHigher;
+        
+        assertThat(canBePlaced, is(true));
+    }
+    
     //~~~~~~~
 
     protected int valueOf(String symbol) {
@@ -143,6 +152,7 @@ public class AppTest {
         return symbolValue;
     }
 
+    
     protected boolean canSymbolBePlacedBefore(String rightSymbol, String leftSymbol) {
         if ("I".equals(leftSymbol)) {
             if ("V".equals(rightSymbol)) {
