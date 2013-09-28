@@ -48,6 +48,18 @@ public class AppTest {
     public void value_of_M_is_1000() {
         assertThat(valueOf("M"), is(1000));
     }
+    
+    //~~~~~~~
+    
+    @Test
+    public void value_is_computed_by_adding_symbols_values() {
+        int valueOfSymbol1 = 1;
+        int valueOfSymbol2 = 2;
+        
+        int computedValue = valueOfSymbol1+valueOfSymbol2;
+        
+        assertThat(computedValue, is(valueOfSymbol1+valueOfSymbol2));
+    }
 
     protected int valueOf(String symbol) {
         int symbolValue = 0;
