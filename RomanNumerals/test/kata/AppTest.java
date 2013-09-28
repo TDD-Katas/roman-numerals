@@ -4,6 +4,7 @@
  */
 package kata;
 
+import static org.hamcrest.CoreMatchers.*;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -15,35 +16,20 @@ public class AppTest {
     
     @Test
     public void value_of_I_is_1() {
-        String symbol = "I";
-        int expectedValue = 1;
-        
-        int value = getValueOf(symbol);
-        
-        assertEquals(expectedValue,value);
+        assertThat(valueOf("I"), is(1));
     }
     
     @Test
     public void value_of_V_is_5() {
-        String symbol = "V";
-        int expectedValue = 5;
-        
-        int value = getValueOf(symbol);
-        
-        assertEquals(expectedValue,value);
+        assertThat(valueOf("V"), is(5));
     }
     
     @Test
     public void value_of_X_is_10() {
-        String symbol = "X";
-        int expectedValue = 10;
-        
-        int value = getValueOf(symbol);
-        
-        assertEquals(expectedValue,value);
+        assertThat(valueOf("X"), is(10));
     }
 
-    protected int getValueOf(String symbol) {
+    protected int valueOf(String symbol) {
         if ("I".equals(symbol)) {
             return 1;
         } else 
