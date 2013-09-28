@@ -49,8 +49,6 @@ public class AppTest {
         assertThat(valueOf("M"), is(1000));
     }
     
-    //~~~~~~~
-    
     @Test
     public void value_is_computed_by_adding_symbols_values() {
         int valueOfSymbol1 = 1;
@@ -60,6 +58,19 @@ public class AppTest {
         
         assertThat(computedValue, is(valueOfSymbol1+valueOfSymbol2));
     }
+    
+    @Test
+    public void I_can_be_placed_before_V() {
+        String symbol1 = "I";
+        String symbol2 = "V";
+        
+        boolean canBePlaced = true;
+        
+        assertThat(canBePlaced, is(true));
+    }
+    
+    
+    //~~~~~~~
 
     protected int valueOf(String symbol) {
         int symbolValue = 0;
