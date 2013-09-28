@@ -163,24 +163,25 @@ public class AppTest {
     
     protected int valueOf(String symbol) {
         int symbolValue = 0;
+        RomanLiteral romanLiteral = RomanLiteral.I;
         if ("I".equals(symbol)) {
-            symbolValue = RomanLiteral.I.getValue();
+            romanLiteral = RomanLiteral.I;
         } else if ("V".equals(symbol)) {
-            symbolValue = RomanLiteral.V.getValue();
+            romanLiteral = RomanLiteral.V;
         } else if ("X".equals(symbol)) {
-            symbolValue = RomanLiteral.X.getValue();
+            romanLiteral = RomanLiteral.X;
         } else if ("L".equals(symbol)) {
-            symbolValue = RomanLiteral.L.getValue();
+            romanLiteral = RomanLiteral.L;
         } else if ("C".equals(symbol)) {
-            symbolValue = RomanLiteral.C.getValue();
+            romanLiteral = RomanLiteral.C;
         } else if ("D".equals(symbol)) {
-            symbolValue = RomanLiteral.D.getValue();
+            romanLiteral = RomanLiteral.D;
         } else if ("M".equals(symbol)) {
-            symbolValue = RomanLiteral.M.getValue();
+            romanLiteral = RomanLiteral.M;
         }
 
 
-        return symbolValue;
+        return romanLiteral.getValue();
     }
 
     
