@@ -129,7 +129,7 @@ public class AppTest {
     }
     
     @Test
-    public void symbol_can_be_placed_before_symbol_as_substraction_symbol() {
+    public void symbol_can_be_placed_before_substractable_symbol() {
         boolean leftSymbolCanBeSubstractedFromRightSymbol = true;
         
         boolean canBePlaced = leftSymbolCanBeSubstractedFromRightSymbol;
@@ -149,6 +149,7 @@ public class AppTest {
     
     
     //~~~~~~~
+    
 
     protected int valueOf(String symbol) {
         int symbolValue = 0;
