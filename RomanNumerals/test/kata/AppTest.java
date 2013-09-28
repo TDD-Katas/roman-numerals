@@ -140,7 +140,7 @@ public class AppTest {
     
     //~~~~~~~
         
-    enum RomanLiteral {
+    enum RomanSymbol {
         I(1, null),
         V(5, I),
         X(10,I),
@@ -150,11 +150,11 @@ public class AppTest {
         M(1000, C);
         
         int value;
-        RomanLiteral substractionLiteral;
+        RomanSymbol substractionLiteral;
 
-        public static RomanLiteral fromString(String symbol) {
-            RomanLiteral chosenLiteral = null;
-            for (RomanLiteral romanLiteral : RomanLiteral.values()) {
+        public static RomanSymbol fromString(String symbol) {
+            RomanSymbol chosenLiteral = null;
+            for (RomanSymbol romanLiteral : RomanSymbol.values()) {
                 if (romanLiteral.name().equals(symbol)) {
                     chosenLiteral = romanLiteral;
                 }
@@ -162,7 +162,7 @@ public class AppTest {
             return chosenLiteral;
         }
         
-        private RomanLiteral(int value, RomanLiteral substractionLiteral) {
+        private RomanSymbol(int value, RomanSymbol substractionLiteral) {
             this.value = value;
             this.substractionLiteral = substractionLiteral;
         }
@@ -171,22 +171,22 @@ public class AppTest {
             return value;
         }
 
-        public boolean canSubstract(RomanLiteral literalToSubstract) {
+        public boolean canSubstract(RomanSymbol literalToSubstract) {
             return substractionLiteral.equals(literalToSubstract);
         }
     }
 
     
     protected int valueOf(String symbol) {
-        RomanLiteral romanLiteral = RomanLiteral.fromString(symbol);
+        RomanSymbol romanLiteral = RomanSymbol.fromString(symbol);
         return romanLiteral.getValue();
     }
 
     
     
     protected boolean canSubstractSymbol(String leftSymbol, String rightSymbol) {
-        RomanLiteral rightLiteral = RomanLiteral.fromString(rightSymbol);
-        RomanLiteral leftLiteral = RomanLiteral.fromString(leftSymbol);
+        RomanSymbol rightLiteral = RomanSymbol.fromString(rightSymbol);
+        RomanSymbol leftLiteral = RomanSymbol.fromString(leftSymbol);
         
         return rightLiteral.canSubstract(leftLiteral);
     }
