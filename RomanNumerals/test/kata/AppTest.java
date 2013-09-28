@@ -92,44 +92,42 @@ public class AppTest {
 
     @Test
     public void symbol_can_be_placed_before_if_it_is_heigher() {
-        Symbol leftSymbol = mock(Symbol.class);
+        Symbol leftSymbol = spy(concreteRomanSymbol());
         Symbol rightSymbol = mock(Symbol.class);
         when(leftSymbol.getValue()).thenReturn(2);
         when(rightSymbol.getValue()).thenReturn(1);
         
-        boolean canBePlaced = canSymbolBePlacedbBefore(leftSymbol, rightSymbol);
+        boolean canBePlaced = leftSymbol.canBePlacedBefore(rightSymbol);
 
         assertThat(canBePlaced, is(true));
     }
     
     @Test
     public void symbol_can_be_placed_before_if_it_is_equal() {
-        Symbol leftSymbol = mock(Symbol.class);
+        Symbol leftSymbol = spy(concreteRomanSymbol());
         Symbol rightSymbol = mock(Symbol.class);
-        when(rightSymbol.canSubstract(leftSymbol)).thenReturn(true);
-
-        boolean canBePlaced = canSymbolBePlacedbBefore(leftSymbol, rightSymbol);
+        when(leftSymbol.getValue()).thenReturn(1);
+        when(rightSymbol.getValue()).thenReturn(1);
+        
+        boolean canBePlaced = leftSymbol.canBePlacedBefore(rightSymbol);
 
         assertThat(canBePlaced, is(true));
     }
 
     @Test
     public void symbol_can_be_placed_before_if_is_substractable_symbol() {
-        boolean leftSymbolCanBeSubstractedFromRightSymbol = true;
+        Symbol leftSymbol = spy(concreteRomanSymbol());
+        Symbol rightSymbol = mock(Symbol.class);
+        when(rightSymbol.canSubstract(leftSymbol)).thenReturn(true);
 
-        boolean canBePlaced = leftSymbolCanBeSubstractedFromRightSymbol;
+        boolean canBePlaced = leftSymbol.canBePlacedBefore(rightSymbol);
 
         assertThat(canBePlaced, is(true));
     }
 
-    protected boolean canSymbolBePlacedbBefore(Symbol leftSymbol, Symbol rightSymbol) {
-        if (rightSymbol.canSubstract(leftSymbol)) {
-            return true;
-        } else if (leftSymbol.getValue() > rightSymbol.getValue()) {
-            return true;
-        }
-        
-        return false;
+
+    protected Symbol concreteRomanSymbol() {
+        return RomanSymbolFactory.fromString("I");
     }
     
     //~~~~~~~
@@ -194,7 +192,7 @@ public class AppTest {
         public boolean canBePlacedBefore(Symbol rightSymbol) {
             if (rightSymbol.canSubstract(this)) {
                 return true;
-            } else if (this.getValue() > rightSymbol.getValue()) {
+            } else if (this.getValue() >= rightSymbol.getValue()) {
                 return true;
             }
 
