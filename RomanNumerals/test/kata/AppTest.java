@@ -28,6 +28,11 @@ public class AppTest {
     public void value_of_X_is_10() {
         assertThat(valueOf("X"), is(10));
     }
+    
+    @Test
+    public void value_of_L_is_50() {
+        assertThat(valueOf("L"), is(50));
+    }
 
     protected int valueOf(String symbol) {
         if ("I".equals(symbol)) {
@@ -38,7 +43,10 @@ public class AppTest {
         } else 
         if ("X".equals(symbol)) {
             return 10;
-        } 
+        } else 
+        if ("L".equals(symbol)) {
+            return 50;
+        }
         
         
         return 1;
