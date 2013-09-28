@@ -109,6 +109,16 @@ public class AppTest {
         assertThat(canBePlaced, is(true));
     }
     
+    @Test
+    public void C_can_be_placed_before_M() {
+        String leftSymbol = "C";
+        String rightSymbol = "M";
+        
+        boolean canBePlaced = canSymbolBePlacedBefore(rightSymbol, leftSymbol);
+        
+        assertThat(canBePlaced, is(true));
+    }
+    
     //~~~~~~~
 
     protected int valueOf(String symbol) {
@@ -152,6 +162,9 @@ public class AppTest {
         } else 
         if ("C".equals(leftSymbol)) {
             if ("D".equals(rightSymbol)) {
+                return true;
+            } else
+            if ("M".equals(rightSymbol)) {
                 return true;
             }
         } 
