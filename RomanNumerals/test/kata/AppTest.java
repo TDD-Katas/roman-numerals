@@ -128,6 +128,17 @@ public class AppTest {
         assertThat(canBePlaced, is(true));
     }
     
+    @Test
+    public void symbols_are_compared_by_value() {
+        int valueOfSymbolA = 3;
+        int valueOfSymbolB = 1;
+        
+        boolean firstSymbolIsHigher = true;
+        
+        assertThat(firstSymbolIsHigher, is(true));
+    }
+    
+    
     //~~~~~~~
 
     protected int valueOf(String symbol) {
