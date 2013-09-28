@@ -171,8 +171,8 @@ public class AppTest {
             return value;
         }
 
-        public RomanLiteral getSubstractionLiteral() {
-            return substractionLiteral;
+        public boolean canSubstract(RomanLiteral literalToSubstract) {
+            return substractionLiteral.equals(literalToSubstract);
         }
     }
 
@@ -188,12 +188,6 @@ public class AppTest {
         RomanLiteral rightLiteral = RomanLiteral.fromString(rightSymbol);
         RomanLiteral leftLiteral = RomanLiteral.fromString(leftSymbol);
         
-        RomanLiteral substractionLiteral = rightLiteral.getSubstractionLiteral();
-        
-        if (substractionLiteral.equals(leftLiteral)) {
-            return true;
-        }
-        
-        return false;
+        return rightLiteral.canSubstract(leftLiteral);
     }
 }
