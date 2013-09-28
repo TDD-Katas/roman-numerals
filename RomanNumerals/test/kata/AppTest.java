@@ -93,9 +93,8 @@ public class AppTest {
     @Test
     public void symbol_can_be_placed_before_if_it_is_heigher() {
         Symbol leftSymbol = mock(Symbol.class);
-        when(leftSymbol.getValue()).thenReturn(2);
-        
         Symbol rightSymbol = mock(Symbol.class);
+        when(leftSymbol.getValue()).thenReturn(2);
         when(rightSymbol.getValue()).thenReturn(1);
         
         boolean canBePlaced = canSymbolBePlacedbBefore(leftSymbol, rightSymbol);
@@ -105,9 +104,11 @@ public class AppTest {
     
     @Test
     public void symbol_can_be_placed_before_if_it_is_equal() {
-        boolean leftSymbolIsHigherthanRightSymbol = true;
+        Symbol leftSymbol = mock(Symbol.class);
+        Symbol rightSymbol = mock(Symbol.class);
+        when(rightSymbol.canSubstract(leftSymbol)).thenReturn(true);
 
-        boolean canBePlaced = leftSymbolIsHigherthanRightSymbol;
+        boolean canBePlaced = canSymbolBePlacedbBefore(leftSymbol, rightSymbol);
 
         assertThat(canBePlaced, is(true));
     }
@@ -122,7 +123,13 @@ public class AppTest {
     }
 
     protected boolean canSymbolBePlacedbBefore(Symbol leftSymbol, Symbol rightSymbol) {
-        return leftSymbol.getValue() > rightSymbol.getValue();
+        if (rightSymbol.canSubstract(leftSymbol)) {
+            return true;
+        } else if (leftSymbol.getValue() > rightSymbol.getValue()) {
+            return true;
+        }
+        
+        return false;
     }
     
     //~~~~~~~
