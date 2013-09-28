@@ -135,44 +135,60 @@ public class AppTest {
     //~~~~~~~
     
     interface Symbol {
+        String getLiteral();
         int getValue();
         boolean canSubstract(Symbol symbol);
         boolean canBePlacedBefore(Symbol symbol);
     }
     
-    enum RomanSymbol implements Symbol{
+    static class RomanSymbolFactory {
+        private static final Symbol I = new RomanSymbol("I", 1, null);
+        private static final Symbol V = new RomanSymbol("V", 5, I);
+        private static final Symbol X = new RomanSymbol("X", 10, I);
+        private static final Symbol L = new RomanSymbol("L", 50, X);
+        private static final Symbol C = new RomanSymbol("C", 100, X);
+        private static final Symbol D = new RomanSymbol("D", 500, C);
+        private static final Symbol M = new RomanSymbol("M", 1000, C);
+        private static final Symbol[] ROMAN_SYMBOLS = {
+            I,V,X,L,C,D,M
+        };
 
-        I(1, null),
-        V(5, I),
-        X(10, I),
-        L(50, X),
-        C(100, X),
-        D(500, C),
-        M(1000, C);
-        int value;
-        RomanSymbol substractionLiteral;
-
-        public static RomanSymbol fromString(String symbol) {
-            RomanSymbol chosenLiteral = null;
-            for (RomanSymbol romanLiteral : RomanSymbol.values()) {
-                if (romanLiteral.name().equals(symbol)) {
-                    chosenLiteral = romanLiteral;
+        private RomanSymbolFactory() {
+        }
+        
+        public static Symbol fromString(String symbol) {
+            Symbol chosenSymbol = null;
+            for (Symbol romanLiteral : ROMAN_SYMBOLS) {
+                if (romanLiteral.getLiteral().equals(symbol)) {
+                    chosenSymbol = romanLiteral;
                 }
             }
-            return chosenLiteral;
+            return chosenSymbol;
         }
+        
+    }
+    
+    static class RomanSymbol implements Symbol {
+        private final String literal;
+        private final int value;
+        private final Symbol substractionSymbol;
 
-        private RomanSymbol(int value, RomanSymbol substractionLiteral) {
+        public RomanSymbol(String literal, int value, Symbol substractionSymbol) {
+            this.literal = literal;
             this.value = value;
-            this.substractionLiteral = substractionLiteral;
+            this.substractionSymbol = substractionSymbol;
         }
 
+        public String getLiteral() {
+            return literal;
+        }
+        
         public int getValue() {
             return value;
         }
 
         public boolean canSubstract(Symbol literalToSubstract) {
-            return substractionLiteral.equals(literalToSubstract);
+            return substractionSymbol.equals(literalToSubstract);
         }
         
         public boolean canBePlacedBefore(Symbol rightSymbol) {
@@ -187,7 +203,7 @@ public class AppTest {
     }
 
     protected Symbol romanSymbol(String symbol) {
-        return RomanSymbol.fromString(symbol);
+        return RomanSymbolFactory.fromString(symbol);
     }
 
     protected int valueOf(String symbol) {

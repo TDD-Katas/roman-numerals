@@ -2,6 +2,8 @@ UnusedLocalVariable
 JUnitAssertionsShouldIncludeMessage
 LongVariable
 MethodArgumentCouldBeFinal
+ShortVariable
 MethodNamingConventions
+BeanMembersShouldSerialize
 DataflowAnomalyAnalysis
 LocalVariableCouldBeFinal
