@@ -120,10 +120,10 @@ public class AppTest {
     }
     
     @Test
-    public void higher_symbol_can_be_placed_before_lower_symbol() {
-        boolean leftSymbolIsHigher = true;
+    public void higher_symbol_can_be_placed_before_lower_or_equal_symbol() {
+        boolean leftSymbolIsHigherOrEqualThanRightSymbol = true;
         
-        boolean canBePlaced = leftSymbolIsHigher;
+        boolean canBePlaced = leftSymbolIsHigherOrEqualThanRightSymbol;
         
         assertThat(canBePlaced, is(true));
     }
