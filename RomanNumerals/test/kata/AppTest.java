@@ -38,6 +38,11 @@ public class AppTest {
     public void value_of_C_is_100() {
         assertThat(valueOf("C"), is(100));
     }
+    
+    @Test
+    public void value_of_D_is_500() {
+        assertThat(valueOf("D"), is(500));
+    }
 
     protected int valueOf(String symbol) {
         if ("I".equals(symbol)) {
@@ -54,6 +59,9 @@ public class AppTest {
         } else 
         if ("C".equals(symbol)) {
             return 100;
+        } else 
+        if ("D".equals(symbol)) {
+            return 500;
         }
         
         
