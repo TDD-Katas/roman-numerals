@@ -14,9 +14,12 @@ import org.junit.Ignore;
  */
 public class AppTest {
     
-    @Ignore
     @Test
-    public void main_does() {
-        fail("The test case is a prototype.");
+    public void I_is_1() {
+        String symbol = "I";
+        
+        int value = 1;
+        
+        assertEquals(1,value);
     }
 }
