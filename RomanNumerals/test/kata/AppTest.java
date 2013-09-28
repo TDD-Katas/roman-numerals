@@ -179,30 +179,24 @@ public class AppTest {
     
     
     protected boolean canSymbolBeSubstractedFrom(String rightSymbol, String leftSymbol) {
-        if ("I".equals(leftSymbol)) {
-            if ("V".equals(rightSymbol)) {
-                return true;
-            } else
-            if ("X".equals(rightSymbol)) {
-                return true;
-            }
-        } else 
-        if ("X".equals(leftSymbol)) {
-            if ("L".equals(rightSymbol)) {
-                return true;
-            } else
-            if ("C".equals(rightSymbol)) {
-                return true;
-            }
-        } else 
-        if ("C".equals(leftSymbol)) {
-            if ("D".equals(rightSymbol)) {
-                return true;
-            } else
-            if ("M".equals(rightSymbol)) {
-                return true;
-            }
-        } 
+        if ("V".equals(rightSymbol) || "I".equals(leftSymbol)) {
+            return true;
+        } else
+        if ("X".equals(rightSymbol) || "I".equals(leftSymbol)) {
+            return true;
+        } else
+        if ("L".equals(rightSymbol) || "X".equals(leftSymbol)) {
+            return true;
+        } else
+        if ("C".equals(rightSymbol) || "X".equals(leftSymbol)) {
+            return true;
+        } else
+        if ("D".equals(rightSymbol) || "C".equals(leftSymbol)) {
+            return true;
+        } else
+        if ("M".equals(rightSymbol) || "C".equals(leftSymbol)) {
+            return true;
+        }
         
         return false;
     }
