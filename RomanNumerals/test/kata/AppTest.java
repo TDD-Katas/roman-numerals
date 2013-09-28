@@ -139,12 +139,26 @@ public class AppTest {
     
     
     //~~~~~~~
-    
+        
+    enum RomanLiteral {
+        I(1);
+        
+        int value;
 
+        private RomanLiteral(int value) {
+            this.value = value;
+        }
+        
+        int getValue() {
+            return value;
+        }
+    }
+
+    
     protected int valueOf(String symbol) {
         int symbolValue = 0;
         if ("I".equals(symbol)) {
-            symbolValue = 1;
+            symbolValue = RomanLiteral.I.getValue();;
         } else if ("V".equals(symbol)) {
             symbolValue = 5;
         } else if ("X".equals(symbol)) {
@@ -163,6 +177,7 @@ public class AppTest {
         return symbolValue;
     }
 
+    
     
     protected boolean canSymbolBeSubstractedFrom(String rightSymbol, String leftSymbol) {
         if ("I".equals(leftSymbol)) {
