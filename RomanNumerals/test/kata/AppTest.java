@@ -4,7 +4,7 @@
  */
 package kata;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.is;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -103,13 +103,10 @@ public class AppTest {
 
     @Test
     public void symbol_can_be_placed_before_if_is_substractable_symbol() {
-        Symbol leftSymbol = spy(concreteRomanSymbol());
-        Symbol rightSymbol = spy(concreteRomanSymbol());
-        when(rightSymbol.canSubstract(leftSymbol)).thenReturn(true);
+        Symbol substractionSymbol = concreteRomanSymbol();
+        Symbol romanSymbol = romanSymbolThatSubstractsAll();
 
-        boolean canBePlaced = leftSymbol.canBePlacedBefore(rightSymbol);
-
-        assertThat(canBePlaced, is(true));
+       assertTrue(substractionSymbol.canBePlacedBefore(romanSymbol));
     }
 
     
@@ -130,6 +127,11 @@ public class AppTest {
         return symbol;
     }
     
+    private Symbol romanSymbolThatSubstractsAll() {
+        Symbol symbol = spy(concreteRomanSymbol());
+        when(symbol.canSubstract(any(Symbol.class))).thenReturn(true);
+        return symbol;
+    }
 
     //~~~~~~~
     
