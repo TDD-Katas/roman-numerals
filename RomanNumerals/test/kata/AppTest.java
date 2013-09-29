@@ -120,14 +120,17 @@ public class AppTest {
     }
     
     @Test
-    public void a_roman_number_should_respect_symbols_placing_rules() {
-        String number;
-        boolean everySymbolIsPlacedCorrrectly = true;
+    public void a_valid_roman_number_should_respect_symbols_placing_rules() {
+        String romanNumber;
+        boolean everySymbolRespectsPlacingRules = true;
         
-        boolean isValid = everySymbolIsPlacedCorrrectly;
+        boolean isValid = everySymbolRespectsPlacingRules;
         
         assertTrue(isValid);
     }
+    
+    
+    
     
     //~~ stubs
 
