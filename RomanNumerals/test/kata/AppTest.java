@@ -17,37 +17,37 @@ public class AppTest {
 
     @Test
     public void value_of_I_is_1() {
-        assertThat(valueOf("I"), is(1));
+        assertThat(valueOf(romanSymbol("I")), is(1));
     }
 
     @Test
     public void value_of_V_is_5() {
-        assertThat(valueOf("V"), is(5));
+        assertThat(valueOf(romanSymbol("V")), is(5));
     }
 
     @Test
     public void value_of_X_is_10() {
-        assertThat(valueOf("X"), is(10));
+        assertThat(valueOf(romanSymbol("X")), is(10));
     }
 
     @Test
     public void value_of_L_is_50() {
-        assertThat(valueOf("L"), is(50));
+        assertThat(valueOf(romanSymbol("L")), is(50));
     }
 
     @Test
     public void value_of_C_is_100() {
-        assertThat(valueOf("C"), is(100));
+        assertThat(valueOf(romanSymbol("C")), is(100));
     }
 
     @Test
     public void value_of_D_is_500() {
-        assertThat(valueOf("D"), is(500));
+        assertThat(valueOf(romanSymbol("D")), is(500));
     }
 
     @Test
     public void value_of_M_is_1000() {
-        assertThat(valueOf("M"), is(1000));
+        assertThat(valueOf(romanSymbol("M")), is(1000));
     }
 
     @Test
@@ -222,7 +222,7 @@ public class AppTest {
         return RomanSymbolFactory.fromString(symbol);
     }
 
-    protected int valueOf(String symbol) {
-        return romanSymbol(symbol).getValue();
+    protected int valueOf(Symbol symbol) {
+        return symbol.getValue();
     }
 }
