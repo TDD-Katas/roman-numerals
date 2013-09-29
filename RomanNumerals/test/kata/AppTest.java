@@ -120,6 +120,17 @@ public class AppTest {
     }
     
     @Test
+    public void a_symbol_is_substracted_if_placed_before_dominant_symbol() {
+        Symbol symbol = concreteRomanSymbol();
+        Symbol symbolBefore = romanSymbolThatSubstractsAll();
+
+        boolean isSubstracted = symbolBefore.canSubstract(symbol);
+        
+       assertTrue(isSubstracted);
+    }
+    
+    
+    @Test
     public void a_valid_roman_number_should_respect_symbols_placing_rules() {
         String romanNumber;
         boolean everySymbolRespectsPlacingRules = true;
