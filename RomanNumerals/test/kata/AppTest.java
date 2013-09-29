@@ -97,28 +97,12 @@ public class AppTest {
 
     @Test
     public void symbol_can_be_placed_before_if_it_is_heigher() {
-        Symbol leftSymbol;
-        leftSymbol = romanSymbolWithPresetValue(1);
-        
-        Symbol rightSymbol = mockRomanSymbol();
-        stubSymbolValue(rightSymbol, 1);
-        
-        boolean canBePlaced = leftSymbol.canBePlacedBefore(rightSymbol);
-
-        assertThat(canBePlaced, is(true));
+        assertTrue(romanSymbolWithValue(2).canBePlacedBefore(romanSymbolWithValue(1)));
     }
     
     @Test
     public void symbol_can_be_placed_before_if_it_is_equal() {
-        Symbol leftSymbol = spy(concreteRomanSymbol());
-        stubSymbolValue(leftSymbol, 1);
-        
-        Symbol rightSymbol = mockRomanSymbol();
-        stubSymbolValue(leftSymbol, 1);
-        
-        boolean canBePlaced = leftSymbol.canBePlacedBefore(rightSymbol);
-
-        assertThat(canBePlaced, is(true));
+        assertTrue(romanSymbolWithValue(1).canBePlacedBefore(romanSymbolWithValue(1)));
     }
 
     @Test
@@ -145,7 +129,7 @@ public class AppTest {
         when(leftSymbol.getValue()).thenReturn(value);
     }
 
-    protected Symbol romanSymbolWithPresetValue(int value) {
+    protected Symbol romanSymbolWithValue(int value) {
         Symbol leftSymbol;
         leftSymbol = spy(concreteRomanSymbol());
         stubSymbolValue(leftSymbol, value);
