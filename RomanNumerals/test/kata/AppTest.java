@@ -59,7 +59,7 @@ public class AppTest {
 
         assertThat(computedValue, is(valueOfSymbol1 + valueOfSymbol2));
     }
-
+    
     @Test
     public void V_can_substract_I() {
         assertTrue(romanSymbol("V").canSubstract(romanSymbol("I")));
@@ -88,6 +88,11 @@ public class AppTest {
     @Test
     public void M_can_substract_C() {
         assertTrue(romanSymbol("M").canSubstract(romanSymbol("C")));
+    }
+    
+    @Test
+    public void I_cannot_substract_V() {
+        assertFalse(romanSymbol("I").canSubstract(romanSymbol("V")));
     }
 
     @Test
@@ -203,7 +208,14 @@ public class AppTest {
         }
 
         public boolean canSubstract(Symbol literalToSubstract) {
-            return substractionSymbol.equals(literalToSubstract);
+            boolean canSubstract;
+            if (substractionSymbol != null) {
+                canSubstract = substractionSymbol.equals(literalToSubstract);
+            } else {
+                canSubstract = false;
+            }
+            
+            return canSubstract;
         }
         
         public boolean canBePlacedBefore(Symbol rightSymbol) {
