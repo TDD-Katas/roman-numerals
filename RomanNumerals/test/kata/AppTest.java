@@ -208,11 +208,9 @@ public class AppTest {
         }
 
         public boolean canSubstract(Symbol literalToSubstract) {
-            boolean canSubstract;
+            boolean canSubstract = false;
             if (substractionSymbol != null) {
                 canSubstract = substractionSymbol.equals(literalToSubstract);
-            } else {
-                canSubstract = false;
             }
             
             return canSubstract;
