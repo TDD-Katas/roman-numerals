@@ -17,37 +17,37 @@ public class AppTest {
 
     @Test
     public void value_of_I_is_1() {
-        assertThat(valueOf(I()), is(1));
+        assertThat(valueOf(I), is(1));
     }
 
     @Test
     public void value_of_V_is_5() {
-        assertThat(valueOf(V()), is(5));
+        assertThat(valueOf(V), is(5));
     }
 
     @Test
     public void value_of_X_is_10() {
-        assertThat(valueOf(X()), is(10));
+        assertThat(valueOf(X), is(10));
     }
 
     @Test
     public void value_of_L_is_50() {
-        assertThat(valueOf(L()), is(50));
+        assertThat(valueOf(L), is(50));
     }
 
     @Test
     public void value_of_C_is_100() {
-        assertThat(valueOf(C()), is(100));
+        assertThat(valueOf(C), is(100));
     }
 
     @Test
     public void value_of_D_is_500() {
-        assertThat(valueOf(D()), is(500));
+        assertThat(valueOf(D), is(500));
     }
 
     @Test
     public void value_of_M_is_1000() {
-        assertThat(valueOf(M()), is(1000));
+        assertThat(valueOf(M), is(1000));
     }
 
     @Test
@@ -62,37 +62,37 @@ public class AppTest {
     
     @Test
     public void V_can_substract_I() {
-        assertTrue(V().canSubstract(I()));
+        assertTrue(V.canSubstract(I));
     }
 
     @Test
     public void X_can_substract_I() {
-        assertTrue(X().canSubstract(I()));
+        assertTrue(X.canSubstract(I));
     }
 
     @Test
     public void L_can_substract_X() {
-        assertTrue(L().canSubstract(X()));
+        assertTrue(L.canSubstract(X));
     }
 
     @Test
     public void C_can_substract_X() {
-        assertTrue(C().canSubstract(X()));
+        assertTrue(C.canSubstract(X));
     }
 
     @Test
     public void D_can_substract_C() {
-        assertTrue(D().canSubstract(C()));
+        assertTrue(D.canSubstract(C));
     }
 
     @Test
     public void M_can_substract_C() {
-        assertTrue(M().canSubstract(C()));
+        assertTrue(M.canSubstract(C));
     }
     
     @Test
     public void I_cannot_substract_V() {
-        assertFalse(I().canSubstract(V()));
+        assertFalse(I.canSubstract(V));
     }
 
     @Test
@@ -142,41 +142,14 @@ public class AppTest {
         return leftSymbol;
     }
 
-        private static final Symbol I = new RomanSymbol("I", 1, null);
-        private static final Symbol V = new RomanSymbol("V", 5, I);
-        private static final Symbol X = new RomanSymbol("X", 10, I);
-        private static final Symbol L = new RomanSymbol("L", 50, X);
-        private static final Symbol C = new RomanSymbol("C", 100, X);
-        private static final Symbol D = new RomanSymbol("D", 500, C);
-        private static final Symbol M = new RomanSymbol("M", 1000, C);
+    public static final Symbol I = new RomanSymbol("I", 1, null);
+    public static final Symbol V = new RomanSymbol("V", 5, I);
+    public static final Symbol X = new RomanSymbol("X", 10, I);
+    public static final Symbol L = new RomanSymbol("L", 50, X);
+    public static final Symbol C = new RomanSymbol("C", 100, X);
+    public static final Symbol D = new RomanSymbol("D", 500, C);
+    public static final Symbol M = new RomanSymbol("M", 1000, C);
     
-    protected Symbol I() {
-        return I;
-    }
-
-    protected Symbol V() {
-        return V;
-    }
-
-    protected Symbol X() {
-        return X;
-    }
-
-    protected Symbol L() {
-        return L;
-    }
-
-    protected Symbol C() {
-        return C;
-    }
-
-    protected Symbol D() {
-        return D;
-    }
-
-    protected Symbol M() {
-        return M;
-    }
     
     //~~~~~~~
     
