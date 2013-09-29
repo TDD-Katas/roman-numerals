@@ -97,7 +97,10 @@ public class AppTest {
 
     @Test
     public void symbol_can_be_placed_before_if_it_is_heigher() {
-        assertTrue(romanSymbolWithValue(2).canBePlacedBefore(romanSymbolWithValue(1)));
+        Symbol romanSymbolWithHighValue = romanSymbolWithValue(2);
+        Symbol romanSymbolWithLowValue = romanSymbolWithValue(1);
+        
+        assertTrue(romanSymbolWithHighValue.canBePlacedBefore(romanSymbolWithLowValue));
     }
     
     @Test
