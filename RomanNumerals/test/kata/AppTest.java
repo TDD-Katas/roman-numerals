@@ -51,16 +51,6 @@ public class AppTest {
     }
 
     @Test
-    public void value_is_computed_by_adding_symbols_values() {
-        int valueOfSymbol1 = 1;
-        int valueOfSymbol2 = 2;
-
-        int computedValue = valueOfSymbol1 + valueOfSymbol2;
-
-        assertThat(computedValue, is(valueOfSymbol1 + valueOfSymbol2));
-    }
-    
-    @Test
     public void V_can_substract_I() {
         assertTrue(V.canSubstract(I));
     }
