@@ -110,7 +110,7 @@ public class AppTest {
     }
 
     @Test
-    public void the_context_value_of_a_regular_symbol_is_its_value() {
+    public void the_context_value_of_a_non_substracted_symbol_is_its_value() {
         boolean symbolIsSubstracted = false;
         int absoluteValue = 1;
         
@@ -120,7 +120,7 @@ public class AppTest {
     }
     
     @Test
-    public void the_context_value_of_a_substractied_symbol_is_its_negative_value() {
+    public void the_context_value_of_a_substracted_symbol_is_its_negative_value() {
         boolean symbolIsSubstracted = true;
         int absoluteValue = 1;
         
@@ -187,10 +187,10 @@ public class AppTest {
 
     protected int computeContextValue(boolean symbolIsSubstracted, int absoluteValue) {
         int contextValue;
-        if (!symbolIsSubstracted) {
-            contextValue = absoluteValue;
-        } else {
+        if (symbolIsSubstracted) {
             contextValue = -absoluteValue;
+        } else {
+            contextValue = absoluteValue;
         }
     
         return contextValue;
