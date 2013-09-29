@@ -17,37 +17,37 @@ public class AppTest {
 
     @Test
     public void value_of_I_is_1() {
-        assertThat(valueOf(romanSymbol("I")), is(1));
+        assertThat(valueOf(I()), is(1));
     }
 
     @Test
     public void value_of_V_is_5() {
-        assertThat(valueOf(romanSymbol("V")), is(5));
+        assertThat(valueOf(V()), is(5));
     }
 
     @Test
     public void value_of_X_is_10() {
-        assertThat(valueOf(romanSymbol("X")), is(10));
+        assertThat(valueOf(X()), is(10));
     }
 
     @Test
     public void value_of_L_is_50() {
-        assertThat(valueOf(romanSymbol("L")), is(50));
+        assertThat(valueOf(L()), is(50));
     }
 
     @Test
     public void value_of_C_is_100() {
-        assertThat(valueOf(romanSymbol("C")), is(100));
+        assertThat(valueOf(C()), is(100));
     }
 
     @Test
     public void value_of_D_is_500() {
-        assertThat(valueOf(romanSymbol("D")), is(500));
+        assertThat(valueOf(D()), is(500));
     }
 
     @Test
     public void value_of_M_is_1000() {
-        assertThat(valueOf(romanSymbol("M")), is(1000));
+        assertThat(valueOf(M()), is(1000));
     }
 
     @Test
@@ -62,37 +62,37 @@ public class AppTest {
     
     @Test
     public void V_can_substract_I() {
-        assertTrue(romanSymbol("V").canSubstract(romanSymbol("I")));
+        assertTrue(V().canSubstract(I()));
     }
 
     @Test
     public void X_can_substract_I() {
-        assertTrue(romanSymbol("X").canSubstract(romanSymbol("I")));
+        assertTrue(X().canSubstract(I()));
     }
 
     @Test
     public void L_can_substract_X() {
-        assertTrue(romanSymbol("L").canSubstract(romanSymbol("X")));
+        assertTrue(L().canSubstract(X()));
     }
 
     @Test
     public void C_can_substract_X() {
-        assertTrue(romanSymbol("C").canSubstract(romanSymbol("X")));
+        assertTrue(C().canSubstract(X()));
     }
 
     @Test
     public void D_can_substract_C() {
-        assertTrue(romanSymbol("D").canSubstract(romanSymbol("C")));
+        assertTrue(D().canSubstract(C()));
     }
 
     @Test
     public void M_can_substract_C() {
-        assertTrue(romanSymbol("M").canSubstract(romanSymbol("C")));
+        assertTrue(M().canSubstract(C()));
     }
     
     @Test
     public void I_cannot_substract_V() {
-        assertFalse(romanSymbol("I").canSubstract(romanSymbol("V")));
+        assertFalse(I().canSubstract(V()));
     }
 
     @Test
@@ -140,6 +140,34 @@ public class AppTest {
         leftSymbol = spy(concreteRomanSymbol());
         stubSymbolValue(leftSymbol, value);
         return leftSymbol;
+    }
+
+    protected Symbol I() {
+        return romanSymbol("I");
+    }
+
+    protected Symbol V() {
+        return romanSymbol("V");
+    }
+
+    protected Symbol X() {
+        return romanSymbol("X");
+    }
+
+    protected Symbol L() {
+        return romanSymbol("L");
+    }
+
+    protected Symbol C() {
+        return romanSymbol("C");
+    }
+
+    protected Symbol D() {
+        return romanSymbol("D");
+    }
+
+    protected Symbol M() {
+        return romanSymbol("M");
     }
     
     //~~~~~~~
