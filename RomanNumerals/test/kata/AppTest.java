@@ -123,35 +123,34 @@ public class AppTest {
     }
 
 
-    protected Symbol concreteRomanSymbol() {
+    private Symbol concreteRomanSymbol() {
         return new RomanSymbol("", 1, null);
     }
 
-    protected Symbol mockRomanSymbol() {
+    private Symbol mockRomanSymbol() {
         return mock(Symbol.class);
     }
 
-    protected void stubSymbolValue(Symbol leftSymbol, int value) {
+    private void stubSymbolValue(Symbol leftSymbol, int value) {
         when(leftSymbol.getValue()).thenReturn(value);
     }
 
-    protected Symbol romanSymbolWithValue(int value) {
+    private Symbol romanSymbolWithValue(int value) {
         Symbol leftSymbol;
         leftSymbol = spy(concreteRomanSymbol());
         stubSymbolValue(leftSymbol, value);
         return leftSymbol;
     }
 
-    public static final Symbol I = new RomanSymbol("I", 1, null);
-    public static final Symbol V = new RomanSymbol("V", 5, I);
-    public static final Symbol X = new RomanSymbol("X", 10, I);
-    public static final Symbol L = new RomanSymbol("L", 50, X);
-    public static final Symbol C = new RomanSymbol("C", 100, X);
-    public static final Symbol D = new RomanSymbol("D", 500, C);
-    public static final Symbol M = new RomanSymbol("M", 1000, C);
-    
-    
     //~~~~~~~
+    
+    private static final Symbol I = new RomanSymbol("I", 1, null);
+    private static final Symbol V = new RomanSymbol("V", 5, I);
+    private static final Symbol X = new RomanSymbol("X", 10, I);
+    private static final Symbol L = new RomanSymbol("L", 50, X);
+    private static final Symbol C = new RomanSymbol("C", 100, X);
+    private static final Symbol D = new RomanSymbol("D", 500, C);
+    private static final Symbol M = new RomanSymbol("M", 1000, C);   
     
     interface Symbol {
         String getLiteral();
@@ -200,7 +199,7 @@ public class AppTest {
         }
     }
 
-    protected int valueOf(Symbol symbol) {
+    private int valueOf(Symbol symbol) {
         return symbol.getValue();
     }
 }
