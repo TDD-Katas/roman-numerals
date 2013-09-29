@@ -114,10 +114,7 @@ public class AppTest {
         boolean symbolIsSubstracted = false;
         int absoluteValue = 1;
         
-        int contextValue = 0;
-        if (!symbolIsSubstracted) {
-            contextValue = absoluteValue;
-        }
+        int contextValue = computeContextValue(symbolIsSubstracted, absoluteValue);
         
        assertThat(contextValue, is(absoluteValue));
     }
@@ -127,10 +124,7 @@ public class AppTest {
         boolean symbolIsSubstracted = true;
         int absoluteValue = 1;
         
-         int contextValue = 0;
-        if (symbolIsSubstracted) {
-            contextValue = -absoluteValue;
-        }
+        int contextValue = computeContextValue(symbolIsSubstracted, absoluteValue);
         
        assertThat(contextValue, is(-absoluteValue));
     }
@@ -190,6 +184,17 @@ public class AppTest {
     private static final Symbol C = new RomanSymbol("C", 100, X);
     private static final Symbol D = new RomanSymbol("D", 500, C);
     private static final Symbol M = new RomanSymbol("M", 1000, C);   
+
+    protected int computeContextValue(boolean symbolIsSubstracted, int absoluteValue) {
+        int contextValue;
+        if (!symbolIsSubstracted) {
+            contextValue = absoluteValue;
+        } else {
+            contextValue = -absoluteValue;
+        }
+    
+        return contextValue;
+    }
     
     interface Symbol {
         String getLiteral();
