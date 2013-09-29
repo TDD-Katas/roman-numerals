@@ -124,7 +124,7 @@ public class AppTest {
 
 
     protected Symbol concreteRomanSymbol() {
-        return RomanSymbolFactory.fromString("I");
+        return new RomanSymbol("", 1, null);
     }
 
     protected Symbol mockRomanSymbol() {
@@ -142,32 +142,40 @@ public class AppTest {
         return leftSymbol;
     }
 
+        private static final Symbol I = new RomanSymbol("I", 1, null);
+        private static final Symbol V = new RomanSymbol("V", 5, I);
+        private static final Symbol X = new RomanSymbol("X", 10, I);
+        private static final Symbol L = new RomanSymbol("L", 50, X);
+        private static final Symbol C = new RomanSymbol("C", 100, X);
+        private static final Symbol D = new RomanSymbol("D", 500, C);
+        private static final Symbol M = new RomanSymbol("M", 1000, C);
+    
     protected Symbol I() {
-        return romanSymbol("I");
+        return I;
     }
 
     protected Symbol V() {
-        return romanSymbol("V");
+        return V;
     }
 
     protected Symbol X() {
-        return romanSymbol("X");
+        return X;
     }
 
     protected Symbol L() {
-        return romanSymbol("L");
+        return L;
     }
 
     protected Symbol C() {
-        return romanSymbol("C");
+        return C;
     }
 
     protected Symbol D() {
-        return romanSymbol("D");
+        return D;
     }
 
     protected Symbol M() {
-        return romanSymbol("M");
+        return M;
     }
     
     //~~~~~~~
@@ -177,33 +185,6 @@ public class AppTest {
         int getValue();
         boolean canSubstract(Symbol symbol);
         boolean canBePlacedBefore(Symbol symbol);
-    }
-    
-    static class RomanSymbolFactory {
-        private static final Symbol I = new RomanSymbol("I", 1, null);
-        private static final Symbol V = new RomanSymbol("V", 5, I);
-        private static final Symbol X = new RomanSymbol("X", 10, I);
-        private static final Symbol L = new RomanSymbol("L", 50, X);
-        private static final Symbol C = new RomanSymbol("C", 100, X);
-        private static final Symbol D = new RomanSymbol("D", 500, C);
-        private static final Symbol M = new RomanSymbol("M", 1000, C);
-        private static final Symbol[] ROMAN_SYMBOLS = {
-            I,V,X,L,C,D,M
-        };
-
-        private RomanSymbolFactory() {
-        }
-        
-        public static Symbol fromString(String symbol) {
-            Symbol chosenSymbol = null;
-            for (Symbol romanLiteral : ROMAN_SYMBOLS) {
-                if (romanLiteral.getLiteral().equals(symbol)) {
-                    chosenSymbol = romanLiteral;
-                }
-            }
-            return chosenSymbol;
-        }
-        
     }
     
     static class RomanSymbol implements Symbol {
@@ -244,10 +225,6 @@ public class AppTest {
 
             return canBePlaced;
         }
-    }
-
-    protected Symbol romanSymbol(String symbol) {
-        return RomanSymbolFactory.fromString(symbol);
     }
 
     protected int valueOf(Symbol symbol) {
