@@ -104,7 +104,7 @@ public class AppTest {
     @Test
     public void symbol_can_be_placed_before_if_is_substractable_symbol() {
         Symbol leftSymbol = spy(concreteRomanSymbol());
-        Symbol rightSymbol = mockRomanSymbol();
+        Symbol rightSymbol = spy(concreteRomanSymbol());
         when(rightSymbol.canSubstract(leftSymbol)).thenReturn(true);
 
         boolean canBePlaced = leftSymbol.canBePlacedBefore(rightSymbol);
@@ -112,25 +112,24 @@ public class AppTest {
         assertThat(canBePlaced, is(true));
     }
 
+    
+    
+    //~~ stubs
 
     private Symbol concreteRomanSymbol() {
         return new RomanSymbol("", 1, null);
     }
 
-    private Symbol mockRomanSymbol() {
-        return mock(Symbol.class);
-    }
-
-    private void stubSymbolValue(Symbol leftSymbol, int value) {
+    private void prepareSymbolValue(Symbol leftSymbol, int value) {
         when(leftSymbol.getValue()).thenReturn(value);
     }
 
     private Symbol romanSymbolWithValue(int value) {
-        Symbol leftSymbol;
-        leftSymbol = spy(concreteRomanSymbol());
-        stubSymbolValue(leftSymbol, value);
-        return leftSymbol;
+        Symbol symbol = spy(concreteRomanSymbol());
+        prepareSymbolValue(symbol, value);
+        return symbol;
     }
+    
 
     //~~~~~~~
     
