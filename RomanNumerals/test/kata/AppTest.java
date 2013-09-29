@@ -110,13 +110,13 @@ public class AppTest {
     }
 
     @Test
-    public void the_value_of_a_substracted_symbol_is_negated() {
+    public void the_value_of_a_substracted_symbol_is_used_negated() {
         boolean symbolIsSubstracted = true;
-        int symbolValue = 1;
+        int absoluteValue = 1;
         
-        int newValue = -symbolValue;
+        int valueToBeUsed = -absoluteValue;
         
-       assertThat(newValue, is(-symbolValue));
+       assertThat(valueToBeUsed, is(-absoluteValue));
     }
     
     //~~ stubs
