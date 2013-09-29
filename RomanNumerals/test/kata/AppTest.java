@@ -110,7 +110,17 @@ public class AppTest {
     }
 
     @Test
-    public void the_value_of_a_substracted_symbol_is_used_negated() {
+    public void the_context_value_of_a_regular_symbol_is_its_value() {
+        boolean symbolIsSubstracted = true;
+        int absoluteValue = 1;
+        
+        int valueToBeUsed = absoluteValue;
+        
+       assertThat(valueToBeUsed, is(absoluteValue));
+    }
+    
+    @Test
+    public void the_context_value_of_a_substractied_symbol_is_its_negative_value() {
         boolean symbolIsSubstracted = true;
         int absoluteValue = 1;
         
