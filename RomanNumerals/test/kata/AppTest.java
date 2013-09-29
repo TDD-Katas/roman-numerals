@@ -131,15 +131,15 @@ public class AppTest {
     
     
     @Test
-    public void a_valid_roman_number_should_respect_symbols_placing_rules() {
+    public void value_of_roman_numeral_is_sum_of_context_values_of_symbols() {
         String romanNumber;
-        boolean everySymbolRespectsPlacingRules = true;
+        int contextValue1  = 1;
+        int contextValue2 = 2;
         
-        boolean isValid = everySymbolRespectsPlacingRules;
+        int value = contextValue1 + contextValue2;
         
-        assertTrue(isValid);
+        assertThat(value, is(contextValue1+contextValue2));
     }
-    
     
     
     
