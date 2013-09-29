@@ -105,7 +105,10 @@ public class AppTest {
     
     @Test
     public void symbol_can_be_placed_before_if_it_is_equal() {
-        assertTrue(romanSymbolWithValue(1).canBePlacedBefore(romanSymbolWithValue(1)));
+        Symbol romanSymbol = romanSymbolWithValue(1);
+        Symbol romanSymbolWithSameValue = romanSymbolWithValue(1);
+        
+        assertTrue(romanSymbol.canBePlacedBefore(romanSymbolWithSameValue));
     }
 
     @Test
