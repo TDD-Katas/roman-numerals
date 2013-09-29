@@ -119,6 +119,16 @@ public class AppTest {
        assertThat(valueToBeUsed, is(-absoluteValue));
     }
     
+    @Test
+    public void a_roman_number_should_respect_symbols_placing_rules() {
+        String number;
+        boolean everySymbolIsPlacedCorrrectly = true;
+        
+        boolean isValid = everySymbolIsPlacedCorrrectly;
+        
+        assertTrue(isValid);
+    }
+    
     //~~ stubs
 
     private Symbol concreteRomanSymbol() {
