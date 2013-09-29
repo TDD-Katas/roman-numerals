@@ -207,13 +207,14 @@ public class AppTest {
         }
         
         public boolean canBePlacedBefore(Symbol rightSymbol) {
+            boolean canBePlaced = false;
             if (rightSymbol.canSubstract(this)) {
-                return true;
+                canBePlaced = true;
             } else if (this.getValue() >= rightSymbol.getValue()) {
-                return true;
+                canBePlaced = true;
             }
 
-            return false;
+            return canBePlaced;
         }
     }
 
