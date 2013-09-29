@@ -109,7 +109,15 @@ public class AppTest {
        assertTrue(substractionSymbol.canBePlacedBefore(romanSymbol));
     }
 
-    
+    @Test
+    public void the_value_of_a_substracted_symbol_is_negated() {
+        boolean symbolIsSubstracted = true;
+        int symbolValue = 1;
+        
+        int newValue = -symbolValue;
+        
+       assertThat(newValue, is(-symbolValue));
+    }
     
     //~~ stubs
 
