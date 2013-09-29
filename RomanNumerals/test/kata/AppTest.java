@@ -111,12 +111,15 @@ public class AppTest {
 
     @Test
     public void the_context_value_of_a_regular_symbol_is_its_value() {
-        boolean symbolIsSubstracted = true;
+        boolean symbolIsSubstracted = false;
         int absoluteValue = 1;
         
-        int valueToBeUsed = absoluteValue;
+        int contextValue = 0;
+        if (!symbolIsSubstracted) {
+            contextValue = absoluteValue;
+        }
         
-       assertThat(valueToBeUsed, is(absoluteValue));
+       assertThat(contextValue, is(absoluteValue));
     }
     
     @Test
@@ -124,9 +127,12 @@ public class AppTest {
         boolean symbolIsSubstracted = true;
         int absoluteValue = 1;
         
-        int valueToBeUsed = -absoluteValue;
+         int contextValue = 0;
+        if (symbolIsSubstracted) {
+            contextValue = -absoluteValue;
+        }
         
-       assertThat(valueToBeUsed, is(-absoluteValue));
+       assertThat(contextValue, is(-absoluteValue));
     }
     
     @Test
