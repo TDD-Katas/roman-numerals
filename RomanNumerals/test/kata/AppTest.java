@@ -116,9 +116,8 @@ public class AppTest {
     public void the_context_value_of_a_non_substracted_symbol_is_its_value() {
         Symbol symbol = romanSymbolWithValue(1);
         Symbol symbolBefore = romanSymbolThatDoesntSubstracts();
-        boolean symbolIsSubstracted = false;
         
-        int contextValue = computeContextValue(symbolIsSubstracted, symbol);
+        int contextValue = computeContextValue(symbol, symbolBefore);
         
        assertThat(contextValue, is(symbol.getValue()));
     }
@@ -127,9 +126,8 @@ public class AppTest {
     public void the_context_value_of_a_substracted_symbol_is_its_negative_value() {
         Symbol symbol = romanSymbolWithValue(1);
         Symbol symbolBefore = romanSymbolThatSubstractsAll();
-        boolean symbolIsSubstracted = true;
         
-        int contextValue = computeContextValue(symbolIsSubstracted, symbol);
+        int contextValue = computeContextValue(symbol, symbolBefore);
         
        assertThat(contextValue, is(-symbol.getValue()));
     }
@@ -231,9 +229,10 @@ public class AppTest {
     
     
 
-    protected int computeContextValue(boolean symbolIsSubstracted, Symbol symbol) {
+    protected int computeContextValue(Symbol symbol, Symbol symbolBefore) {
         int contextValue;
         int absoluteValue = symbol.getValue();
+        boolean symbolIsSubstracted = symbolBefore.canSubstract(symbol);
         if (symbolIsSubstracted) {
             contextValue = -absoluteValue;
         } else {
