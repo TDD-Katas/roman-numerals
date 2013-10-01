@@ -22,7 +22,7 @@ public class AppTest {
 
     @Test
     public void value_of_V_is_5() {
-        assertThat(valueOf(V), is(5));
+        assertThat(valueOf(romanSymbol("V")), is(5));
     }
 
     @Test
@@ -184,8 +184,16 @@ public class AppTest {
     private static final Symbol C = new RomanSymbol("C", 100, X);
     private static final Symbol D = new RomanSymbol("D", 500, C);
     private static final Symbol M = new RomanSymbol("M", 1000, C);   
+    private static final Symbol[] ROMAN_NUMERALS = {
+        I,V,X,L,C,D,M
+    };
     
-    private Symbol romanSymbol(String symbol) {
+    private Symbol romanSymbol(String character) {
+        for (Symbol symbol : ROMAN_NUMERALS) {
+            if (symbol.getLiteral().equals(character)) {
+                return symbol;
+            }
+        }
         return I;
     }
 
