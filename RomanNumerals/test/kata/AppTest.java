@@ -17,7 +17,7 @@ public class AppTest {
 
     @Test
     public void value_of_I_is_1() {
-        assertThat(valueOf(I), is(1));
+        assertThat(valueOf(romanSymbol("I")), is(1));
     }
 
     @Test
@@ -184,6 +184,10 @@ public class AppTest {
     private static final Symbol C = new RomanSymbol("C", 100, X);
     private static final Symbol D = new RomanSymbol("D", 500, C);
     private static final Symbol M = new RomanSymbol("M", 1000, C);   
+    
+    private Symbol romanSymbol(String symbol) {
+        return I;
+    }
 
     protected int computeContextValue(boolean symbolIsSubstracted, int absoluteValue) {
         int contextValue;
