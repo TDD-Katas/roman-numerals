@@ -163,15 +163,12 @@ public class AppTest {
         ContextValueProvider converter = mock(ContextValueProvider.class);
         Symbol[] numeral = new Symbol[] {mock(Symbol.class), mock(Symbol.class)};
         int[] contextValues = {1, 2}; 
-        
-        int contextValueOfFirstSymbol = 1;
-        int contextValueOfSecondSymbol = 2;
-        when(converter.computeContextValue(numeral[0], any(Symbol.class))).thenReturn(contextValueOfFirstSymbol);
-        when(converter.computeContextValue(numeral[1], any(Symbol.class))).thenReturn(contextValueOfSecondSymbol);
+        when(converter.computeContextValue(numeral[0], any(Symbol.class))).thenReturn(contextValues[0]);
+        when(converter.computeContextValue(numeral[1], any(Symbol.class))).thenReturn(contextValues[1]);
         
         int value = computeRomanNumeralValue(numeral, converter);
-        
-        assertThat(value, is(contextValueOfFirstSymbol+contextValueOfSecondSymbol));
+
+        assertThat(value, is(contextValues[0]+contextValues[1]));
     }
     
     
