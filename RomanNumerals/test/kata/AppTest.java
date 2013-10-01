@@ -143,16 +143,16 @@ public class AppTest {
     }
     
     @Test
-    public void a_roman_numeral_is_list_of_symbols() {
+    public void a_roman_numeral_is_a_list_of_roman_symbols() {
         String symbol1 = "I";
         String symbol2 = "X";
-        String romanNumber = symbol1 + symbol2;
+        String romanNumeral = symbol1 + symbol2;
         Symbol[] expectedSymbols = new Symbol[] {
             asRomanSymbol(symbol1), 
             asRomanSymbol(symbol2)
         };
         
-        Symbol[] symbols = asListOfSymbols(romanNumber);
+        Symbol[] symbols = asListOfSymbols(romanNumeral);
         
         assertArrayEquals(expectedSymbols, symbols);
     }
