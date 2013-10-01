@@ -162,20 +162,9 @@ public class AppTest {
     public void value_of_roman_numeral_is_sum_of_context_values_of_symbols() {
         Symbol[] numeral = new Symbol[] {mock(Symbol.class), mock(Symbol.class)};
         int[] contextValues = {1, 2}; 
-        ContextValueProvider converter = mock(ContextValueProvider.class);
-        int position;
-        Symbol expectedSymbol;
-        int returnValue;
-        position = 0;
-        expectedSymbol = numeral[position];
-        returnValue = contextValues[position];
-        when(converter.computeContextValue(eq(expectedSymbol), any(Symbol.class))).thenReturn(returnValue);
-        position = 1;
-        expectedSymbol = numeral[position];
-        returnValue = contextValues[position];
-        when(converter.computeContextValue(eq(expectedSymbol), any(Symbol.class))).thenReturn(returnValue);
-        
-        int value = computeRomanNumeralValue(numeral, converter);
+        ContextValueProvider valueProvider = mockContextValueProvider(numeral, contextValues);
+
+        int value = computeRomanNumeralValue(numeral, valueProvider);
 
         assertThat(value, is(contextValues[0]+contextValues[1]));
     }
@@ -255,6 +244,19 @@ public class AppTest {
         } else {
             return null;
         }
+    }
+
+    protected ContextValueProvider mockContextValueProvider(Symbol[] numeral, int[] contextValues) {
+        ContextValueProvider converter = mock(ContextValueProvider.class);
+        Symbol expectedSymbol;
+        int returnValue;
+        for (int i = 0; i < numeral.length; i++) {
+            expectedSymbol = numeral[i];
+            returnValue = contextValues[i];
+            when(converter.computeContextValue(eq(expectedSymbol), any(Symbol.class)))
+                    .thenReturn(returnValue);
+        }
+        return converter;
     }
     
     class ContextValueProvider {
