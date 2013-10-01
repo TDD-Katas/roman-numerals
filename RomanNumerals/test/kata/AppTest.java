@@ -164,10 +164,16 @@ public class AppTest {
         int[] contextValues = {1, 2}; 
         ContextValueProvider converter = mock(ContextValueProvider.class);
         int position;
+        Symbol expectedSymbol;
+        int returnValue;
         position = 0;
-        when(converter.computeContextValue(eq(numeral[position]), any(Symbol.class))).thenReturn(contextValues[position]);
+        expectedSymbol = numeral[position];
+        returnValue = contextValues[position];
+        when(converter.computeContextValue(eq(expectedSymbol), any(Symbol.class))).thenReturn(returnValue);
         position = 1;
-        when(converter.computeContextValue(eq(numeral[position]), any(Symbol.class))).thenReturn(contextValues[position]);
+        expectedSymbol = numeral[position];
+        returnValue = contextValues[position];
+        when(converter.computeContextValue(eq(expectedSymbol), any(Symbol.class))).thenReturn(returnValue);
         
         int value = computeRomanNumeralValue(numeral, converter);
 
