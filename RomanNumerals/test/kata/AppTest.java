@@ -4,10 +4,7 @@
  */
 package kata;
 
-import java.util.ArrayList;
-import java.util.List;
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.equalTo;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -89,7 +86,7 @@ public class AppTest {
     }
 
     @Test
-    public void symbol_can_be_placed_before_if_it_is_heigher() {
+    public void symbol_can_be_placed_before_other_if_it_is_heigher() {
         Symbol romanSymbolWithHighValue = romanSymbolWithValue(2);
         Symbol romanSymbolWithLowValue = romanSymbolWithValue(1);
         
@@ -97,7 +94,7 @@ public class AppTest {
     }
     
     @Test
-    public void symbol_can_be_placed_before_if_it_is_equal() {
+    public void symbol_can_be_placed_before_other_if_it_is_equal() {
         Symbol romanSymbol = romanSymbolWithValue(1);
         Symbol romanSymbolWithSameValue = romanSymbolWithValue(1);
         
@@ -105,7 +102,7 @@ public class AppTest {
     }
 
     @Test
-    public void symbol_can_be_placed_before_if_is_substractable_symbol() {
+    public void symbol_can_be_placed_before_other_if_is_substractable_symbol() {
         Symbol substractionSymbol = concreteRomanSymbol();
         Symbol romanSymbol = romanSymbolThatSubstractsAll();
 
