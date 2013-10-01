@@ -174,14 +174,17 @@ public class AppTest {
     
     private int computeRomanNumeralValue(Symbol[] romanNumeral, RomanToDecimalConverter converter) {
         int currentValue = 0;
+        int currentPosition;
         Symbol current;
         Symbol after;
         
-        current = romanNumeral[0];
-        after = romanNumeral[1];
+        currentPosition = 0;
+        current = getElementAt(currentPosition, romanNumeral);
+        after = romanNumeral[currentPosition+1];
         currentValue += converter.computeContextValue(current, after);
         
-        current = romanNumeral[1];
+        currentPosition = 1;
+        current = getElementAt(currentPosition, romanNumeral);
         after = null;
         currentValue += converter.computeContextValue(current, after);
         
@@ -237,6 +240,10 @@ public class AppTest {
             }
         }
         return convertedSymbol;
+    }
+
+    protected Symbol getElementAt(int currentPosition, Symbol[] romanNumeral) {
+        return romanNumeral[currentPosition];
     }
     
     class RomanToDecimalConverter {
