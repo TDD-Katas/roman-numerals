@@ -115,7 +115,7 @@ public class AppTest {
     @Test
     public void the_context_value_of_a_non_substracted_symbol_is_its_value() {
         Symbol symbol = romanSymbolWithValue(1);
-        Symbol symbolAfter = romanSymbolThatDoesntSubstracts();
+        Symbol symbolAfter = romanSymbolThatSubstractsNothing();
         
         int contextValue = computeContextValue(symbol, symbolAfter);
         
@@ -192,12 +192,33 @@ public class AppTest {
         return symbol;
     }
     
-    private Symbol romanSymbolThatDoesntSubstracts() {
+    private Symbol romanSymbolThatSubstractsNothing() {
         Symbol symbol = spy(concreteRomanSymbol());
         when(symbol.canSubstract(any(Symbol.class))).thenReturn(false);
         return symbol;
     }
 
+    protected ContextValueProvider mockContextValueProvider(Symbol[] numeral, int[] contextValues) {
+        ContextValueProvider converter = mock(ContextValueProvider.class);
+        Symbol expectedSymbol;
+        int returnValue;
+        for (int i = 0; i < numeral.length; i++) {
+            expectedSymbol = numeral[i];
+            returnValue = contextValues[i];
+            when(converter.computeContextValue(eq(expectedSymbol), any(Symbol.class)))
+                    .thenReturn(returnValue);
+        }
+        return converter;
+    }
+    
+    protected Symbol[] mockRomanNumeral(int sizeOfNumeral) {
+        Symbol[] numeral = new Symbol[sizeOfNumeral];
+        for (int i = 0; i < numeral.length; i++) {
+            numeral[i] = mock(Symbol.class);
+        }
+        return numeral;
+    }
+    
     //~~~~~~~
     
     private static final Symbol I = new RomanSymbol("I", 1, null);
@@ -246,26 +267,6 @@ public class AppTest {
         }
     }
 
-    protected ContextValueProvider mockContextValueProvider(Symbol[] numeral, int[] contextValues) {
-        ContextValueProvider converter = mock(ContextValueProvider.class);
-        Symbol expectedSymbol;
-        int returnValue;
-        for (int i = 0; i < numeral.length; i++) {
-            expectedSymbol = numeral[i];
-            returnValue = contextValues[i];
-            when(converter.computeContextValue(eq(expectedSymbol), any(Symbol.class)))
-                    .thenReturn(returnValue);
-        }
-        return converter;
-    }
-
-    protected Symbol[] mockRomanNumeral(int sizeOfNumeral) {
-        Symbol[] numeral = new Symbol[sizeOfNumeral];
-        for (int i = 0; i < numeral.length; i++) {
-            numeral[i] = mock(Symbol.class);
-        }
-        return numeral;
-    }
     
     class ContextValueProvider {
         public int computeContextValue(Symbol symbol, Symbol symbolAfter) {
