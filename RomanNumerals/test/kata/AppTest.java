@@ -172,17 +172,6 @@ public class AppTest {
         assertThat(value, is(contextValueOfFirstSymbol+contextValueOfSecondSymbol));
     }
     
-    private int computeRomanNumeralValue(Symbol[] romanNumeral, RomanToDecimalConverter converter) {
-        int currentValue = 0;
-        
-        for (int i = 0; i < romanNumeral.length; i++) {
-            Symbol current = getElementAt(i, romanNumeral);
-            Symbol after = getElementAfter(i, romanNumeral);
-            currentValue += converter.computeContextValue(current, after);
-        }
-        
-        return currentValue;
-    }
     
     //~~ stubs
 
@@ -235,6 +224,18 @@ public class AppTest {
         return convertedSymbol;
     }
 
+    private int computeRomanNumeralValue(Symbol[] romanNumeral, RomanToDecimalConverter converter) {
+        int currentValue = 0;
+        
+        for (int i = 0; i < romanNumeral.length; i++) {
+            Symbol current = getElementAt(i, romanNumeral);
+            Symbol after = getElementAfter(i, romanNumeral);
+            currentValue += converter.computeContextValue(current, after);
+        }
+        
+        return currentValue;
+    }
+    
     protected Symbol getElementAt(int currentPosition, Symbol[] romanNumeral) {
         return romanNumeral[currentPosition];
     }
