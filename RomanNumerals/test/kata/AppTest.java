@@ -173,6 +173,11 @@ public class AppTest {
         return symbol.getValue();
     }
     
+    protected int computeContextValue(Symbol symbol, Symbol symbolAfter) {
+        ContextValueProvider converter = new ContextValueProvider();
+        return converter.computeContextValue(symbol, symbolAfter);
+    }
+    
     //~~ stubs
 
     private Symbol concreteRomanSymbol() {
@@ -249,21 +254,5 @@ public class AppTest {
         }
     }
 
-    
-    class ContextValueProvider {
-        public int computeContextValue(Symbol symbol, Symbol symbolAfter) {
-            int contextValue = symbol.getValue();
-            boolean symbolIsSubstracted = symbolAfter.canSubstract(symbol);
-            if (symbolIsSubstracted) {
-                contextValue = -contextValue;
-            }
 
-            return contextValue;
-        }
-    }
-
-    protected int computeContextValue(Symbol symbol, Symbol symbolAfter) {
-        ContextValueProvider converter = new ContextValueProvider();
-        return converter.computeContextValue(symbol, symbolAfter);
-    }
 }
