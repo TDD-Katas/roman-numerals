@@ -227,16 +227,21 @@ public class AppTest {
         return convertedSymbol;
     }
     
-    
+    class RomanToDecimalConverter {
+        public int computeContextValue(Symbol symbol, Symbol symbolBefore) {
+            int contextValue = symbol.getValue();
+            boolean symbolIsSubstracted = symbolBefore.canSubstract(symbol);
+            if (symbolIsSubstracted) {
+                contextValue = -contextValue;
+            }
+
+            return contextValue;
+        }
+    }
 
     protected int computeContextValue(Symbol symbol, Symbol symbolBefore) {
-        int contextValue = symbol.getValue();
-        boolean symbolIsSubstracted = symbolBefore.canSubstract(symbol);
-        if (symbolIsSubstracted) {
-            contextValue = -contextValue;
-        }
-    
-        return contextValue;
+        RomanToDecimalConverter converter = new RomanToDecimalConverter();
+        return converter.computeContextValue(symbol, symbolBefore);
     }
 
     protected Symbol[] asListOfSymbols(String romanNumber) {
