@@ -4,7 +4,10 @@
  */
 package kata;
 
+import java.util.ArrayList;
+import java.util.List;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.equalTo;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -137,6 +140,20 @@ public class AppTest {
         boolean isSubstracted = symbolBefore.canSubstract(symbol);
         
        assertTrue(isSubstracted);
+    }
+    
+    @Test
+    public void a_roman_numeral_is_list_of_symbols() {
+        String romanNumber = "IX";
+        
+        List<Symbol> symbols = new ArrayList<Symbol>();
+        for (int i = 0; i < romanNumber.length(); i++) {
+            char romanChar = romanNumber.charAt(i);
+            symbols.add(romanSymbol(romanChar+""));
+            
+        }
+        
+        assertThat(symbols.size(), equalTo(romanNumber.length()));
     }
     
     
