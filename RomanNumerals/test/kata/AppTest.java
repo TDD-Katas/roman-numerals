@@ -148,9 +148,8 @@ public class AppTest {
         
         List<Symbol> symbols = new ArrayList<Symbol>();
         for (int i = 0; i < romanNumber.length(); i++) {
-            char romanChar = romanNumber.charAt(i);
-            symbols.add(romanSymbol(romanChar+""));
-            
+            String romanChar = String.valueOf(romanNumber.charAt(i));
+            symbols.add(romanSymbol(romanChar));
         }
         
         assertThat(symbols.size(), equalTo(romanNumber.length()));
