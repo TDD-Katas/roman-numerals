@@ -27,27 +27,27 @@ public class AppTest {
 
     @Test
     public void value_of_X_is_10() {
-        assertThat(valueOf(X), is(10));
+        assertThat(valueOf(romanSymbol("X")), is(10));
     }
 
     @Test
     public void value_of_L_is_50() {
-        assertThat(valueOf(L), is(50));
+        assertThat(valueOf(romanSymbol("L")), is(50));
     }
 
     @Test
     public void value_of_C_is_100() {
-        assertThat(valueOf(C), is(100));
+        assertThat(valueOf(romanSymbol("C")), is(100));
     }
 
     @Test
     public void value_of_D_is_500() {
-        assertThat(valueOf(D), is(500));
+        assertThat(valueOf(romanSymbol("D")), is(500));
     }
 
     @Test
     public void value_of_M_is_1000() {
-        assertThat(valueOf(M), is(1000));
+        assertThat(valueOf(romanSymbol("M")), is(1000));
     }
 
     @Test
@@ -189,12 +189,13 @@ public class AppTest {
     };
     
     private Symbol romanSymbol(String character) {
+        Symbol convertedSymbol = I;
         for (Symbol symbol : ROMAN_NUMERALS) {
             if (symbol.getLiteral().equals(character)) {
-                return symbol;
+                convertedSymbol = symbol;
             }
         }
-        return I;
+        return convertedSymbol;
     }
 
     protected int computeContextValue(boolean symbolIsSubstracted, int absoluteValue) {
