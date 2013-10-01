@@ -180,12 +180,12 @@ public class AppTest {
         
         currentPosition = 0;
         current = getElementAt(currentPosition, romanNumeral);
-        after = romanNumeral[currentPosition+1];
+        after = getElementAfter(currentPosition, romanNumeral);
         currentValue += converter.computeContextValue(current, after);
         
         currentPosition = 1;
         current = getElementAt(currentPosition, romanNumeral);
-        after = null;
+        after = getElementAfter(currentPosition, romanNumeral);;
         currentValue += converter.computeContextValue(current, after);
         
         return currentValue;
@@ -244,6 +244,15 @@ public class AppTest {
 
     protected Symbol getElementAt(int currentPosition, Symbol[] romanNumeral) {
         return romanNumeral[currentPosition];
+    }
+
+    protected Symbol getElementAfter(int currentPosition, Symbol[] romanNumeral) {
+        int nextPosition = currentPosition+1;
+        if (nextPosition < romanNumeral.length) {
+            return getElementAt(nextPosition, romanNumeral);
+        } else {
+            return null;
+        }
     }
     
     class RomanToDecimalConverter {
