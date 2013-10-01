@@ -160,11 +160,14 @@ public class AppTest {
     
     @Test
     public void value_of_roman_numeral_is_sum_of_context_values_of_symbols() {
-        ContextValueProvider converter = mock(ContextValueProvider.class);
         Symbol[] numeral = new Symbol[] {mock(Symbol.class), mock(Symbol.class)};
         int[] contextValues = {1, 2}; 
-        when(converter.computeContextValue(numeral[0], any(Symbol.class))).thenReturn(contextValues[0]);
-        when(converter.computeContextValue(numeral[1], any(Symbol.class))).thenReturn(contextValues[1]);
+        ContextValueProvider converter = mock(ContextValueProvider.class);
+        int position;
+        position = 0;
+        when(converter.computeContextValue(eq(numeral[position]), any(Symbol.class))).thenReturn(contextValues[position]);
+        position = 1;
+        when(converter.computeContextValue(eq(numeral[position]), any(Symbol.class))).thenReturn(contextValues[position]);
         
         int value = computeRomanNumeralValue(numeral, converter);
 
