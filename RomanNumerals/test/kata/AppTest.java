@@ -160,8 +160,8 @@ public class AppTest {
     
     @Test
     public void value_of_roman_numeral_is_sum_of_context_values_of_symbols() {
-        Symbol[] numeral = new Symbol[] {mock(Symbol.class), mock(Symbol.class)};
         int[] contextValues = {1, 2}; 
+        Symbol[] numeral = mockRomanNumeral(contextValues.length);
         ContextValueProvider valueProvider = mockContextValueProvider(numeral, contextValues);
 
         int value = computeRomanNumeralValue(numeral, valueProvider);
@@ -257,6 +257,14 @@ public class AppTest {
                     .thenReturn(returnValue);
         }
         return converter;
+    }
+
+    protected Symbol[] mockRomanNumeral(int sizeOfNumeral) {
+        Symbol[] numeral = new Symbol[sizeOfNumeral];
+        for (int i = 0; i < numeral.length; i++) {
+            numeral[i] = mock(Symbol.class);
+        }
+        return numeral;
     }
     
     class ContextValueProvider {
