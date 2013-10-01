@@ -172,12 +172,19 @@ public class AppTest {
         int contextValue1 = converter.computeContextValue(symbol1, symbol2);
         int contextValue2 = converter.computeContextValue(symbol2, null);
         
-        int value = contextValue1 + contextValue2;
+        int value = computeRomanNumeralValue(romanNumeral, converter);
         
         assertThat(value, is(contextValue1+contextValue2));
     }
     
-    
+    private int computeRomanNumeralValue(Symbol[] romanNumeral, RomanToDecimalConverter converter) {
+        int contextValue1 = converter.computeContextValue(romanNumeral[0], romanNumeral[1]);
+        int contextValue2 = converter.computeContextValue(romanNumeral[1], null);
+        
+        int value = contextValue1 + contextValue2;
+        
+        return value;
+    }
     
     //~~ stubs
 
