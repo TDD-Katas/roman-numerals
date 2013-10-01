@@ -147,11 +147,12 @@ public class AppTest {
         String symbol1 = "I";
         String symbol2 = "X";
         String romanNumber = symbol1 + symbol2;
-        List<Symbol> expectedSymbols = new ArrayList<Symbol>();
-        expectedSymbols.add(asRomanSymbol(symbol1));
-        expectedSymbols.add(asRomanSymbol(symbol2));
+        Symbol[] expectedSymbols = new Symbol[] {
+            asRomanSymbol(symbol1), 
+            asRomanSymbol(symbol2)
+        };
         
-        List<Symbol> symbols = asListOfSymbols(romanNumber);
+        Symbol[] symbols = asListOfSymbols(romanNumber);
         
         assertEquals(expectedSymbols, symbols);
     }
@@ -226,11 +227,11 @@ public class AppTest {
         return contextValue;
     }
 
-    protected List<Symbol> asListOfSymbols(String romanNumber) {
-        List<Symbol> symbols = new ArrayList<Symbol>();
+    protected Symbol[] asListOfSymbols(String romanNumber) {
+        Symbol[] symbols = new Symbol[romanNumber.length()];
         for (int i = 0; i < romanNumber.length(); i++) {
             String romanChar = String.valueOf(romanNumber.charAt(i));
-            symbols.add(asRomanSymbol(romanChar));
+            symbols[i] = asRomanSymbol(romanChar);
         }
         return symbols;
     }
