@@ -160,12 +160,14 @@ public class AppTest {
     
     @Test
     public void value_of_roman_numeral_is_sum_of_context_values_of_symbols() {
-        RomanToDecimalConverter converter = mock(RomanToDecimalConverter.class);
+        ContextValueProvider converter = mock(ContextValueProvider.class);
         Symbol[] numeral = new Symbol[] {mock(Symbol.class), mock(Symbol.class)};
+        int[] contextValues = {1, 2}; 
+        
         int contextValueOfFirstSymbol = 1;
         int contextValueOfSecondSymbol = 2;
-        when(converter.computeContextValue(numeral[0], numeral[1])).thenReturn(contextValueOfFirstSymbol);
-        when(converter.computeContextValue(numeral[1], null)).thenReturn(contextValueOfSecondSymbol);
+        when(converter.computeContextValue(numeral[0], any(Symbol.class))).thenReturn(contextValueOfFirstSymbol);
+        when(converter.computeContextValue(numeral[1], any(Symbol.class))).thenReturn(contextValueOfSecondSymbol);
         
         int value = computeRomanNumeralValue(numeral, converter);
         
@@ -224,7 +226,7 @@ public class AppTest {
         return convertedSymbol;
     }
 
-    private int computeRomanNumeralValue(Symbol[] romanNumeral, RomanToDecimalConverter converter) {
+    private int computeRomanNumeralValue(Symbol[] romanNumeral, ContextValueProvider converter) {
         int currentValue = 0;
         
         for (int i = 0; i < romanNumeral.length; i++) {
@@ -249,7 +251,7 @@ public class AppTest {
         }
     }
     
-    class RomanToDecimalConverter {
+    class ContextValueProvider {
         public int computeContextValue(Symbol symbol, Symbol symbolAfter) {
             int contextValue = symbol.getValue();
             boolean symbolIsSubstracted = symbolAfter.canSubstract(symbol);
@@ -262,7 +264,7 @@ public class AppTest {
     }
 
     protected int computeContextValue(Symbol symbol, Symbol symbolAfter) {
-        RomanToDecimalConverter converter = new RomanToDecimalConverter();
+        ContextValueProvider converter = new ContextValueProvider();
         return converter.computeContextValue(symbol, symbolAfter);
     }
 
