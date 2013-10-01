@@ -230,13 +230,10 @@ public class AppTest {
     
 
     protected int computeContextValue(Symbol symbol, Symbol symbolBefore) {
-        int contextValue;
-        int absoluteValue = symbol.getValue();
+        int contextValue = symbol.getValue();
         boolean symbolIsSubstracted = symbolBefore.canSubstract(symbol);
         if (symbolIsSubstracted) {
-            contextValue = -absoluteValue;
-        } else {
-            contextValue = absoluteValue;
+            contextValue = -contextValue;
         }
     
         return contextValue;
