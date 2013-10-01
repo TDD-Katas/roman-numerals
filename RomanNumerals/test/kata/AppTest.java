@@ -160,14 +160,17 @@ public class AppTest {
     
     @Test
     public void value_of_roman_numeral_is_sum_of_context_values_of_symbols() {
+        RomanToDecimalConverter converter = mock(RomanToDecimalConverter.class);
         Symbol symbol1 = mock(Symbol.class);
         Symbol symbol2 = mock(Symbol.class);
         Symbol[] romanNumeral = new Symbol[] {
             symbol1, 
             symbol2
         };
-        int contextValue1 = 1;
-        int contextValue2 = 2;
+        when(converter.computeContextValue(symbol1, symbol2)).thenReturn(1);
+        when(converter.computeContextValue(symbol2, null)).thenReturn(2);
+        int contextValue1 = converter.computeContextValue(symbol1, symbol2);
+        int contextValue2 = converter.computeContextValue(symbol2, null);
         
         int value = contextValue1 + contextValue2;
         
