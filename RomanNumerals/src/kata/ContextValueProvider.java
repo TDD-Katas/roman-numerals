@@ -4,19 +4,18 @@
  */
 package kata;
 
+import kata.symbols.Symbol;
+
 /**
  *
  * @author Iulian Ghionoiu <iulian.ghionoiu@exenne.ro>
  */
-class ContextValueProvider {
-
-    ContextValueProvider() {
-    }
+public class ContextValueProvider {
 
     public int computeContextValue(Symbol symbol, Symbol symbolAfter) {
         int contextValue = symbol.getValue();
-        boolean symbolIsSubstracted = symbolAfter.canSubstract(symbol);
-        if (symbolIsSubstracted) {
+        
+        if (symbolAfter != null && symbolAfter.canSubstract(symbol)) {
             contextValue = -contextValue;
         }
         return contextValue;

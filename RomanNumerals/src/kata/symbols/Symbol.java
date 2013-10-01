@@ -2,13 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package kata;
+package kata.symbols;
 
 /**
  *
  * @author Iulian Ghionoiu <iulian.ghionoiu@exenne.ro>
  */
-interface Symbol {
+public interface Symbol {
 
     String getLiteral();
 

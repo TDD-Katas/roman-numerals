@@ -2,16 +2,16 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package kata;
+package kata.symbols;
 
 /**
  *
  * @author Iulian Ghionoiu <iulian.ghionoiu@exenne.ro>
  */
-class RomanSymbol implements Symbol {
-    final String literal;
-    final int value;
-    final Symbol substractionSymbol;
+public class RomanSymbol implements Symbol {
+    private final String literal;
+    private final int value;
+    private final Symbol substractionSymbol;
 
     public RomanSymbol(String literal, int value, Symbol substractionSymbol) {
         this.literal = literal;

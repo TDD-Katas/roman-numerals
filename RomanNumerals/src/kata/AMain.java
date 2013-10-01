@@ -8,12 +8,13 @@ package kata;
  *
  * @author Iulian Ghionoiu <iulian.ghionoiu@exenne.ro>
  */
-public class App {
-
-    /**
-     * @param args the command line arguments
-     */
+public class AMain {
+    
     public static void main(String[] args) {
-        // TODO code application logic here
+        RomanNumber romanNumber = new RomanNumber("XXXIV");
+        int value = romanNumber.computeIntegerValue();
+        
+        System.out.println("value = "+value);
     }
+            
 }
