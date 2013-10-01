@@ -144,7 +144,12 @@ public class AppTest {
     
     @Test
     public void a_roman_numeral_is_list_of_symbols() {
-        String romanNumber = "IX";
+        String symbol1 = "I";
+        String symbol2 = "X";
+        String romanNumber = symbol1 + symbol2;
+        List<Symbol> expectedSymbols = new ArrayList<Symbol>();
+        expectedSymbols.add(romanSymbol(symbol1));
+        expectedSymbols.add(romanSymbol(symbol2));
         
         List<Symbol> symbols = new ArrayList<Symbol>();
         for (int i = 0; i < romanNumber.length(); i++) {
@@ -152,7 +157,7 @@ public class AppTest {
             symbols.add(romanSymbol(romanChar));
         }
         
-        assertThat(symbols.size(), equalTo(romanNumber.length()));
+        assertEquals(expectedSymbols, symbols);
     }
     
     
