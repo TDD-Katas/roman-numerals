@@ -173,15 +173,19 @@ public class AppTest {
     }
     
     private int computeRomanNumeralValue(Symbol[] romanNumeral, RomanToDecimalConverter converter) {
+        int currentValue = 0;
         Symbol current;
         Symbol after;
         
-        int contextValue1 = converter.computeContextValue(romanNumeral[0], romanNumeral[1]);
-        int contextValue2 = converter.computeContextValue(romanNumeral[1], null);
+        current = romanNumeral[0];
+        after = romanNumeral[1];
+        currentValue += converter.computeContextValue(current, after);
         
-        int value = contextValue1 + contextValue2;
+        current = romanNumeral[1];
+        after = null;
+        currentValue += converter.computeContextValue(current, after);
         
-        return value;
+        return currentValue;
     }
     
     //~~ stubs
