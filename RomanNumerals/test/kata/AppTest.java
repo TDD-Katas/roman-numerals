@@ -160,8 +160,13 @@ public class AppTest {
     
     @Test
     public void value_of_roman_numeral_is_sum_of_context_values_of_symbols() {
-        String romanNumber;
-        int contextValue1  = 1;
+        Symbol symbol1 = mock(Symbol.class);
+        Symbol symbol2 = mock(Symbol.class);
+        Symbol[] romanNumeral = new Symbol[] {
+            symbol1, 
+            symbol2
+        };
+        int contextValue1 = 1;
         int contextValue2 = 2;
         
         int value = contextValue1 + contextValue2;
