@@ -166,6 +166,9 @@ public class AppTest {
         assertThat(value, is(contextValues[0]+contextValues[1]));
     }
     
+    private int valueOf(Symbol symbol) {
+        return symbol.getValue();
+    }
     
     //~~ stubs
 
@@ -336,9 +339,5 @@ public class AppTest {
 
             return canBePlaced;
         }
-    }
-
-    private int valueOf(Symbol symbol) {
-        return symbol.getValue();
     }
 }
