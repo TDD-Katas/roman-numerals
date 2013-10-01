@@ -20,37 +20,37 @@ public class AppTest {
 
     @Test
     public void value_of_I_is_1() {
-        assertThat(valueOf(romanSymbol("I")), is(1));
+        assertThat(valueOf(asRomanSymbol("I")), is(1));
     }
 
     @Test
     public void value_of_V_is_5() {
-        assertThat(valueOf(romanSymbol("V")), is(5));
+        assertThat(valueOf(asRomanSymbol("V")), is(5));
     }
 
     @Test
     public void value_of_X_is_10() {
-        assertThat(valueOf(romanSymbol("X")), is(10));
+        assertThat(valueOf(asRomanSymbol("X")), is(10));
     }
 
     @Test
     public void value_of_L_is_50() {
-        assertThat(valueOf(romanSymbol("L")), is(50));
+        assertThat(valueOf(asRomanSymbol("L")), is(50));
     }
 
     @Test
     public void value_of_C_is_100() {
-        assertThat(valueOf(romanSymbol("C")), is(100));
+        assertThat(valueOf(asRomanSymbol("C")), is(100));
     }
 
     @Test
     public void value_of_D_is_500() {
-        assertThat(valueOf(romanSymbol("D")), is(500));
+        assertThat(valueOf(asRomanSymbol("D")), is(500));
     }
 
     @Test
     public void value_of_M_is_1000() {
-        assertThat(valueOf(romanSymbol("M")), is(1000));
+        assertThat(valueOf(asRomanSymbol("M")), is(1000));
     }
 
     @Test
@@ -148,14 +148,10 @@ public class AppTest {
         String symbol2 = "X";
         String romanNumber = symbol1 + symbol2;
         List<Symbol> expectedSymbols = new ArrayList<Symbol>();
-        expectedSymbols.add(romanSymbol(symbol1));
-        expectedSymbols.add(romanSymbol(symbol2));
+        expectedSymbols.add(asRomanSymbol(symbol1));
+        expectedSymbols.add(asRomanSymbol(symbol2));
         
-        List<Symbol> symbols = new ArrayList<Symbol>();
-        for (int i = 0; i < romanNumber.length(); i++) {
-            String romanChar = String.valueOf(romanNumber.charAt(i));
-            symbols.add(romanSymbol(romanChar));
-        }
+        List<Symbol> symbols = asListOfSymbols(romanNumber);
         
         assertEquals(expectedSymbols, symbols);
     }
@@ -209,7 +205,7 @@ public class AppTest {
         I,V,X,L,C,D,M
     };
     
-    private Symbol romanSymbol(String character) {
+    private Symbol asRomanSymbol(String character) {
         Symbol convertedSymbol = I;
         for (Symbol symbol : ROMAN_NUMERALS) {
             if (symbol.getLiteral().equals(character)) {
@@ -228,6 +224,15 @@ public class AppTest {
         }
     
         return contextValue;
+    }
+
+    protected List<Symbol> asListOfSymbols(String romanNumber) {
+        List<Symbol> symbols = new ArrayList<Symbol>();
+        for (int i = 0; i < romanNumber.length(); i++) {
+            String romanChar = String.valueOf(romanNumber.charAt(i));
+            symbols.add(asRomanSymbol(romanChar));
+        }
+        return symbols;
     }
     
     interface Symbol {
