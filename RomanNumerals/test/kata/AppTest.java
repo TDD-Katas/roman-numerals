@@ -9,6 +9,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import static kata.KnownRomanSymbols.*;
+import static kata.StringToRoman.*;
 
 
 /**
@@ -222,17 +223,6 @@ public class AppTest {
     }
     
     //~~~~~~~
-    
-    
-    private Symbol asRomanSymbol(String character) {
-        Symbol convertedSymbol = I;
-        for (Symbol symbol : ROMAN_NUMERALS) {
-            if (symbol.getLiteral().equals(character)) {
-                convertedSymbol = symbol;
-            }
-        }
-        return convertedSymbol;
-    }
 
     private int computeRomanNumeralValue(Symbol[] romanNumeral, ContextValueProvider converter) {
         int currentValue = 0;
@@ -275,14 +265,5 @@ public class AppTest {
     protected int computeContextValue(Symbol symbol, Symbol symbolAfter) {
         ContextValueProvider converter = new ContextValueProvider();
         return converter.computeContextValue(symbol, symbolAfter);
-    }
-
-    protected Symbol[] asListOfSymbols(String romanNumber) {
-        Symbol[] symbols = new Symbol[romanNumber.length()];
-        for (int i = 0; i < romanNumber.length(); i++) {
-            String romanChar = String.valueOf(romanNumber.charAt(i));
-            symbols[i] = asRomanSymbol(romanChar);
-        }
-        return symbols;
     }
 }
