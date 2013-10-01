@@ -115,9 +115,9 @@ public class AppTest {
     @Test
     public void the_context_value_of_a_non_substracted_symbol_is_its_value() {
         Symbol symbol = romanSymbolWithValue(1);
-        Symbol symbolBefore = romanSymbolThatDoesntSubstracts();
+        Symbol symbolAfter = romanSymbolThatDoesntSubstracts();
         
-        int contextValue = computeContextValue(symbol, symbolBefore);
+        int contextValue = computeContextValue(symbol, symbolAfter);
         
        assertThat(contextValue, is(symbol.getValue()));
     }
@@ -125,9 +125,9 @@ public class AppTest {
     @Test
     public void the_context_value_of_a_substracted_symbol_is_its_negative_value() {
         Symbol symbol = romanSymbolWithValue(1);
-        Symbol symbolBefore = romanSymbolThatSubstractsAll();
+        Symbol symbolAfter = romanSymbolThatSubstractsAll();
         
-        int contextValue = computeContextValue(symbol, symbolBefore);
+        int contextValue = computeContextValue(symbol, symbolAfter);
         
        assertThat(contextValue, is(-symbol.getValue()));
     }
@@ -162,17 +162,20 @@ public class AppTest {
     public void value_of_roman_numeral_is_sum_of_context_values_of_symbols() {
         RomanToDecimalConverter converter = mock(RomanToDecimalConverter.class);
         Symbol[] numeral = new Symbol[] {mock(Symbol.class), mock(Symbol.class)};
-        int contextValueFirst = 1;
-        int contextValueOfSecond = 2;
-        when(converter.computeContextValue(numeral[0], numeral[1])).thenReturn(contextValueFirst);
-        when(converter.computeContextValue(numeral[1], null)).thenReturn(contextValueOfSecond);
+        int contextValueOfFirstSymbol = 1;
+        int contextValueOfSecondSymbol = 2;
+        when(converter.computeContextValue(numeral[0], numeral[1])).thenReturn(contextValueOfFirstSymbol);
+        when(converter.computeContextValue(numeral[1], null)).thenReturn(contextValueOfSecondSymbol);
         
         int value = computeRomanNumeralValue(numeral, converter);
         
-        assertThat(value, is(contextValueFirst+contextValueOfSecond));
+        assertThat(value, is(contextValueOfFirstSymbol+contextValueOfSecondSymbol));
     }
     
     private int computeRomanNumeralValue(Symbol[] romanNumeral, RomanToDecimalConverter converter) {
+        Symbol current;
+        Symbol after;
+        
         int contextValue1 = converter.computeContextValue(romanNumeral[0], romanNumeral[1]);
         int contextValue2 = converter.computeContextValue(romanNumeral[1], null);
         
@@ -233,9 +236,9 @@ public class AppTest {
     }
     
     class RomanToDecimalConverter {
-        public int computeContextValue(Symbol symbol, Symbol symbolBefore) {
+        public int computeContextValue(Symbol symbol, Symbol symbolAfter) {
             int contextValue = symbol.getValue();
-            boolean symbolIsSubstracted = symbolBefore.canSubstract(symbol);
+            boolean symbolIsSubstracted = symbolAfter.canSubstract(symbol);
             if (symbolIsSubstracted) {
                 contextValue = -contextValue;
             }
@@ -244,9 +247,9 @@ public class AppTest {
         }
     }
 
-    protected int computeContextValue(Symbol symbol, Symbol symbolBefore) {
+    protected int computeContextValue(Symbol symbol, Symbol symbolAfter) {
         RomanToDecimalConverter converter = new RomanToDecimalConverter();
-        return converter.computeContextValue(symbol, symbolBefore);
+        return converter.computeContextValue(symbol, symbolAfter);
     }
 
     protected Symbol[] asListOfSymbols(String romanNumber) {
