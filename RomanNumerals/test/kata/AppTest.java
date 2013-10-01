@@ -154,7 +154,7 @@ public class AppTest {
         
         Symbol[] symbols = asListOfSymbols(romanNumber);
         
-        assertEquals(expectedSymbols, symbols);
+        assertArrayEquals(expectedSymbols, symbols);
     }
     
     
