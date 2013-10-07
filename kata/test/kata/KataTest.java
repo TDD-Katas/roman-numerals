@@ -123,6 +123,7 @@ public class KataTest {
         int numberOfRolls = 2;
         int valueOfFirstRoll = ROLL_ZERO;
         int valueOfSecondRoll = ROLL_NOT_TEN;
+        int[] rolls = new int[] {valueOfFirstRoll, valueOfSecondRoll};
         
         int sumORolls = computeSumOfRollsForFrame(frameType, numberOfRolls,
                 valueOfFirstRoll, valueOfSecondRoll);
@@ -136,6 +137,7 @@ public class KataTest {
         int numberOfRolls = 2;
         int valueOfFirstRoll = ROLL_ZERO;
         int valueOfSecondRoll = ROLL_NOT_TEN;
+        int[] rolls = new int[] {valueOfFirstRoll, valueOfSecondRoll};
         
         int sumORolls = computeSumOfRollsForFrame(frameType, numberOfRolls,
                 valueOfFirstRoll, valueOfSecondRoll);
@@ -148,6 +150,7 @@ public class KataTest {
         String frameType = STRIKE;
         int numberOfRolls = 1;
         int valueOfFirstRoll = ROLL_NOT_TEN;
+        int[] rolls = new int[] {valueOfFirstRoll};
         
         int sumORolls = computeSumOfRollsForFrame(frameType, numberOfRolls,
                 valueOfFirstRoll, ROLL_ZERO);
@@ -210,12 +213,11 @@ public class KataTest {
 
     protected int computeSumOfRollsForFrame(String frameType, int numberOfRolls, 
             int valueOfFirstRoll, int valueOfSecondRoll) {
-        int sumOfRolls;
         int[] rolls = new int[] {valueOfFirstRoll, valueOfSecondRoll};
-        if (STRIKE.equals(frameType)) {
-            sumOfRolls = rolls[0];
-        } else {
-            sumOfRolls = rolls[0] + rolls[1];
+        
+        int sumOfRolls = 0;
+        for (int i = 0; i < numberOfRolls; i++) {
+            sumOfRolls += rolls[i];
         }
         
         return sumOfRolls;
