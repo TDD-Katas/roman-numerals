@@ -80,9 +80,12 @@ public class KataTest {
     public void a_frame_is_open_frame_if_sum_of_rolls_different_than_ten() {
         int sumOfFrameRolls = 9;
         
-        boolean isOpenFrame = sumOfFrameRolls != 10;
+        String frameType = "";
+        if (sumOfFrameRolls != 10) {
+            frameType = "open";
+        }
         
-        assertTrue(isOpenFrame);
+        assertThat(frameType, is("open"));
     }
     
     /**
