@@ -16,13 +16,16 @@ public class KataTest {
     public static final String OPEN = "open";
     public static final String SPARE = "spare";
     public static final String STRIKE = "strike";
+    public static final int PLAIN_ROLL = 1;
+    public static final int NOT_TEN = 9;
+    public static final int TEN = 10;
     
     /**
      * Test of main method, of class Kata.
      */
     @Test
     public void score_of_a_frame_equals_number_of_pins_plus_the_value_of_bonus_rolls() {
-        int curentFramePins = 1;
+        int curentFramePins = PLAIN_ROLL;
         int valueOfBonusRolls = 2;
         
         int scoreOfFrame = curentFramePins + valueOfBonusRolls;
@@ -36,7 +39,7 @@ public class KataTest {
     @Test
     public void bonus_score_for_spare_equals_score_of_next_roll() {
         String frameType = SPARE;
-        int scoreOfNextRoll = 1;
+        int scoreOfNextRoll = PLAIN_ROLL;
         
         int bonusScoreForSpare = scoreOfNextRoll;
         
@@ -49,7 +52,7 @@ public class KataTest {
     @Test
     public void bonus_score_for_strike_equals_score_of_next_two_rolls() {
         String frameType = STRIKE;
-        int scoreOfNextTwoRolls = 1;
+        int scoreOfNextTwoRolls = PLAIN_ROLL;
         
         int bonusScoreForStrike = scoreOfNextTwoRolls;
         
@@ -82,8 +85,8 @@ public class KataTest {
      */
     @Test
     public void a_frame_is_open_frame_if_sum_of_rolls_different_than_ten() {
-        int valueOfFirstRoll = 1;
-        int sumOfFrameRolls = 9;
+        int valueOfFirstRoll = PLAIN_ROLL;
+        int sumOfFrameRolls = NOT_TEN;
         
         String frameType = getFrameType(valueOfFirstRoll, sumOfFrameRolls);
         
@@ -95,8 +98,8 @@ public class KataTest {
      */
     @Test
     public void a_frame_is_spare_if_first_roll_is_not_ten_and_sum_of_rolls_equals_ten() {
-        int valueOfFirstRoll = 1;
-        int sumOfFrameRolls = 10;
+        int valueOfFirstRoll = NOT_TEN;
+        int sumOfFrameRolls = TEN;
         
         String frameType = getFrameType(valueOfFirstRoll, sumOfFrameRolls);
         
@@ -108,8 +111,8 @@ public class KataTest {
      */
     @Test
     public void a_frame_is_strike_if_first_roll_is_ten() {
-        int valueOfFirstRoll = 10;
-        int sumOfFrameRolls = 10;
+        int valueOfFirstRoll = TEN;
+        int sumOfFrameRolls = TEN;
         
         String frameType = getFrameType(valueOfFirstRoll, sumOfFrameRolls);
         
