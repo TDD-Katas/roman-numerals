@@ -101,7 +101,7 @@ public class KataTest {
     }
     
     @Test
-    public void a_open_frame_has_two_rolls() {
+    public void number_of_rolls_for_open_frame_is_two() {
         FrameType frameType = OPEN_TYPE;
         
         int numberOfRolls = frameType.getNumberOfFrameRolls();
@@ -110,7 +110,7 @@ public class KataTest {
     }
     
     @Test
-    public void a_spare_frame_has_two_rolls() {
+    public void number_of_rolls_for_spare_is_two() {
         FrameType frameType = SPARE_TYPE;
         
         int numberOfRolls = frameType.getNumberOfFrameRolls();
@@ -119,7 +119,7 @@ public class KataTest {
     }
     
     @Test
-    public void a_strike_frame_has_one_roll() {
+    public void number_of_rolls_for_strike_is_one() {
         FrameType frameType = STRIKE_TYPE;
         
         int numberOfRolls = frameType.getNumberOfFrameRolls();
