@@ -63,4 +63,16 @@ public class KataTest {
         
         assertTrue(isOpenFrame);
     }
+    
+    /**
+     * Test of main method, of class Kata.
+     */
+    @Test
+    public void a_frame_is_spare_if_sum_of_rolls_equals_ten() {
+        int sumOfFrameRolls = 10;
+        
+        boolean isSpare = sumOfFrameRolls == 10;
+        
+        assertTrue(isSpare);
+    }
 }
