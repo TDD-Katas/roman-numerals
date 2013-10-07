@@ -43,10 +43,11 @@ public class KataTest {
     @Test
     public void bonus_score_for_spare_equals_score_of_next_roll() {
         String frameType = SPARE;
+        int numberOfBonusRolls = 1;
         int scoreOfNextRoll = SOME_VALUE;
         
         int bonusScoreForSpare = computeBonusScoreForFrame(frameType, 
-                scoreOfNextRoll, SOME_VALUE);
+                numberOfBonusRolls, scoreOfNextRoll, SOME_VALUE);
         
         assertThat(bonusScoreForSpare, is(scoreOfNextRoll));
     }
@@ -57,11 +58,12 @@ public class KataTest {
     @Test
     public void bonus_score_for_strike_equals_score_of_next_two_rolls() {
         String frameType = STRIKE;
+        int numberOfBonusRolls = 2;
         int scoreOfNextRoll = SOME_VALUE;
         int scoreOfSecondNextRoll = SOME_VALUE;
         
         int bonusScoreForStrike = computeBonusScoreForFrame(frameType, 
-                scoreOfNextRoll, scoreOfSecondNextRoll);
+                numberOfBonusRolls, scoreOfNextRoll, scoreOfSecondNextRoll);
         
         assertThat(bonusScoreForStrike, is(scoreOfNextRoll+scoreOfSecondNextRoll));
     }
@@ -72,9 +74,10 @@ public class KataTest {
     @Test
     public void bonus_score_for_open_frame_is_zero() {
         String frameType = OPEN;
+        int numberOfBonusRolls = 0;
         
         int bonusScoreOfOpenFrame = computeBonusScoreForFrame(frameType, 
-                SOME_VALUE, SOME_VALUE);
+                numberOfBonusRolls, SOME_VALUE, SOME_VALUE);
         
         assertThat(bonusScoreOfOpenFrame, is(0));
     }
@@ -240,18 +243,15 @@ public class KataTest {
         return frameType;
     }
     
-    protected int computeBonusScoreForFrame(String frameType, int scoreOfNextRoll, int scoreOfSecondNextRoll) {
+    protected int computeBonusScoreForFrame(String frameType, int numberOfBonusRolls, int scoreOfNextRoll, int scoreOfSecondNextRoll) {
         int bonusScore = 0;
         
         int[] nextRolls = new int[] {
             scoreOfNextRoll, scoreOfSecondNextRoll
         };
-        if (STRIKE.equals(frameType)) {
-            bonusScore = nextRolls[0]+nextRolls[1];
-        } else
-            if (SPARE.equals(frameType)) {
-                bonusScore = nextRolls[0];
-            }
+        for (int i = 0; i < numberOfBonusRolls; i++) {
+            bonusScore += nextRolls[i];
+        }
         
         return bonusScore;
     }
