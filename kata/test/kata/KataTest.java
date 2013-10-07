@@ -149,6 +149,24 @@ public class KataTest {
         assertThat(sumORolls, is(valueOfFirstRoll));
     }
     
+    @Test
+    public void score_of_game_equals_sum_of_frames_scores() {
+        int[] frameScores = new int[] {
+            SOME_VALUE, SOME_VALUE
+        };
+                
+        int scoreOfGame = 0;
+        for (int i : frameScores) {
+            scoreOfGame += i;
+        }
+        
+        int sumOfScores = 0;
+        for (int i : frameScores) {
+            sumOfScores += i;
+        }
+        assertThat(scoreOfGame, equalTo(sumOfScores));
+    }
+    
     //~~~~~~~~~~~
     
     
