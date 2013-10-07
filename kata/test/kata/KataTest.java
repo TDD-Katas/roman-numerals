@@ -56,18 +56,19 @@ public class KataTest {
     @Test
     public void bonus_score_for_strike_equals_score_of_next_two_rolls() {
         String frameType = STRIKE;
-        int scoreOfNextTwoRolls = SOME_VALUE;
+        int scoreOfNextRoll = SOME_VALUE;
+        int scoreOfSecondNextRoll = SOME_VALUE;
         
-        int bonusScoreForStrike = scoreOfNextTwoRolls;
+        int bonusScoreForStrike = scoreOfNextRoll+scoreOfSecondNextRoll;
         
-        assertThat(bonusScoreForStrike, is(scoreOfNextTwoRolls));
+        assertThat(bonusScoreForStrike, is(scoreOfNextRoll+scoreOfSecondNextRoll));
     }
     
     /**
      * Test of main method, of class Kata.
      */
     @Test
-    public void no_bonus_score_for_open_frame() {
+    public void bonus_score_for_open_frame_is_zero() {
         String frameType = OPEN;
         
         int bonusScoreOfOpenFrame = 0;
