@@ -83,10 +83,7 @@ public class KataTest {
     public void a_frame_is_open_frame_if_sum_of_rolls_different_than_ten() {
         int sumOfFrameRolls = 9;
         
-        String frameType = "";
-        if (sumOfFrameRolls != 10) {
-            frameType = OPEN;
-        }
+        String frameType = getFrameTypeForOpenFrame(sumOfFrameRolls);
         
         assertThat(frameType, is(OPEN));
     }
@@ -98,11 +95,8 @@ public class KataTest {
     public void a_frame_is_spare_if_first_roll_is_not_ten_and_sum_of_rolls_equals_ten() {
         int valueOfFirstRoll = 1;
         int sumOfFrameRolls = 10;
-
-        String frameType = "";
-        if ((valueOfFirstRoll != 10) && (sumOfFrameRolls == 10)) {
-            frameType = SPARE;
-        }
+        
+        String frameType = getFrameTypeForSpare(valueOfFirstRoll, sumOfFrameRolls);
         
         assertThat(frameType, is(SPARE));
     }
@@ -114,11 +108,35 @@ public class KataTest {
     public void a_frame_is_strike_if_first_roll_is_ten() {
         int valueOfFirstRoll = 10;
         
+        String frameType = getFrameTypeForStrike(valueOfFirstRoll);
+        
+        assertThat(frameType, is(STRIKE));
+    }
+    
+    //~~~~~~~~~~~
+    
+
+    protected String getFrameTypeForSpare(int valueOfFirstRoll, int sumOfFrameRolls) {
+        String frameType = "";
+        if ((valueOfFirstRoll != 10) && (sumOfFrameRolls == 10)) {
+            frameType = SPARE;
+        }
+        return frameType;
+    }
+
+    protected String getFrameTypeForStrike(int valueOfFirstRoll) {
         String frameType = "";
         if (valueOfFirstRoll == 10) {
             frameType = STRIKE;
         }
-        
-        assertThat(frameType, is(STRIKE));
+        return frameType;
+    }
+
+    protected String getFrameTypeForOpenFrame(int sumOfFrameRolls) {
+        String frameType = "";
+        if (sumOfFrameRolls != 10) {
+            frameType = OPEN;
+        }
+        return frameType;
     }
 }
