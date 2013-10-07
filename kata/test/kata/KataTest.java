@@ -118,44 +118,16 @@ public class KataTest {
     }
     
     @Test
-    public void sum_of_rolls_for_a_open_frame_equals_sum_of_first_and_second_roll() {
-        String frameType = OPEN;
-        int numberOfRolls = 2;
+    public void sum_of_rolls_equals_sum_of_the_frames_rolls() {
+        int numberOfFrameRolls = 2;
         int valueOfFirstRoll = ROLL_ZERO;
         int valueOfSecondRoll = ROLL_NOT_TEN;
         int[] rolls = new int[] {valueOfFirstRoll, valueOfSecondRoll};
         
-        int sumORolls = computeSumOfRollsForFrame(frameType, numberOfRolls,
+        int sumOfRolls = computeSumOfRollsForFrame(numberOfFrameRolls,
                rolls);
         
-        assertThat(sumORolls, is(valueOfFirstRoll + valueOfSecondRoll));
-    }
-    
-    @Test
-    public void sum_of_rolls_for_a_spare_frame_equals_sum_of_first_and_second_roll() {
-        String frameType = SPARE;
-        int numberOfRolls = 2;
-        int valueOfFirstRoll = ROLL_ZERO;
-        int valueOfSecondRoll = ROLL_NOT_TEN;
-        int[] rolls = new int[] {valueOfFirstRoll, valueOfSecondRoll};
-        
-        int sumORolls = computeSumOfRollsForFrame(frameType, numberOfRolls,
-                rolls);
-        
-        assertThat(sumORolls, is(valueOfFirstRoll + valueOfSecondRoll));
-    }
-    
-    @Test
-    public void sum_of_rolls_for_a_strike_frame_equals_value_of_first_roll() {
-        String frameType = STRIKE;
-        int numberOfRolls = 1;
-        int valueOfFirstRoll = ROLL_NOT_TEN;
-        int[] rolls = new int[] {valueOfFirstRoll};
-        
-        int sumORolls = computeSumOfRollsForFrame(frameType, numberOfRolls,
-                rolls);
-        
-        assertThat(sumORolls, is(valueOfFirstRoll));
+        assertThat(sumOfRolls, is(valueOfFirstRoll + valueOfSecondRoll));
     }
     
     @Test
@@ -211,7 +183,7 @@ public class KataTest {
         return frameType;
     }
 
-    protected int computeSumOfRollsForFrame(String frameType, int numberOfRolls, 
+    protected int computeSumOfRollsForFrame(int numberOfRolls, 
             int[] rolls) {
         int sumOfRolls = 0;
         for (int i = 0; i < numberOfRolls; i++) {
