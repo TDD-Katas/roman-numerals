@@ -155,7 +155,7 @@ public class KataTest {
             SOME_VALUE, SOME_VALUE
         };
         
-        int scoreOfGame = sumFrameScores(frameScores);
+        int scoreOfGame = computeScoreOfGame(frameScores);
         
         assertThat(scoreOfGame, equalTo(TestUtils.sumValues(frameScores)));
     }
@@ -199,7 +199,7 @@ public class KataTest {
         return bonusScore;
     }
 
-    public int sumFrameScores(int[] frameScores) {
+    public int computeScoreOfGame(int[] frameScores) {
         int scoreOfGame = 0;
         for (int i : frameScores) {
             scoreOfGame += i;
