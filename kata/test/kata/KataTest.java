@@ -77,9 +77,8 @@ public class KataTest {
     @Test
     public void a_frame_is_strike_if_first_roll_is_ten() {
         int valueOfFirstRoll = TEN;
-        int sumOfFrameRolls = TEN;
         
-        String frameType = getFrameTypeForStrike(valueOfFirstRoll, sumOfFrameRolls);
+        String frameType = getFrameType(valueOfFirstRoll, 0);
         
         assertThat(frameType, is(STRIKE));
     }
@@ -90,9 +89,9 @@ public class KataTest {
     @Test
     public void a_frame_is_spare_if_first_roll_is_not_ten_and_sum_of_rolls_equals_ten() {
         int valueOfFirstRoll = NOT_TEN;
-        int sumOfFrameRolls = TEN;
+        int valueOfSecondRoll = TEN - valueOfFirstRoll;
         
-        String frameType = getFrameTypeForStrike(valueOfFirstRoll, sumOfFrameRolls);
+        String frameType = getFrameType(valueOfFirstRoll, valueOfSecondRoll);
         
         assertThat(frameType, is(SPARE));
     }
@@ -105,31 +104,23 @@ public class KataTest {
         int valueOfFirstRoll = PLAIN_ROLL;
         int sumOfFrameRolls = NOT_TEN;
         
-        String frameType = getFrameTypeForStrike(valueOfFirstRoll, sumOfFrameRolls);
+        String frameType = getFrameType(valueOfFirstRoll, sumOfFrameRolls);
         
         assertThat(frameType, is(OPEN));
     }
     
     //~~~~~~~~~~~
     
-    protected String getFrameTypeForStrike(int valueOfFirstRoll) {
-        String frameType = OPEN;
-            if (valueOfFirstRoll == 10) {
-                frameType = STRIKE;
-            }
-        return frameType;
-    }
     
-    
-    protected String getFrameTypeForStrike(int valueOfFirstRoll, int sumOfFrameRolls) {
+    protected String getFrameType(int valueOfFirstRoll, int valueOfSecondRoll) {
         String frameType = OPEN;
-        if (sumOfFrameRolls == 10) {
-            if (valueOfFirstRoll == 10) {
-                frameType = STRIKE;
-            } else {
-                frameType = SPARE;
-            }
+        if (valueOfFirstRoll == 10) {
+            frameType = STRIKE;
+        } else 
+        if (valueOfFirstRoll + valueOfSecondRoll == 10) {
+            frameType = SPARE;
         }
+        
         return frameType;
     }
 }
