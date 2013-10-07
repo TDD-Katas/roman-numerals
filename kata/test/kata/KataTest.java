@@ -6,6 +6,7 @@ package kata;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
 
 /**
  *
@@ -17,7 +18,12 @@ public class KataTest {
      * Test of main method, of class Kata.
      */
     @Test
-    public void testMain() {
-        fail("The test case is a prototype.");
+    public void score_of_a_spare_equals_curennt_frame_pins_plus_next_roll_score() {
+        int curentFramePins = 1;
+        int nextRollScore = 2;
+        
+        int scoreOfSpare = curentFramePins + nextRollScore;
+        
+        assertThat(scoreOfSpare, is(curentFramePins+nextRollScore));
     }
 }
