@@ -32,7 +32,7 @@ public class KataTest {
         int sumOfFrameRolls = PLAIN_ROLL;
         int valueOfBonusRolls = SOME_VALUE;
         
-        int scoreOfFrame = sumOfFrameRolls + valueOfBonusRolls;
+        int scoreOfFrame = computeScoreOfFrame(sumOfFrameRolls, valueOfBonusRolls);
         
         assertThat(scoreOfFrame, is(sumOfFrameRolls+valueOfBonusRolls));
     }
@@ -155,9 +155,9 @@ public class KataTest {
             SOME_VALUE, SOME_VALUE
         };
         
-        int scoreOfGame = sumValues(frameScores);
+        int scoreOfGame = sumFrameScores(frameScores);
         
-        assertThat(scoreOfGame, equalTo(sumValues(frameScores)));
+        assertThat(scoreOfGame, equalTo(TestUtils.sumValues(frameScores)));
     }
     
     //~~~~~~~~~~~
@@ -199,11 +199,15 @@ public class KataTest {
         return bonusScore;
     }
 
-    protected int sumValues(int[] frameScores) {
+    public int sumFrameScores(int[] frameScores) {
         int scoreOfGame = 0;
         for (int i : frameScores) {
             scoreOfGame += i;
         }
         return scoreOfGame;
+    }
+    
+    protected int computeScoreOfFrame(int sumOfFrameRolls, int valueOfBonusRolls) {
+        return sumOfFrameRolls + valueOfBonusRolls;
     }
 }
