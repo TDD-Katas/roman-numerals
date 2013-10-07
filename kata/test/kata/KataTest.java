@@ -18,12 +18,25 @@ public class KataTest {
      * Test of main method, of class Kata.
      */
     @Test
-    public void score_of_a_spare_equals_curennt_frame_pins_plus_next_roll_score() {
+    public void score_of_a_spare_equals_current_frame_pins_plus_score_of_next_roll() {
         int curentFramePins = 1;
-        int nextRollScore = 2;
+        int scoreOfNextRoll = 2;
         
-        int scoreOfSpare = curentFramePins + nextRollScore;
+        int scoreOfSpare = curentFramePins + scoreOfNextRoll;
         
-        assertThat(scoreOfSpare, is(curentFramePins+nextRollScore));
+        assertThat(scoreOfSpare, is(curentFramePins+scoreOfNextRoll));
+    }
+    
+    /**
+     * Test of main method, of class Kata.
+     */
+    @Test
+    public void score_of_a_strike_equals_current_frame_pins_plus_score_of_next_two_rolls() {
+        int curentFramePins = 1;
+        int scoreOfNextTwoRolls = 2;
+        
+        int scoreOfSpare = curentFramePins + scoreOfNextTwoRolls;
+        
+        assertThat(scoreOfSpare, is(curentFramePins+scoreOfNextTwoRolls));
     }
 }
