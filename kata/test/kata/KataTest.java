@@ -77,10 +77,14 @@ public class KataTest {
      * Test of main method, of class Kata.
      */
     @Test
-    public void a_frame_is_spare_if_sum_of_rolls_equals_ten() {
+    public void a_frame_is_spare_if_first_roll_is_not_ten_and_sum_of_rolls_equals_ten() {
+        int valueOfFirstRoll = 1;
         int sumOfFrameRolls = 10;
-        
-        boolean isSpare = sumOfFrameRolls == 10;
+
+        boolean isSpare = false;
+        if (valueOfFirstRoll != 10) {
+            isSpare = sumOfFrameRolls == 10;
+        }
         
         assertTrue(isSpare);
     }

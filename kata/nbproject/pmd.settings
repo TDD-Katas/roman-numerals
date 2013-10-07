@@ -1,6 +1,7 @@
 JUnitAssertionsShouldIncludeMessage
-MethodArgumentCouldBeFinal
 LongVariable
+MethodArgumentCouldBeFinal
 MethodNamingConventions
 UseSingleton
+DataflowAnomalyAnalysis
 LocalVariableCouldBeFinal
