@@ -31,13 +31,12 @@ public class KataTest {
      * Test of main method, of class Kata.
      */
     @Test
-    public void score_of_a_spare_equals_current_frame_pins_plus_score_of_next_roll() {
-        int curentFramePins = 1;
-        int scoreOfNextRoll = 2;
+    public void bonus_score_for_spare_equals_score_of_next_roll() {
+        int scoreOfNextRoll = 1;
         
-        int scoreOfSpare = curentFramePins + scoreOfNextRoll;
+        int bonusScoreForSpare = scoreOfNextRoll;
         
-        assertThat(scoreOfSpare, is(curentFramePins+scoreOfNextRoll));
+        assertThat(bonusScoreForSpare, is(scoreOfNextRoll));
     }
     
     /**
