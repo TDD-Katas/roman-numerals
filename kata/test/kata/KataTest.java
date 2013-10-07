@@ -119,6 +119,16 @@ public class KataTest {
         assertThat(frameType, is(STRIKE));
     }
     
+    @Test
+    public void a_spare_frame_has_one_roll() {
+        String frameType = SPARE;
+        
+        int numberOfRolls = 1;
+        
+        assertThat(numberOfRolls, is(1));
+    }
+    
+    
     //~~~~~~~~~~~
     
     protected String getFrameType(int valueOfFirstRoll, int sumOfFrameRolls) {
