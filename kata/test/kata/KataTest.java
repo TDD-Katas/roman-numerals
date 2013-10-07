@@ -204,10 +204,11 @@ public class KataTest {
 
     protected int computeSumOfRollsForFrame(String frameType, int valueOfFirstRoll, int valueOfSecondRoll) {
         int sumOfRolls;
+        int[] rolls = new int[] {valueOfFirstRoll, valueOfSecondRoll};
         if (STRIKE.equals(frameType)) {
-            sumOfRolls = valueOfFirstRoll;
+            sumOfRolls = rolls[0];
         } else {
-            sumOfRolls = valueOfFirstRoll + valueOfSecondRoll;
+            sumOfRolls = rolls[0] + rolls[1];
         }
         
         return sumOfRolls;
