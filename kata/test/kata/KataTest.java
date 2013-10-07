@@ -101,10 +101,10 @@ public class KataTest {
      */
     @Test
     public void a_frame_is_open_frame_if_first_roll_is_not_ten_and_sum_of_rolls_different_than_ten() {
-        int valueOfFirstRoll = PLAIN_ROLL;
-        int sumOfFrameRolls = NOT_TEN;
+        int valueOfFirstRoll = 0;
+        int valueOfSecondRoll = NOT_TEN;
         
-        String frameType = getFrameType(valueOfFirstRoll, sumOfFrameRolls);
+        String frameType = getFrameType(valueOfFirstRoll, valueOfSecondRoll);
         
         assertThat(frameType, is(OPEN));
     }
