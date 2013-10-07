@@ -45,7 +45,8 @@ public class KataTest {
         String frameType = SPARE;
         int scoreOfNextRoll = SOME_VALUE;
         
-        int bonusScoreForSpare = scoreOfNextRoll;
+        int bonusScoreForSpare = computeBonusScoreForFrame(frameType, 
+                scoreOfNextRoll, SOME_VALUE);
         
         assertThat(bonusScoreForSpare, is(scoreOfNextRoll));
     }
@@ -72,7 +73,8 @@ public class KataTest {
     public void bonus_score_for_open_frame_is_zero() {
         String frameType = OPEN;
         
-        int bonusScoreOfOpenFrame = 0;
+        int bonusScoreOfOpenFrame = computeBonusScoreForFrame(frameType, 
+                SOME_VALUE, SOME_VALUE);
         
         assertThat(bonusScoreOfOpenFrame, is(0));
     }
@@ -174,6 +176,13 @@ public class KataTest {
     }
 
     protected int computeBonusScoreForFrame(String frameType, int scoreOfNextRoll, int scoreOfSecondNextRoll) {
-        return scoreOfNextRoll+scoreOfSecondNextRoll;
+        if (STRIKE.equals(frameType)) {
+            return scoreOfNextRoll+scoreOfSecondNextRoll;
+        } else 
+        if (SPARE.equals(frameType)) {
+            return scoreOfNextRoll;
+        } else {
+            return 0;
+        }
     }
 }
