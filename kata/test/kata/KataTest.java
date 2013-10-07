@@ -51,4 +51,16 @@ public class KataTest {
         
         assertThat(scoreOfOpenFrame, is(curentFramePins));
     }
+    
+    /**
+     * Test of main method, of class Kata.
+     */
+    @Test
+    public void a_frame_is_open_frame_if_sum_of_rolls_different_than_ten() {
+        int sumOfFrameRolls = 9;
+        
+        boolean isOpenFrame = sumOfFrameRolls != 10;
+        
+        assertTrue(isOpenFrame);
+    }
 }
