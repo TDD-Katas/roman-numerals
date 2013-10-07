@@ -18,6 +18,19 @@ public class KataTest {
      * Test of main method, of class Kata.
      */
     @Test
+    public void score_of_a_frame_equals_number_of_pins_plus_the_value_of_bonus_rolls() {
+        int curentFramePins = 1;
+        int valueOfBonusRolls = 2;
+        
+        int scoreOfFrame = curentFramePins + valueOfBonusRolls;
+        
+        assertThat(scoreOfFrame, is(curentFramePins+valueOfBonusRolls));
+    }
+    
+    /**
+     * Test of main method, of class Kata.
+     */
+    @Test
     public void score_of_a_spare_equals_current_frame_pins_plus_score_of_next_roll() {
         int curentFramePins = 1;
         int scoreOfNextRoll = 2;
