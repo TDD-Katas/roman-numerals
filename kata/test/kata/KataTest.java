@@ -17,8 +17,9 @@ public class KataTest {
     public static final String SPARE = "spare";
     public static final String STRIKE = "strike";
     public static final int PLAIN_ROLL = 1;
-    public static final int NOT_TEN = 9;
+    public static final int ROLL_NOT_TEN = 9;
     public static final int TEN = 10;
+    public static final int ROLL_ZERO = 0;
     
     /**
      * Test of main method, of class Kata.
@@ -88,7 +89,7 @@ public class KataTest {
      */
     @Test
     public void a_frame_is_spare_if_first_roll_is_not_ten_and_sum_of_rolls_equals_ten() {
-        int valueOfFirstRoll = NOT_TEN;
+        int valueOfFirstRoll = ROLL_NOT_TEN;
         int valueOfSecondRoll = TEN - valueOfFirstRoll;
         
         String frameType = getFrameType(valueOfFirstRoll, valueOfSecondRoll);
@@ -101,8 +102,8 @@ public class KataTest {
      */
     @Test
     public void a_frame_is_open_frame_if_first_roll_is_not_ten_and_sum_of_rolls_different_than_ten() {
-        int valueOfFirstRoll = 0;
-        int valueOfSecondRoll = NOT_TEN;
+        int valueOfFirstRoll = ROLL_ZERO;
+        int valueOfSecondRoll = ROLL_NOT_TEN;
         
         String frameType = getFrameType(valueOfFirstRoll, valueOfSecondRoll);
         
@@ -113,7 +114,7 @@ public class KataTest {
     public void sum_of_rolls_for_a_open_frame_equals_sum_of_first_and_second_roll() {
         String frameType = OPEN;
         int valueOfFirstRoll = 0;
-        int valueOfSecondRoll = NOT_TEN;
+        int valueOfSecondRoll = ROLL_NOT_TEN;
         
         int sumORolls = computeSumOfRolls(frameType, valueOfFirstRoll, valueOfSecondRoll);
         
@@ -124,7 +125,7 @@ public class KataTest {
     public void sum_of_rolls_for_a_spare_frame_equals_sum_of_first_and_second_roll() {
         String frameType = SPARE;
         int valueOfFirstRoll = 0;
-        int valueOfSecondRoll = NOT_TEN;
+        int valueOfSecondRoll = ROLL_NOT_TEN;
         
         int sumORolls = computeSumOfRolls(frameType, valueOfFirstRoll, valueOfSecondRoll);
         
