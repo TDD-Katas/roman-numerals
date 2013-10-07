@@ -112,7 +112,7 @@ public class KataTest {
     
     
     @Test
-    public void sum_of_rolls_equals_sum_of_first_and_second_roll() {
+    public void sum_of_frame_rolls_equals_sum_of_first_and_second_roll() {
         int valueOfFirstRoll = PLAIN_ROLL;
         int valueOfSecondRoll = PLAIN_ROLL;
         
