@@ -71,8 +71,6 @@ public class KataTest {
         assertThat(bonusScoreOfOpenFrame, is(0));
     }
     
- 
-    
     /**
      * Test of main method, of class Kata.
      */
@@ -123,6 +121,15 @@ public class KataTest {
         assertThat(sumOfFrameRolls, is(valueOfFirstRoll + valueOfSecondRoll));
     }
     
+    
+    @Test
+    public void sum_of_open_frame_rolls_equals_sum_of_first_and_second_roll() {
+        int sumOfFirstAndSecondRoll = PLAIN_ROLL;
+        
+        int sumOfFrameRolls = sumOfFirstAndSecondRoll;
+        
+        assertThat(sumOfFrameRolls, is(sumOfFirstAndSecondRoll));
+    }
     
     //~~~~~~~~~~~
     
