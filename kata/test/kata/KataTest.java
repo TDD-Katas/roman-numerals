@@ -123,10 +123,10 @@ public class KataTest {
         int numberOfRolls = 2;
         int valueOfFirstRoll = ROLL_ZERO;
         int valueOfSecondRoll = ROLL_NOT_TEN;
-        int[] rolls = new int[] {ROLL_ZERO, ROLL_NOT_TEN};
+        int[] rolls = new int[] {valueOfFirstRoll, valueOfSecondRoll};
         
         int sumORolls = computeSumOfRollsForFrame(frameType, numberOfRolls,
-                valueOfFirstRoll, valueOfSecondRoll);
+               rolls);
         
         assertThat(sumORolls, is(valueOfFirstRoll + valueOfSecondRoll));
     }
@@ -140,7 +140,7 @@ public class KataTest {
         int[] rolls = new int[] {valueOfFirstRoll, valueOfSecondRoll};
         
         int sumORolls = computeSumOfRollsForFrame(frameType, numberOfRolls,
-                valueOfFirstRoll, valueOfSecondRoll);
+                rolls);
         
         assertThat(sumORolls, is(valueOfFirstRoll + valueOfSecondRoll));
     }
@@ -153,7 +153,7 @@ public class KataTest {
         int[] rolls = new int[] {valueOfFirstRoll};
         
         int sumORolls = computeSumOfRollsForFrame(frameType, numberOfRolls,
-                valueOfFirstRoll, ROLL_ZERO);
+                rolls);
         
         assertThat(sumORolls, is(valueOfFirstRoll));
     }
@@ -212,9 +212,7 @@ public class KataTest {
     }
 
     protected int computeSumOfRollsForFrame(String frameType, int numberOfRolls, 
-            int valueOfFirstRoll, int valueOfSecondRoll) {
-        int[] rolls = new int[] {valueOfFirstRoll, valueOfSecondRoll};
-        
+            int[] rolls) {
         int sumOfRolls = 0;
         for (int i = 0; i < numberOfRolls; i++) {
             sumOfRolls += rolls[i];
