@@ -43,25 +43,22 @@ public class KataTest {
      * Test of main method, of class Kata.
      */
     @Test
-    public void score_of_a_strike_equals_current_frame_pins_plus_score_of_next_two_rolls() {
-        int curentFramePins = 1;
-        int scoreOfNextTwoRolls = 2;
+    public void bonus_score_for_strike_equals_score_of_next_two_rolls() {
+        int scoreOfNextTwoRolls = 1;
         
-        int scoreOfStrike = curentFramePins + scoreOfNextTwoRolls;
+        int bonusScoreForStrike = scoreOfNextTwoRolls;
         
-        assertThat(scoreOfStrike, is(curentFramePins+scoreOfNextTwoRolls));
+        assertThat(bonusScoreForStrike, is(scoreOfNextTwoRolls));
     }
     
     /**
      * Test of main method, of class Kata.
      */
     @Test
-    public void score_of_an_open_frame_equals_current_frame_pins() {
-        int curentFramePins = 3;
+    public void no_bonus_score_for_open_frame() {
+        int bonusScoreOfOpenFrame = 0;
         
-        int scoreOfOpenFrame = curentFramePins;
-        
-        assertThat(scoreOfOpenFrame, is(curentFramePins));
+        assertThat(bonusScoreOfOpenFrame, is(0));
     }
     
     /**
