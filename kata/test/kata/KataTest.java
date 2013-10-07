@@ -118,7 +118,7 @@ public class KataTest {
         int valueOfFirstRoll = PLAIN_ROLL;
         int valueOfSecondRoll = PLAIN_ROLL;
         
-        int sumOfFrameRolls = getSumOfFrameRolls(valueOfFirstRoll, valueOfSecondRoll);
+        int sumOfFrameRolls = getSumOfFirstAndSecondRoll(valueOfFirstRoll, valueOfSecondRoll);
         
         assertThat(sumOfFrameRolls, is(valueOfFirstRoll + valueOfSecondRoll));
     }
@@ -166,7 +166,7 @@ public class KataTest {
         return frameType;
     }
 
-    protected int getSumOfFrameRolls(int valueOfFirstRoll, int valueOfSecondRoll) {
+    protected int getSumOfFirstAndSecondRoll(int valueOfFirstRoll, int valueOfSecondRoll) {
         int sumOfFrameRolls = valueOfFirstRoll + valueOfSecondRoll;
         return sumOfFrameRolls;
     }
