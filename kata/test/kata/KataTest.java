@@ -168,6 +168,18 @@ public class KataTest {
         assertThat(numberOfRolls, is(1));
     }
     
+    /**
+     * Test of main method, of class Kata.
+     */
+    @Test
+    public void the_bouns_for_a_strike_is_two_rolls() {
+        String frameType = STRIKE;
+
+        int bonusRolls = 2;
+        
+        assertThat(bonusRolls, is(2));
+    }
+    
     //~~~~~~~~~~~
     
     
