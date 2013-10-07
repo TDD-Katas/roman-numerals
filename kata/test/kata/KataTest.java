@@ -176,13 +176,15 @@ public class KataTest {
     }
 
     protected int computeBonusScoreForFrame(String frameType, int scoreOfNextRoll, int scoreOfSecondNextRoll) {
+        int bonusScore = 0;
+        
         if (STRIKE.equals(frameType)) {
-            return scoreOfNextRoll+scoreOfSecondNextRoll;
+            bonusScore = scoreOfNextRoll+scoreOfSecondNextRoll;
         } else 
         if (SPARE.equals(frameType)) {
-            return scoreOfNextRoll;
-        } else {
-            return 0;
-        }
+            bonusScore = scoreOfNextRoll;
+        } 
+        
+        return bonusScore;
     }
 }
