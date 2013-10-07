@@ -145,7 +145,7 @@ public class KataTest {
     public void a_open_frame_has_two_rolls() {
         String frameType = OPEN;
         
-        int numberOfRolls = getNumberOfRolls(frameType);
+        int numberOfRolls = getNumberOfFrameRolls(frameType);
         
         assertThat(numberOfRolls, is(2));
     }
@@ -154,7 +154,7 @@ public class KataTest {
     public void a_spare_frame_has_two_rolls() {
         String frameType = SPARE;
         
-        int numberOfRolls = getNumberOfRolls(frameType);
+        int numberOfRolls = getNumberOfFrameRolls(frameType);
         
         assertThat(numberOfRolls, is(2));
     }
@@ -163,7 +163,7 @@ public class KataTest {
     public void a_strike_frame_has_one_roll() {
         String frameType = STRIKE;
         
-        int numberOfRolls = getNumberOfRolls(frameType);
+        int numberOfRolls = getNumberOfFrameRolls(frameType);
         
         assertThat(numberOfRolls, is(1));
     }
@@ -183,10 +183,10 @@ public class KataTest {
         return frameType;
     }
 
-    protected int computeSumOfRollsForFrame(int numberOfRolls, 
+    protected int computeSumOfRollsForFrame(int numberOfFrameRolls, 
             int[] rolls) {
         int sumOfRolls = 0;
-        for (int i = 0; i < numberOfRolls; i++) {
+        for (int i = 0; i < numberOfFrameRolls; i++) {
             sumOfRolls += rolls[i];
         }
         
@@ -218,7 +218,7 @@ public class KataTest {
         return sumOfFrameRolls + valueOfBonusRolls;
     }
 
-    protected int getNumberOfRolls(String frameType) {
+    protected int getNumberOfFrameRolls(String frameType) {
         int numberOfRolls = 2;
         if(STRIKE.equals(frameType)) {
             numberOfRolls = 1;
