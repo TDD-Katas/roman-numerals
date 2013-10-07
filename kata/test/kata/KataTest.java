@@ -181,8 +181,8 @@ public class KataTest {
     
     
     class FrameType {
-        int numberOfFrameRolls;
-        int numberOfBonusRolls;
+        private int numberOfFrameRolls;
+        private int numberOfBonusRolls;
 
         public FrameType(int numberOfFrameRolls, int numberOfBonusRolls) {
             this.numberOfFrameRolls = numberOfFrameRolls;
@@ -198,7 +198,9 @@ public class KataTest {
         }
     }
     
+    private final FrameType OPEN_TYPE = new FrameType(2, 0);
     private final FrameType SPARE_TYPE = new FrameType(2, 1);
+    private final FrameType STRIKE_TYPE = new FrameType(1, 2);
     
     protected String getFrameType(int valueOfFirstRoll, int valueOfSecondRoll) {
         String frameType = OPEN;
