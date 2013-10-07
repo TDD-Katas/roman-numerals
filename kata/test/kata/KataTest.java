@@ -124,6 +124,7 @@ public class KataTest {
     
     @Test
     public void sum_of_open_frame_rolls_equals_sum_of_first_and_second_roll() {
+        String frameType = OPEN;
         int sumOfFirstAndSecondRoll = PLAIN_ROLL;
         
         int sumOfFrameRolls = sumOfFirstAndSecondRoll;
@@ -133,6 +134,7 @@ public class KataTest {
     
     @Test
     public void sum_of_spare_frame_rolls_equals_sum_of_first_and_second_roll() {
+        String frameType = SPARE;
         int sumOfFirstAndSecondRoll = PLAIN_ROLL;
         
         int sumOfFrameRolls = sumOfFirstAndSecondRoll;
@@ -142,6 +144,7 @@ public class KataTest {
     
     @Test
     public void sum_of_strike_frame_rolls_equals_sum_of_first_roll() {
+        String frameType = STRIKE;
         int sumOfFirstRoll = PLAIN_ROLL;
         
         int sumOfFrameRolls = sumOfFirstRoll;
