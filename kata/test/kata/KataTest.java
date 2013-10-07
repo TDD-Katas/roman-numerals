@@ -13,11 +13,6 @@ import static org.hamcrest.CoreMatchers.*;
  * @author Iulian Ghionoiu <iulian.ghionoiu@exenne.ro>
  */
 public class KataTest {
-    public static final String OPEN = "open";
-    public static final String SPARE = "spare";
-    public static final String STRIKE = "strike";
-    
-    
     public static final int PLAIN_ROLL = 1;
     public static final int ROLL_NOT_TEN = 9;
     public static final int TEN = 10;
@@ -51,9 +46,9 @@ public class KataTest {
     public void a_frame_is_strike_if_first_roll_is_ten() {
         int valueOfFirstRoll = TEN;
         
-        String frameType = getFrameType(valueOfFirstRoll, 0);
+        FrameType frameType = getFrameType(valueOfFirstRoll, 0);
         
-        assertThat(frameType, is(STRIKE));
+        assertThat(frameType, is(STRIKE_TYPE));
     }
     
     @Test
@@ -61,9 +56,9 @@ public class KataTest {
         int valueOfFirstRoll = ROLL_NOT_TEN;
         int valueOfSecondRoll = TEN - valueOfFirstRoll;
         
-        String frameType = getFrameType(valueOfFirstRoll, valueOfSecondRoll);
+        FrameType frameType = getFrameType(valueOfFirstRoll, valueOfSecondRoll);
         
-        assertThat(frameType, is(SPARE));
+        assertThat(frameType, is(SPARE_TYPE));
     }
     
     @Test
@@ -71,9 +66,9 @@ public class KataTest {
         int valueOfFirstRoll = ROLL_ZERO;
         int valueOfSecondRoll = ROLL_NOT_TEN;
         
-        String frameType = getFrameType(valueOfFirstRoll, valueOfSecondRoll);
+        FrameType frameType = getFrameType(valueOfFirstRoll, valueOfSecondRoll);
         
-        assertThat(frameType, is(OPEN));
+        assertThat(frameType, is(OPEN_TYPE));
     }
     
     @Test
@@ -202,38 +197,15 @@ public class KataTest {
     private final FrameType SPARE_TYPE = new FrameType(2, 1);
     private final FrameType STRIKE_TYPE = new FrameType(1, 2);
     
-    protected String getFrameType(int valueOfFirstRoll, int valueOfSecondRoll) {
-        String frameType = OPEN;
+    protected FrameType getFrameType(int valueOfFirstRoll, int valueOfSecondRoll) {
+        FrameType frameType = OPEN_TYPE;
         if (valueOfFirstRoll == 10) {
-            frameType = STRIKE;
+            frameType = STRIKE_TYPE;
         } else
             if (valueOfFirstRoll + valueOfSecondRoll == 10) {
-                frameType = SPARE;
+                frameType = SPARE_TYPE;
             }
         
         return frameType;
-    }
-    
-
-    protected int getNumberOfFrameRolls(String frameType) {
-        int numberOfRolls = 2;
-        if(STRIKE.equals(frameType)) {
-            numberOfRolls = 1;
-        }
-        
-        return numberOfRolls;
-    }
-
-    protected int getNumberOfBonusRolls(String frameType) {
-        int numberOfBonusRolls = 0;
-        
-        if (STRIKE.equals(frameType)) {
-            numberOfBonusRolls = 2;
-        } else
-        if (SPARE.equals(frameType)) {
-            numberOfBonusRolls = 1;
-        }
-        
-        return numberOfBonusRolls;
     }
 }
