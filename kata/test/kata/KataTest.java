@@ -24,13 +24,13 @@ public class KataTest {
      * Test of main method, of class Kata.
      */
     @Test
-    public void score_of_a_frame_equals_number_of_pins_plus_the_value_of_bonus_rolls() {
-        int curentFramePins = PLAIN_ROLL;
+    public void score_of_a_frame_equals_sum_of_frame_rolls_plus_the_value_of_bonus_rolls() {
+        int sumOfFrameRolls = PLAIN_ROLL;
         int valueOfBonusRolls = 2;
         
-        int scoreOfFrame = curentFramePins + valueOfBonusRolls;
+        int scoreOfFrame = sumOfFrameRolls + valueOfBonusRolls;
         
-        assertThat(scoreOfFrame, is(curentFramePins+valueOfBonusRolls));
+        assertThat(scoreOfFrame, is(sumOfFrameRolls+valueOfBonusRolls));
     }
     
     /**
