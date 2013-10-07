@@ -80,17 +80,18 @@ public class KataTest {
         assertThat(scoreOfRoll, equalTo(numberOfPins));
     }
     
+    
     /**
      * Test of main method, of class Kata.
      */
     @Test
-    public void a_frame_is_open_frame_if_sum_of_rolls_different_than_ten() {
-        int valueOfFirstRoll = PLAIN_ROLL;
-        int sumOfFrameRolls = NOT_TEN;
+    public void a_frame_is_strike_if_first_roll_is_ten() {
+        int valueOfFirstRoll = TEN;
+        int sumOfFrameRolls = TEN;
         
         String frameType = getFrameType(valueOfFirstRoll, sumOfFrameRolls);
         
-        assertThat(frameType, is(OPEN));
+        assertThat(frameType, is(STRIKE));
     }
     
     /**
@@ -110,13 +111,13 @@ public class KataTest {
      * Test of main method, of class Kata.
      */
     @Test
-    public void a_frame_is_strike_if_first_roll_is_ten() {
-        int valueOfFirstRoll = TEN;
-        int sumOfFrameRolls = TEN;
+    public void a_frame_is_open_frame_if_first_roll_is_not_ten_and_sum_of_rolls_different_than_ten() {
+        int valueOfFirstRoll = PLAIN_ROLL;
+        int sumOfFrameRolls = NOT_TEN;
         
         String frameType = getFrameType(valueOfFirstRoll, sumOfFrameRolls);
         
-        assertThat(frameType, is(STRIKE));
+        assertThat(frameType, is(OPEN));
     }
     
     @Test
