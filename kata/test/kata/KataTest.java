@@ -35,8 +35,20 @@ public class KataTest {
         int curentFramePins = 1;
         int scoreOfNextTwoRolls = 2;
         
-        int scoreOfSpare = curentFramePins + scoreOfNextTwoRolls;
+        int scoreOfStrike = curentFramePins + scoreOfNextTwoRolls;
         
-        assertThat(scoreOfSpare, is(curentFramePins+scoreOfNextTwoRolls));
+        assertThat(scoreOfStrike, is(curentFramePins+scoreOfNextTwoRolls));
+    }
+    
+    /**
+     * Test of main method, of class Kata.
+     */
+    @Test
+    public void score_of_an_open_frame_equals_current_frame_pins() {
+        int curentFramePins = 3;
+        
+        int scoreOfOpenFrame = curentFramePins;
+        
+        assertThat(scoreOfOpenFrame, is(curentFramePins));
     }
 }
