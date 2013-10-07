@@ -64,6 +64,15 @@ public class KataTest {
         assertThat(bonusScoreOfOpenFrame, is(0));
     }
     
+    @Test
+    public void score_for_roll_equals_number_of_pins_for_roll() {
+        int numberOfPins = 2;
+        
+        int scoreOfRoll = numberOfPins;
+                
+        assertThat(scoreOfRoll, equalTo(numberOfPins));
+    }
+    
     /**
      * Test of main method, of class Kata.
      */
