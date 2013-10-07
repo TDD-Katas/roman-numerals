@@ -115,7 +115,7 @@ public class KataTest {
         int valueOfFirstRoll = 0;
         int valueOfSecondRoll = NOT_TEN;
         
-        int sumORolls = computeSumOfRolls(valueOfFirstRoll, valueOfSecondRoll);
+        int sumORolls = computeSumOfRolls(frameType, valueOfFirstRoll, valueOfSecondRoll);
         
         assertThat(sumORolls, is(valueOfFirstRoll + valueOfSecondRoll));
     }
@@ -126,7 +126,7 @@ public class KataTest {
         int valueOfFirstRoll = 0;
         int valueOfSecondRoll = NOT_TEN;
         
-        int sumORolls = computeSumOfRolls(valueOfFirstRoll, valueOfSecondRoll);
+        int sumORolls = computeSumOfRolls(frameType, valueOfFirstRoll, valueOfSecondRoll);
         
         assertThat(sumORolls, is(valueOfFirstRoll + valueOfSecondRoll));
     }
@@ -136,7 +136,7 @@ public class KataTest {
         String frameType = STRIKE;
         int valueOfFirstRoll = 1;
         
-        int sumORolls = computeSumOfRolls(valueOfFirstRoll, 0);
+        int sumORolls = computeSumOfRolls(frameType, valueOfFirstRoll, 0);
         
         assertThat(sumORolls, is(valueOfFirstRoll));
     }
@@ -156,7 +156,14 @@ public class KataTest {
         return frameType;
     }
 
-    protected int computeSumOfRolls(int valueOfFirstRoll, int valueOfSecondRoll) {
-        return valueOfFirstRoll + valueOfSecondRoll;
+    protected int computeSumOfRolls(String frameType, int valueOfFirstRoll, int valueOfSecondRoll) {
+        int sumOfRolls;
+        if (STRIKE.equals(frameType)) {
+            sumOfRolls = valueOfFirstRoll;
+        } else {
+            sumOfRolls = valueOfFirstRoll + valueOfSecondRoll;
+        }
+        
+        return sumOfRolls;
     }
 }
