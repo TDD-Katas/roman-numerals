@@ -32,6 +32,7 @@ public class KataTest {
      */
     @Test
     public void bonus_score_for_spare_equals_score_of_next_roll() {
+        String frameType = "spare";
         int scoreOfNextRoll = 1;
         
         int bonusScoreForSpare = scoreOfNextRoll;
@@ -44,6 +45,7 @@ public class KataTest {
      */
     @Test
     public void bonus_score_for_strike_equals_score_of_next_two_rolls() {
+        String frameType = "strike";
         int scoreOfNextTwoRolls = 1;
         
         int bonusScoreForStrike = scoreOfNextTwoRolls;
@@ -56,6 +58,7 @@ public class KataTest {
      */
     @Test
     public void no_bonus_score_for_open_frame() {
+        String frameType = "open";
         int bonusScoreOfOpenFrame = 0;
         
         assertThat(bonusScoreOfOpenFrame, is(0));
