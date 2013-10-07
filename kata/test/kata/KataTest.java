@@ -109,6 +109,16 @@ public class KataTest {
         assertThat(frameType, is(OPEN));
     }
     
+    @Test
+    public void sum_of_rolls_for_a_open_frame_equals_sum_of_first_and_second_roll() {
+        int valueOfFirstRoll = 0;
+        int valueOfSecondRoll = NOT_TEN;
+        
+        int sumORolls = valueOfFirstRoll + valueOfSecondRoll;
+        
+        assertThat(sumORolls, is(valueOfFirstRoll + valueOfSecondRoll));
+    }
+    
     //~~~~~~~~~~~
     
     
