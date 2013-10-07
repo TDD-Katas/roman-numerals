@@ -45,9 +45,12 @@ public class KataTest {
         String frameType = SPARE;
         int numberOfBonusRolls = 1;
         int scoreOfNextRoll = SOME_VALUE;
+        int[] nextRolls = new int[] {
+            scoreOfNextRoll
+        };
         
         int bonusScoreForSpare = computeBonusScoreForFrame(frameType, 
-                numberOfBonusRolls, scoreOfNextRoll, SOME_VALUE);
+                numberOfBonusRolls, nextRolls);
         
         assertThat(bonusScoreForSpare, is(scoreOfNextRoll));
     }
@@ -61,9 +64,12 @@ public class KataTest {
         int numberOfBonusRolls = 2;
         int scoreOfNextRoll = SOME_VALUE;
         int scoreOfSecondNextRoll = SOME_VALUE;
+        int[] nextRolls = new int[] {
+            scoreOfNextRoll, scoreOfSecondNextRoll
+        };
         
         int bonusScoreForStrike = computeBonusScoreForFrame(frameType, 
-                numberOfBonusRolls, scoreOfNextRoll, scoreOfSecondNextRoll);
+                numberOfBonusRolls, nextRolls);
         
         assertThat(bonusScoreForStrike, is(scoreOfNextRoll+scoreOfSecondNextRoll));
     }
@@ -75,9 +81,12 @@ public class KataTest {
     public void bonus_score_for_open_frame_is_zero() {
         String frameType = OPEN;
         int numberOfBonusRolls = 0;
+        int[] nextRolls = new int[] {
+            SOME_VALUE, SOME_VALUE
+        };
         
         int bonusScoreOfOpenFrame = computeBonusScoreForFrame(frameType, 
-                numberOfBonusRolls, SOME_VALUE, SOME_VALUE);
+                numberOfBonusRolls, nextRolls);
         
         assertThat(bonusScoreOfOpenFrame, is(0));
     }
@@ -243,12 +252,9 @@ public class KataTest {
         return frameType;
     }
     
-    protected int computeBonusScoreForFrame(String frameType, int numberOfBonusRolls, int scoreOfNextRoll, int scoreOfSecondNextRoll) {
+    protected int computeBonusScoreForFrame(String frameType, int numberOfBonusRolls, int[] nextRolls) {
         int bonusScore = 0;
         
-        int[] nextRolls = new int[] {
-            scoreOfNextRoll, scoreOfSecondNextRoll
-        };
         for (int i = 0; i < numberOfBonusRolls; i++) {
             bonusScore += nextRolls[i];
         }
