@@ -120,8 +120,26 @@ public class KataTest {
     }
     
     @Test
-    public void a_spare_frame_has_one_roll() {
+    public void a_open_frame_has_two_rolls() {
+        String frameType = OPEN;
+        
+        int numberOfRolls = 2;
+        
+        assertThat(numberOfRolls, is(2));
+    }
+    
+    @Test
+    public void a_spare_frame_has_two_rolls() {
         String frameType = SPARE;
+        
+        int numberOfRolls = 2;
+        
+        assertThat(numberOfRolls, is(2));
+    }
+    
+    @Test
+    public void a_strike_frame_has_one_roll() {
+        String frameType = STRIKE;
         
         int numberOfRolls = 1;
         
