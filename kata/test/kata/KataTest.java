@@ -110,53 +110,6 @@ public class KataTest {
         assertThat(frameType, is(OPEN));
     }
     
-    
-    @Test
-    public void sum_of_frame_rolls_equals_sum_of_first_and_second_roll() {
-        int valueOfFirstRoll = PLAIN_ROLL;
-        int valueOfSecondRoll = PLAIN_ROLL;
-        
-        int sumOfFrameRolls = getSumOfFirstAndSecondRoll(valueOfFirstRoll, valueOfSecondRoll);
-        
-        assertThat(sumOfFrameRolls, is(valueOfFirstRoll + valueOfSecondRoll));
-    }
-    
-    
-    @Test
-    public void sum_of_open_frame_rolls_equals_sum_of_first_and_second_roll() {
-        String frameType = OPEN;
-        int valueOfFirstRoll = PLAIN_ROLL;
-        int valueOfSecondRoll = PLAIN_ROLL;
-        int sumOfFirstAndSecondRoll = valueOfFirstRoll + valueOfSecondRoll;
-        
-        int sumOfFrameRolls = sumOfFirstAndSecondRoll;
-        
-        assertThat(sumOfFrameRolls, is(sumOfFirstAndSecondRoll));
-    }
-    
-    @Test
-    public void sum_of_spare_frame_rolls_equals_sum_of_first_and_second_roll() {
-        String frameType = SPARE;
-        int valueOfFirstRoll = PLAIN_ROLL;
-        int valueOfSecondRoll = PLAIN_ROLL;
-        int sumOfFirstAndSecondRoll = valueOfFirstRoll + valueOfSecondRoll;
-        
-        int sumOfFrameRolls = sumOfFirstAndSecondRoll;
-        
-        assertThat(sumOfFrameRolls, is(sumOfFirstAndSecondRoll));
-    }
-    
-    @Test
-    public void sum_of_strike_frame_rolls_equals_sum_of_first_roll() {
-        String frameType = STRIKE;
-        int valueOfFirstRoll = PLAIN_ROLL;
-        int sumOfFirstRoll = valueOfFirstRoll;
-        
-        int sumOfFrameRolls = sumOfFirstRoll;
-        
-        assertThat(sumOfFrameRolls, is(sumOfFirstRoll));
-    }
-    
     //~~~~~~~~~~~
     
     protected String getFrameType(int valueOfFirstRoll, int sumOfFrameRolls) {
