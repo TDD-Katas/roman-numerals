@@ -83,7 +83,7 @@ public class KataTest {
     public void a_frame_is_open_frame_if_sum_of_rolls_different_than_ten() {
         int sumOfFrameRolls = 9;
         
-        String frameType = getFrameTypeForOpenFrame(sumOfFrameRolls);
+        String frameType = getFrameType(1, sumOfFrameRolls);
         
         assertThat(frameType, is(OPEN));
     }
@@ -96,7 +96,7 @@ public class KataTest {
         int valueOfFirstRoll = 1;
         int sumOfFrameRolls = 10;
         
-        String frameType = getFrameTypeForSpare(valueOfFirstRoll, sumOfFrameRolls);
+        String frameType = getFrameType(valueOfFirstRoll, sumOfFrameRolls);
         
         assertThat(frameType, is(SPARE));
     }
@@ -108,34 +108,23 @@ public class KataTest {
     public void a_frame_is_strike_if_first_roll_is_ten() {
         int valueOfFirstRoll = 10;
         
-        String frameType = getFrameTypeForStrike(valueOfFirstRoll);
+        String frameType = getFrameType(valueOfFirstRoll, 10);
         
         assertThat(frameType, is(STRIKE));
     }
     
     //~~~~~~~~~~~
     
-
-    protected String getFrameTypeForSpare(int valueOfFirstRoll, int sumOfFrameRolls) {
-        String frameType = "";
-        if ((valueOfFirstRoll != 10) && (sumOfFrameRolls == 10)) {
-            frameType = SPARE;
-        }
-        return frameType;
-    }
-
-    protected String getFrameTypeForStrike(int valueOfFirstRoll) {
-        String frameType = "";
-        if (valueOfFirstRoll == 10) {
-            frameType = STRIKE;
-        }
-        return frameType;
-    }
-
-    protected String getFrameTypeForOpenFrame(int sumOfFrameRolls) {
-        String frameType = "";
+    protected String getFrameType(int valueOfFirstRoll, int sumOfFrameRolls) {
+        String frameType;
         if (sumOfFrameRolls != 10) {
             frameType = OPEN;
+        } else {
+            if (valueOfFirstRoll == 10) {
+                frameType = STRIKE;
+            } else {
+                frameType = SPARE;
+            }
         }
         return frameType;
     }
