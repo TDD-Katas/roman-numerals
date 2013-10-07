@@ -154,17 +154,10 @@ public class KataTest {
         int[] frameScores = new int[] {
             SOME_VALUE, SOME_VALUE
         };
-                
-        int scoreOfGame = 0;
-        for (int i : frameScores) {
-            scoreOfGame += i;
-        }
         
-        int sumOfScores = 0;
-        for (int i : frameScores) {
-            sumOfScores += i;
-        }
-        assertThat(scoreOfGame, equalTo(sumOfScores));
+        int scoreOfGame = sumValues(frameScores);
+        
+        assertThat(scoreOfGame, equalTo(sumValues(frameScores)));
     }
     
     //~~~~~~~~~~~
@@ -204,5 +197,13 @@ public class KataTest {
         } 
         
         return bonusScore;
+    }
+
+    protected int sumValues(int[] frameScores) {
+        int scoreOfGame = 0;
+        for (int i : frameScores) {
+            scoreOfGame += i;
+        }
+        return scoreOfGame;
     }
 }
