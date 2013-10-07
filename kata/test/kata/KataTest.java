@@ -131,6 +131,24 @@ public class KataTest {
         assertThat(sumOfFrameRolls, is(sumOfFirstAndSecondRoll));
     }
     
+    @Test
+    public void sum_of_spare_frame_rolls_equals_sum_of_first_and_second_roll() {
+        int sumOfFirstAndSecondRoll = PLAIN_ROLL;
+        
+        int sumOfFrameRolls = sumOfFirstAndSecondRoll;
+        
+        assertThat(sumOfFrameRolls, is(sumOfFirstAndSecondRoll));
+    }
+    
+    @Test
+    public void sum_of_strike_frame_rolls_equals_sum_of_first_roll() {
+        int sumOfFirstRoll = PLAIN_ROLL;
+        
+        int sumOfFrameRolls = sumOfFirstRoll;
+        
+        assertThat(sumOfFrameRolls, is(sumOfFirstRoll));
+    }
+    
     //~~~~~~~~~~~
     
     protected String getFrameType(int valueOfFirstRoll, int sumOfFrameRolls) {
