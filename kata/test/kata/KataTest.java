@@ -62,6 +62,7 @@ public class KataTest {
     @Test
     public void no_bonus_score_for_open_frame() {
         String frameType = OPEN;
+        
         int bonusScoreOfOpenFrame = 0;
         
         assertThat(bonusScoreOfOpenFrame, is(0));
@@ -81,9 +82,10 @@ public class KataTest {
      */
     @Test
     public void a_frame_is_open_frame_if_sum_of_rolls_different_than_ten() {
+        int valueOfFirstRoll = 1;
         int sumOfFrameRolls = 9;
         
-        String frameType = getFrameType(1, sumOfFrameRolls);
+        String frameType = getFrameType(valueOfFirstRoll, sumOfFrameRolls);
         
         assertThat(frameType, is(OPEN));
     }
@@ -107,8 +109,9 @@ public class KataTest {
     @Test
     public void a_frame_is_strike_if_first_roll_is_ten() {
         int valueOfFirstRoll = 10;
+        int sumOfFrameRolls = 10;
         
-        String frameType = getFrameType(valueOfFirstRoll, 10);
+        String frameType = getFrameType(valueOfFirstRoll, sumOfFrameRolls);
         
         assertThat(frameType, is(STRIKE));
     }
@@ -116,10 +119,8 @@ public class KataTest {
     //~~~~~~~~~~~
     
     protected String getFrameType(int valueOfFirstRoll, int sumOfFrameRolls) {
-        String frameType;
-        if (sumOfFrameRolls != 10) {
-            frameType = OPEN;
-        } else {
+        String frameType = OPEN;
+        if (sumOfFrameRolls == 10) {
             if (valueOfFirstRoll == 10) {
                 frameType = STRIKE;
             } else {
