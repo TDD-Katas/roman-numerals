@@ -120,6 +120,17 @@ public class KataTest {
         assertThat(frameType, is(OPEN));
     }
     
+    
+    @Test
+    public void sum_of_rolls_equals_sum_of_first_and_second_roll() {
+        int valueOfFirstRoll = PLAIN_ROLL;
+        int valueOfSecondRoll = PLAIN_ROLL;
+        
+        int sumOfFrameRolls = valueOfFirstRoll + valueOfSecondRoll;
+        
+        assertThat(sumOfFrameRolls, is(valueOfFirstRoll + valueOfSecondRoll));
+    }
+    
     @Test
     public void a_open_frame_has_two_rolls() {
         String frameType = OPEN;
