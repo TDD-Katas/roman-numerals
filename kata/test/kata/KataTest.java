@@ -147,6 +147,7 @@ public class KataTest {
     }
     
     
+    
     //~~~~~~~~~~~
     
     protected String getFrameType(int valueOfFirstRoll, int sumOfFrameRolls) {
