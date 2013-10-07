@@ -41,7 +41,7 @@ public class KataTest {
             SOME_VALUE , SOME_VALUE
         };
         
-        int bonusScoreForSpare = computeBonusScoreForFrame( 
+        int bonusScoreForSpare = computeSumOfRolls( 
                 numberOfBonusRolls, nextRolls);
         
         assertThat(bonusScoreForSpare, is(TestUtils.sumValues(nextRolls)));
@@ -83,7 +83,7 @@ public class KataTest {
         int valueOfSecondRoll = ROLL_NOT_TEN;
         int[] rolls = new int[] {valueOfFirstRoll, valueOfSecondRoll};
         
-        int sumOfRolls = computeSumOfRollsForFrame(numberOfFrameRolls,
+        int sumOfRolls = computeSumOfRolls(numberOfFrameRolls,
                rolls);
         
         assertThat(sumOfRolls, is(valueOfFirstRoll + valueOfSecondRoll));
@@ -156,15 +156,6 @@ public class KataTest {
     
     //~~~~~~~~~~~
     
-    protected int computeSumOfRollsForFrame(int numberOfFrameRolls, 
-            int[] rolls) {
-        int sumOfRolls = 0;
-        for (int i = 0; i < numberOfFrameRolls; i++) {
-            sumOfRolls += rolls[i];
-        }
-        
-        return sumOfRolls;
-    }
 
     public int computeScoreOfGame(int[] frameScores) {
         int scoreOfGame = 0;
@@ -172,6 +163,16 @@ public class KataTest {
             scoreOfGame += i;
         }
         return scoreOfGame;
+    }
+    
+    protected int computeSumOfRolls(int numberOfRolls,
+            int[] rolls) {
+        int sumOfRolls = 0;
+        for (int i = 0; i < numberOfRolls; i++) {
+            sumOfRolls += rolls[i];
+        }
+        
+        return sumOfRolls;
     }
     
     protected int computeScoreOfFrame(int sumOfFrameRolls, int valueOfBonusRolls) {
@@ -190,15 +191,6 @@ public class KataTest {
         return frameType;
     }
     
-    protected int computeBonusScoreForFrame(int numberOfBonusRolls, int[] nextRolls) {
-        int bonusScore = 0;
-        
-        for (int i = 0; i < numberOfBonusRolls; i++) {
-            bonusScore += nextRolls[i];
-        }
-        
-        return bonusScore;
-    }
 
     protected int getNumberOfFrameRolls(String frameType) {
         int numberOfRolls = 2;
