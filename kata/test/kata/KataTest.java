@@ -41,54 +41,17 @@ public class KataTest {
      * Test of main method, of class Kata.
      */
     @Test
-    public void bonus_score_for_spare_equals_score_of_next_roll() {
-        String frameType = SPARE;
+    public void bonus_score_equals_sum_of_bonus_rolls() {
         int numberOfBonusRolls = 1;
         int scoreOfNextRoll = SOME_VALUE;
         int[] nextRolls = new int[] {
             scoreOfNextRoll
         };
         
-        int bonusScoreForSpare = computeBonusScoreForFrame(frameType, 
+        int bonusScoreForSpare = computeBonusScoreForFrame( 
                 numberOfBonusRolls, nextRolls);
         
         assertThat(bonusScoreForSpare, is(scoreOfNextRoll));
-    }
-    
-    /**
-     * Test of main method, of class Kata.
-     */
-    @Test
-    public void bonus_score_for_strike_equals_score_of_next_two_rolls() {
-        String frameType = STRIKE;
-        int numberOfBonusRolls = 2;
-        int scoreOfNextRoll = SOME_VALUE;
-        int scoreOfSecondNextRoll = SOME_VALUE;
-        int[] nextRolls = new int[] {
-            scoreOfNextRoll, scoreOfSecondNextRoll
-        };
-        
-        int bonusScoreForStrike = computeBonusScoreForFrame(frameType, 
-                numberOfBonusRolls, nextRolls);
-        
-        assertThat(bonusScoreForStrike, is(scoreOfNextRoll+scoreOfSecondNextRoll));
-    }
-    
-    /**
-     * Test of main method, of class Kata.
-     */
-    @Test
-    public void bonus_score_for_open_frame_is_zero() {
-        String frameType = OPEN;
-        int numberOfBonusRolls = 0;
-        int[] nextRolls = new int[] {
-            SOME_VALUE, SOME_VALUE
-        };
-        
-        int bonusScoreOfOpenFrame = computeBonusScoreForFrame(frameType, 
-                numberOfBonusRolls, nextRolls);
-        
-        assertThat(bonusScoreOfOpenFrame, is(0));
     }
     
     /**
@@ -252,7 +215,7 @@ public class KataTest {
         return frameType;
     }
     
-    protected int computeBonusScoreForFrame(String frameType, int numberOfBonusRolls, int[] nextRolls) {
+    protected int computeBonusScoreForFrame(int numberOfBonusRolls, int[] nextRolls) {
         int bonusScore = 0;
         
         for (int i = 0; i < numberOfBonusRolls; i++) {
