@@ -13,6 +13,8 @@ import static org.hamcrest.CoreMatchers.*;
  * @author Iulian Ghionoiu <iulian.ghionoiu@exenne.ro>
  */
 public class KataTest {
+    public static final String OPEN = "open";
+    public static final String SPARE = "spare";
     
     /**
      * Test of main method, of class Kata.
@@ -32,7 +34,7 @@ public class KataTest {
      */
     @Test
     public void bonus_score_for_spare_equals_score_of_next_roll() {
-        String frameType = "spare";
+        String frameType = SPARE;
         int scoreOfNextRoll = 1;
         
         int bonusScoreForSpare = scoreOfNextRoll;
@@ -58,7 +60,7 @@ public class KataTest {
      */
     @Test
     public void no_bonus_score_for_open_frame() {
-        String frameType = "open";
+        String frameType = OPEN;
         int bonusScoreOfOpenFrame = 0;
         
         assertThat(bonusScoreOfOpenFrame, is(0));
@@ -82,10 +84,10 @@ public class KataTest {
         
         String frameType = "";
         if (sumOfFrameRolls != 10) {
-            frameType = "open";
+            frameType = OPEN;
         }
         
-        assertThat(frameType, is("open"));
+        assertThat(frameType, is(OPEN));
     }
     
     /**
@@ -96,12 +98,12 @@ public class KataTest {
         int valueOfFirstRoll = 1;
         int sumOfFrameRolls = 10;
 
-        boolean isSpare = false;
-        if (valueOfFirstRoll != 10) {
-            isSpare = sumOfFrameRolls == 10;
+        String frameType = "";
+        if ((valueOfFirstRoll != 10) && (sumOfFrameRolls == 10)) {
+            frameType = SPARE;
         }
         
-        assertTrue(isSpare);
+        assertThat(frameType, is(SPARE));
     }
     
     /**
