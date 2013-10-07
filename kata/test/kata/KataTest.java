@@ -172,7 +172,7 @@ public class KataTest {
      * Test of main method, of class Kata.
      */
     @Test
-    public void the_bouns_for_a_strike_is_two_rolls() {
+    public void number_of_bonus_rolls_for_strike_is_two() {
         String frameType = STRIKE;
 
         int bonusRolls = 2;
@@ -184,7 +184,7 @@ public class KataTest {
      * Test of main method, of class Kata.
      */
     @Test
-    public void the_bouns_for_a_spare_is_one_roll() {
+    public void number_of_bonus_rolls_for_spare_is_one() {
         String frameType = SPARE;
 
         int bonusRolls = 1;
@@ -196,7 +196,7 @@ public class KataTest {
      * Test of main method, of class Kata.
      */
     @Test
-    public void an_opne_frame_does_not_have_bouns_rolls() {
+    public void number_of_bonus_rolls_for_open_frame_is_zero() {
         String frameType = OPEN;
 
         int bonusRolls = 0;
