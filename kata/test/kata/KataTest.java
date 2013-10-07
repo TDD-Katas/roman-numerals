@@ -180,6 +180,30 @@ public class KataTest {
         assertThat(bonusRolls, is(2));
     }
     
+    /**
+     * Test of main method, of class Kata.
+     */
+    @Test
+    public void the_bouns_for_a_spare_is_one_roll() {
+        String frameType = SPARE;
+
+        int bonusRolls = 1;
+        
+        assertThat(bonusRolls, is(1));
+    }
+    
+    /**
+     * Test of main method, of class Kata.
+     */
+    @Test
+    public void an_opne_frame_does_not_have_bouns_rolls() {
+        String frameType = OPEN;
+
+        int bonusRolls = 0;
+        
+        assertThat(bonusRolls, is(0));
+    }
+    
     //~~~~~~~~~~~
     
     
