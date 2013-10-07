@@ -24,9 +24,6 @@ public class KataTest {
     public static final int ROLL_ZERO = 0;
     public static final int SOME_VALUE = 1;
     
-    /**
-     * Test of main method, of class Kata.
-     */
     @Test
     public void score_of_a_frame_equals_sum_of_frame_rolls_plus_the_value_of_bonus_rolls() {
         int sumOfFrameRolls = PLAIN_ROLL;
@@ -37,26 +34,19 @@ public class KataTest {
         assertThat(scoreOfFrame, is(sumOfFrameRolls+valueOfBonusRolls));
     }
     
-    /**
-     * Test of main method, of class Kata.
-     */
     @Test
     public void bonus_score_equals_sum_of_bonus_rolls() {
-        int numberOfBonusRolls = 1;
-        int scoreOfNextRoll = SOME_VALUE;
+        int numberOfBonusRolls = 2;
         int[] nextRolls = new int[] {
-            scoreOfNextRoll
+            SOME_VALUE , SOME_VALUE
         };
         
         int bonusScoreForSpare = computeBonusScoreForFrame( 
                 numberOfBonusRolls, nextRolls);
         
-        assertThat(bonusScoreForSpare, is(scoreOfNextRoll));
+        assertThat(bonusScoreForSpare, is(TestUtils.sumValues(nextRolls)));
     }
     
-    /**
-     * Test of main method, of class Kata.
-     */
     @Test
     public void a_frame_is_strike_if_first_roll_is_ten() {
         int valueOfFirstRoll = TEN;
@@ -66,9 +56,6 @@ public class KataTest {
         assertThat(frameType, is(STRIKE));
     }
     
-    /**
-     * Test of main method, of class Kata.
-     */
     @Test
     public void a_frame_is_spare_if_first_roll_is_not_ten_and_sum_of_rolls_equals_ten() {
         int valueOfFirstRoll = ROLL_NOT_TEN;
@@ -79,9 +66,6 @@ public class KataTest {
         assertThat(frameType, is(SPARE));
     }
     
-    /**
-     * Test of main method, of class Kata.
-     */
     @Test
     public void a_frame_is_open_frame_if_first_roll_is_not_ten_and_sum_of_rolls_different_than_ten() {
         int valueOfFirstRoll = ROLL_ZERO;
@@ -143,9 +127,6 @@ public class KataTest {
         assertThat(numberOfRolls, is(1));
     }
     
-    /**
-     * Test of main method, of class Kata.
-     */
     @Test
     public void number_of_bonus_rolls_for_strike_is_two() {
         String frameType = STRIKE;
@@ -155,9 +136,6 @@ public class KataTest {
         assertThat(bonusRolls, is(2));
     }
     
-    /**
-     * Test of main method, of class Kata.
-     */
     @Test
     public void number_of_bonus_rolls_for_spare_is_one() {
         String frameType = SPARE;
@@ -167,9 +145,6 @@ public class KataTest {
         assertThat(bonusRolls, is(1));
     }
     
-    /**
-     * Test of main method, of class Kata.
-     */
     @Test
     public void number_of_bonus_rolls_for_open_frame_is_zero() {
         String frameType = OPEN;
