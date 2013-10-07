@@ -75,4 +75,16 @@ public class KataTest {
         
         assertTrue(isSpare);
     }
+    
+    /**
+     * Test of main method, of class Kata.
+     */
+    @Test
+    public void a_frame_is_strike_if_first_roll_is_ten() {
+        int valueOfFirstRoll = 10;
+        
+        boolean isStrike = valueOfFirstRoll == 10;
+        
+        assertTrue(isStrike);
+    }
 }
