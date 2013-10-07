@@ -15,6 +15,7 @@ import static org.hamcrest.CoreMatchers.*;
 public class KataTest {
     public static final String OPEN = "open";
     public static final String SPARE = "spare";
+    public static final String STRIKE = "strike";
     
     /**
      * Test of main method, of class Kata.
@@ -47,7 +48,7 @@ public class KataTest {
      */
     @Test
     public void bonus_score_for_strike_equals_score_of_next_two_rolls() {
-        String frameType = "strike";
+        String frameType = STRIKE;
         int scoreOfNextTwoRolls = 1;
         
         int bonusScoreForStrike = scoreOfNextTwoRolls;
@@ -113,8 +114,11 @@ public class KataTest {
     public void a_frame_is_strike_if_first_roll_is_ten() {
         int valueOfFirstRoll = 10;
         
-        boolean isStrike = valueOfFirstRoll == 10;
+        String frameType = "";
+        if (valueOfFirstRoll == 10) {
+            frameType = STRIKE;
+        }
         
-        assertTrue(isStrike);
+        assertThat(frameType, is(STRIKE));
     }
 }
