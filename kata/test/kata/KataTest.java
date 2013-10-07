@@ -59,7 +59,8 @@ public class KataTest {
         int scoreOfNextRoll = SOME_VALUE;
         int scoreOfSecondNextRoll = SOME_VALUE;
         
-        int bonusScoreForStrike = scoreOfNextRoll+scoreOfSecondNextRoll;
+        int bonusScoreForStrike = computeBonusScoreForFrame(frameType, 
+                scoreOfNextRoll, scoreOfSecondNextRoll);
         
         assertThat(bonusScoreForStrike, is(scoreOfNextRoll+scoreOfSecondNextRoll));
     }
@@ -120,7 +121,7 @@ public class KataTest {
         int valueOfFirstRoll = ROLL_ZERO;
         int valueOfSecondRoll = ROLL_NOT_TEN;
         
-        int sumORolls = computeSumOfRolls(frameType, valueOfFirstRoll, valueOfSecondRoll);
+        int sumORolls = computeSumOfRollsForFrame(frameType, valueOfFirstRoll, valueOfSecondRoll);
         
         assertThat(sumORolls, is(valueOfFirstRoll + valueOfSecondRoll));
     }
@@ -131,7 +132,7 @@ public class KataTest {
         int valueOfFirstRoll = ROLL_ZERO;
         int valueOfSecondRoll = ROLL_NOT_TEN;
         
-        int sumORolls = computeSumOfRolls(frameType, valueOfFirstRoll, valueOfSecondRoll);
+        int sumORolls = computeSumOfRollsForFrame(frameType, valueOfFirstRoll, valueOfSecondRoll);
         
         assertThat(sumORolls, is(valueOfFirstRoll + valueOfSecondRoll));
     }
@@ -141,7 +142,7 @@ public class KataTest {
         String frameType = STRIKE;
         int valueOfFirstRoll = ROLL_NOT_TEN;
         
-        int sumORolls = computeSumOfRolls(frameType, valueOfFirstRoll, ROLL_ZERO);
+        int sumORolls = computeSumOfRollsForFrame(frameType, valueOfFirstRoll, ROLL_ZERO);
         
         assertThat(sumORolls, is(valueOfFirstRoll));
     }
@@ -161,7 +162,7 @@ public class KataTest {
         return frameType;
     }
 
-    protected int computeSumOfRolls(String frameType, int valueOfFirstRoll, int valueOfSecondRoll) {
+    protected int computeSumOfRollsForFrame(String frameType, int valueOfFirstRoll, int valueOfSecondRoll) {
         int sumOfRolls;
         if (STRIKE.equals(frameType)) {
             sumOfRolls = valueOfFirstRoll;
@@ -170,5 +171,9 @@ public class KataTest {
         }
         
         return sumOfRolls;
+    }
+
+    protected int computeBonusScoreForFrame(String frameType, int scoreOfNextRoll, int scoreOfSecondNextRoll) {
+        return scoreOfNextRoll+scoreOfSecondNextRoll;
     }
 }
