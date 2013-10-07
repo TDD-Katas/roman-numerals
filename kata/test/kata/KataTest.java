@@ -206,19 +206,6 @@ public class KataTest {
     
     //~~~~~~~~~~~
     
-    
-    protected String getFrameType(int valueOfFirstRoll, int valueOfSecondRoll) {
-        String frameType = OPEN;
-        if (valueOfFirstRoll == 10) {
-            frameType = STRIKE;
-        } else 
-        if (valueOfFirstRoll + valueOfSecondRoll == 10) {
-            frameType = SPARE;
-        }
-        
-        return frameType;
-    }
-
     protected int computeSumOfRollsForFrame(int numberOfFrameRolls, 
             int[] rolls) {
         int sumOfRolls = 0;
@@ -227,19 +214,6 @@ public class KataTest {
         }
         
         return sumOfRolls;
-    }
-
-    protected int computeBonusScoreForFrame(String frameType, int scoreOfNextRoll, int scoreOfSecondNextRoll) {
-        int bonusScore = 0;
-        
-        if (STRIKE.equals(frameType)) {
-            bonusScore = scoreOfNextRoll+scoreOfSecondNextRoll;
-        } else 
-        if (SPARE.equals(frameType)) {
-            bonusScore = scoreOfNextRoll;
-        } 
-        
-        return bonusScore;
     }
 
     public int computeScoreOfGame(int[] frameScores) {
@@ -252,6 +226,34 @@ public class KataTest {
     
     protected int computeScoreOfFrame(int sumOfFrameRolls, int valueOfBonusRolls) {
         return sumOfFrameRolls + valueOfBonusRolls;
+    }
+    
+    protected String getFrameType(int valueOfFirstRoll, int valueOfSecondRoll) {
+        String frameType = OPEN;
+        if (valueOfFirstRoll == 10) {
+            frameType = STRIKE;
+        } else
+            if (valueOfFirstRoll + valueOfSecondRoll == 10) {
+                frameType = SPARE;
+            }
+        
+        return frameType;
+    }
+    
+    protected int computeBonusScoreForFrame(String frameType, int scoreOfNextRoll, int scoreOfSecondNextRoll) {
+        int bonusScore = 0;
+        
+        int[] nextRolls = new int[] {
+            scoreOfNextRoll, scoreOfSecondNextRoll
+        };
+        if (STRIKE.equals(frameType)) {
+            bonusScore = nextRolls[0]+nextRolls[1];
+        } else
+            if (SPARE.equals(frameType)) {
+                bonusScore = nextRolls[0];
+            }
+        
+        return bonusScore;
     }
 
     protected int getNumberOfFrameRolls(String frameType) {
