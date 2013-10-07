@@ -206,8 +206,10 @@ public class KataTest {
         int sumOfRolls;
         int[] rolls = new int[] {valueOfFirstRoll, valueOfSecondRoll};
         if (STRIKE.equals(frameType)) {
+            int numberOfRolls = 1;
             sumOfRolls = rolls[0];
         } else {
+            int numberOfRolls = 2;
             sumOfRolls = rolls[0] + rolls[1];
         }
         
