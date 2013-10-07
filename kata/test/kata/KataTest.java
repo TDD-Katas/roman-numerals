@@ -175,7 +175,7 @@ public class KataTest {
     }
     
     
-    class FrameType {
+    static class FrameType {
         private int numberOfFrameRolls;
         private int numberOfBonusRolls;
 
@@ -193,9 +193,9 @@ public class KataTest {
         }
     }
     
-    private final FrameType OPEN_TYPE = new FrameType(2, 0);
-    private final FrameType SPARE_TYPE = new FrameType(2, 1);
-    private final FrameType STRIKE_TYPE = new FrameType(1, 2);
+    private static final FrameType OPEN_TYPE = new FrameType(2, 0);
+    private static final FrameType SPARE_TYPE = new FrameType(2, 1);
+    private static final FrameType STRIKE_TYPE = new FrameType(1, 2);
     
     protected FrameType getFrameType(int valueOfFirstRoll, int valueOfSecondRoll) {
         FrameType frameType = OPEN_TYPE;
