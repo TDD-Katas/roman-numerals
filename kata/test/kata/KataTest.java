@@ -123,7 +123,7 @@ public class KataTest {
         int numberOfRolls = 2;
         int valueOfFirstRoll = ROLL_ZERO;
         int valueOfSecondRoll = ROLL_NOT_TEN;
-        int[] rolls = new int[] {valueOfFirstRoll, valueOfSecondRoll};
+        int[] rolls = new int[] {ROLL_ZERO, ROLL_NOT_TEN};
         
         int sumORolls = computeSumOfRollsForFrame(frameType, numberOfRolls,
                 valueOfFirstRoll, valueOfSecondRoll);
