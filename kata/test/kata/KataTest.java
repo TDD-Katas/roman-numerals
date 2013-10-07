@@ -179,6 +179,27 @@ public class KataTest {
         return sumOfFrameRolls + valueOfBonusRolls;
     }
     
+    
+    class FrameType {
+        int numberOfFrameRolls;
+        int numberOfBonusRolls;
+
+        public FrameType(int numberOfFrameRolls, int numberOfBonusRolls) {
+            this.numberOfFrameRolls = numberOfFrameRolls;
+            this.numberOfBonusRolls = numberOfBonusRolls;
+        }
+
+        public int getNumberOfFrameRolls() {
+            return numberOfFrameRolls;
+        }
+
+        public int getNumberOfBonusRolls() {
+            return numberOfBonusRolls;
+        }
+    }
+    
+    private final FrameType SPARE_TYPE = new FrameType(2, 1);
+    
     protected String getFrameType(int valueOfFirstRoll, int valueOfSecondRoll) {
         String frameType = OPEN;
         if (valueOfFirstRoll == 10) {
