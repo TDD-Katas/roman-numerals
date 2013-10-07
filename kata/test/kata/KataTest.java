@@ -123,9 +123,4 @@ public class KataTest {
         }
         return frameType;
     }
-
-    protected int getSumOfFirstAndSecondRoll(int valueOfFirstRoll, int valueOfSecondRoll) {
-        int sumOfFrameRolls = valueOfFirstRoll + valueOfSecondRoll;
-        return sumOfFrameRolls;
-    }
 }
