@@ -55,7 +55,7 @@ public class KataTest {
             SOME_VALUE, SOME_VALUE
         };
 
-        int bonusScoreForSpare = computeSumOfRolls(
+        int bonusScoreForSpare = computeValueOfBonusRolls(
                 numberOfBonusRolls, nextRolls);
 
         assertThat(bonusScoreForSpare, is(TestUtils.sumValues(nextRolls)));
@@ -87,6 +87,11 @@ public class KataTest {
             scoreOfGame += frame.getScore();
         }
         return scoreOfGame;
+    }
+    
+    protected int computeValueOfBonusRolls(int numberOfRolls,
+            int[] rolls) {
+        return computeSumOfRolls(numberOfRolls, rolls);
     }
     
     protected static int computeSumOfRolls(int numberOfRolls,
