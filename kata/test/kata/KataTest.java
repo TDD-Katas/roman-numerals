@@ -40,9 +40,11 @@ public class KataTest {
             1, 2
         };
         
+        int currentIndex = 0;
+        int numberOfRolls = standardRollsNumber;
         int[] standardFrameRolls = new int[standardRollsNumber];
-        standardFrameRolls[0] = rolls[0];
-        standardFrameRolls[1] = rolls[1];
+        standardFrameRolls[0] = rolls[currentIndex];
+        standardFrameRolls[1] = rolls[currentIndex+1];
         
         assertArrayEquals(expectedRolls, standardFrameRolls);
     }
@@ -56,9 +58,11 @@ public class KataTest {
             3, 4
         };
         
-        int[] nextFrameRolls = new int[rolls.length - standardRollsNumber];
-        nextFrameRolls[0] = rolls[standardRollsNumber];
-        nextFrameRolls[1] = rolls[standardRollsNumber + 1];
+        int currentIndex = standardRollsNumber;
+        int numberOfRolls = rolls.length - standardRollsNumber;
+        int[] nextFrameRolls = new int[numberOfRolls];
+        nextFrameRolls[0] = rolls[currentIndex];
+        nextFrameRolls[1] = rolls[currentIndex + 1];
         
         assertArrayEquals(expectedRolls, nextFrameRolls);
     }
