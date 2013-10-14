@@ -156,9 +156,14 @@ public class KataTest {
 
     //~~~~~~~~~~~
     public int computeScoreOfGame(int[] frameScores) {
+        Frame[] frames = new Frame[frameScores.length];
+        for (int i = 0; i < frames.length; i++) {
+            frames[i] = createFrameWithScore(frameScores[i]);
+        }
+        
         int scoreOfGame = 0;
-        for (int i : frameScores) {
-            scoreOfGame += i;
+        for (Frame frame : frames) {
+            scoreOfGame += frame.getScore();
         }
         return scoreOfGame;
     }
