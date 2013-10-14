@@ -91,7 +91,7 @@ public class KataTest {
     }
 
     @Test
-    public void sum_of_rolls_equals_sum_of_the_frames_rolls() {
+    public void sum_of_frame_rolls_equals_sum_of_rolls_values() {
         int numberOfFrameRolls = 2;
         int valueOfFirstRoll = ROLL_ZERO;
         int valueOfSecondRoll = ROLL_NOT_TEN;
