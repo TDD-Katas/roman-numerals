@@ -37,9 +37,12 @@ public class KataTest {
     @Test
     public void score_of_a_frame_equals_sum_of_frame_rolls_plus_the_value_of_bonus_rolls() {
         int sumOfFrameRolls = PLAIN_ROLL;
+        Frame frame = mock(Frame.class);
+        when(frame.getSumOfRolls()).thenReturn(sumOfFrameRolls);
+        
         int valueOfBonusRolls = SOME_VALUE;
 
-        int scoreOfFrame = computeScoreOfFrame(sumOfFrameRolls, valueOfBonusRolls);
+        int scoreOfFrame = computeScoreOfFrame(frame, valueOfBonusRolls);
 
         assertThat(scoreOfFrame, is(sumOfFrameRolls + valueOfBonusRolls));
     }
@@ -172,8 +175,8 @@ public class KataTest {
         return sumOfRolls;
     }
 
-    protected int computeScoreOfFrame(int sumOfFrameRolls, int valueOfBonusRolls) {
-        return sumOfFrameRolls + valueOfBonusRolls;
+    protected int computeScoreOfFrame(Frame frame, int valueOfBonusRolls) {
+        return frame.getSumOfRolls() + valueOfBonusRolls;
     }
 
     protected Frame createFrameWithScore(int score) {
@@ -183,6 +186,11 @@ public class KataTest {
     }
     
     static class Frame {
+        
+        public int getSumOfRolls() {
+            return 0;
+        }
+        
         public int getScore() {
             return 0;
         }
