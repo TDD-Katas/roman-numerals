@@ -40,13 +40,13 @@ public class KataTest {
 
     @Test
     public void score_of_a_frame_equals_plain_score_plus_bonus_score() {
-        when(frame.getPlainScore()).thenReturn(SOME_VALUE);
+        when(frame.getStandardScore()).thenReturn(SOME_VALUE);
         when(frame.getBonusScore()).thenReturn(SOME_VALUE);
         when(frame.getScore()).thenCallRealMethod();
         
         int scoreOfFrame = frame.getScore();
 
-        assertThat(scoreOfFrame, is(frame.getPlainScore() + frame.getBonusScore()));
+        assertThat(scoreOfFrame, is(frame.getStandardScore() + frame.getBonusScore()));
     }
 
     @Test
@@ -65,10 +65,10 @@ public class KataTest {
     @Test
     public void plain_score_of_frame_equals_sum_of_standard_rolls() {
         int[] standardRolls = createSomeRolls();
-        when(frame.getFrameRolls()).thenReturn(standardRolls);
-        when(frame.getPlainScore()).thenCallRealMethod();
+        when(frame.getStandardRolls()).thenReturn(standardRolls);
+        when(frame.getStandardScore()).thenCallRealMethod();
         
-        int sumOfRolls = frame.getPlainScore();
+        int sumOfRolls = frame.getStandardScore();
 
         assertThat(sumOfRolls, is(TestUtils.sumOfValues(standardRolls)));
     }
@@ -106,9 +106,15 @@ public class KataTest {
     }
 
     static class Frame {
+        private int[] standardRolls;
+        private int[] bonusRolls;
+
+        public Frame(int[] standardRolls, int[] bonusRolls) {
+            this.standardRolls = standardRolls;
+            this.bonusRolls = bonusRolls;
+        }
         
-        
-        public int[] getFrameRolls() {
+        public int[] getStandardRolls() {
             return new int[0];
         }
         
@@ -116,8 +122,8 @@ public class KataTest {
             return new int[0];
         }
         
-        public int getPlainScore() {
-            return computeSumOfRolls(getFrameRolls());
+        public int getStandardScore() {
+            return computeSumOfRolls(getStandardRolls());
         }
         
         public int getBonusScore() {
@@ -125,7 +131,7 @@ public class KataTest {
         }
         
         public int getScore() {
-            return getPlainScore() + getBonusScore();
+            return getStandardScore() + getBonusScore();
         }
     }
 }
