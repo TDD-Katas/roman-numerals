@@ -32,7 +32,7 @@ public class KataTest {
     }
 
     @Test
-    public void standard_rolls_for_frame_are_the_rolls_equals_to_frame_type() {
+    public void standard_rolls_for_frame_is_the_rolls_subset_according_to_frametype() {
         int[] rolls = new int[] {1, 2, 3};
         int standardRollsNumber = 2;
         
