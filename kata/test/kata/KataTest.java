@@ -74,7 +74,8 @@ public class KataTest {
         when(frame.getNumberOfRolls()).thenReturn(numberOfFrameRolls);
         when(frame.getFrameRolls()).thenReturn(rolls);
         
-        int sumOfRolls = computeSumOfFrameRolls(frame);
+        Utility utility = new Utility();
+        int sumOfRolls = computeSumOfFrameRolls(utility, frame);
 
         assertThat(sumOfRolls, is(valueOfFirstRoll + valueOfSecondRoll));
     }
@@ -90,8 +91,7 @@ public class KataTest {
         return scoreOfGame;
     }
     
-    protected int computeSumOfFrameRolls(Frame frame) {
-        Utility utility = new Utility();
+    protected int computeSumOfFrameRolls(Utility utility, Frame frame) {
         return utility.computeSumOfRolls(frame.getNumberOfRolls(), frame.getFrameRolls());
     }
 
