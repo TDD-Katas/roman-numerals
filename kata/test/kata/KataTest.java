@@ -33,14 +33,16 @@ public class KataTest {
 
     @Test
     public void standard_rolls_for_frame_are_the_rolls_equals_to_frame_type() {
-        int[] rolls = new int[] {SOME_VALUE, SOME_VALUE, SOME_VALUE};
+        int[] rolls = new int[] {1, 2, 3};
         int rollsForType = 2;
         
         int[] expectedRolls = new int[] {
-            SOME_VALUE, SOME_VALUE
+            1, 2
         };
         
-        int[] standardFrameRolls = expectedRolls;
+        int[] standardFrameRolls = new int[rollsForType];
+        standardFrameRolls[0] = rolls[0];
+        standardFrameRolls[1] = rolls[1];
         
         assertArrayEquals(expectedRolls, standardFrameRolls);
     }
