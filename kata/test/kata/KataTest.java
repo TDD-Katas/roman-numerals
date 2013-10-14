@@ -46,9 +46,7 @@ public class KataTest {
 
     @Test
     public void bonus_score_of_frame_equals_sum_of_bonus_rolls() {
-        int[] bonusRolls = new int[]{
-            SOME_VALUE, SOME_VALUE
-        };
+        int[] bonusRolls = createSomeRolls();
         Frame frame = mock(Frame.class);
         when(frame.getBonusRolls()).thenReturn(bonusRolls);
         when(frame.getBonusScore()).thenCallRealMethod();
@@ -62,9 +60,7 @@ public class KataTest {
 
     @Test
     public void plain_score_of_frame_equals_sum_of_standard_rolls() {
-        int[] standardRolls = new int[]{
-            SOME_VALUE, SOME_VALUE
-        };
+        int[] standardRolls = createSomeRolls();
         Frame frame = mock(Frame.class);
         when(frame.getFrameRolls()).thenReturn(standardRolls);
         when(frame.getPlainScore()).thenCallRealMethod();
@@ -74,7 +70,20 @@ public class KataTest {
         assertThat(sumOfRolls, is(TestUtils.sumValues(standardRolls)));
     }
 
-
+    //~~~~~~~~~~~
+    protected Frame createFrameWithScore(int score) {
+        Frame frame1 = mock(Frame.class);
+        when(frame1.getScore()).thenReturn(score);
+        return frame1;
+    }
+    
+    protected int[] createSomeRolls() {
+        int[] standardRolls = new int[]{
+            SOME_VALUE, SOME_VALUE
+        };
+        return standardRolls;
+    }
+    
     //~~~~~~~~~~~
     public int computeScoreOfGame(Frame[] frames) {
         int scoreOfGame = 0;
@@ -93,16 +102,6 @@ public class KataTest {
         return sumOfRolls;
     }
 
-    protected int computeScoreOfFrame(Frame frame) {
-        return frame.getPlainScore() + frame.getBonusScore();
-    }
-
-    protected Frame createFrameWithScore(int score) {
-        Frame frame1 = mock(Frame.class);
-        when(frame1.getScore()).thenReturn(score);
-        return frame1;
-    }
-    
     static class Frame {
         public int[] getFrameRolls() {
             return new int[0];
