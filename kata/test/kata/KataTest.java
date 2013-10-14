@@ -89,9 +89,12 @@ public class KataTest {
         return scoreOfGame;
     }
     
-    protected int computeValueOfBonusRolls(int numberOfRolls,
-            int[] rolls) {
-        return computeSumOfRolls(numberOfRolls, rolls);
+    protected int computeValueOfBonusRolls(int numberOfBonusRolls,
+            int[] bonusRolls) {
+        Frame frame = mock(Frame.class);
+        when(frame.getNumberOfBonusRolls()).thenReturn(numberOfBonusRolls);
+        when(frame.getBonusRolls()).thenReturn(bonusRolls);
+        return computeSumOfRolls(frame.getNumberOfBonusRolls(), frame.getBonusRolls());
     }
     
     protected static int computeSumOfRolls(int numberOfRolls,
@@ -118,11 +121,19 @@ public class KataTest {
     
     static class Frame {
         
+        public int getNumberOfBonusRolls() {
+            return 0;
+        }
+        
         public int getNumberOfRolls() {
             return 0;
         }
         
         public int[] getFrameRolls() {
+            return new int[0];
+        }
+        
+        public int[] getBonusRolls() {
             return new int[0];
         }
         
