@@ -22,15 +22,15 @@ public class KataTest {
 
     @Test
     public void score_of_game_equals_sum_of_frames_scores() {
-        Frame frame1 = createFrameWithScore(SOME_VALUE);
-        Frame frame2 = createFrameWithScore(SOME_VALUE);
-        
-        
         int[] frameScores = new int[]{
-            frame1.getScore(), frame2.getScore()
+            SOME_VALUE, SOME_VALUE
         };
+        Frame[] frames = new Frame[frameScores.length];
+        for (int i = 0; i < frames.length; i++) {
+            frames[i] = createFrameWithScore(frameScores[i]);
+        }
 
-        int scoreOfGame = computeScoreOfGame(frameScores);
+        int scoreOfGame = computeScoreOfGame(frames);
 
         assertThat(scoreOfGame, equalTo(TestUtils.sumValues(frameScores)));
     }
@@ -155,12 +155,7 @@ public class KataTest {
     }
 
     //~~~~~~~~~~~
-    public int computeScoreOfGame(int[] frameScores) {
-        Frame[] frames = new Frame[frameScores.length];
-        for (int i = 0; i < frames.length; i++) {
-            frames[i] = createFrameWithScore(frameScores[i]);
-        }
-        
+    public int computeScoreOfGame(Frame[] frames) {
         int scoreOfGame = 0;
         for (Frame frame : frames) {
             scoreOfGame += frame.getScore();
