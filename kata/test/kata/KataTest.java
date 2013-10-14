@@ -42,7 +42,7 @@ public class KataTest {
         
         int currentIndex = 0;
         int numberOfRolls = standardRollsNumber;
-        int[] standardFrameRolls = new int[standardRollsNumber];
+        int[] standardFrameRolls = new int[numberOfRolls];
         standardFrameRolls[0] = rolls[currentIndex];
         standardFrameRolls[1] = rolls[currentIndex+1];
         
@@ -50,7 +50,7 @@ public class KataTest {
     }
     
     @Test
-    public void next_frame_rolls_for_frame_are_the_rolls_after_standard_rolls() {
+    public void next_rolls_for_frame_are_the_rolls_after_standard_rolls() {
         int[] rolls = new int[] {1, 2, 3, 4};
         int standardRollsNumber = 2;
         
@@ -61,10 +61,29 @@ public class KataTest {
         int currentIndex = standardRollsNumber;
         int numberOfRolls = rolls.length - standardRollsNumber;
         int[] nextFrameRolls = new int[numberOfRolls];
-        nextFrameRolls[0] = rolls[currentIndex];
-        nextFrameRolls[1] = rolls[currentIndex + 1];
+        for (int i = 0; i < numberOfRolls; i++) {
+            nextFrameRolls[i] = rolls[currentIndex+i];
+        }
         
         assertArrayEquals(expectedRolls, nextFrameRolls);
+    }
+    
+    @Test
+    public void bonus_rolls_for_frame_are_the_rolls_from_the_next_rolls_according_to_frame_type() {
+        int[] nextRolls = new int[] {1, 2, 3, 4};
+        int bonusRollsNumber = 2;
+        
+        int[] expectedRolls = new int[] {
+            1, 2
+        };
+        
+        int currentIndex = 0;
+        int numberOfRolls = bonusRollsNumber;
+        int[] standardFrameRolls = new int[numberOfRolls];
+        standardFrameRolls[0] = nextRolls[currentIndex];
+        standardFrameRolls[1] = nextRolls[currentIndex+1];
+        
+        assertArrayEquals(expectedRolls, standardFrameRolls);
     }
     
     //~~~~~~~~~~~
