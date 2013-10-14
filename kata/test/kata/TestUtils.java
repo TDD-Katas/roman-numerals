@@ -9,7 +9,7 @@ package kata;
  * @author Iulian Ghionoiu <iulian.ghionoiu@exenne.ro>
  */
 public class TestUtils {
-    public static int sumValues(int[] frameScores) {
+    public static int sumOfValues(int[] frameScores) {
         int scoreOfGame = 0;
         for (int i : frameScores) {
             scoreOfGame += i;

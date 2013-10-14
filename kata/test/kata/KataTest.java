@@ -16,12 +16,12 @@ import static org.mockito.Mockito.*;
  */
 public class KataTest {
     private static final int SOME_VALUE = 1;
-    private Frame frameInstance;
+    private Frame frame;
     
     
     @Before
     public void setUp() {
-        frameInstance = mock(Frame.class);
+        frame = mock(Frame.class);
     }
     
     @Test
@@ -40,26 +40,24 @@ public class KataTest {
 
     @Test
     public void score_of_a_frame_equals_plain_score_plus_bonus_score() {
-        int plainScore = SOME_VALUE;
-        int bonusScore = SOME_VALUE;
-        when(frameInstance.getPlainScore()).thenReturn(plainScore);
-        when(frameInstance.getBonusScore()).thenReturn(bonusScore);
-        when(frameInstance.getScore()).thenCallRealMethod();
+        when(frame.getPlainScore()).thenReturn(SOME_VALUE);
+        when(frame.getBonusScore()).thenReturn(SOME_VALUE);
+        when(frame.getScore()).thenCallRealMethod();
         
-        int scoreOfFrame = frameInstance.getScore();
+        int scoreOfFrame = frame.getScore();
 
-        assertThat(scoreOfFrame, is(plainScore + bonusScore));
+        assertThat(scoreOfFrame, is(frame.getPlainScore() + frame.getBonusScore()));
     }
 
     @Test
     public void bonus_score_of_frame_equals_sum_of_bonus_rolls() {
         int[] bonusRolls = createSomeRolls();
-        when(frameInstance.getBonusRolls()).thenReturn(bonusRolls);
-        when(frameInstance.getBonusScore()).thenCallRealMethod();
+        when(frame.getBonusRolls()).thenReturn(bonusRolls);
+        when(frame.getBonusScore()).thenCallRealMethod();
 
-        int bonusScoreForSpare = frameInstance.getBonusScore();
+        int bonusScoreForSpare = frame.getBonusScore();
 
-        assertThat(bonusScoreForSpare, is(TestUtils.sumValues(bonusRolls)));
+        assertThat(bonusScoreForSpare, is(TestUtils.sumOfValues(bonusRolls)));
     }
 
 
@@ -67,12 +65,12 @@ public class KataTest {
     @Test
     public void plain_score_of_frame_equals_sum_of_standard_rolls() {
         int[] standardRolls = createSomeRolls();
-        when(frameInstance.getFrameRolls()).thenReturn(standardRolls);
-        when(frameInstance.getPlainScore()).thenCallRealMethod();
+        when(frame.getFrameRolls()).thenReturn(standardRolls);
+        when(frame.getPlainScore()).thenCallRealMethod();
         
-        int sumOfRolls = frameInstance.getPlainScore();
+        int sumOfRolls = frame.getPlainScore();
 
-        assertThat(sumOfRolls, is(TestUtils.sumValues(standardRolls)));
+        assertThat(sumOfRolls, is(TestUtils.sumOfValues(standardRolls)));
     }
 
     //~~~~~~~~~~~
