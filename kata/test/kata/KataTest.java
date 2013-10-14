@@ -51,14 +51,17 @@ public class KataTest {
     @Test
     public void bonus_score_equals_sum_of_bonus_rolls() {
         int numberOfBonusRolls = 2;
-        int[] nextRolls = new int[]{
+        int[] bonusRolls = new int[]{
             SOME_VALUE, SOME_VALUE
         };
+        Frame frame = mock(Frame.class);
+        when(frame.getNumberOfBonusRolls()).thenReturn(numberOfBonusRolls);
+        when(frame.getBonusRolls()).thenReturn(bonusRolls);
+        when(frame.getValueOfBonusRolls()).thenCallRealMethod();
 
-        int bonusScoreForSpare = computeValueOfBonusRolls(
-                numberOfBonusRolls, nextRolls);
+        int bonusScoreForSpare = frame.getValueOfBonusRolls();
 
-        assertThat(bonusScoreForSpare, is(TestUtils.sumValues(nextRolls)));
+        assertThat(bonusScoreForSpare, is(TestUtils.sumValues(bonusRolls)));
     }
 
 
@@ -87,14 +90,6 @@ public class KataTest {
             scoreOfGame += frame.getScore();
         }
         return scoreOfGame;
-    }
-    
-    protected int computeValueOfBonusRolls(int numberOfBonusRolls,
-            int[] bonusRolls) {
-        Frame frame = mock(Frame.class);
-        when(frame.getNumberOfBonusRolls()).thenReturn(numberOfBonusRolls);
-        when(frame.getBonusRolls()).thenReturn(bonusRolls);
-        return computeSumOfRolls(frame.getNumberOfBonusRolls(), frame.getBonusRolls());
     }
     
     protected static int computeSumOfRolls(int numberOfRolls,
@@ -142,7 +137,7 @@ public class KataTest {
         }
         
         public int getValueOfBonusRolls() {
-            return 0;
+            return computeSumOfRolls(getNumberOfBonusRolls(), getBonusRolls());
         }
         
         public int getScore() {
