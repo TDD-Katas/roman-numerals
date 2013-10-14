@@ -32,7 +32,7 @@ public class KataTest {
     }
 
     @Test
-    public void standard_rolls_for_frame_is_the_rolls_subset_according_to_frametype() {
+    public void standard_rolls_for_frame_is_the_subset_from_rolls_equal_to_frametype() {
         int[] rolls = new int[] {1, 2, 3};
         int standardRollsNumber = 2;
         
@@ -43,6 +43,23 @@ public class KataTest {
         int currentIndex = 0;
         int numberOfRolls = standardRollsNumber;
         int[] standardFrameRolls = subsetOfRolls(rolls, currentIndex, numberOfRolls);
+        
+        assertArrayEquals(expectedRolls, standardFrameRolls);
+    }
+    
+    
+    @Test
+    public void bonus_rolls_for_frame_is_the_next_rolls_subset_according_to_frametype() {
+        int[] nextRolls = new int[] {1, 2, 3, 4};
+        int bonusRollsNumber = 2;
+        
+        int[] expectedRolls = new int[] {
+            1, 2
+        };
+        
+        int currentIndex = 0;
+        int numberOfRolls = bonusRollsNumber;
+        int[] standardFrameRolls = subsetOfRolls(nextRolls, currentIndex, numberOfRolls);
         
         assertArrayEquals(expectedRolls, standardFrameRolls);
     }
@@ -62,23 +79,6 @@ public class KataTest {
         
         assertArrayEquals(expectedRolls, nextFrameRolls);
     }
-    
-    @Test
-    public void bonus_rolls_for_frame_are_the_rolls_from_the_next_rolls_according_to_frame_type() {
-        int[] nextRolls = new int[] {1, 2, 3, 4};
-        int bonusRollsNumber = 2;
-        
-        int[] expectedRolls = new int[] {
-            1, 2
-        };
-        
-        int currentIndex = 0;
-        int numberOfRolls = bonusRollsNumber;
-        int[] standardFrameRolls = subsetOfRolls(nextRolls, currentIndex, numberOfRolls);
-        
-        assertArrayEquals(expectedRolls, standardFrameRolls);
-    }
-    
     //~~~~~~~~~~~
     protected Frame createFrameWithScore(int score) {
         Frame frame1 = mock(Frame.class);
