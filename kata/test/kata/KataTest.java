@@ -70,7 +70,7 @@ public class KataTest {
         int valueOfSecondRoll = ROLL_NOT_TEN;
         int[] rolls = new int[]{valueOfFirstRoll, valueOfSecondRoll};
 
-        int sumOfRolls = computeSumOfRolls(numberOfFrameRolls,
+        int sumOfRolls = computeSumOfFrameRolls(numberOfFrameRolls,
                 rolls);
 
         assertThat(sumOfRolls, is(valueOfFirstRoll + valueOfSecondRoll));
@@ -85,6 +85,11 @@ public class KataTest {
             scoreOfGame += frame.getScore();
         }
         return scoreOfGame;
+    }
+    
+    protected int computeSumOfFrameRolls(int numberOfRolls,
+            int[] rolls) {
+        return computeSumOfRolls(numberOfRolls, rolls);
     }
 
     protected int computeSumOfRolls(int numberOfRolls,
