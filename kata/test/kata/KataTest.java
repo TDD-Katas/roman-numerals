@@ -14,11 +14,9 @@ import static org.mockito.Mockito.*;
  * @author Iulian Ghionoiu <iulian.ghionoiu@exenne.ro>
  */
 public class KataTest {
-    public static final int PLAIN_ROLL = 1;
-    public static final int ROLL_NOT_TEN = 9;
-    public static final int TEN = 10;
-    public static final int ROLL_ZERO = 0;
-    public static final int SOME_VALUE = 1;
+    private static final int ROLL_NOT_TEN = 9;
+    private static final int ROLL_ZERO = 0;
+    private static final int SOME_VALUE = 1;
 
     @Test
     public void score_of_game_equals_sum_of_frames_scores() {
@@ -36,7 +34,7 @@ public class KataTest {
 
     @Test
     public void score_of_a_frame_equals_plain_score_plus_bonus_score() {
-        int plainScore = PLAIN_ROLL;
+        int plainScore = SOME_VALUE;
         int bonusScore = SOME_VALUE;
         Frame frame = mock(Frame.class);
         when(frame.getPlainScore()).thenReturn(plainScore);
@@ -69,9 +67,9 @@ public class KataTest {
     @Test
     public void plain_score_of_frame_equals_sum_of_standard_rolls() {
         int numberOfFrameRolls = 2;
-        int valueOfFirstRoll = ROLL_ZERO;
-        int valueOfSecondRoll = ROLL_NOT_TEN;
-        int[] standardRolls = new int[]{valueOfFirstRoll, valueOfSecondRoll};
+        int[] standardRolls = new int[]{
+            SOME_VALUE, SOME_VALUE
+        };
         Frame frame = mock(Frame.class);
         when(frame.getNumberOfRolls()).thenReturn(numberOfFrameRolls);
         when(frame.getFrameRolls()).thenReturn(standardRolls);
@@ -79,7 +77,7 @@ public class KataTest {
         
         int sumOfRolls = frame.getPlainScore();
 
-        assertThat(sumOfRolls, is(valueOfFirstRoll + valueOfSecondRoll));
+        assertThat(sumOfRolls, is(TestUtils.sumValues(standardRolls)));
     }
 
 

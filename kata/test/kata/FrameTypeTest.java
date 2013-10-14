@@ -4,9 +4,6 @@
  */
 package kata;
 
-import static kata.KataTest.ROLL_NOT_TEN;
-import static kata.KataTest.ROLL_ZERO;
-import static kata.KataTest.TEN;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import org.junit.Test;
@@ -16,6 +13,11 @@ import org.junit.Test;
  * @author Iulian Ghionoiu <iulian.ghionoiu@exenne.ro>
  */
 public class FrameTypeTest {
+ public static final int PLAIN_ROLL = 1;
+    public static final int ROLL_NOT_TEN = 9;
+    public static final int TEN = 10;
+    public static final int ROLL_ZERO = 0;
+    public static final int SOME_VALUE = 1;
     
     @Test
     public void number_of_rolls_for_open_frame_is_two() {
