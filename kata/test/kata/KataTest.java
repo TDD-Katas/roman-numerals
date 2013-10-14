@@ -68,6 +68,18 @@ public class KataTest {
         return frame1;
     }
     
+    protected FrameType frameTypeWithRollsNumber(int numberOfStandardRolls) {
+        FrameType frameType = mock(FrameType.class);
+        when(frameType.getNumberOfFrameRolls()).thenReturn(numberOfStandardRolls);
+        return frameType;
+    }
+    
+    protected FrameType frameTypeWithBonusRollsNumber(int numberOfBonusRolls) {
+        FrameType frameType = mock(FrameType.class);
+        when(frameType.getNumberOfBonusRolls()).thenReturn(numberOfBonusRolls);
+        return frameType;
+    }
+    
     //~~~~~~~~~~~
     public int computeScoreOfGame(Frame[] frames) {
         int scoreOfGame = 0;
@@ -89,36 +101,22 @@ public class KataTest {
         return standardFrameRolls;
     }
 
-    protected FrameType frameTypeWithRollsNumber(int numberOfStandardRolls) {
-        FrameType frameType = mock(FrameType.class);
-        when(frameType.getNumberOfFrameRolls()).thenReturn(numberOfStandardRolls);
-        return frameType;
-    }
-
-    protected FrameType frameTypeWithBonusRollsNumber(int numberOfBonusRolls) {
-        FrameType frameType = mock(FrameType.class);
-        when(frameType.getNumberOfBonusRolls()).thenReturn(numberOfBonusRolls);
-        return frameType;
-    }
 
     protected int[] getStandardRolls(FrameType frameType, int[] rolls) {
         int currentIndex = 0;
         int numberOfRolls = frameType.getNumberOfFrameRolls();
-        int[] standardFrameRolls = subsetOfRolls(rolls, currentIndex, numberOfRolls);
-        return standardFrameRolls;
+        return subsetOfRolls(rolls, currentIndex, numberOfRolls);
     }
 
     protected int[] getNextRolls(FrameType frameType, int[] rolls) {
         int currentIndex = frameType.getNumberOfFrameRolls();
         int numberOfRolls = rolls.length - currentIndex;
-        int[] nextFrameRolls = subsetOfRolls(rolls, currentIndex, numberOfRolls);
-        return nextFrameRolls;
+        return subsetOfRolls(rolls, currentIndex, numberOfRolls);
     }
 
     protected int[] getBonusRolls(FrameType frameType, int[] nextRolls) {
         int currentIndex = 0;
         int numberOfRolls = frameType.getNumberOfBonusRolls();
-        int[] standardFrameRolls = subsetOfRolls(nextRolls, currentIndex, numberOfRolls);
-        return standardFrameRolls;
+        return subsetOfRolls(nextRolls, currentIndex, numberOfRolls);
     }
 }
