@@ -46,12 +46,10 @@ public class KataTest {
 
     @Test
     public void bonus_score_of_frame_equals_sum_of_bonus_rolls() {
-        int numberOfBonusRolls = 2;
         int[] bonusRolls = new int[]{
             SOME_VALUE, SOME_VALUE
         };
         Frame frame = mock(Frame.class);
-        when(frame.getNumberOfBonusRolls()).thenReturn(numberOfBonusRolls);
         when(frame.getBonusRolls()).thenReturn(bonusRolls);
         when(frame.getBonusScore()).thenCallRealMethod();
 
@@ -64,12 +62,10 @@ public class KataTest {
 
     @Test
     public void plain_score_of_frame_equals_sum_of_standard_rolls() {
-        int numberOfFrameRolls = 2;
         int[] standardRolls = new int[]{
             SOME_VALUE, SOME_VALUE
         };
         Frame frame = mock(Frame.class);
-        when(frame.getNumberOfRolls()).thenReturn(numberOfFrameRolls);
         when(frame.getFrameRolls()).thenReturn(standardRolls);
         when(frame.getPlainScore()).thenCallRealMethod();
         
@@ -88,12 +84,9 @@ public class KataTest {
         return scoreOfGame;
     }
     
-    protected static int computeSumOfRolls(int numberOfRolls,
-            int[] rolls) {
-        
-        
+    protected static int computeSumOfRolls(int[] rolls) {
         int sumOfRolls = 0;
-        for (int i = 0; i < numberOfRolls; i++) {
+        for (int i = 0; i < rolls.length; i++) {
             sumOfRolls += rolls[i];
         }
 
@@ -111,15 +104,6 @@ public class KataTest {
     }
     
     static class Frame {
-        
-        public int getNumberOfBonusRolls() {
-            return 0;
-        }
-        
-        public int getNumberOfRolls() {
-            return 0;
-        }
-        
         public int[] getFrameRolls() {
             return new int[0];
         }
@@ -129,11 +113,11 @@ public class KataTest {
         }
         
         public int getPlainScore() {
-            return computeSumOfRolls(getNumberOfRolls(), getFrameRolls());
+            return computeSumOfRolls(getFrameRolls());
         }
         
         public int getBonusScore() {
-            return computeSumOfRolls(getNumberOfBonusRolls(), getBonusRolls());
+            return computeSumOfRolls(getBonusRolls());
         }
         
         public int getScore() {
