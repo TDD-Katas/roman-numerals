@@ -89,11 +89,15 @@ public class KataTest {
     
     protected int computeSumOfFrameRolls(int numberOfRolls,
             int[] rolls) {
-        return computeSumOfRolls(numberOfRolls, rolls);
+        Frame frame = mock(Frame.class);
+        when(frame.getNumberOfRolls()).thenReturn(numberOfRolls);
+        return computeSumOfRolls(frame.getNumberOfRolls(), rolls);
     }
 
     protected int computeSumOfRolls(int numberOfRolls,
             int[] rolls) {
+        
+        
         int sumOfRolls = 0;
         for (int i = 0; i < numberOfRolls; i++) {
             sumOfRolls += rolls[i];
@@ -121,6 +125,14 @@ public class KataTest {
     
     
     static class Frame {
+        
+        public int getNumberOfRolls() {
+            return 0;
+        }
+        
+        public int[] getFrameRolls() {
+            return null;
+        }
         
         public int getSumOfRolls() {
             return 0;
