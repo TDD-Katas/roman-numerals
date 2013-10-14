@@ -79,7 +79,6 @@ public class KataTest {
     }
 
 
-
     //~~~~~~~~~~~
     public int computeScoreOfGame(Frame[] frames) {
         int scoreOfGame = 0;
@@ -122,7 +121,7 @@ public class KataTest {
         }
         
         public int[] getFrameRolls() {
-            return null;
+            return new int[0];
         }
         
         public int getSumOfRolls() {
