@@ -33,7 +33,7 @@ public class KataTest {
 
     @Test
     public void standard_rolls_for_frame_is_the_subset_from_rolls_equal_to_frametype() {
-        int[] rolls = new int[] {1, 2, 3};
+        int[] rolls = new int[] {1, 2, 3, 4};
         FrameType frameType = mock(FrameType.class);
         when(frameType.getNumberOfFrameRolls()).thenReturn(2);
         

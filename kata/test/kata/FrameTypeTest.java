@@ -100,6 +100,7 @@ public class FrameTypeTest {
         assertThat(frameType, is(OPEN_TYPE));
     }
     
+    //~~~~~~~~~~~~
     
     private static final FrameType OPEN_TYPE = new FrameType(2, 0);
     private static final FrameType SPARE_TYPE = new FrameType(2, 1);
