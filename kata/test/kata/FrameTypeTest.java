@@ -13,11 +13,9 @@ import org.junit.Test;
  * @author Iulian Ghionoiu <iulian.ghionoiu@exenne.ro>
  */
 public class FrameTypeTest {
- public static final int PLAIN_ROLL = 1;
-    public static final int ROLL_NOT_TEN = 9;
-    public static final int TEN = 10;
-    public static final int ROLL_ZERO = 0;
-    public static final int SOME_VALUE = 1;
+    private static final int ROLL_NOT_TEN = 9;
+    private static final int TEN = 10;
+    private static final int ROLL_ZERO = 0;
     
     @Test
     public void number_of_rolls_for_open_frame_is_two() {

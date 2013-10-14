@@ -14,8 +14,6 @@ import static org.mockito.Mockito.*;
  * @author Iulian Ghionoiu <iulian.ghionoiu@exenne.ro>
  */
 public class KataTest {
-    private static final int ROLL_NOT_TEN = 9;
-    private static final int ROLL_ZERO = 0;
     private static final int SOME_VALUE = 1;
 
     @Test
