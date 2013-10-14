@@ -41,8 +41,9 @@ public class KataTest {
         Frame frame = mock(Frame.class);
         when(frame.getSumOfRolls()).thenReturn(sumOfFrameRolls);
         when(frame.getValueOfBonusRolls()).thenReturn(valueOfBonusRolls);
-
-        int scoreOfFrame = computeScoreOfFrame(frame);
+        when(frame.getScore()).thenCallRealMethod();
+        
+        int scoreOfFrame = frame.getScore();
 
         assertThat(scoreOfFrame, is(sumOfFrameRolls + valueOfBonusRolls));
     }
@@ -196,7 +197,7 @@ public class KataTest {
         }
         
         public int getScore() {
-            return 0;
+            return getSumOfRolls() + getValueOfBonusRolls();
         }
     }
 
