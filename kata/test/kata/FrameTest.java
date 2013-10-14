@@ -44,7 +44,7 @@ public class FrameTest {
 
         int bonusScoreForSpare = frame.getBonusScore();
 
-        assertThat(bonusScoreForSpare, is(TestUtils.sumOfValues(bonusRolls)));
+        assertThat(bonusScoreForSpare, is(Utils.sumOfValues(bonusRolls)));
     }
 
 
@@ -57,7 +57,7 @@ public class FrameTest {
         
         int sumOfRolls = frame.getStandardScore();
 
-        assertThat(sumOfRolls, is(TestUtils.sumOfValues(standardRolls)));
+        assertThat(sumOfRolls, is(Utils.sumOfValues(standardRolls)));
     }
     
     protected int[] createSomeRolls() {

@@ -8,10 +8,10 @@ package kata;
  *
  * @author Iulian Ghionoiu <iulian.ghionoiu@exenne.ro>
  */
-public class TestUtils {
-    public static int sumOfValues(int[] frameScores) {
+public class Utils {
+    public static int sumOfValues(int[] values) {
         int scoreOfGame = 0;
-        for (int i : frameScores) {
+        for (int i : values) {
             scoreOfGame += i;
         }
         return scoreOfGame;

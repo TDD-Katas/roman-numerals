@@ -31,8 +31,6 @@ public class KataTest {
         assertThat(scoreOfGame, equalTo(firstFrameScore + secondFrameScore));
     }
 
-
-
     //~~~~~~~~~~~
     protected Frame createFrameWithScore(int score) {
         Frame frame1 = mock(Frame.class);
@@ -50,11 +48,6 @@ public class KataTest {
     }
     
     protected static int computeSumOfRolls(int[] rolls) {
-        int sumOfRolls = 0;
-        for (int i = 0; i < rolls.length; i++) {
-            sumOfRolls += rolls[i];
-        }
-
-        return sumOfRolls;
+        return Utils.sumOfValues(rolls);
     }
 }
