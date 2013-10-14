@@ -36,9 +36,7 @@ public class KataTest {
         int[] rolls = new int[] {1, 2, 3, 4};
         FrameType frameType = frameTypeWithRollsNumber(2);
         
-        int currentIndex = 0;
-        int numberOfRolls = frameType.getNumberOfFrameRolls();
-        int[] standardFrameRolls = subsetOfRolls(rolls, currentIndex, numberOfRolls);
+        int[] standardFrameRolls = getStandardRolls(frameType, rolls);
         
         assertArrayEquals(subsetOfRolls(rolls, 0, 2), standardFrameRolls);
     }
@@ -49,9 +47,7 @@ public class KataTest {
         int[] nextRolls = new int[] {1, 2, 3, 4};
         FrameType frameType = frameTypeWithBonusRollsNumber(2);
         
-        int currentIndex = 0;
-        int numberOfRolls = frameType.getNumberOfBonusRolls();
-        int[] standardFrameRolls = subsetOfRolls(nextRolls, currentIndex, numberOfRolls);
+        int[] standardFrameRolls = getBonusRolls(frameType, nextRolls);
         
         assertArrayEquals(subsetOfRolls(nextRolls, 0, 2), standardFrameRolls);
     }
@@ -61,9 +57,7 @@ public class KataTest {
         int[] rolls = new int[] {1, 2, 3};
         FrameType frameType = frameTypeWithRollsNumber(1);
         
-        int currentIndex = frameType.getNumberOfFrameRolls();
-        int numberOfRolls = rolls.length - currentIndex;
-        int[] nextFrameRolls = subsetOfRolls(rolls, currentIndex, numberOfRolls);
+        int[] nextFrameRolls = getNextRolls(frameType, rolls);
         
         assertArrayEquals(subsetOfRolls(rolls, 1, 2), nextFrameRolls);
     }
@@ -105,5 +99,26 @@ public class KataTest {
         FrameType frameType = mock(FrameType.class);
         when(frameType.getNumberOfBonusRolls()).thenReturn(numberOfBonusRolls);
         return frameType;
+    }
+
+    protected int[] getStandardRolls(FrameType frameType, int[] rolls) {
+        int currentIndex = 0;
+        int numberOfRolls = frameType.getNumberOfFrameRolls();
+        int[] standardFrameRolls = subsetOfRolls(rolls, currentIndex, numberOfRolls);
+        return standardFrameRolls;
+    }
+
+    protected int[] getNextRolls(FrameType frameType, int[] rolls) {
+        int currentIndex = frameType.getNumberOfFrameRolls();
+        int numberOfRolls = rolls.length - currentIndex;
+        int[] nextFrameRolls = subsetOfRolls(rolls, currentIndex, numberOfRolls);
+        return nextFrameRolls;
+    }
+
+    protected int[] getBonusRolls(FrameType frameType, int[] nextRolls) {
+        int currentIndex = 0;
+        int numberOfRolls = frameType.getNumberOfBonusRolls();
+        int[] standardFrameRolls = subsetOfRolls(nextRolls, currentIndex, numberOfRolls);
+        return standardFrameRolls;
     }
 }
