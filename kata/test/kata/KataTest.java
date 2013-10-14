@@ -52,14 +52,15 @@ public class KataTest {
     @Test
     public void bonus_rolls_for_frame_is_the_subset_from_next_rolls_equal_to_frametype() {
         int[] nextRolls = new int[] {1, 2, 3, 4};
-        int bonusRollsNumber = 2;
+        FrameType frameType = mock(FrameType.class);
+        when(frameType.getNumberOfBonusRolls()).thenReturn(2);
         
         int[] expectedRolls = new int[] {
             1, 2
         };
         
         int currentIndex = 0;
-        int numberOfRolls = bonusRollsNumber;
+        int numberOfRolls = frameType.getNumberOfBonusRolls();
         int[] standardFrameRolls = subsetOfRolls(nextRolls, currentIndex, numberOfRolls);
         
         assertArrayEquals(expectedRolls, standardFrameRolls);
@@ -68,14 +69,15 @@ public class KataTest {
     @Test
     public void next_rolls_for_frame_are_the_rolls_after_standard_rolls() {
         int[] rolls = new int[] {1, 2, 3, 4};
-        int standardRollsNumber = 2;
+        FrameType frameType = mock(FrameType.class);
+        when(frameType.getNumberOfFrameRolls()).thenReturn(2);
         
         int[] expectedRolls = new int[] {
             3, 4
         };
         
-        int currentIndex = standardRollsNumber;
-        int numberOfRolls = rolls.length - standardRollsNumber;
+        int currentIndex = frameType.getNumberOfFrameRolls();
+        int numberOfRolls = rolls.length - currentIndex;
         int[] nextFrameRolls = subsetOfRolls(rolls, currentIndex, numberOfRolls);
         
         assertArrayEquals(expectedRolls, nextFrameRolls);
