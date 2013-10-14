@@ -7,6 +7,7 @@ package kata;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
+import static org.mockito.Mockito.*;
 
 /**
  *
@@ -21,8 +22,11 @@ public class KataTest {
 
     @Test
     public void score_of_game_equals_sum_of_frames_scores() {
+        Frame frame = mock(Frame.class);
+        when(frame.getScore()).thenReturn(SOME_VALUE);
+        
         int[] frameScores = new int[]{
-            SOME_VALUE, SOME_VALUE
+            frame.getScore(), frame.getScore()
         };
 
         int scoreOfGame = computeScoreOfGame(frameScores);
@@ -170,6 +174,12 @@ public class KataTest {
 
     protected int computeScoreOfFrame(int sumOfFrameRolls, int valueOfBonusRolls) {
         return sumOfFrameRolls + valueOfBonusRolls;
+    }
+    
+    static class Frame {
+        public int getScore() {
+            return 0;
+        }
     }
 
     static class FrameType {
