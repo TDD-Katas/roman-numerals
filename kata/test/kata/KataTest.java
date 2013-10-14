@@ -33,7 +33,7 @@ public class KataTest {
 
     @Test
     public void standard_rolls_for_frame_is_the_subset_from_rolls_equal_to_frametype() {
-        int[] rolls = new int[] {1, 2, 3, 4};
+        int[] rolls = createSomeRolls();
         int rollsNumber = 2;
         FrameType frameType = frameTypeWithRollsNumber(rollsNumber);
         
@@ -47,7 +47,7 @@ public class KataTest {
     
     @Test
     public void bonus_rolls_for_frame_is_the_subset_from_next_rolls_equal_to_frametype() {
-        int[] nextRolls = new int[] {1, 2, 3, 4};
+        int[] nextRolls = createSomeRolls();
         int bonusRollsNumber = 2;
         FrameType frameType = frameTypeWithBonusRollsNumber(bonusRollsNumber);
         
@@ -60,7 +60,7 @@ public class KataTest {
     
     @Test
     public void next_rolls_for_frame_are_the_rolls_after_standard_rolls() {
-        int[] rolls = new int[] {1, 2, 3};
+        int[] rolls = createSomeRolls();
         int rollsNumber = 1;
         FrameType frameType = frameTypeWithRollsNumber(rollsNumber);
         
@@ -71,6 +71,11 @@ public class KataTest {
                 nextFrameRolls);
     }
     //~~~~~~~~~~~
+    protected int[] createSomeRolls() {
+        int[] rolls = new int[] {1, 2, 3, 4};
+        return rolls;
+    }
+    
     protected Frame createFrameWithScore(int score) {
         Frame frame1 = mock(Frame.class);
         when(frame1.getScore()).thenReturn(score);
@@ -128,4 +133,5 @@ public class KataTest {
         int numberOfRolls = frameType.getNumberOfBonusRolls();
         return subsetOfRolls(nextRolls, currentIndex, numberOfRolls);
     }
+
 }
