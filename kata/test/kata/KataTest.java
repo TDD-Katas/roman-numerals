@@ -18,6 +18,13 @@ public class KataTest {
     private static final int SOME_VALUE = 1;
     
     @Test
+    public void a_game_has_ten_frames() {
+        int numberOfFrames = 10;
+        
+        assertThat(numberOfFrames, is(10));
+    }
+    
+    @Test
     public void score_of_game_equals_sum_of_frames_scores() {
         int firstFrameScore = SOME_VALUE;
         int secondFrameScore = SOME_VALUE;
@@ -32,7 +39,7 @@ public class KataTest {
     }
 
     @Test
-    public void standard_rolls_for_frame_is_the_subset_from_rolls_equal_to_frametype() {
+    public void standard_rolls_for_frame_is_the_subset_from_rolls_according_to_frametype() {
         int[] rolls = createSomeRolls();
         int rollsNumber = 2;
         FrameType frameType = frameTypeWithRollsNumber(rollsNumber);
@@ -46,7 +53,7 @@ public class KataTest {
     
     
     @Test
-    public void bonus_rolls_for_frame_is_the_subset_from_next_rolls_equal_to_frametype() {
+    public void bonus_rolls_for_frame_is_the_subset_from_next_rolls_according_to_frametype() {
         int[] nextRolls = createSomeRolls();
         int bonusRollsNumber = 2;
         FrameType frameType = frameTypeWithBonusRollsNumber(bonusRollsNumber);
@@ -69,6 +76,14 @@ public class KataTest {
         assertArrayEquals(
                 subsetOfRolls(rolls, rollsNumber, rolls.length-rollsNumber), 
                 nextFrameRolls);
+    }
+    
+    @Test
+    public void rolls_should_be_splited_into_frames() {
+        int[] rolls = createSomeRolls();
+        
+        
+        assertThat(true, is(true));
     }
     //~~~~~~~~~~~
     protected int[] createSomeRolls() {
