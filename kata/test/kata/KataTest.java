@@ -22,11 +22,12 @@ public class KataTest {
 
     @Test
     public void score_of_game_equals_sum_of_frames_scores() {
-        Frame frame = mock(Frame.class);
-        when(frame.getScore()).thenReturn(SOME_VALUE);
+        Frame frame1 = createFrameWithScore(SOME_VALUE);
+        Frame frame2 = createFrameWithScore(SOME_VALUE);
+        
         
         int[] frameScores = new int[]{
-            frame.getScore(), frame.getScore()
+            frame1.getScore(), frame2.getScore()
         };
 
         int scoreOfGame = computeScoreOfGame(frameScores);
@@ -174,6 +175,12 @@ public class KataTest {
 
     protected int computeScoreOfFrame(int sumOfFrameRolls, int valueOfBonusRolls) {
         return sumOfFrameRolls + valueOfBonusRolls;
+    }
+
+    protected Frame createFrameWithScore(int score) {
+        Frame frame1 = mock(Frame.class);
+        when(frame1.getScore()).thenReturn(score);
+        return frame1;
     }
     
     static class Frame {
