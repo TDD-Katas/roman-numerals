@@ -91,7 +91,8 @@ public class KataTest {
             int[] rolls) {
         Frame frame = mock(Frame.class);
         when(frame.getNumberOfRolls()).thenReturn(numberOfRolls);
-        return computeSumOfRolls(frame.getNumberOfRolls(), rolls);
+        when(frame.getFrameRolls()).thenReturn(rolls);
+        return computeSumOfRolls(frame.getNumberOfRolls(), frame.getFrameRolls());
     }
 
     protected int computeSumOfRolls(int numberOfRolls,
