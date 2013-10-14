@@ -16,6 +16,8 @@ import static org.mockito.Mockito.*;
 public class KataTest {
     private static final int SOME_VALUE = 1;
 
+    
+    
     @Test
     public void score_of_game_equals_sum_of_frames_scores() {
         int firstFrameScore = SOME_VALUE;
@@ -103,6 +105,8 @@ public class KataTest {
     }
 
     static class Frame {
+        
+        
         public int[] getFrameRolls() {
             return new int[0];
         }
