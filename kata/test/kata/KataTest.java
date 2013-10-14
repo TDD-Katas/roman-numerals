@@ -55,8 +55,7 @@ public class KataTest {
             SOME_VALUE, SOME_VALUE
         };
 
-        Utility utility = new Utility();
-        int bonusScoreForSpare = utility.computeSumOfRolls(
+        int bonusScoreForSpare = computeSumOfRolls(
                 numberOfBonusRolls, nextRolls);
 
         assertThat(bonusScoreForSpare, is(TestUtils.sumValues(nextRolls)));
@@ -74,8 +73,7 @@ public class KataTest {
         when(frame.getNumberOfRolls()).thenReturn(numberOfFrameRolls);
         when(frame.getFrameRolls()).thenReturn(rolls);
         
-        Utility utility = new Utility();
-        int sumOfRolls = computeSumOfFrameRolls(utility, frame);
+        int sumOfRolls = computeSumOfFrameRolls(frame);
 
         assertThat(sumOfRolls, is(valueOfFirstRoll + valueOfSecondRoll));
     }
@@ -91,8 +89,20 @@ public class KataTest {
         return scoreOfGame;
     }
     
-    protected int computeSumOfFrameRolls(Utility utility, Frame frame) {
-        return utility.computeSumOfRolls(frame.getNumberOfRolls(), frame.getFrameRolls());
+    protected int computeSumOfFrameRolls(Frame frame) {
+        return computeSumOfRolls(frame.getNumberOfRolls(), frame.getFrameRolls());
+    }
+
+    protected int computeSumOfRolls(int numberOfRolls,
+            int[] rolls) {
+        
+        
+        int sumOfRolls = 0;
+        for (int i = 0; i < numberOfRolls; i++) {
+            sumOfRolls += rolls[i];
+        }
+
+        return sumOfRolls;
     }
 
     protected int computeScoreOfFrame(Frame frame) {
@@ -104,19 +114,6 @@ public class KataTest {
         when(frame1.getScore()).thenReturn(score);
         return frame1;
     }
-    
-    static class Utility {
-        public int computeSumOfRolls(int numberOfRolls,
-            int[] rolls) {
-            int sumOfRolls = 0;
-            for (int i = 0; i < numberOfRolls; i++) {
-                sumOfRolls += rolls[i];
-            }
-
-            return sumOfRolls;
-        }
-    }
-    
     
     static class Frame {
         
