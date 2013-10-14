@@ -35,7 +35,7 @@ public class KataTest {
     }
 
     @Test
-    public void score_of_a_frame_equals_sum_of_frame_rolls_plus_the_value_of_bonus_rolls() {
+    public void score_of_a_frame_equals_plain_score_plus_bonus_score() {
         int sumOfFrameRolls = PLAIN_ROLL;
         int valueOfBonusRolls = SOME_VALUE;
         Frame frame = mock(Frame.class);
@@ -49,7 +49,7 @@ public class KataTest {
     }
 
     @Test
-    public void bonus_score_equals_sum_of_bonus_rolls() {
+    public void bonus_score_of_frame_equals_sum_of_bonus_rolls() {
         int numberOfBonusRolls = 2;
         int[] bonusRolls = new int[]{
             SOME_VALUE, SOME_VALUE
