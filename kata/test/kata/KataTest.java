@@ -34,32 +34,41 @@ public class KataTest {
     @Test
     public void standard_rolls_for_frame_is_the_subset_from_rolls_equal_to_frametype() {
         int[] rolls = new int[] {1, 2, 3, 4};
-        FrameType frameType = frameTypeWithRollsNumber(2);
+        int rollsNumber = 2;
+        FrameType frameType = frameTypeWithRollsNumber(rollsNumber);
         
         int[] standardFrameRolls = getStandardRolls(frameType, rolls);
         
-        assertArrayEquals(subsetOfRolls(rolls, 0, 2), standardFrameRolls);
+        assertArrayEquals(
+                subsetOfRolls(rolls, 0, rollsNumber), 
+                standardFrameRolls);
     }
     
     
     @Test
     public void bonus_rolls_for_frame_is_the_subset_from_next_rolls_equal_to_frametype() {
         int[] nextRolls = new int[] {1, 2, 3, 4};
-        FrameType frameType = frameTypeWithBonusRollsNumber(2);
+        int bonusRollsNumber = 2;
+        FrameType frameType = frameTypeWithBonusRollsNumber(bonusRollsNumber);
         
         int[] standardFrameRolls = getBonusRolls(frameType, nextRolls);
         
-        assertArrayEquals(subsetOfRolls(nextRolls, 0, 2), standardFrameRolls);
+        assertArrayEquals(
+                subsetOfRolls(nextRolls, 0, bonusRollsNumber), 
+                standardFrameRolls);
     }
     
     @Test
     public void next_rolls_for_frame_are_the_rolls_after_standard_rolls() {
         int[] rolls = new int[] {1, 2, 3};
-        FrameType frameType = frameTypeWithRollsNumber(1);
+        int rollsNumber = 1;
+        FrameType frameType = frameTypeWithRollsNumber(rollsNumber);
         
         int[] nextFrameRolls = getNextRolls(frameType, rolls);
         
-        assertArrayEquals(subsetOfRolls(rolls, 1, 2), nextFrameRolls);
+        assertArrayEquals(
+                subsetOfRolls(rolls, rollsNumber, rolls.length-rollsNumber), 
+                nextFrameRolls);
     }
     //~~~~~~~~~~~
     protected Frame createFrameWithScore(int score) {
