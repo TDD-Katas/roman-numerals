@@ -60,10 +60,14 @@ public class FrameTest {
         assertThat(sumOfRolls, is(Utils.sumOfValues(standardRolls)));
     }
     
+    //~~~~~~~~~~~~~~~~
+    
     protected int[] createSomeRolls() {
         int[] standardRolls = new int[]{
             SOME_VALUE, SOME_VALUE
         };
         return standardRolls;
     }
+    
+    //~~~~~~~~~~~~~~~
 }
