@@ -49,7 +49,7 @@ public class KataTest {
     
     
     @Test
-    public void bonus_rolls_for_frame_is_the_next_rolls_subset_according_to_frametype() {
+    public void bonus_rolls_for_frame_is_the_subset_from_next_rolls_equal_to_frametype() {
         int[] nextRolls = new int[] {1, 2, 3, 4};
         int bonusRollsNumber = 2;
         
