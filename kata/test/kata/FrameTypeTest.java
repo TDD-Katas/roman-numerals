@@ -106,7 +106,7 @@ public class FrameTypeTest {
     private static final FrameType SPARE_TYPE = new FrameType(2, 1);
     private static final FrameType STRIKE_TYPE = new FrameType(1, 2);
 
-    protected FrameType getFrameType(int valueOfFirstRoll, int valueOfSecondRoll) {
+    protected static FrameType getFrameType(int valueOfFirstRoll, int valueOfSecondRoll) {
         FrameType frameType = OPEN_TYPE;
         if (valueOfFirstRoll == 10) {
             frameType = STRIKE_TYPE;

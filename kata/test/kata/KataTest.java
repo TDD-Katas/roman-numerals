@@ -78,13 +78,6 @@ public class KataTest {
                 nextFrameRolls);
     }
     
-    @Test
-    public void rolls_should_be_splited_into_frames() {
-        int[] rolls = createSomeRolls();
-        
-        
-        assertThat(true, is(true));
-    }
     //~~~~~~~~~~~
     protected int[] createSomeRolls() {
         int[] rolls = new int[] {1, 2, 3, 4};
