@@ -186,6 +186,14 @@ public class KataTest {
         return frame1;
     }
     
+    static class Utility {
+        public int computeSumOfRolls(int numberOfRolls,
+            int[] rolls) {
+            return 0;
+        }
+    }
+    
+    
     static class Frame {
         
         public int getSumOfRolls() {
