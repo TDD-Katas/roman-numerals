@@ -42,7 +42,7 @@ public class KataTest {
         
         int currentIndex = 0;
         int numberOfRolls = standardRollsNumber;
-        int[] standardFrameRolls = grabRolls(numberOfRolls, rolls, currentIndex);
+        int[] standardFrameRolls = subsetOfRolls(rolls, currentIndex, numberOfRolls);
         
         assertArrayEquals(expectedRolls, standardFrameRolls);
     }
@@ -58,7 +58,7 @@ public class KataTest {
         
         int currentIndex = standardRollsNumber;
         int numberOfRolls = rolls.length - standardRollsNumber;
-        int[] nextFrameRolls = grabRolls(numberOfRolls, rolls, currentIndex);
+        int[] nextFrameRolls = subsetOfRolls(rolls, currentIndex, numberOfRolls);
         
         assertArrayEquals(expectedRolls, nextFrameRolls);
     }
@@ -74,7 +74,7 @@ public class KataTest {
         
         int currentIndex = 0;
         int numberOfRolls = bonusRollsNumber;
-        int[] standardFrameRolls = grabRolls(numberOfRolls, nextRolls, currentIndex);
+        int[] standardFrameRolls = subsetOfRolls(nextRolls, currentIndex, numberOfRolls);
         
         assertArrayEquals(expectedRolls, standardFrameRolls);
     }
@@ -99,7 +99,7 @@ public class KataTest {
         return Utils.sumOfValues(rolls);
     }
 
-    protected int[] grabRolls(int numberOfRolls, int[] rolls, int currentIndex) {
+    protected int[] subsetOfRolls(int[] rolls, int currentIndex, int numberOfRolls) {
         int[] standardFrameRolls = new int[numberOfRolls];
         for (int i = 0; i < numberOfRolls; i++) {
             standardFrameRolls[i] = rolls[currentIndex+i];
