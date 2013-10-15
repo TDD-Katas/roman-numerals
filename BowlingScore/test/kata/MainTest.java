@@ -18,13 +18,6 @@ public class MainTest {
     private static final int SOME_VALUE = 1;
     
     @Test
-    public void a_game_has_ten_frames() {
-        int numberOfFrames = 10;
-        
-        assertThat(numberOfFrames, is(10));
-    }
-    
-    @Test
     public void score_of_game_equals_sum_of_frames_scores() {
         int firstFrameScore = SOME_VALUE;
         int secondFrameScore = SOME_VALUE;
