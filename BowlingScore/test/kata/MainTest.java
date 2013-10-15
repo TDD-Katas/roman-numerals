@@ -14,7 +14,7 @@ import static org.mockito.Mockito.*;
  *
  * @author Iulian Ghionoiu <iulian.ghionoiu@exenne.ro>
  */
-public class KataTest {
+public class MainTest {
     private static final int SOME_VALUE = 1;
     
     @Test

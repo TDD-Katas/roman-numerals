@@ -26,11 +26,11 @@ class Frame {
     }
 
     public int getStandardScore() {
-        return KataTest.computeSumOfRolls(getStandardRolls());
+        return MainTest.computeSumOfRolls(getStandardRolls());
     }
 
     public int getBonusScore() {
-        return KataTest.computeSumOfRolls(getBonusRolls());
+        return MainTest.computeSumOfRolls(getBonusRolls());
     }
 
     public int getScore() {
