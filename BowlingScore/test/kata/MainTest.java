@@ -40,7 +40,7 @@ public class MainTest {
     
     //~~~~~~~~~~~
     public static void main(String[] args) {
-        int[] rollValues = new int[]{10, 1, 1};
+        int[] rollValues = new int[]{5, 5, 10, 1, 1};
         
         int gameScore = 0;
         Rolls currentRolls = new Rolls(rollValues);
