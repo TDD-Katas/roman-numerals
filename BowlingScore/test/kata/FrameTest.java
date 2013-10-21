@@ -17,57 +17,21 @@ import static org.mockito.Mockito.when;
  */
 public class FrameTest {
     private static final int SOME_VALUE = 1;
-    private Frame frame;
-    
-    
-    @Before
-    public void setUp() {
-        frame = mock(Frame.class);
-    }
     
     @Test
-    public void score_of_a_frame_equals_plain_score_plus_bonus_score() {
-        when(frame.getStandardScore()).thenReturn(SOME_VALUE);
-        when(frame.getBonusScore()).thenReturn(SOME_VALUE);
-        when(frame.getScore()).thenCallRealMethod();
+    public void score_of_a_frame_is_score_of_plain_rolls_plus_score_of_bonus_rolls() {
+        Rolls plainRolls = createMockRolls();
+        Rolls bonusRolls = createMockRolls();
+        Frame frame = new Frame(plainRolls, bonusRolls);
         
         int scoreOfFrame = frame.getScore();
 
-        assertThat(scoreOfFrame, is(frame.getStandardScore() + frame.getBonusScore()));
+        assertThat(scoreOfFrame, is(plainRolls.getScore() + bonusRolls.getScore()));
     }
 
-    @Test
-    public void bonus_score_of_frame_equals_sum_of_bonus_rolls() {
-        int[] bonusRolls = createSomeRolls();
-        when(frame.getBonusRolls()).thenReturn(bonusRolls);
-        when(frame.getBonusScore()).thenCallRealMethod();
-
-        int bonusScoreForSpare = frame.getBonusScore();
-
-        assertThat(bonusScoreForSpare, is(Utils.sumOfValues(bonusRolls)));
+    protected Rolls createMockRolls() {
+        Rolls plainRolls = mock(Rolls.class);
+        when(plainRolls.getScore()).thenReturn(SOME_VALUE);
+        return plainRolls;
     }
-
-
-
-    @Test
-    public void plain_score_of_frame_equals_sum_of_standard_rolls() {
-        int[] standardRolls = createSomeRolls();
-        when(frame.getStandardRolls()).thenReturn(standardRolls);
-        when(frame.getStandardScore()).thenCallRealMethod();
-        
-        int sumOfRolls = frame.getStandardScore();
-
-        assertThat(sumOfRolls, is(Utils.sumOfValues(standardRolls)));
-    }
-    
-    //~~~~~~~~~~~~~~~~
-    
-    protected int[] createSomeRolls() {
-        int[] standardRolls = new int[]{
-            SOME_VALUE, SOME_VALUE
-        };
-        return standardRolls;
-    }
-    
-    //~~~~~~~~~~~~~~~
 }

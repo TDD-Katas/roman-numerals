@@ -9,32 +9,16 @@ package kata;
  * @author Iulian Ghionoiu <iulian.ghionoiu@exenne.ro>
  */
 class Frame {
-    private int[] standardRolls;
-    private int[] bonusRolls;
+    private Rolls standardRolls;
+    private Rolls bonusRolls;
 
-    public Frame(int[] standardRolls, int[] bonusRolls) {
+    public Frame(Rolls standardRolls, Rolls bonusRolls) {
         this.standardRolls = standardRolls;
         this.bonusRolls = bonusRolls;
     }
 
-    public int[] getStandardRolls() {
-        return new int[0];
-    }
-
-    public int[] getBonusRolls() {
-        return new int[0];
-    }
-
-    public int getStandardScore() {
-        return MainTest.computeSumOfRolls(getStandardRolls());
-    }
-
-    public int getBonusScore() {
-        return MainTest.computeSumOfRolls(getBonusRolls());
-    }
-
     public int getScore() {
-        return getStandardScore() + getBonusScore();
+        return standardRolls.getScore() + bonusRolls.getScore();
     }
     
 }
