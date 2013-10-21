@@ -12,6 +12,10 @@ public class Rolls {
     public Rolls(int[] values) {
         this.values = values;
     }
+    
+    public FrameType computeFrameType() {
+        return getFrameType(values[0], values[1]);
+    } 
 
     public Rolls getActiveSubsetAccordingTo(FrameType frameType) {
         int currentIndex = 0;
@@ -40,6 +44,9 @@ public class Rolls {
         return new Rolls(subsetValues);
     }
     
+    public boolean hasNext() {
+        return values.length > 0;
+    }
     
     public int getScore() {
         int score = 0;
@@ -69,5 +76,18 @@ public class Rolls {
             return false;
         }
         return true;
+    }
+    
+    //~~~~
+    
+    protected static FrameType getFrameType(int valueOfFirstRoll, int valueOfSecondRoll) {
+        FrameType frameType = FrameType.OPEN;
+        if (valueOfFirstRoll == 10) {
+            frameType = FrameType.STRIKE;
+        } else if (valueOfFirstRoll + valueOfSecondRoll == 10) {
+            frameType = FrameType.SPARE;
+        }
+
+        return frameType;
     }
 }
