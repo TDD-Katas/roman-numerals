@@ -4,16 +4,22 @@
  */
 package ro.ghionoiu.kata;
 
-//~~~~~~
-
-import ro.ghionoiu.kata.CharacterToValueConverter;
-
 
 public class StringToValuesConverter {
+    CharacterToValueConverter characterConverter;
+
+    public StringToValuesConverter() {
+        this.characterConverter = new CharacterToValueConverter();
+    }
+    
+    public StringToValuesConverter(CharacterToValueConverter characterConverter) {
+        this.characterConverter = characterConverter;
+    }
+    
     public int[] getValues(String roman) {
         int[] values = new int[roman.length()];
         for (int i = 0; i < values.length; i++) {
-            values[i] = new CharacterToValueConverter().getValue(roman.charAt(i));
+            values[i] = this.characterConverter.getValue(roman.charAt(i));
         }
         return values;
     }

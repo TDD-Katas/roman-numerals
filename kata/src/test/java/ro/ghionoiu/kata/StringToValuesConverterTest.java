@@ -18,6 +18,7 @@ public class StringToValuesConverterTest {
     public void roman_string_is_converted_into_values() {
         String roman = "XI";
         
+        
         int[] symbols = new StringToValuesConverter().getValues(roman);
         
         for (int i = 0; i < roman.length(); i++) {
