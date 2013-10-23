@@ -7,6 +7,8 @@ package ro.ghionoiu.kata;
 
 public class Numeral {
     Symbol[] symbols;
+    
+    
     public Numeral(Symbol ... symbols) {
         this.symbols = symbols;
     }
