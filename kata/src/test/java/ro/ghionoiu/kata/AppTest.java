@@ -91,6 +91,16 @@ public class AppTest {
         assertThat(symbolIsSmaller, is(true));
     }
     
+    @Test
+    public void symbol_is_heigher_then_other_if_has_a_bigger_value() {
+        Symbol symbol = getSymbolWith(5);
+        Symbol otherSymbol = getSymbolWith(4);
+        
+        final boolean symbolIsHeigher = symbol.getValue() > otherSymbol.getValue();
+        
+        assertThat(symbolIsHeigher, is(true));
+    }
+    
     
     //~~~ test utils
     
