@@ -78,56 +78,7 @@ public class AppTest {
         assertThat(operation, is(Operation.ADDITION));
     }
     
-    @Test
-    public void when_symbol_has_no_next_symbol_it_is_added() {
-        final boolean symbolHasNoNextSymbol = true;
-        
-        Operation operation = null;
-        if (symbolHasNoNextSymbol) {
-            operation = Operation.ADDITION;
-        }
-        
-        assertThat(operation, is(Operation.ADDITION));
-    }
-
-    
-    @Test
-    public void symbol_is_smaller_then_other_if_has_a_lower_value() {
-        CharacterToValue symbol = getSymbolWith(3);
-        CharacterToValue otherSymbol = getSymbolWith(4);
-        
-        ComparisonResult result = compareSymbols(symbol, otherSymbol);
-        
-        assertThat(result, is(ComparisonResult.SMALLER));
-    }
-    
-    @Test
-    public void symbol_is_bigger_then_other_if_has_a_bigger_value() {
-        CharacterToValue symbol = getSymbolWith(5);
-        CharacterToValue otherSymbol = getSymbolWith(4);
-        
-        ComparisonResult result = compareSymbols(symbol, otherSymbol);
-        
-        assertThat(result, is(ComparisonResult.BIGGER));
-    }
-    
-    @Test
-    public void symbol_is_equal_to_other_if_has_an_equal_value() {
-        CharacterToValue symbol = getSymbolWith(4);
-        CharacterToValue otherSymbol = getSymbolWith(4);
-        
-        ComparisonResult result = compareSymbols(symbol, otherSymbol);
-        
-        assertThat(result, is(ComparisonResult.EQUAL));
-    }
-    
     //~~~ test utils
-    
-    protected CharacterToValue getSymbolWith(int symbolsValue) {
-        CharacterToValue symbol = mock(CharacterToValue.class);
-        when(symbol.getValue()).thenReturn(symbolsValue);
-        return symbol;
-    }
 
     protected Numeral constructNumeral(int value1, int value2) {
         int[] values = new int[] {
