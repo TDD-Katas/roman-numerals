@@ -27,15 +27,6 @@ public class AppTest {
         assertThat(valueOfRomanNumeral, is(value1 + value2));
     }
     
-    @Test
-    public void symbol_is_smaller_then_other_if_has_a_lower_value() {
-        Symbol symbol = getSymbolWith(3);
-        Symbol otherSymbol = getSymbolWith(4);
-        
-        final boolean symbolIsSmaller = symbol.getValue() < otherSymbol.getValue();
-        
-        assertThat(symbolIsSmaller, is(true));
-    }
     
     @Test
     public void when_smaller_symbol_precedes_bigger_symbol_its_value_is_substracted() {
@@ -46,6 +37,17 @@ public class AppTest {
         assertThat(valueIsSubstracted, is(true));
     }
 
+    @Test
+    public void symbol_is_smaller_then_other_if_has_a_lower_value() {
+        Symbol symbol = getSymbolWith(3);
+        Symbol otherSymbol = getSymbolWith(4);
+        
+        final boolean symbolIsSmaller = symbol.getValue() < otherSymbol.getValue();
+        
+        assertThat(symbolIsSmaller, is(true));
+    }
+    
+    
     //~~~ test utils
     
     protected Symbol getSymbolWith(int symbolsValue) {
