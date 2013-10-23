@@ -26,6 +26,15 @@ public class AppTest {
         
         assertThat(valueOfRomanNumeral, is(value1 + value2));
     }
+    
+    @Test
+    public void when_smaller_symbol_precedes_bigger_symbol_its_value_is_substracted() {
+        final boolean smallerSymbolPrecedesBiggerSymbol = true;
+        
+        final boolean valueIsSubstracted = smallerSymbolPrecedesBiggerSymbol;
+        
+        assertThat(valueIsSubstracted, is(true));
+    }
 
     //~~~ test utils
     
