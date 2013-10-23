@@ -25,18 +25,4 @@ public class AppTest {
         
         assertThat(valueOfRomanNumeral, is(symbol.getValue()));
     }
-    
-    //~~~~~~~~~~ Production
-    
-    class Numeral {
-        Symbol symbol;
-
-        public Numeral(Symbol symbol) {
-            this.symbol = symbol;
-        }
-        
-        public int getValue() {
-            return symbol.getValue();
-        }
-    }
 }
