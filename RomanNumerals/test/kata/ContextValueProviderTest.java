@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
 public class ContextValueProviderTest {
     
    @Test
-    public void the_context_value_of_a_single_element_is_its_value() {
+    public void the_context_value_of_a_single_symbol_is_its_value() {
         Symbol symbol = romanSymbolWithValue(1);
         Symbol symbolAfter = null;
         
