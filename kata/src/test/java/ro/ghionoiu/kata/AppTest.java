@@ -49,27 +49,36 @@ public class AppTest {
     public void when_symbol_is_higher_then_next_symbol_it_is_added() {
         final boolean symbolHigherThanNextSymbol = true;
         
-        final boolean valueIsAdded = symbolHigherThanNextSymbol;
+        Operation operation = null;
+        if (symbolHigherThanNextSymbol) {
+            operation = Operation.ADDITION;
+        }
         
-        assertThat(valueIsAdded, is(true));
+        assertThat(operation, is(Operation.ADDITION));
     }
     
     @Test
     public void when_symbol_is_equal_to_next_symbol_it_is_added() {
         final boolean symbolEqualToNextSymbol = true;
         
-        final boolean valueIsAdded = symbolEqualToNextSymbol;
+        Operation operation = null;
+        if (symbolEqualToNextSymbol) {
+            operation = Operation.ADDITION;
+        }
         
-        assertThat(valueIsAdded, is(true));
+        assertThat(operation, is(Operation.ADDITION));
     }
     
     @Test
     public void when_symbol_has_no_next_symbol_it_is_added() {
         final boolean symbolHasNoNextSymbol = true;
         
-        final boolean valueIsAdded = symbolHasNoNextSymbol;
+        Operation operation = null;
+        if (symbolHasNoNextSymbol) {
+            operation = Operation.ADDITION;
+        }
         
-        assertThat(valueIsAdded, is(true));
+        assertThat(operation, is(Operation.ADDITION));
     }
 
     @Test
