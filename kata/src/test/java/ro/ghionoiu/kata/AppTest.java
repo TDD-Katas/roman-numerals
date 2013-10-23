@@ -130,12 +130,6 @@ public class AppTest {
         SUBSTRACTION
     }
     
-    enum ComparisonResult {
-        SMALLER,
-        EQUAL,
-        BIGGER
-    }
-    
     protected ComparisonResult compareSymbols(Symbol symbol, Symbol otherSymbol) {
         ComparisonResult result = ComparisonResult.EQUAL;
         
