@@ -104,10 +104,7 @@ public class AppTest {
         Symbol symbol = getSymbolWith(5);
         Symbol otherSymbol = getSymbolWith(4);
         
-        ComparisonResult result = null;
-        if (symbol.getValue() > otherSymbol.getValue()) {
-            result = ComparisonResult.BIGGER;
-        }
+        ComparisonResult result = compareSymbols(symbol, otherSymbol);
         
         assertThat(result, is(ComparisonResult.BIGGER));
     }
@@ -117,10 +114,7 @@ public class AppTest {
         Symbol symbol = getSymbolWith(4);
         Symbol otherSymbol = getSymbolWith(4);
         
-        ComparisonResult result = null;
-        if (symbol.getValue() == otherSymbol.getValue()) {
-            result = ComparisonResult.EQUAL;
-        }
+        ComparisonResult result = compareSymbols(symbol, otherSymbol);
         
         assertThat(result, is(ComparisonResult.EQUAL));
     }
@@ -149,7 +143,13 @@ public class AppTest {
         ComparisonResult result = null;
         if (symbol.getValue() < otherSymbol.getValue()) {
             result = ComparisonResult.SMALLER;
+        } else 
+        if (symbol.getValue() > otherSymbol.getValue()) {
+            result = ComparisonResult.BIGGER;
+        } else {
+            result = ComparisonResult.EQUAL;
         }
+            
         return result;
     }
 }
