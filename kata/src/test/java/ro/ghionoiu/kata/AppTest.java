@@ -17,42 +17,42 @@ import static org.hamcrest.CoreMatchers.*;
 public class AppTest {
     
     @Test
-    public void value_of_I_is_1() {
+    public void value_of_symbol_I_is_1() {
         assertThat(valueOfSymbol("I"), equalTo(1));
     }
     
     @Test
-    public void value_of_V_is_5() {
+    public void value_of_symbol_V_is_5() {
         assertThat(valueOfSymbol("V"), equalTo(5));
     }
     
     @Test
-    public void value_of_X_is_10() {
+    public void value_of_symbol_X_is_10() {
         assertThat(valueOfSymbol("X"), equalTo(10));
     }
     
     @Test
-    public void value_of_L_is_50() {
+    public void value_of_symbol_L_is_50() {
         assertThat(valueOfSymbol("L"), equalTo(50));
     }
     
     @Test
-    public void value_of_C_is_100() {
+    public void value_of_symbol_C_is_100() {
         assertThat(valueOfSymbol("C"), equalTo(100));
     }
     
     @Test
-    public void value_of_D_is_500() {
+    public void value_of_symbol_D_is_500() {
         assertThat(valueOfSymbol("D"), equalTo(500));
     }
     
     @Test
-    public void value_of_D_is_1000() {
+    public void value_of_symbol_D_is_1000() {
         assertThat(valueOfSymbol("M"), equalTo(1000));
     }
     
     @Test
-    public void value_of_one_symbol_roman_numeral_is_the_symbols_value() {
+    public void value_of_roman_numeral_with_one_symbol_is_that_symbols_value() {
         String romanNumeral = "X";
         
         final int valueOfRomanNumeral = valueOfNumeral(romanNumeral);
