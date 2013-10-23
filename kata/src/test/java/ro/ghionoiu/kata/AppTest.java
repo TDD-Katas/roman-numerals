@@ -46,6 +46,11 @@ public class AppTest {
         assertThat(valueOf("D"), equalTo(500));
     }
     
+    @Test
+    public void value_of_D_is_1000() {
+        assertThat(valueOf("M"), equalTo(1000));
+    }
+    
     //~~~~~~~~~~ Production
 
     final static Map<String, Integer> SYMBOL_VALUES = new HashMap<String, Integer>(); 
@@ -56,6 +61,7 @@ public class AppTest {
         SYMBOL_VALUES.put("L", 50);
         SYMBOL_VALUES.put("C", 100);
         SYMBOL_VALUES.put("D", 500);
+        SYMBOL_VALUES.put("M", 1000);
     }
     
     protected int valueOf(String symbol) {
