@@ -20,11 +20,7 @@ public class AppTest {
     public void roman_string_is_a_set_of_symbol() {
         String roman = "XI";
         
-        Symbol[] symbols = new Symbol[] {
-            new Symbol(roman.charAt(0)),
-            new Symbol(roman.charAt(1))
-        };
-        
+        Symbol[] symbols = numeralFromString(roman);
         
         for (int i = 0; i < roman.length(); i++) {
             Symbol symbol = symbols[i];
@@ -59,5 +55,15 @@ public class AppTest {
         };
         Numeral romanNumeral = new Numeral(symbols);
         return romanNumeral;
+    }
+    
+    //~~~~~~
+
+    protected Symbol[] numeralFromString(String roman) {
+        Symbol[] symbols = new Symbol[roman.length()];
+        for (int i = 0; i < symbols.length; i++) {
+            symbols[i] = new Symbol(roman.charAt(i));
+        }
+        return symbols;
     }
 }
