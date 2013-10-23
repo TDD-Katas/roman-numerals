@@ -16,36 +16,40 @@ public class SymbolTest {
     
     @Test
     public void value_of_I_is_1() {
-        assertThat(new Symbol("I").getValue(), equalTo(1));
+        assertCharacterValueIs(1, "I");
     }
     
     @Test
     public void value_of_V_is_5() {
-        assertThat(new Symbol("V").getValue(), equalTo(5));
+        assertCharacterValueIs(5, "V");
     }
     
     @Test
     public void value_of_X_is_10() {
-        assertThat(new Symbol("X").getValue(), equalTo(10));
+        assertCharacterValueIs(10, "X");
     }
     
     @Test
     public void value_of_L_is_50() {
-        assertThat(new Symbol("L").getValue(), equalTo(50));
+        assertCharacterValueIs(50, "L");
     }
     
     @Test
     public void value_of_C_is_100() {
-        assertThat(new Symbol("C").getValue(), equalTo(100));
+        assertCharacterValueIs(100, "C");
     }
     
     @Test
     public void value_of_D_is_500() {
-        assertThat(new Symbol("D").getValue(), equalTo(500));
+        assertCharacterValueIs(500, "D");
     }
     
     @Test
     public void value_of_D_is_1000() {
-        assertThat(new Symbol("M").getValue(), equalTo(1000));
+        assertCharacterValueIs(1000, "M");
+    }
+
+    protected void assertCharacterValueIs(int value, String string) {
+        assertThat(new Symbol(string).getValue(), equalTo(value));
     }
 }
