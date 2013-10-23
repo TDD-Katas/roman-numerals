@@ -22,14 +22,8 @@ public class CharacterToValue {
         SYMBOL_VALUES.put("D", 500);
         SYMBOL_VALUES.put("M", 1000);
     }
-    char character;
 
-
-    public CharacterToValue(char character) {
-        this.character = character;
-    }
-
-    public int getValue() {
+    public int getValue(char character) {
         int value = 0;
         String key = character+"";
         if (SYMBOL_VALUES.containsKey(key)) {

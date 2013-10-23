@@ -95,17 +95,4 @@ public class AppTest {
         ADDITION,
         SUBSTRACTION
     }
-    
-    protected ComparisonResult compareSymbols(CharacterToValue symbol, CharacterToValue otherSymbol) {
-        ComparisonResult result = ComparisonResult.EQUAL;
-        
-        if (symbol.getValue() < otherSymbol.getValue()) {
-            result = ComparisonResult.SMALLER;
-        } else 
-        if (symbol.getValue() > otherSymbol.getValue()) {
-            result = ComparisonResult.BIGGER;
-        }
-            
-        return result;
-    }
 }

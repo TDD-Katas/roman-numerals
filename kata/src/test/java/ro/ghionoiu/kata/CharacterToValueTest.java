@@ -51,6 +51,6 @@ public class CharacterToValueTest {
 
     
     protected void assertCharacterValueIs(int value, char character) {
-        assertThat(new CharacterToValue(character).getValue(), equalTo(value));
+        assertThat(new CharacterToValue().getValue(character), equalTo(value));
     }
 }

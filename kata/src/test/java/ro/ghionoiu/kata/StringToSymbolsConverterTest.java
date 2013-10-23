@@ -22,7 +22,7 @@ public class StringToSymbolsConverterTest {
         
         for (int i = 0; i < roman.length(); i++) {
             int symbol = symbols[i];
-            int value = new CharacterToValue(roman.charAt(i)).getValue();
+            int value = new CharacterToValue().getValue(roman.charAt(i));
             assertThat(symbol, is(value));
         }
     }

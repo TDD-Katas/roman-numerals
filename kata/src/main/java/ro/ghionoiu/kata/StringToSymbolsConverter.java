@@ -14,7 +14,7 @@ public class StringToSymbolsConverter {
     public int[] convert(String roman) {
         int[] symbols = new int[roman.length()];
         for (int i = 0; i < symbols.length; i++) {
-            symbols[i] = new CharacterToValue(roman.charAt(i)).getValue();
+            symbols[i] = new CharacterToValue().getValue(roman.charAt(i));
         }
         return symbols;
     }
