@@ -35,6 +35,15 @@ public class AppTest {
         
         assertThat(valueIsSubstracted, is(true));
     }
+    
+    @Test
+    public void when_symbol_is_higher_then_next_symbol_it_is_added() {
+        final boolean symbolHigherThanNextSymbol = true;
+        
+        final boolean valueIsAdded = symbolHigherThanNextSymbol;
+        
+        assertThat(valueIsAdded, is(true));
+    }
 
     @Test
     public void symbol_is_smaller_then_other_if_has_a_lower_value() {
