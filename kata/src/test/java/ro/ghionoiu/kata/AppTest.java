@@ -26,10 +26,23 @@ public class AppTest {
         
         assertThat(valueOfRomanNumeral, is(symbolsValue));
     }
+    
+    @Test
+    public void value_of_numeral_is_sum_of_symbols_values() {
+        int value1 = SOME_VALUE;
+        int value2 = SOME_VALUE; 
+        
+        Symbol symbol = getSymbolWith(value1 + value2);
+        Numeral romanNumeral = new Numeral(symbol);
+        
+        final int valueOfRomanNumeral = romanNumeral.getValue();
+        
+        assertThat(valueOfRomanNumeral, is(value1 + value2));
+    }
 
     protected Symbol getSymbolWith(int symbolsValue) {
         Symbol symbol = mock(Symbol.class);
-        when(symbol.getValue()).thenReturn(SOME_VALUE);
+        when(symbol.getValue()).thenReturn(symbolsValue);
         return symbol;
     }
 }
