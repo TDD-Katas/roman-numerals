@@ -27,13 +27,18 @@ public class AppTest {
         assertThat(valueOfRomanNumeral, is(value1 + value2));
     }
     
+    
+    
     @Test
     public void when_symbol_is_smaller_then_next_symbol_it_is_substracted() {
         final boolean symbolSmallerThanNextSymbol = true;
         
-        final boolean valueIsSubstracted = symbolSmallerThanNextSymbol;
+        int valueIsSubstracted = 0;
+        if (symbolSmallerThanNextSymbol) {
+            valueIsSubstracted = 1;
+        }
         
-        assertThat(valueIsSubstracted, is(true));
+        assertThat(valueIsSubstracted, is(1));
     }
     
     @Test
