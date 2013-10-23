@@ -25,14 +25,14 @@ public class AppTest {
     }
 
     protected int valueOf(String symbol) {
-        int valueOfI = 0;
+        int value = 0;
         if (symbol == "I") {
-            valueOfI = 1 ;
+            value = 1 ;
         } else 
         if (symbol == "V") {
-            valueOfI = 5 ;
+            value = 5 ;
         }
-        return valueOfI;
+        return value;
     }
 
 }
