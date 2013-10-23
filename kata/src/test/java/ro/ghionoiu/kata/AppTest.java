@@ -17,6 +17,15 @@ public class AppTest {
     public static final int SOME_VALUE = 1;
     
     @Test
+    public void one_letter_string_is_a_symbol() {
+        String roman = "X";
+        
+        Symbol symbol = new Symbol(roman.charAt(0));
+        
+        assertThat(symbol.character, is(roman));
+    }
+    
+    @Test
     public void value_of_numeral_is_sum_of_symbols_values() {
         int value1 = SOME_VALUE;
         int value2 = SOME_VALUE; 
