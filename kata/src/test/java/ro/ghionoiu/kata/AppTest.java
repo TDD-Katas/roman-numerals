@@ -41,11 +41,12 @@ public class AppTest {
     }
     
     @Test
-    public void when_symbol_is_higher_then_next_symbol_it_is_added() {
-        final boolean symbolHigherThanNextSymbol = true;
+    public void when_value_is_higher_then_next_value_it_is_added() {
+        int value = 10;
+        int nextValue = 5;
         
         Operation operation = null;
-        if (symbolHigherThanNextSymbol) {
+        if (value > nextValue) {
             operation = Operation.ADDITION;
         }
         
