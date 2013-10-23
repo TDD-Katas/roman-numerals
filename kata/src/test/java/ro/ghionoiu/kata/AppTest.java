@@ -18,15 +18,16 @@ public class AppTest {
     
     @Test
     public void value_of_numeral_with_one_symbol_is_that_symbols_value() {
-        Symbol symbol = getSomeSymbol();
+        int symbolsValue = SOME_VALUE;
+        Symbol symbol = getSymbolWith(symbolsValue);
         Numeral romanNumeral = new Numeral(symbol);
         
         final int valueOfRomanNumeral = romanNumeral.getValue();
         
-        assertThat(valueOfRomanNumeral, is(symbol.getValue()));
+        assertThat(valueOfRomanNumeral, is(symbolsValue));
     }
 
-    protected Symbol getSomeSymbol() {
+    protected Symbol getSymbolWith(int symbolsValue) {
         Symbol symbol = mock(Symbol.class);
         when(symbol.getValue()).thenReturn(SOME_VALUE);
         return symbol;
