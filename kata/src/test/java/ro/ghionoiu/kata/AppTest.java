@@ -53,11 +53,11 @@ public class AppTest {
     
     @Test
     public void value_of_one_symbol_roman_numeral_is_the_symbols_value() {
-        final int valueOfSymbol = 1;
+        String romanNumeral = "X";
         
-        final int valueOfRomanNumeral = valueOfSymbol;
+        final int valueOfRomanNumeral = valueOf(romanNumeral);
         
-        assertThat(valueOfRomanNumeral, is(valueOfSymbol));
+        assertThat(valueOfRomanNumeral, is(valueOf(romanNumeral)));
     }
     
     //~~~~~~~~~~ Production
