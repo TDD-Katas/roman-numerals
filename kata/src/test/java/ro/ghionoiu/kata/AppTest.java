@@ -81,14 +81,23 @@ public class AppTest {
         assertThat(operation, is(Operation.ADDITION));
     }
 
+    enum ComparisonResult {
+        SMALLER,
+        EQUAL,
+        BIGGER
+    }
+    
     @Test
     public void symbol_is_smaller_then_other_if_has_a_lower_value() {
         Symbol symbol = getSymbolWith(3);
         Symbol otherSymbol = getSymbolWith(4);
         
-        final boolean symbolIsSmaller = symbol.getValue() < otherSymbol.getValue();
+        ComparisonResult result = null;
+        if (symbol.getValue() < otherSymbol.getValue()) {
+            result = ComparisonResult.SMALLER;
+        }
         
-        assertThat(symbolIsSmaller, is(true));
+        assertThat(result, is(ComparisonResult.SMALLER));
     }
     
     @Test
@@ -96,9 +105,25 @@ public class AppTest {
         Symbol symbol = getSymbolWith(5);
         Symbol otherSymbol = getSymbolWith(4);
         
-        final boolean symbolIsHeigher = symbol.getValue() > otherSymbol.getValue();
+        ComparisonResult result = null;
+        if (symbol.getValue() > otherSymbol.getValue()) {
+            result = ComparisonResult.BIGGER;
+        }
         
-        assertThat(symbolIsHeigher, is(true));
+        assertThat(result, is(ComparisonResult.BIGGER));
+    }
+    
+    @Test
+    public void symbol_is_equal_to_other_if_has_an_equal_value() {
+        Symbol symbol = getSymbolWith(4);
+        Symbol otherSymbol = getSymbolWith(4);
+        
+        ComparisonResult result = null;
+        if (symbol.getValue() == otherSymbol.getValue()) {
+            result = ComparisonResult.EQUAL;
+        }
+        
+        assertThat(result, is(ComparisonResult.EQUAL));
     }
     
     
