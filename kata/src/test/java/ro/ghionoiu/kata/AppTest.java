@@ -44,6 +44,24 @@ public class AppTest {
         
         assertThat(valueIsAdded, is(true));
     }
+    
+    @Test
+    public void when_symbol_is_equal_to_next_symbol_it_is_added() {
+        final boolean symbolEqualToNextSymbol = true;
+        
+        final boolean valueIsAdded = symbolEqualToNextSymbol;
+        
+        assertThat(valueIsAdded, is(true));
+    }
+    
+    @Test
+    public void when_symbol_has_no_next_symbol_it_is_added() {
+        final boolean symbolHasNoNextSymbol = true;
+        
+        final boolean valueIsAdded = symbolHasNoNextSymbol;
+        
+        assertThat(valueIsAdded, is(true));
+    }
 
     @Test
     public void symbol_is_smaller_then_other_if_has_a_lower_value() {
