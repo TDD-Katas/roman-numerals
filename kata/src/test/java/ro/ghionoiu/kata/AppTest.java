@@ -26,10 +26,10 @@ public class AppTest {
 
     protected int valueOf(String symbol) {
         int value = 0;
-        if (symbol == "I") {
+        if ("I".equals(symbol)) {
             value = 1 ;
         } else 
-        if (symbol == "V") {
+        if ("V".equals(symbol)) {
             value = 5 ;
         }
         return value;
