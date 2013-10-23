@@ -27,14 +27,6 @@ public class AppTest {
         assertThat(valueOfRomanNumeral, is(value1 + value2));
     }
 
-
-    
-    enum Operation {
-        ADDITION,
-        SUBSTRACTION
-    }
-    
-    
     @Test
     public void when_symbol_is_smaller_then_next_symbol_it_is_substracted() {
         final boolean symbolSmallerThanNextSymbol = true;
@@ -83,11 +75,6 @@ public class AppTest {
         assertThat(operation, is(Operation.ADDITION));
     }
 
-    enum ComparisonResult {
-        SMALLER,
-        EQUAL,
-        BIGGER
-    }
     
     @Test
     public void symbol_is_smaller_then_other_if_has_a_lower_value() {
@@ -119,7 +106,6 @@ public class AppTest {
         assertThat(result, is(ComparisonResult.EQUAL));
     }
     
-    
     //~~~ test utils
     
     protected Symbol getSymbolWith(int symbolsValue) {
@@ -133,21 +119,31 @@ public class AppTest {
             getSymbolWith(value1),
             getSymbolWith(value2)
         };
-        Numeral romanNumeral = new Numeral(symbols);
-        return romanNumeral;
+        return new Numeral(symbols);
     }
     
     ///~~~~~~~~~~~~~~~~~~~
     
+    
+    enum Operation {
+        ADDITION,
+        SUBSTRACTION
+    }
+    
+    enum ComparisonResult {
+        SMALLER,
+        EQUAL,
+        BIGGER
+    }
+    
     protected ComparisonResult compareSymbols(Symbol symbol, Symbol otherSymbol) {
-        ComparisonResult result = null;
+        ComparisonResult result = ComparisonResult.EQUAL;
+        
         if (symbol.getValue() < otherSymbol.getValue()) {
             result = ComparisonResult.SMALLER;
         } else 
         if (symbol.getValue() > otherSymbol.getValue()) {
             result = ComparisonResult.BIGGER;
-        } else {
-            result = ComparisonResult.EQUAL;
         }
             
         return result;
