@@ -51,7 +51,6 @@ public class SymbolTest {
 
     
     protected void assertCharacterValueIs(int value, char character) {
-        String number = character + "";
-        assertThat(new Symbol(number).getValue(), equalTo(value));
+        assertThat(new Symbol(character).getValue(), equalTo(value));
     }
 }

@@ -28,6 +28,10 @@ public class Symbol {
         this.representation = representation;
     }
 
+    public Symbol(char character) {
+        this.representation = character+"";
+    }
+    
     public int getValue() {
         int value = 0;
         if (SYMBOL_VALUES.containsKey(representation)) {
