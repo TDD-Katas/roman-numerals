@@ -4,6 +4,8 @@
  */
 package ro.ghionoiu.kata;
 
+import java.util.HashMap;
+import java.util.Map;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
@@ -26,11 +28,16 @@ public class AppTest {
 
     protected int valueOf(String symbol) {
         int value = 0;
+        
+        Map<String, Integer> valueMap = new HashMap<String, Integer>();
+        valueMap.put("I", 1);
+        valueMap.put("V", 5);
+        
         if ("I".equals(symbol)) {
-            value = 1 ;
+            value = valueMap.get("I") ;
         } else 
         if ("V".equals(symbol)) {
-            value = 5 ;
+            value = valueMap.get("V") ;
         }
         return value;
     }
