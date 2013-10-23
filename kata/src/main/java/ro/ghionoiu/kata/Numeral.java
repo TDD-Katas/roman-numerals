@@ -12,6 +12,12 @@ public class Numeral {
     public Numeral(Symbol ... symbols) {
         this.symbols = symbols;
     }
+    
+    
+    public static Numeral fromString(String romanNumber) {
+        Symbol[] symbols = new StringToSymbolsConverter().convert(romanNumber);
+        return new Numeral(symbols);
+    }
 
     public int getValue() {
         int value = 0;
