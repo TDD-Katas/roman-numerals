@@ -12,17 +12,17 @@ import static org.hamcrest.CoreMatchers.*;
  *
  * @author Iulian Ghionoiu <iulian.ghionoiu@exenne.ro>
  */
-public class StringToSymbolsConverterTest {
+public class StringToValuesConverterTest {
     
     @Test
     public void roman_string_is_converted_into_values() {
         String roman = "XI";
         
-        int[] symbols = new StringToSymbolsConverter().convert(roman);
+        int[] symbols = new StringToValuesConverter().getValues(roman);
         
         for (int i = 0; i < roman.length(); i++) {
             int symbol = symbols[i];
-            int value = new CharacterToValue().getValue(roman.charAt(i));
+            int value = new CharacterToValueConverter().getValue(roman.charAt(i));
             assertThat(symbol, is(value));
         }
     }

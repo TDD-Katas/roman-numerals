@@ -15,7 +15,7 @@ public class Numeral {
     
     
     public static Numeral fromString(String romanNumber) {
-        int[] symbols = new StringToSymbolsConverter().convert(romanNumber);
+        int[] symbols = new StringToValuesConverter().getValues(romanNumber);
         return new Numeral(symbols);
     }
 

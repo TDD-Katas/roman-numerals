@@ -13,14 +13,13 @@ import org.junit.Before;
  *
  * @author Iulian Ghionoiu <iulian.ghionoiu@exenne.ro>
  */
-public class CharacterToValueTest {
-    CharacterToValue instance;
+public class CharacterToValueConverterTest {
+    CharacterToValueConverter instance;
 
     @Before
     public void setUp() throws Exception {
-        instance = new CharacterToValue();
+        instance = new CharacterToValueConverter();
     }
-
     
     @Test
     public void value_of_I_is_1() {

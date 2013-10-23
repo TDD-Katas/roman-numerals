@@ -11,7 +11,7 @@ import java.util.Map;
  *
  * @author Iulian Ghionoiu <iulian.ghionoiu@exenne.ro>
  */
-public class CharacterToValue {
+public class CharacterToValueConverter {
     private final static Map<String, Integer> SYMBOL_VALUES = new HashMap<String, Integer>();
     static {
         SYMBOL_VALUES.put("I", 1);
