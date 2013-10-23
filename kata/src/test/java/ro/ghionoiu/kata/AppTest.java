@@ -17,19 +17,6 @@ public class AppTest {
     public static final int SOME_VALUE = 1;
     
     @Test
-    public void roman_string_is_converted_into_set_of_symbol() {
-        String roman = "XI";
-        
-        Symbol[] symbols = new StringToSymbolsConverter().convert(roman);
-        
-        for (int i = 0; i < roman.length(); i++) {
-            Symbol symbol = symbols[i];
-            char character = roman.charAt(i);
-            assertThat(symbol.getCharacter(), is(character));
-        }
-    }
-    
-    @Test
     public void value_of_numeral_is_sum_of_symbols_values() {
         int value1 = SOME_VALUE;
         int value2 = SOME_VALUE; 
@@ -55,17 +42,5 @@ public class AppTest {
         };
         Numeral romanNumeral = new Numeral(symbols);
         return romanNumeral;
-    }
-    
-    //~~~~~~
-    
-    static class StringToSymbolsConverter {
-        protected Symbol[] convert(String roman) {
-            Symbol[] symbols = new Symbol[roman.length()];
-            for (int i = 0; i < symbols.length; i++) {
-                symbols[i] = new Symbol(roman.charAt(i));
-            }
-            return symbols;
-        }
     }
 }
