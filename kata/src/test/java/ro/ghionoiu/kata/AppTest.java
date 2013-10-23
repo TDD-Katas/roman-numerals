@@ -28,11 +28,12 @@ public class AppTest {
     }
 
     @Test
-    public void when_symbol_is_smaller_then_next_symbol_it_is_substracted() {
-        final boolean symbolSmallerThanNextSymbol = true;
+    public void when_value_is_smaller_then_next_value_it_is_substracted() {
+        int value = 1;
+        int nextValue = 10;
         
         Operation operation = null;
-        if (symbolSmallerThanNextSymbol) {
+        if (value < nextValue) {
             operation = Operation.SUBSTRACTION;
         }
         
@@ -115,11 +116,11 @@ public class AppTest {
     }
 
     protected Numeral constructNumeral(int value1, int value2) {
-        int[] symbols = new int[] {
+        int[] values = new int[] {
             value1,
             value2
         };
-        return new Numeral(symbols);
+        return new Numeral(values);
     }
     
     ///~~~~~~~~~~~~~~~~~~~
