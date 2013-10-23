@@ -27,18 +27,22 @@ public class AppTest {
         assertThat(valueOfRomanNumeral, is(value1 + value2));
     }
     
+    enum Operation {
+        ADDITION,
+        SUBSTRACTION
+    }
     
     
     @Test
     public void when_symbol_is_smaller_then_next_symbol_it_is_substracted() {
         final boolean symbolSmallerThanNextSymbol = true;
         
-        int valueIsSubstracted = 0;
+        Operation operation = null;
         if (symbolSmallerThanNextSymbol) {
-            valueIsSubstracted = 1;
+            operation = Operation.SUBSTRACTION;
         }
         
-        assertThat(valueIsSubstracted, is(1));
+        assertThat(operation, is(Operation.SUBSTRACTION));
     }
     
     @Test
