@@ -18,37 +18,37 @@ public class AppTest {
     
     @Test
     public void value_of_symbol_I_is_1() {
-        assertThat(valueOfSymbol("I"), equalTo(1));
+        assertThat(valueOfSymbol(new Symbol("I")), equalTo(1));
     }
     
     @Test
     public void value_of_symbol_V_is_5() {
-        assertThat(valueOfSymbol("V"), equalTo(5));
+        assertThat(valueOfSymbol(new Symbol("V")), equalTo(5));
     }
     
     @Test
     public void value_of_symbol_X_is_10() {
-        assertThat(valueOfSymbol("X"), equalTo(10));
+        assertThat(valueOfSymbol(new Symbol("X")), equalTo(10));
     }
     
     @Test
     public void value_of_symbol_L_is_50() {
-        assertThat(valueOfSymbol("L"), equalTo(50));
+        assertThat(valueOfSymbol(new Symbol("L")), equalTo(50));
     }
     
     @Test
     public void value_of_symbol_C_is_100() {
-        assertThat(valueOfSymbol("C"), equalTo(100));
+        assertThat(valueOfSymbol(new Symbol("C")), equalTo(100));
     }
     
     @Test
     public void value_of_symbol_D_is_500() {
-        assertThat(valueOfSymbol("D"), equalTo(500));
+        assertThat(valueOfSymbol(new Symbol("D")), equalTo(500));
     }
     
     @Test
     public void value_of_symbol_D_is_1000() {
-        assertThat(valueOfSymbol("M"), equalTo(1000));
+        assertThat(valueOfSymbol(new Symbol("M")), equalTo(1000));
     }
     
     @Test
@@ -57,7 +57,7 @@ public class AppTest {
         
         final int valueOfRomanNumeral = valueOfNumeral(romanNumeral);
         
-        assertThat(valueOfRomanNumeral, is(valueOfSymbol(romanNumeral)));
+        assertThat(valueOfRomanNumeral, is(valueOfSymbol(new Symbol(romanNumeral))));
     }
     
     //~~~~~~~~~~ Production
@@ -89,12 +89,11 @@ public class AppTest {
         }
     }
     
-    protected int valueOfSymbol(String symbol) {
-        Symbol symbol1 = new Symbol(symbol);
-        return symbol1.getValue();
+    protected int valueOfSymbol(Symbol symbol) {
+        return symbol.getValue();
     }
 
     protected int valueOfNumeral(String romanNumeral) {
-        return valueOfSymbol(romanNumeral);
+        return valueOfSymbol(new Symbol(romanNumeral));
     }
 }
