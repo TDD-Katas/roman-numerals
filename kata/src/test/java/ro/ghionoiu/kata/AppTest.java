@@ -54,11 +54,24 @@ public class AppTest {
     }
     
     @Test
-    public void when_symbol_is_equal_to_next_symbol_it_is_added() {
-        final boolean symbolEqualToNextSymbol = true;
+    public void when_value_is_equal_to_next_value_it_is_added() {
+        int value = 10;
+        int nextValue = 10;
         
         Operation operation = null;
-        if (symbolEqualToNextSymbol) {
+        if (value == nextValue) {
+            operation = Operation.ADDITION;
+        }
+        
+        assertThat(operation, is(Operation.ADDITION));
+    }
+    
+    @Test
+    public void when_value_has_no_next_value_it_is_added() {
+        final boolean valueHasNoNext = true;
+        
+        Operation operation = null;
+        if (valueHasNoNext) {
             operation = Operation.ADDITION;
         }
         
