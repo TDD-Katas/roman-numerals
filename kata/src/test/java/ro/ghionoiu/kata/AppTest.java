@@ -16,26 +16,23 @@ public class AppTest {
     
     @Test
     public void value_of_I_is_1() {
-        String symbol = "I";
-        
-        int valueOfI = 0;
-        if (symbol == "I") {
-            valueOfI = 1 ;
-        }
-        
-        assertThat(valueOfI, equalTo(1));
+        assertThat(valueOf("I"), equalTo(1));
     }
     
     @Test
     public void value_of_V_is_5() {
-        String symbol = "V";
-        
-        int valueOfV = 0;
+        assertThat(valueOf("V"), equalTo(5));
+    }
+
+    protected int valueOf(String symbol) {
+        int valueOfI = 0;
+        if (symbol == "I") {
+            valueOfI = 1 ;
+        } else 
         if (symbol == "V") {
-            valueOfV = 5 ;
+            valueOfI = 5 ;
         }
-        
-        assertThat(valueOfV, equalTo(5));
+        return valueOfI;
     }
 
 }
