@@ -62,18 +62,19 @@ public class AppTest {
     
     //~~~~~~~~~~ Production
 
-    final static Map<String, Integer> SYMBOL_VALUES = new HashMap<String, Integer>(); 
-    static {
-        SYMBOL_VALUES.put("I", 1);
-        SYMBOL_VALUES.put("V", 5);
-        SYMBOL_VALUES.put("X", 10);
-        SYMBOL_VALUES.put("L", 50);
-        SYMBOL_VALUES.put("C", 100);
-        SYMBOL_VALUES.put("D", 500);
-        SYMBOL_VALUES.put("M", 1000);
-    }
     
-    class Symbol {
+    static class Symbol {
+        final static Map<String, Integer> SYMBOL_VALUES = new HashMap<String, Integer>(); 
+        static {
+            SYMBOL_VALUES.put("I", 1);
+            SYMBOL_VALUES.put("V", 5);
+            SYMBOL_VALUES.put("X", 10);
+            SYMBOL_VALUES.put("L", 50);
+            SYMBOL_VALUES.put("C", 100);
+            SYMBOL_VALUES.put("D", 500);
+            SYMBOL_VALUES.put("M", 1000);
+        }
+        
         String representation;
 
         public Symbol(String representation) {
