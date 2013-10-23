@@ -51,6 +51,15 @@ public class AppTest {
         assertThat(valueOf("M"), equalTo(1000));
     }
     
+    @Test
+    public void value_of_one_symbol_roman_numeral_is_the_symbols_value() {
+        final int valueOfSymbol = 1;
+        
+        final int valueOfRomanNumeral = valueOfSymbol;
+        
+        assertThat(valueOfRomanNumeral, is(valueOfSymbol));
+    }
+    
     //~~~~~~~~~~ Production
 
     final static Map<String, Integer> SYMBOL_VALUES = new HashMap<String, Integer>(); 
