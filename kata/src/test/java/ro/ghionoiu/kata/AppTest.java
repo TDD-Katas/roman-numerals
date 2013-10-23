@@ -25,5 +25,17 @@ public class AppTest {
         
         assertThat(valueOfI, equalTo(1));
     }
+    
+    @Test
+    public void value_of_V_is_5() {
+        String symbol = "V";
+        
+        int valueOfV = 0;
+        if (symbol == "V") {
+            valueOfV = 5 ;
+        }
+        
+        assertThat(valueOfV, equalTo(5));
+    }
 
 }
