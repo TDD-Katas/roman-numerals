@@ -73,14 +73,25 @@ public class AppTest {
         SYMBOL_VALUES.put("M", 1000);
     }
     
-    protected int valueOfSymbol(String symbol) {
-        int value = 0;
-        
-        if (SYMBOL_VALUES.containsKey(symbol)) {
-            value = SYMBOL_VALUES.get(symbol) ;
+    class Symbol {
+        String representation;
+
+        public Symbol(String representation) {
+            this.representation = representation;
         }
         
-        return value;
+        public int getValue() {
+            int value = 0;
+            if (SYMBOL_VALUES.containsKey(representation)) {
+                value = SYMBOL_VALUES.get(representation) ;
+            }
+            return value;
+        }
+    }
+    
+    protected int valueOfSymbol(String symbol) {
+        Symbol symbol1 = new Symbol(symbol);
+        return symbol1.getValue();
     }
 
     protected int valueOfNumeral(String romanNumeral) {
