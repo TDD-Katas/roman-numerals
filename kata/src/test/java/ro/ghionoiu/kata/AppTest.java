@@ -55,7 +55,7 @@ public class AppTest {
     public void value_of_one_symbol_roman_numeral_is_the_symbols_value() {
         String romanNumeral = "X";
         
-        final int valueOfRomanNumeral = valueOf(romanNumeral);
+        final int valueOfRomanNumeral = valueOfNumeral(romanNumeral);
         
         assertThat(valueOfRomanNumeral, is(valueOf(romanNumeral)));
     }
@@ -83,4 +83,7 @@ public class AppTest {
         return value;
     }
 
+    protected int valueOfNumeral(String romanNumeral) {
+        return valueOf(romanNumeral);
+    }
 }
