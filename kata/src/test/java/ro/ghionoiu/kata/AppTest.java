@@ -25,8 +25,12 @@ public class AppTest {
             new Symbol(roman.charAt(1))
         };
         
-        assertThat(symbols[0].getCharacter(), is(roman.charAt(0)));
-        assertThat(symbols[1].getCharacter(), is(roman.charAt(1)));
+        
+        for (int i = 0; i < roman.length(); i++) {
+            Symbol symbol = symbols[i];
+            char character = roman.charAt(i);
+            assertThat(symbol.getCharacter(), is(character));
+        }
     }
     
     @Test
