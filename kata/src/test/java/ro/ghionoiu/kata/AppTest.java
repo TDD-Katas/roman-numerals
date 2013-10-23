@@ -18,37 +18,37 @@ public class AppTest {
     
     @Test
     public void value_of_I_is_1() {
-        assertThat(valueOf("I"), equalTo(1));
+        assertThat(valueOfSymbol("I"), equalTo(1));
     }
     
     @Test
     public void value_of_V_is_5() {
-        assertThat(valueOf("V"), equalTo(5));
+        assertThat(valueOfSymbol("V"), equalTo(5));
     }
     
     @Test
     public void value_of_X_is_10() {
-        assertThat(valueOf("X"), equalTo(10));
+        assertThat(valueOfSymbol("X"), equalTo(10));
     }
     
     @Test
     public void value_of_L_is_50() {
-        assertThat(valueOf("L"), equalTo(50));
+        assertThat(valueOfSymbol("L"), equalTo(50));
     }
     
     @Test
     public void value_of_C_is_100() {
-        assertThat(valueOf("C"), equalTo(100));
+        assertThat(valueOfSymbol("C"), equalTo(100));
     }
     
     @Test
     public void value_of_D_is_500() {
-        assertThat(valueOf("D"), equalTo(500));
+        assertThat(valueOfSymbol("D"), equalTo(500));
     }
     
     @Test
     public void value_of_D_is_1000() {
-        assertThat(valueOf("M"), equalTo(1000));
+        assertThat(valueOfSymbol("M"), equalTo(1000));
     }
     
     @Test
@@ -57,7 +57,7 @@ public class AppTest {
         
         final int valueOfRomanNumeral = valueOfNumeral(romanNumeral);
         
-        assertThat(valueOfRomanNumeral, is(valueOf(romanNumeral)));
+        assertThat(valueOfRomanNumeral, is(valueOfSymbol(romanNumeral)));
     }
     
     //~~~~~~~~~~ Production
@@ -73,7 +73,7 @@ public class AppTest {
         SYMBOL_VALUES.put("M", 1000);
     }
     
-    protected int valueOf(String symbol) {
+    protected int valueOfSymbol(String symbol) {
         int value = 0;
         
         if (SYMBOL_VALUES.containsKey(symbol)) {
@@ -84,6 +84,6 @@ public class AppTest {
     }
 
     protected int valueOfNumeral(String romanNumeral) {
-        return valueOf(romanNumeral);
+        return valueOfSymbol(romanNumeral);
     }
 }
