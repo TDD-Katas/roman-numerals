@@ -29,15 +29,12 @@ public class AppTest {
     protected int valueOf(String symbol) {
         int value = 0;
         
-        Map<String, Integer> valueMap = new HashMap<String, Integer>();
-        valueMap.put("I", 1);
-        valueMap.put("V", 5);
+        Map<String, Integer> symbolValues = new HashMap<String, Integer>();
+        symbolValues.put("I", 1);
+        symbolValues.put("V", 5);
         
-        if ("I".equals(symbol)) {
-            value = valueMap.get("I") ;
-        } else 
-        if ("V".equals(symbol)) {
-            value = valueMap.get("V") ;
+        if (symbolValues.containsKey(symbol)) {
+            value = symbolValues.get(symbol) ;
         }
         return value;
     }
