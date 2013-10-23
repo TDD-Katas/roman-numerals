@@ -17,12 +17,16 @@ public class AppTest {
     public static final int SOME_VALUE = 1;
     
     @Test
-    public void one_letter_string_is_a_symbol() {
-        String roman = "X";
+    public void roman_string_is_a_set_of_symbol() {
+        String roman = "XI";
         
-        Symbol[] symbols = new Symbol[] {new Symbol(roman.charAt(0))};
+        Symbol[] symbols = new Symbol[] {
+            new Symbol(roman.charAt(0)),
+            new Symbol(roman.charAt(1))
+        };
         
         assertThat(symbols[0].getCharacter(), is(roman.charAt(0)));
+        assertThat(symbols[1].getCharacter(), is(roman.charAt(1)));
     }
     
     @Test
