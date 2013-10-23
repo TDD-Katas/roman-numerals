@@ -29,10 +29,6 @@ public class CharacterToValue {
         this.character = character;
     }
 
-    public char getCharacter() {
-        return character;
-    }
-    
     public int getValue() {
         int value = 0;
         String key = character+"";

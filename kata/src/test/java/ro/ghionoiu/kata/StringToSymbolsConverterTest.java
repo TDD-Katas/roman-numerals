@@ -15,7 +15,7 @@ import static org.hamcrest.CoreMatchers.*;
 public class StringToSymbolsConverterTest {
     
     @Test
-    public void roman_string_is_converted_into_set_of_symbols() {
+    public void roman_string_is_converted_into_values() {
         String roman = "XI";
         
         int[] symbols = new StringToSymbolsConverter().convert(roman);
