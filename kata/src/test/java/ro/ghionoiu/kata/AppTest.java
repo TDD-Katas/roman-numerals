@@ -32,8 +32,11 @@ public class AppTest {
         int value1 = SOME_VALUE;
         int value2 = SOME_VALUE; 
         
-        Symbol symbol = getSymbolWith(value1 + value2);
-        Numeral romanNumeral = new Numeral(symbol);
+        Symbol[] symbols = new Symbol[] {
+            getSymbolWith(value1),
+            getSymbolWith(value2)
+        };
+        Numeral romanNumeral = new Numeral(symbols);
         
         final int valueOfRomanNumeral = romanNumeral.getValue();
         

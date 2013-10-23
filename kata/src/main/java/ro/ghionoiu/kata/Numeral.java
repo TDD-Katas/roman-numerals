@@ -6,13 +6,18 @@ package ro.ghionoiu.kata;
 
 
 public class Numeral {
-    Symbol symbol;
-    public Numeral(Symbol symbol) {
-        this.symbol = symbol;
+    Symbol[] symbols;
+    public Numeral(Symbol ... symbols) {
+        this.symbols = symbols;
     }
 
     public int getValue() {
-        return symbol.getValue();
+        int value = 0;
+        for (Symbol symbol : symbols) {
+            value += symbol.getValue();
+        }
+        
+        return value;
     }
     
 }
