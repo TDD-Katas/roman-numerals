@@ -7,12 +7,20 @@ package ro.ghionoiu.kata;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
+import org.junit.Before;
 
 /**
  *
  * @author Iulian Ghionoiu <iulian.ghionoiu@exenne.ro>
  */
 public class CharacterToValueTest {
+    CharacterToValue instance;
+
+    @Before
+    public void setUp() throws Exception {
+        instance = new CharacterToValue();
+    }
+
     
     @Test
     public void value_of_I_is_1() {
@@ -51,6 +59,6 @@ public class CharacterToValueTest {
 
     
     protected void assertCharacterValueIs(int value, char character) {
-        assertThat(new CharacterToValue().getValue(character), equalTo(value));
+        assertThat(instance.getValue(character), equalTo(value));
     }
 }
