@@ -115,9 +115,9 @@ public class AppTest {
     }
 
     protected Numeral constructNumeral(int value1, int value2) {
-        CharacterToValue[] symbols = new CharacterToValue[] {
-            getSymbolWith(value1),
-            getSymbolWith(value2)
+        int[] symbols = new int[] {
+            value1,
+            value2
         };
         return new Numeral(symbols);
     }

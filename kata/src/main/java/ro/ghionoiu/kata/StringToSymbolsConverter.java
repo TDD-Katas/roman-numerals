@@ -11,10 +11,10 @@ import ro.ghionoiu.kata.CharacterToValue;
 
 public class StringToSymbolsConverter {
 
-    public CharacterToValue[] convert(String roman) {
-        CharacterToValue[] symbols = new CharacterToValue[roman.length()];
+    public int[] convert(String roman) {
+        int[] symbols = new int[roman.length()];
         for (int i = 0; i < symbols.length; i++) {
-            symbols[i] = new CharacterToValue(roman.charAt(i));
+            symbols[i] = new CharacterToValue(roman.charAt(i)).getValue();
         }
         return symbols;
     }
