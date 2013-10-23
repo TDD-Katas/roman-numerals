@@ -17,10 +17,10 @@ public class AppTest {
     public static final int SOME_VALUE = 1;
     
     @Test
-    public void roman_string_is_a_set_of_symbol() {
+    public void roman_string_is_converted_into_set_of_symbol() {
         String roman = "XI";
         
-        Symbol[] symbols = symbolsFromString(roman);
+        Symbol[] symbols = new StringToSymbolsConverter().convert(roman);
         
         for (int i = 0; i < roman.length(); i++) {
             Symbol symbol = symbols[i];
@@ -58,12 +58,14 @@ public class AppTest {
     }
     
     //~~~~~~
-
-    protected Symbol[] symbolsFromString(String roman) {
-        Symbol[] symbols = new Symbol[roman.length()];
-        for (int i = 0; i < symbols.length; i++) {
-            symbols[i] = new Symbol(roman.charAt(i));
+    
+    static class StringToSymbolsConverter {
+        protected Symbol[] convert(String roman) {
+            Symbol[] symbols = new Symbol[roman.length()];
+            for (int i = 0; i < symbols.length; i++) {
+                symbols[i] = new Symbol(roman.charAt(i));
+            }
+            return symbols;
         }
-        return symbols;
     }
 }
