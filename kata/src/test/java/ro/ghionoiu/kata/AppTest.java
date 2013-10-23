@@ -16,10 +16,14 @@ public class AppTest {
     
     @Test
     public void value_of_I_is_1() {
+        String symbol = "I";
         
-        
-        final int valueOfI = 1;
+        int valueOfI = 0;
+        if (symbol == "I") {
+            valueOfI = 1 ;
+        }
         
         assertThat(valueOfI, equalTo(1));
     }
+
 }
