@@ -17,7 +17,7 @@ import static org.hamcrest.CoreMatchers.*;
 public class AppTest {
     
     @Test
-    public void value_of_roman_numeral_with_one_symbol_is_that_symbols_value() {
+    public void value_of_numeral_with_one_symbol_is_that_symbols_value() {
         String romanNumeral = "X";
         
         final int valueOfRomanNumeral = valueOfNumeral(romanNumeral);
@@ -27,7 +27,19 @@ public class AppTest {
     
     //~~~~~~~~~~ Production
     
+    class Numeral {
+        String represenation;
+
+        public Numeral(String represenation) {
+            this.represenation = represenation;
+        }
+        
+        public int getValue() {
+            return new Symbol(represenation).getValue();
+        }
+    }
+    
     protected int valueOfNumeral(String romanNumeral) {
-        return new Symbol(romanNumeral).getValue();
+        return new Numeral(romanNumeral).getValue();
     }
 }

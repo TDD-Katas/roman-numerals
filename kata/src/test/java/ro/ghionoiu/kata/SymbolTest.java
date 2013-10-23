@@ -49,6 +49,7 @@ public class SymbolTest {
         assertCharacterValueIs(1000, "M");
     }
 
+    
     protected void assertCharacterValueIs(int value, String string) {
         assertThat(new Symbol(string).getValue(), equalTo(value));
     }
