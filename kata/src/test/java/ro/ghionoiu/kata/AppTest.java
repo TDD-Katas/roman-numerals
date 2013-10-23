@@ -26,6 +26,8 @@ public class AppTest {
         
         assertThat(valueOfRomanNumeral, is(value1 + value2));
     }
+
+
     
     enum Operation {
         ADDITION,
@@ -92,16 +94,13 @@ public class AppTest {
         Symbol symbol = getSymbolWith(3);
         Symbol otherSymbol = getSymbolWith(4);
         
-        ComparisonResult result = null;
-        if (symbol.getValue() < otherSymbol.getValue()) {
-            result = ComparisonResult.SMALLER;
-        }
+        ComparisonResult result = compareSymbols(symbol, otherSymbol);
         
         assertThat(result, is(ComparisonResult.SMALLER));
     }
     
     @Test
-    public void symbol_is_heigher_then_other_if_has_a_bigger_value() {
+    public void symbol_is_bigger_then_other_if_has_a_bigger_value() {
         Symbol symbol = getSymbolWith(5);
         Symbol otherSymbol = getSymbolWith(4);
         
@@ -142,5 +141,15 @@ public class AppTest {
         };
         Numeral romanNumeral = new Numeral(symbols);
         return romanNumeral;
+    }
+    
+    ///~~~~~~~~~~~~~~~~~~~
+    
+    protected ComparisonResult compareSymbols(Symbol symbol, Symbol otherSymbol) {
+        ComparisonResult result = null;
+        if (symbol.getValue() < otherSymbol.getValue()) {
+            result = ComparisonResult.SMALLER;
+        }
+        return result;
     }
 }
