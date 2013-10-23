@@ -18,28 +18,25 @@ public class AppTest {
     
     @Test
     public void value_of_numeral_with_one_symbol_is_that_symbols_value() {
-        String romanNumeral = "X";
+        Symbol symbol = new Symbol("X");
+        Numeral romanNumeral = new Numeral(symbol);
         
-        final int valueOfRomanNumeral = valueOfNumeral(romanNumeral);
+        final int valueOfRomanNumeral = romanNumeral.getValue();
         
-        assertThat(valueOfRomanNumeral, is(new Symbol(romanNumeral).getValue()));
+        assertThat(valueOfRomanNumeral, is(symbol.getValue()));
     }
     
     //~~~~~~~~~~ Production
     
     class Numeral {
-        String represenation;
+        Symbol symbol;
 
-        public Numeral(String represenation) {
-            this.represenation = represenation;
+        public Numeral(Symbol symbol) {
+            this.symbol = symbol;
         }
         
         public int getValue() {
-            return new Symbol(represenation).getValue();
+            return symbol.getValue();
         }
-    }
-    
-    protected int valueOfNumeral(String romanNumeral) {
-        return new Numeral(romanNumeral).getValue();
     }
 }
