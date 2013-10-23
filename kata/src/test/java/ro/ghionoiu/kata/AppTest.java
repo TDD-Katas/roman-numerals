@@ -17,35 +17,30 @@ public class AppTest {
     public static final int SOME_VALUE = 1;
     
     @Test
-    public void value_of_numeral_with_one_symbol_is_that_symbols_value() {
-        int symbolsValue = SOME_VALUE;
-        Symbol symbol = getSymbolWith(symbolsValue);
-        Numeral romanNumeral = new Numeral(symbol);
-        
-        final int valueOfRomanNumeral = romanNumeral.getValue();
-        
-        assertThat(valueOfRomanNumeral, is(symbolsValue));
-    }
-    
-    @Test
     public void value_of_numeral_is_sum_of_symbols_values() {
         int value1 = SOME_VALUE;
         int value2 = SOME_VALUE; 
-        
-        Symbol[] symbols = new Symbol[] {
-            getSymbolWith(value1),
-            getSymbolWith(value2)
-        };
-        Numeral romanNumeral = new Numeral(symbols);
+        Numeral romanNumeral = constructNumeral(value1, value2);
         
         final int valueOfRomanNumeral = romanNumeral.getValue();
         
         assertThat(valueOfRomanNumeral, is(value1 + value2));
     }
 
+    //~~~ test utils
+    
     protected Symbol getSymbolWith(int symbolsValue) {
         Symbol symbol = mock(Symbol.class);
         when(symbol.getValue()).thenReturn(symbolsValue);
         return symbol;
+    }
+
+    protected Numeral constructNumeral(int value1, int value2) {
+        Symbol[] symbols = new Symbol[] {
+            getSymbolWith(value1),
+            getSymbolWith(value2)
+        };
+        Numeral romanNumeral = new Numeral(symbols);
+        return romanNumeral;
     }
 }
