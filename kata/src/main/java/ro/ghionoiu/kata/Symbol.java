@@ -22,16 +22,17 @@ public class Symbol {
         SYMBOL_VALUES.put("D", 500);
         SYMBOL_VALUES.put("M", 1000);
     }
-    String character;
+    char character;
 
     public Symbol(char character) {
-        this.character = character+"";
+        this.character = character;
     }
     
     public int getValue() {
         int value = 0;
-        if (SYMBOL_VALUES.containsKey(character)) {
-            value = SYMBOL_VALUES.get(character);
+        String key = character+"";
+        if (SYMBOL_VALUES.containsKey(key)) {
+            value = SYMBOL_VALUES.get(key);
         }
         return value;
     }

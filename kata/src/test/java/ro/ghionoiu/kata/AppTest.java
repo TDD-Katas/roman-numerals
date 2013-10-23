@@ -22,7 +22,7 @@ public class AppTest {
         
         Symbol symbol = new Symbol(roman.charAt(0));
         
-        assertThat(symbol.character, is(roman));
+        assertThat(symbol.character, is(roman.charAt(0)));
     }
     
     @Test
