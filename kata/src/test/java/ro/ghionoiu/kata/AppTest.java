@@ -31,6 +31,11 @@ public class AppTest {
         assertThat(valueOf("X"), equalTo(10));
     }
     
+    @Test
+    public void value_of_L_is_50() {
+        assertThat(valueOf("L"), equalTo(50));
+    }
+    
     //~~~~~~~~~~ Production
 
     final static Map<String, Integer> SYMBOL_VALUES = new HashMap<String, Integer>(); 
@@ -38,6 +43,7 @@ public class AppTest {
         SYMBOL_VALUES.put("I", 1);
         SYMBOL_VALUES.put("V", 5);
         SYMBOL_VALUES.put("X", 10);
+        SYMBOL_VALUES.put("L", 50);
     }
     
     protected int valueOf(String symbol) {
@@ -46,6 +52,7 @@ public class AppTest {
         if (SYMBOL_VALUES.containsKey(symbol)) {
             value = SYMBOL_VALUES.get(symbol) ;
         }
+        
         return value;
     }
 
