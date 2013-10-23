@@ -13,8 +13,13 @@ import static org.hamcrest.CoreMatchers.*;
  * @author Iulian Ghionoiu <iulian.ghionoiu@exenne.ro>
  */
 public class AppTest {
+    
     @Test
-    public void testMain() {
-        assertThat(true, is(true));
+    public void value_of_I_is_1() {
+        
+        
+        final int valueOfI = 1;
+        
+        assertThat(valueOfI, equalTo(1));
     }
 }
