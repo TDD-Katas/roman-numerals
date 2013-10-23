@@ -11,7 +11,7 @@ import java.util.Map;
  *
  * @author Iulian Ghionoiu <iulian.ghionoiu@exenne.ro>
  */
-public class Symbol {
+public class CharacterToValue {
     private final static Map<String, Integer> SYMBOL_VALUES = new HashMap<String, Integer>();
     static {
         SYMBOL_VALUES.put("I", 1);
@@ -25,7 +25,7 @@ public class Symbol {
     char character;
 
 
-    public Symbol(char character) {
+    public CharacterToValue(char character) {
         this.character = character;
     }
 

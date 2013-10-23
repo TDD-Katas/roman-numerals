@@ -18,10 +18,10 @@ public class StringToSymbolsConverterTest {
     public void roman_string_is_converted_into_set_of_symbols() {
         String roman = "XI";
         
-        Symbol[] symbols = new StringToSymbolsConverter().convert(roman);
+        CharacterToValue[] symbols = new StringToSymbolsConverter().convert(roman);
         
         for (int i = 0; i < roman.length(); i++) {
-            Symbol symbol = symbols[i];
+            CharacterToValue symbol = symbols[i];
             char character = roman.charAt(i);
             assertThat(symbol.getCharacter(), is(character));
         }

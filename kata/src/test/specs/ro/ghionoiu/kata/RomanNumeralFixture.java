@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 public class RomanNumeralFixture {
 
     public int romanToDecimal(String romanNumber) {
-        Symbol[] symbols = new StringToSymbolsConverter().convert(romanNumber);
+        CharacterToValue[] symbols = new StringToSymbolsConverter().convert(romanNumber);
         Numeral numeral = new Numeral(symbols);
         return numeral.getValue();
     }

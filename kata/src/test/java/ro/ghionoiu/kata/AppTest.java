@@ -78,8 +78,8 @@ public class AppTest {
     
     @Test
     public void symbol_is_smaller_then_other_if_has_a_lower_value() {
-        Symbol symbol = getSymbolWith(3);
-        Symbol otherSymbol = getSymbolWith(4);
+        CharacterToValue symbol = getSymbolWith(3);
+        CharacterToValue otherSymbol = getSymbolWith(4);
         
         ComparisonResult result = compareSymbols(symbol, otherSymbol);
         
@@ -88,8 +88,8 @@ public class AppTest {
     
     @Test
     public void symbol_is_bigger_then_other_if_has_a_bigger_value() {
-        Symbol symbol = getSymbolWith(5);
-        Symbol otherSymbol = getSymbolWith(4);
+        CharacterToValue symbol = getSymbolWith(5);
+        CharacterToValue otherSymbol = getSymbolWith(4);
         
         ComparisonResult result = compareSymbols(symbol, otherSymbol);
         
@@ -98,8 +98,8 @@ public class AppTest {
     
     @Test
     public void symbol_is_equal_to_other_if_has_an_equal_value() {
-        Symbol symbol = getSymbolWith(4);
-        Symbol otherSymbol = getSymbolWith(4);
+        CharacterToValue symbol = getSymbolWith(4);
+        CharacterToValue otherSymbol = getSymbolWith(4);
         
         ComparisonResult result = compareSymbols(symbol, otherSymbol);
         
@@ -108,14 +108,14 @@ public class AppTest {
     
     //~~~ test utils
     
-    protected Symbol getSymbolWith(int symbolsValue) {
-        Symbol symbol = mock(Symbol.class);
+    protected CharacterToValue getSymbolWith(int symbolsValue) {
+        CharacterToValue symbol = mock(CharacterToValue.class);
         when(symbol.getValue()).thenReturn(symbolsValue);
         return symbol;
     }
 
     protected Numeral constructNumeral(int value1, int value2) {
-        Symbol[] symbols = new Symbol[] {
+        CharacterToValue[] symbols = new CharacterToValue[] {
             getSymbolWith(value1),
             getSymbolWith(value2)
         };
@@ -130,7 +130,7 @@ public class AppTest {
         SUBSTRACTION
     }
     
-    protected ComparisonResult compareSymbols(Symbol symbol, Symbol otherSymbol) {
+    protected ComparisonResult compareSymbols(CharacterToValue symbol, CharacterToValue otherSymbol) {
         ComparisonResult result = ComparisonResult.EQUAL;
         
         if (symbol.getValue() < otherSymbol.getValue()) {

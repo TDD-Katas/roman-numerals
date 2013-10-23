@@ -12,7 +12,7 @@ import static org.hamcrest.CoreMatchers.*;
  *
  * @author Iulian Ghionoiu <iulian.ghionoiu@exenne.ro>
  */
-public class SymbolTest {
+public class CharacterToValueTest {
     
     @Test
     public void value_of_I_is_1() {
@@ -51,6 +51,6 @@ public class SymbolTest {
 
     
     protected void assertCharacterValueIs(int value, char character) {
-        assertThat(new Symbol(character).getValue(), equalTo(value));
+        assertThat(new CharacterToValue(character).getValue(), equalTo(value));
     }
 }
