@@ -20,9 +20,9 @@ public class AppTest {
     public void one_letter_string_is_a_symbol() {
         String roman = "X";
         
-        Symbol symbol = new Symbol(roman.charAt(0));
+        Symbol[] symbols = new Symbol[] {new Symbol(roman.charAt(0))};
         
-        assertThat(symbol.character, is(roman.charAt(0)));
+        assertThat(symbols[0].getCharacter(), is(roman.charAt(0)));
     }
     
     @Test

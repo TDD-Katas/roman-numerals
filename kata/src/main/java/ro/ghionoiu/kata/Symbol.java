@@ -24,8 +24,13 @@ public class Symbol {
     }
     char character;
 
+
     public Symbol(char character) {
         this.character = character;
+    }
+
+    public char getCharacter() {
+        return character;
     }
     
     public int getValue() {
