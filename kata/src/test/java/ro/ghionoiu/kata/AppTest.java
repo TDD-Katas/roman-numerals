@@ -69,6 +69,17 @@ public class AppTest {
         assertThat(operation, is(Operation.ADDITION));
     }
     
+    @Test
+    public void currentValueForNumeralIstheFirstValue() {
+        int firstValue = 1;
+        int nextValue = 2;
+        Numeral numeral = constructNumeral(firstValue, nextValue);
+        
+        int currentValue = firstValue;
+        
+        assertThat(currentValue, is(firstValue));
+    }
+    
     //~~~ test utils
 
     protected Numeral constructNumeral(int value1, int value2) {
