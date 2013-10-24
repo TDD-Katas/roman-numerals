@@ -17,14 +17,14 @@ public class AppTest {
     public static final int SOME_VALUE = 1;
     
     @Test
-    public void value_of_numeral_is_sum_of_current_value_plus_rest_of_numeral() {
-        int currentValue = 1;
-        int sum_of_next_values = 1;
-        Numeral numeral = constructNumeral(1, 1);
+    public void value_of_numeral_is_sum_of_symbols_values() {
+        int value1 = SOME_VALUE;
+        int value2 = SOME_VALUE; 
+        Numeral romanNumeral = constructNumeral(value1, value2);
         
-        int valueOfNumeral = numeral.getValue();
+        final int valueOfRomanNumeral = romanNumeral.getValue();
         
-        assertThat(valueOfNumeral, is(currentValue + sum_of_next_values));
+        assertThat(valueOfRomanNumeral, is(value1 + value2));
     }
 
     @Test
