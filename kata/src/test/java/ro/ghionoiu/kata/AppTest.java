@@ -32,10 +32,7 @@ public class AppTest {
         int value = 1;
         int nextValue = 10;
         
-        Operation operation = null;
-        if (value < nextValue) {
-            operation = Operation.SUBSTRACTION;
-        }
+        Operation operation = getOperation(value, nextValue);
         
         assertThat(operation, is(Operation.SUBSTRACTION));
     }
@@ -45,10 +42,7 @@ public class AppTest {
         int value = 10;
         int nextValue = 5;
         
-        Operation operation = null;
-        if (value > nextValue) {
-            operation = Operation.ADDITION;
-        }
+        Operation operation = getOperation(value, nextValue);
         
         assertThat(operation, is(Operation.ADDITION));
     }
@@ -58,12 +52,21 @@ public class AppTest {
         int value = 10;
         int nextValue = 10;
         
-        Operation operation = null;
-        if (value == nextValue) {
-            operation = Operation.ADDITION;
-        }
+        Operation operation = getOperation(value, nextValue);
         
         assertThat(operation, is(Operation.ADDITION));
+    }
+    
+    @Test
+    public void when_there_is_no_next_value_the_next_value_is_considered_zero() {
+        boolean thereIsNoNextValue = true;
+        
+        int nextValue = 1;
+        if (thereIsNoNextValue) {
+            nextValue = 0;
+        }
+        
+        assertThat(nextValue, is(0));
     }
     
     @Test
@@ -89,6 +92,21 @@ public class AppTest {
     }
     
     ///~~~~~~~~~~~~~~~~~~~
+
+    protected Operation getOperation(int value, int nextValue) {
+        Operation operation = null;
+        if (value < nextValue) {
+            operation = Operation.SUBSTRACTION;
+        } else
+        if (value > nextValue) {
+            operation = Operation.ADDITION;
+        } else 
+        if (value == nextValue) {
+            operation = Operation.ADDITION;
+        }
+        
+        return operation;
+    }
     
     
     enum Operation {
