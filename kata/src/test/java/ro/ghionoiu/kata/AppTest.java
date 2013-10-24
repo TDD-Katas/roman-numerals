@@ -20,8 +20,9 @@ public class AppTest {
     public void value_of_numeral_is_sum_of_current_value_plus_rest_of_numeral() {
         int currentValue = 1;
         int sum_of_next_values = 1;
+        Numeral numeral = constructNumeral(1, 1);
         
-        int valueOfNumeral = 1;
+        int valueOfNumeral = numeral.getValue();
         
         assertThat(valueOfNumeral, is(currentValue + sum_of_next_values));
     }
