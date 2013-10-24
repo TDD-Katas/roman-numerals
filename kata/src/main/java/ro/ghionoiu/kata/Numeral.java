@@ -20,8 +20,8 @@ public class Numeral {
 
     public int getValue() {
         int totalValue = 0;
-        for (int symbolValue : values) {
-            totalValue += symbolValue;
+        for (int currentValue : values) {
+            totalValue += currentValue;
         }
         
         return totalValue;
