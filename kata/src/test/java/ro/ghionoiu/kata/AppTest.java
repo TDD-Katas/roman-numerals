@@ -58,18 +58,6 @@ public class AppTest {
     }
     
     @Test
-    public void when_there_is_no_next_value_the_next_value_is_considered_zero() {
-        boolean thereIsNoNextValue = true;
-        
-        int nextValue = 1;
-        if (thereIsNoNextValue) {
-            nextValue = 0;
-        }
-        
-        assertThat(nextValue, is(0));
-    }
-    
-    @Test
     public void when_value_has_no_next_value_it_is_added() {
         final boolean valueHasNoNext = true;
         
