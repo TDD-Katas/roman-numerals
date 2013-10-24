@@ -27,6 +27,8 @@ public class AppTest {
         assertThat(valueOfRomanNumeral, is(value1 + value2));
     }
 
+    
+    
     @Test
     public void when_value_is_smaller_then_next_value_it_is_substracted() {
         int value = 1;

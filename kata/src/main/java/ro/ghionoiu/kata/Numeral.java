@@ -6,13 +6,12 @@ package ro.ghionoiu.kata;
 
 
 public class Numeral {
-    int[] symbols;
+    int[] values;
     
     
-    public Numeral(int ... symbols) {
-        this.symbols = symbols;
+    public Numeral(int ... values) {
+        this.values = values;
     }
-    
     
     public static Numeral fromString(String romanNumber) {
         int[] symbols = new StringToValuesConverter().getValues(romanNumber);
@@ -20,12 +19,12 @@ public class Numeral {
     }
 
     public int getValue() {
-        int value = 0;
-        for (int symbol : symbols) {
-            value += symbol;
+        int totalValue = 0;
+        for (int symbolValue : values) {
+            symbolValue += symbolValue;
         }
         
-        return value;
+        return totalValue;
     }
     
 }
