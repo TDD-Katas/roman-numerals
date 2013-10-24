@@ -89,16 +89,11 @@ public class AppTest {
     }
     
     protected Operation getOperation(int value, int nextValue) {
-        Operation operation = null;
+        Operation operation = Operation.ADDITION;
+        
         if (value < nextValue) {
             operation = Operation.SUBSTRACTION;
-        } else
-        if (value > nextValue) {
-            operation = Operation.ADDITION;
-        } else 
-        if (value == nextValue) {
-            operation = Operation.ADDITION;
-        }
+        } 
         
         return operation;
     }
