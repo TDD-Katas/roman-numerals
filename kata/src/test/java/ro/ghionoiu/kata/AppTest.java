@@ -27,40 +27,38 @@ public class AppTest {
         assertThat(valueOfRomanNumeral, is(value1 + value2));
     }
 
-    
-    
     @Test
-    public void when_value_is_smaller_then_next_value_it_is_substracted() {
-        int value = 1;
+    public void when_current_value_is_smaller_then_next_value_it_is_substracted() {
+        int currentValue = 1;
         int nextValue = 10;
         
-        Operation operation = getOperation(value, nextValue);
+        Operation operation = getOperation(currentValue, nextValue);
         
         assertThat(operation, is(Operation.SUBSTRACTION));
     }
     
     @Test
-    public void when_value_is_higher_then_next_value_it_is_added() {
-        int value = 10;
+    public void when_current_value_is_higher_then_next_value_it_is_added() {
+        int currentValue = 10;
         int nextValue = 5;
         
-        Operation operation = getOperation(value, nextValue);
+        Operation operation = getOperation(currentValue, nextValue);
         
         assertThat(operation, is(Operation.ADDITION));
     }
     
     @Test
-    public void when_value_is_equal_to_next_value_it_is_added() {
-        int value = 10;
+    public void when_current_value_is_equal_to_next_value_it_is_added() {
+        int currentValue = 10;
         int nextValue = 10;
         
-        Operation operation = getOperation(value, nextValue);
+        Operation operation = getOperation(currentValue, nextValue);
         
         assertThat(operation, is(Operation.ADDITION));
     }
     
     @Test
-    public void when_value_has_no_next_value_it_is_added() {
+    public void when_current_value_has_no_next_value_it_is_added() {
         final boolean valueHasNoNext = true;
         
         Operation operation = null;
