@@ -83,6 +83,11 @@ public class AppTest {
     
     ///~~~~~~~~~~~~~~~~~~~
 
+    enum Operation {
+        ADDITION,
+        SUBSTRACTION
+    }
+    
     protected Operation getOperation(int value, int nextValue) {
         Operation operation = null;
         if (value < nextValue) {
@@ -96,11 +101,5 @@ public class AppTest {
         }
         
         return operation;
-    }
-    
-    
-    enum Operation {
-        ADDITION,
-        SUBSTRACTION
     }
 }
