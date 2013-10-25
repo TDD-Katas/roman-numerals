@@ -1,0 +1,89 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:concordion="http://www.concordion.org/2007/concordion">
+    <head>
+        <title>Title</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    </head>
+    <body>
+
+        <h1>Roman numerals kata</h1>
+
+        <p>
+            Roman numerals, the numeral system of ancient Rome, 
+            uses combinations of letters from the Latin alphabet to signify values. 
+            They are based on seven symbols:
+        </p>
+
+        <div class="example">
+            <table concordion:execute="#decimalValue = romanToDecimal(#romanNumber)">
+                <tr>
+                    <th concordion:set="#romanNumber">Symbol</th>
+                    <th concordion:assertEquals="#decimalValue">Value</th>
+                </tr>
+                <tr>
+                    <td>I</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>V</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>X</td>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <td>L</td>
+                    <td>50</td>
+                </tr>
+                <tr>
+                    <td>C</td>
+                    <td>100</td>
+                </tr>
+                <tr>
+                    <td>D</td>
+                    <td>500</td>
+                </tr>
+                <tr>
+                    <td>M</td>
+                    <td>1000</td>
+                </tr>
+            </table>
+        </div>
+
+        <p>
+            Numbers are formed by combining symbols together and adding the values. 
+            Generally, symbols are placed in order of value, 
+            starting with the largest values. 
+            When smaller values precede larger values, 
+            the smaller values are subtracted from the larger values, 
+            and the result is added to the total. 
+        </p>
+
+        <div class="example">
+
+            <h3>Examples</h3>
+
+            <table concordion:execute="#result = romanToDecimal(#romanNumber)">
+                <tr>
+                    <th concordion:set="#romanNumber">Roman Number</th>
+                    <th>Computation</th>
+                    <th concordion:assertEquals="#result">Value</th>
+                    <th>Comment</th>
+                </tr>
+                <tr>
+                    <td>MMVI</td>
+                    <td>1000 + 1000 + 5 + 1</td>
+                    <td>2006</td>
+                    <td>only addition</td>
+                </tr>
+                <tr>
+                    <td>MCMXLIV</td>
+                    <td>1000 + (1000 - 100) + (50 - 10) + (5 - 1)</td>
+                    <td>1944</td>
+                    <td>addition and substraction</td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>
