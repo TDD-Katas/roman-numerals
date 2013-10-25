@@ -82,6 +82,19 @@ public class AppTest {
         assertThat(adjustedValue, is(currentValue));
     }
     
+    @Test
+    public void adjusted_value_is_negative_current_value_when_sign_is_minus() {
+        Sign sign = Sign.MINUS;
+        int currentValue = 1;
+        
+        int adjustedValue = 0;
+        if (sign == Sign.MINUS) {
+            adjustedValue = -currentValue;
+        }
+        
+        assertThat(adjustedValue, is(-currentValue));
+    }
+    
     //~~~ test utils
 
     protected Numeral constructNumeral(int value1, int value2) {
