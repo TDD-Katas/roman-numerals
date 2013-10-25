@@ -38,7 +38,7 @@ public class AppTest {
     }
     
     @Test
-    public void when_current_value_is_higher_then_next_value_operator_is_plus() {
+    public void sign_is_plus_when_current_value_is_higher_then_next_value() {
         int currentValue = 10;
         int nextValue = 5;
         
@@ -48,7 +48,7 @@ public class AppTest {
     }
     
     @Test
-    public void when_current_value_is_equal_to_next_value_operator_is_plus() {
+    public void sign_is_plus_when_current_value_is_equal_to_next_value() {
         int currentValue = 10;
         int nextValue = 10;
         
@@ -58,7 +58,7 @@ public class AppTest {
     }
     
     @Test
-    public void when_current_value_has_no_next_value_operator_is_plus() {
+    public void sign_is_plus_when_current_value_has_no_next_value() {
         boolean valueHasNoNext = true;
         
         Sign sign = null;
