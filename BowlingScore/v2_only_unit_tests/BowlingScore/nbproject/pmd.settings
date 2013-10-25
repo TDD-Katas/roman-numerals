@@ -1,0 +1,7 @@
+JUnitAssertionsShouldIncludeMessage
+LongVariable
+MethodArgumentCouldBeFinal
+MethodNamingConventions
+UseSingleton
+DataflowAnomalyAnalysis
+LocalVariableCouldBeFinal
