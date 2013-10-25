@@ -32,7 +32,7 @@ public class AppTest {
         int currentValue = 1;
         int nextValue = 10;
         
-        Sign sign = getSignForValue(currentValue, nextValue);
+        Sign sign = getSignForCurrentValue(currentValue, nextValue);
         
         assertThat(sign, is(Sign.MINUS));
     }
@@ -42,7 +42,7 @@ public class AppTest {
         int currentValue = 10;
         int nextValue = 5;
         
-        Sign sign = getSignForValue(currentValue, nextValue);
+        Sign sign = getSignForCurrentValue(currentValue, nextValue);
         
         assertThat(sign, is(Sign.PLUS));
     }
@@ -52,7 +52,7 @@ public class AppTest {
         int currentValue = 10;
         int nextValue = 10;
         
-        Sign sign = getSignForValue(currentValue, nextValue);
+        Sign sign = getSignForCurrentValue(currentValue, nextValue);
         
         assertThat(sign, is(Sign.PLUS));
     }
@@ -118,15 +118,7 @@ public class AppTest {
         
     }
     
-    protected int adjust(Sign sign, int currentValue) {
-        int adjustedValue = 0;
-        
-        adjustedValue = sign.adjust(currentValue);
-        
-        return adjustedValue;
-    }
-    
-    protected Sign getSignForValue(int value, int nextValue) {
+    protected Sign getSignForCurrentValue(int value, int nextValue) {
         Sign operation = Sign.PLUS;
         
         if (value < nextValue) {
