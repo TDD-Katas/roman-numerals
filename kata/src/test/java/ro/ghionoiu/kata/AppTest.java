@@ -28,13 +28,13 @@ public class AppTest {
     }
 
     @Test
-    public void when_current_value_is_smaller_then_next_value_operator_is_minus() {
+    public void sign_is_minus_when_current_value_is_smaller_then_next_value() {
         int currentValue = 1;
         int nextValue = 10;
         
-        Operator operator = getAdjustmentOperator(currentValue, nextValue);
+        Sign sign = getSignOfValue(currentValue, nextValue);
         
-        assertThat(operator, is(Operator.MINUS));
+        assertThat(sign, is(Sign.MINUS));
     }
     
     @Test
@@ -42,9 +42,9 @@ public class AppTest {
         int currentValue = 10;
         int nextValue = 5;
         
-        Operator operation = getAdjustmentOperator(currentValue, nextValue);
+        Sign sign = getSignOfValue(currentValue, nextValue);
         
-        assertThat(operation, is(Operator.PLUS));
+        assertThat(sign, is(Sign.PLUS));
     }
     
     @Test
@@ -52,21 +52,21 @@ public class AppTest {
         int currentValue = 10;
         int nextValue = 10;
         
-        Operator operation = getAdjustmentOperator(currentValue, nextValue);
+        Sign sign = getSignOfValue(currentValue, nextValue);
         
-        assertThat(operation, is(Operator.PLUS));
+        assertThat(sign, is(Sign.PLUS));
     }
     
     @Test
     public void when_current_value_has_no_next_value_operator_is_plus() {
         boolean valueHasNoNext = true;
         
-        Operator operation = null;
+        Sign sign = null;
         if (valueHasNoNext) {
-            operation = Operator.PLUS;
+            sign = Sign.PLUS;
         }
         
-        assertThat(operation, is(Operator.PLUS));
+        assertThat(sign, is(Sign.PLUS));
     }
     
     @Test
@@ -91,16 +91,16 @@ public class AppTest {
     
     ///~~~~~~~~~~~~~~~~~~~
 
-    enum Operator {
+    enum Sign {
         PLUS,
         MINUS
     }
     
-    protected Operator getAdjustmentOperator(int value, int nextValue) {
-        Operator operation = Operator.PLUS;
+    protected Sign getSignOfValue(int value, int nextValue) {
+        Sign operation = Sign.PLUS;
         
         if (value < nextValue) {
-            operation = Operator.MINUS;
+            operation = Sign.MINUS;
         } 
         
         return operation;
