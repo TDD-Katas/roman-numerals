@@ -99,22 +99,24 @@ public class AppTest {
         return new Numeral(values);
     }
 
-    protected int adjust(Sign sign, int currentValue) {
-        int adjustedValue = 0;
-        if (sign == Sign.PLUS) {
-            adjustedValue = currentValue;
-        } else 
-        if (sign == Sign.MINUS) {
-            adjustedValue = -currentValue;
-        }
-        return adjustedValue;
-    }
     
     ///~~~~~~~~~~~~~~~~~~~
 
     enum Sign {
         PLUS,
         MINUS
+    }
+    
+    protected int adjust(Sign sign, int currentValue) {
+        int adjustedValue = 0;
+        
+        int multiplier = 1;
+        if (sign == Sign.MINUS) {
+            multiplier = -1;
+        }
+        adjustedValue = multiplier*currentValue;
+        
+        return adjustedValue;
     }
     
     protected Sign getSignForValue(int value, int nextValue) {
