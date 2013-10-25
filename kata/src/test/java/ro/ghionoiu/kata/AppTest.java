@@ -70,13 +70,16 @@ public class AppTest {
     }
     
     @Test
-    public void adjusted_value_is_current_value_multiplied_with_operator() {
-        int operator = 1;
+    public void adjusted_value_is_current_value_when_sign_is_plus() {
+        Sign sign = Sign.PLUS;
         int currentValue = 1;
         
-        int adjustedValue = operator*currentValue;
+        int adjustedValue = 0;
+        if (sign == Sign.PLUS) {
+            adjustedValue = currentValue;
+        }
         
-        assertThat(adjustedValue, is(operator*currentValue));
+        assertThat(adjustedValue, is(currentValue));
     }
     
     //~~~ test utils
