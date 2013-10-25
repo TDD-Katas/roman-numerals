@@ -72,12 +72,9 @@ public class AppTest {
     @Test
     public void adjusted_value_is_current_value_when_sign_is_plus() {
         Sign sign = Sign.PLUS;
-        int currentValue = 1;
+        int currentValue = SOME_VALUE;
         
-        int adjustedValue = 0;
-        if (sign == Sign.PLUS) {
-            adjustedValue = currentValue;
-        }
+        int adjustedValue = adjust(sign, currentValue);
         
         assertThat(adjustedValue, is(currentValue));
     }
@@ -85,12 +82,9 @@ public class AppTest {
     @Test
     public void adjusted_value_is_negative_current_value_when_sign_is_minus() {
         Sign sign = Sign.MINUS;
-        int currentValue = 1;
+        int currentValue = SOME_VALUE;
         
-        int adjustedValue = 0;
-        if (sign == Sign.MINUS) {
-            adjustedValue = -currentValue;
-        }
+        int adjustedValue = adjust(sign, currentValue);
         
         assertThat(adjustedValue, is(-currentValue));
     }
@@ -103,6 +97,17 @@ public class AppTest {
             value2
         };
         return new Numeral(values);
+    }
+
+    protected int adjust(Sign sign, int currentValue) {
+        int adjustedValue = 0;
+        if (sign == Sign.PLUS) {
+            adjustedValue = currentValue;
+        } else 
+        if (sign == Sign.MINUS) {
+            adjustedValue = -currentValue;
+        }
+        return adjustedValue;
     }
     
     ///~~~~~~~~~~~~~~~~~~~
