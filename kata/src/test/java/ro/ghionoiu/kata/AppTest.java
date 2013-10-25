@@ -16,17 +16,22 @@ public class AppTest {
     public static final int SOME_VALUE = 1;
     
     @Test
-    public void value_of_numeral_is_sum_of_adjusted_values() {
-        int adjustedValue1 = SOME_VALUE;
-        int adjustedValue2 = SOME_VALUE; 
-        Numeral romanNumeral = numeralWithAdjustedValues(
-                adjustedValue1, adjustedValue2);
+    public void value_of_numeral_is_sum_of_each_value_in_array() {
+        ValueArray valueArray = new ValueArray(SOME_VALUE, SOME_VALUE);
+        Numeral romanNumeral = new Numeral(valueArray);
         
         final int valueOfRomanNumeral = romanNumeral.getValue();
         
-        assertThat(valueOfRomanNumeral, is(adjustedValue1 + adjustedValue2));
+        assertThat(valueOfRomanNumeral, is(valueArray.getValueAt(0) + valueArray.getValueAt(1)));
     }
-
+    
+    @Test
+    public void current_value_is_value_at_given_position() {
+        int valueAtPosition = 1;
+        
+        assertThat(1, is(valueAtPosition));
+    }
+    
     @Test
     public void adjusted_value_is_negative_when_current_value_is_smaller_then_next_value() {
         int currentValue = 1;
@@ -72,7 +77,7 @@ public class AppTest {
     
     //~~~ test utils
 
-    protected Numeral numeralWithAdjustedValues(int value1, int value2) {
+    protected Numeral numeralWithValues(int value1, int value2) {
         int[] values = new int[] {
             value1,
             value2
@@ -83,22 +88,6 @@ public class AppTest {
     
     ///~~~~~~~~~~~~~~~~~~~
 
-    enum Sign {
-        PLUS(1),
-        MINUS(-1);
-        
-        int mutiplier;
-
-        private Sign(int mutiplier) {
-            this.mutiplier = mutiplier;
-        }
-        
-        private int adjust(int value) {
-            return mutiplier*value;
-        }
-        
-    }
-    
     protected int getAdjustedValue(int currentValue, int nextValue) {
         int adjustedValue = currentValue;
         

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class ValueArray  {
     int[] values;
 
-    public ValueArray(int[] values) {
+    public ValueArray(int ... values) {
         this.values = values;
     }
     
