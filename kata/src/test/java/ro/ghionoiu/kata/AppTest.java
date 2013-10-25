@@ -63,7 +63,7 @@ public class AppTest {
     @Test
     public void adjusted_value_is_negative_when_current_value_is_smaller_then_next_value() {
         IterationContext iterationContext = 
-                createIterationContext(SOME_VALUE, SOME_VALUE + 1);
+                mockIterationContext(SOME_VALUE, SOME_VALUE + 1);
         
         int adjustedValue = getAdjustedValue(iterationContext);
         
@@ -73,7 +73,7 @@ public class AppTest {
     @Test
     public void adjusted_value_is_positive_when_current_value_is_higher_then_next_value() {
         IterationContext iterationContext = 
-                createIterationContext(SOME_VALUE, SOME_VALUE - 1);
+                mockIterationContext(SOME_VALUE, SOME_VALUE - 1);
         
         int adjustedValue = getAdjustedValue(iterationContext);
         
@@ -83,7 +83,7 @@ public class AppTest {
     @Test
     public void adjusted_value_is_positive_when_current_value_is_equal_to_next_value() {
         IterationContext iterationContext = 
-                createIterationContext(SOME_VALUE, SOME_VALUE);
+                mockIterationContext(SOME_VALUE, SOME_VALUE);
         
         int adjustedValue = getAdjustedValue(iterationContext);
         
@@ -100,6 +100,13 @@ public class AppTest {
         return new Numeral(new ValueArray(values));
     }
 
+
+    protected IterationContext mockIterationContext(int currentValue, int nextValue) {
+        IterationContext iterationContext = mock(IterationContext.class);
+        when(iterationContext.getCurrentValue()).thenReturn(currentValue);
+        when(iterationContext.getNextValue()).thenReturn(nextValue);
+        return iterationContext;
+    }
     
     ///~~~~~~~~~~~~~~~~~~~
 
@@ -113,38 +120,5 @@ public class AppTest {
         } 
         
         return adjustedValue;
-    }
-
-    protected IterationContext createIterationContext(int currentValue, int nextValue) {
-        IterationContext iterationContext = mock(IterationContext.class);
-        when(iterationContext.getCurrentValue()).thenReturn(currentValue);
-        when(iterationContext.getNextValue()).thenReturn(nextValue);
-        return iterationContext;
-    }
-    
-    class IterationContext {
-        ValueArray valueArray;
-        int position;
-
-        public IterationContext(ValueArray valueArray, int position) {
-            this.valueArray = valueArray;
-            this.position = position;
-        }
-    
-        protected int getCurrentValue() {
-            return valueArray.getValueAt(position);
-        }
-
-        protected int getNextValue() {
-            int nextValue = 0;
-            int nextPosition = position + 1;
-
-            if (nextPosition < valueArray.getSize()) {
-                nextValue = valueArray.getValueAt(nextPosition);
-            }
-
-            return nextValue;
-        }
-         
     }
 }
