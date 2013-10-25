@@ -7,10 +7,15 @@ package ro.ghionoiu.kata;
 
 public class Numeral {
     ValueArray valueArray;
-    
+    AdjustedValuesProvider adjustedValuesProvider;
     
     public Numeral(ValueArray valueArray) {
+        this(valueArray, new AdjustedValuesProvider());
+    }
+    
+    public Numeral(ValueArray valueArray, AdjustedValuesProvider adjustedValuesProvider) {
         this.valueArray = valueArray;
+        this.adjustedValuesProvider = adjustedValuesProvider;
     }
     
     public static Numeral fromString(String romanNumber) {
@@ -22,7 +27,7 @@ public class Numeral {
         int totalValue = 0;
         
         for (int i = 0; i < valueArray.getSize(); i++) {
-            totalValue += valueArray.getValueAt(i);
+            totalValue += adjustedValuesProvider.compute(new IterationContext(valueArray, i));
         }
         
         return totalValue;

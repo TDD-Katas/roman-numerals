@@ -4,8 +4,6 @@
  */
 package ro.ghionoiu.kata;
 
-import ro.ghionoiu.kata.ValueArray;
-
 /**
  *
  * @author Iulian Ghionoiu <iulian.ghionoiu@exenne.ro>
