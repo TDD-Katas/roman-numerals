@@ -7,6 +7,7 @@ package ro.ghionoiu.kata;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
+import static org.mockito.Mockito.*;
 
 /**
  *
@@ -14,6 +15,7 @@ import static org.hamcrest.CoreMatchers.*;
  */
 public class AppTest {
     public static final int SOME_VALUE = 1;
+    public static final int FIRST_POSITION = 0;
     
     @Test
     public void value_of_numeral_is_sum_of_each_value_in_array() {
@@ -26,53 +28,66 @@ public class AppTest {
     }
     
     @Test
-    public void current_value_is_value_at_given_position() {
-        int valueAtPosition = 1;
+    public void interation_context_current_value_is_value_of_position() {
+        ValueArray valueArray = new ValueArray(SOME_VALUE);
+        int position = FIRST_POSITION;
         
-        assertThat(1, is(valueAtPosition));
+        IterationContext iterationContext = new IterationContext(valueArray, position);
+        int currentValue = iterationContext.getCurrentValue();
+        
+        assertThat(currentValue, is(valueArray.getValueAt(position)));
+    }
+    
+    @Test
+    public void interation_context_next_value_for_position_is_value_of_next_position() {
+        ValueArray valueArray = new ValueArray(0 , SOME_VALUE);
+        int position = FIRST_POSITION;
+        
+        IterationContext iterationContext = new IterationContext(valueArray, position);
+        int nextValue = iterationContext.getNextValue();
+        
+        assertThat(nextValue, is(valueArray.getValueAt(position + 1)));
+    }
+    
+    @Test
+    public void iteation_context_next_value_for_last_position_is_zero() {
+        ValueArray valueArray = new ValueArray(SOME_VALUE);
+        int lastPosition = valueArray.getSize() - 1;
+        
+        IterationContext iterationContext = new IterationContext(valueArray, lastPosition);
+        int nextValue = iterationContext.getNextValue();
+        
+        assertThat(nextValue, is(0));
     }
     
     @Test
     public void adjusted_value_is_negative_when_current_value_is_smaller_then_next_value() {
-        int currentValue = 1;
-        int nextValue = 10;
+        IterationContext iterationContext = 
+                createIterationContext(SOME_VALUE, SOME_VALUE + 1);
         
-        int adjustedValue = getAdjustedValue(currentValue, nextValue);
+        int adjustedValue = getAdjustedValue(iterationContext);
         
-        assertThat(adjustedValue, is(-currentValue));
+        assertThat(adjustedValue, is(-SOME_VALUE));
     }
     
     @Test
     public void adjusted_value_is_positive_when_current_value_is_higher_then_next_value() {
-        int currentValue = 10;
-        int nextValue = 5;
+        IterationContext iterationContext = 
+                createIterationContext(SOME_VALUE, SOME_VALUE - 1);
         
-        int adjustedValue = getAdjustedValue(currentValue, nextValue);
+        int adjustedValue = getAdjustedValue(iterationContext);
         
-        assertThat(adjustedValue, is(currentValue));
+        assertThat(adjustedValue, is(SOME_VALUE));
     }
     
     @Test
     public void adjusted_value_is_positive_when_current_value_is_equal_to_next_value() {
-        int currentValue = 10;
-        int nextValue = 10;
+        IterationContext iterationContext = 
+                createIterationContext(SOME_VALUE, SOME_VALUE);
         
-        int adjustedValue = getAdjustedValue(currentValue, nextValue);
+        int adjustedValue = getAdjustedValue(iterationContext);
         
-        assertThat(adjustedValue, is(currentValue));
-    }
-    
-    @Test
-    public void adjusted_value_is_positive_when_current_value_has_no_next_value() {
-        boolean valueHasNoNext = true;
-        int currentValue = SOME_VALUE;
-        
-        int adjustedValue = 0;
-        if (valueHasNoNext) {
-            adjustedValue = currentValue;
-        }
-        
-        assertThat(adjustedValue, is(currentValue));
+        assertThat(adjustedValue, is(SOME_VALUE));
     }
     
     //~~~ test utils
@@ -88,7 +103,9 @@ public class AppTest {
     
     ///~~~~~~~~~~~~~~~~~~~
 
-    protected int getAdjustedValue(int currentValue, int nextValue) {
+    protected int getAdjustedValue(IterationContext iterationContext) {
+        int currentValue = iterationContext.getCurrentValue();
+        int nextValue = iterationContext.getNextValue();
         int adjustedValue = currentValue;
         
         if (currentValue < nextValue) {
@@ -96,5 +113,38 @@ public class AppTest {
         } 
         
         return adjustedValue;
+    }
+
+    protected IterationContext createIterationContext(int currentValue, int nextValue) {
+        IterationContext iterationContext = mock(IterationContext.class);
+        when(iterationContext.getCurrentValue()).thenReturn(currentValue);
+        when(iterationContext.getNextValue()).thenReturn(nextValue);
+        return iterationContext;
+    }
+    
+    class IterationContext {
+        ValueArray valueArray;
+        int position;
+
+        public IterationContext(ValueArray valueArray, int position) {
+            this.valueArray = valueArray;
+            this.position = position;
+        }
+    
+        protected int getCurrentValue() {
+            return valueArray.getValueAt(position);
+        }
+
+        protected int getNextValue() {
+            int nextValue = 0;
+            int nextPosition = position + 1;
+
+            if (nextPosition < valueArray.getSize()) {
+                nextValue = valueArray.getValueAt(nextPosition);
+            }
+
+            return nextValue;
+        }
+         
     }
 }
