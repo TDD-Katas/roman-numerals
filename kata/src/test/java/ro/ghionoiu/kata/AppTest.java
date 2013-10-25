@@ -77,7 +77,7 @@ public class AppTest {
             value1,
             value2
         };
-        return new Numeral(values);
+        return new Numeral(new ValueArray(values));
     }
 
     

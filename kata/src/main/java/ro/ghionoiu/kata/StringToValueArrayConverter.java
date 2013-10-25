@@ -5,23 +5,23 @@
 package ro.ghionoiu.kata;
 
 
-public class StringToValuesConverter {
+public class StringToValueArrayConverter {
     CharacterToValueConverter characterConverter;
 
-    public StringToValuesConverter() {
+    public StringToValueArrayConverter() {
         this.characterConverter = new CharacterToValueConverter();
     }
     
-    public StringToValuesConverter(CharacterToValueConverter characterConverter) {
+    public StringToValueArrayConverter(CharacterToValueConverter characterConverter) {
         this.characterConverter = characterConverter;
     }
     
-    public int[] getValues(String roman) {
+    public ValueArray getValueArray(String roman) {
         int[] values = new int[roman.length()];
         for (int i = 0; i < values.length; i++) {
             values[i] = this.characterConverter.getValue(roman.charAt(i));
         }
-        return values;
+        return new ValueArray(values);
     }
     
 }

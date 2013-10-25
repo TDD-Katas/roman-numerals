@@ -21,12 +21,12 @@ public class StringToValuesConverterTest {
         char char2 = 'I';
         String roman = createRomanString(char1, char2);
         CharacterToValueConverter characterConverter = createConverter(char1, char2);
-        StringToValuesConverter stringConverter = new StringToValuesConverter(characterConverter);
+        StringToValueArrayConverter stringConverter = new StringToValueArrayConverter(characterConverter);
         
-        int[] values = stringConverter.getValues(roman);
+        ValueArray values = stringConverter.getValueArray(roman);
         
         for (int i = 0; i < roman.length(); i++) {
-            int actualValue = values[i];
+            int actualValue = values.getValueAt(i);
             int expected = characterConverter.getValue(roman.charAt(i));
             assertThat(actualValue, is(expected));
         }

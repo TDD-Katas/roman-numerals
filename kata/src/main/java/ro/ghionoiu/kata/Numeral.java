@@ -6,22 +6,23 @@ package ro.ghionoiu.kata;
 
 
 public class Numeral {
-    int[] values;
+    ValueArray valueArray;
     
     
-    public Numeral(int ... values) {
-        this.values = values;
+    public Numeral(ValueArray valueArray) {
+        this.valueArray = valueArray;
     }
     
     public static Numeral fromString(String romanNumber) {
-        int[] symbols = new StringToValuesConverter().getValues(romanNumber);
-        return new Numeral(symbols);
+        ValueArray valueArray = new StringToValueArrayConverter().getValueArray(romanNumber);
+        return new Numeral(valueArray);
     }
 
     public int getValue() {
         int totalValue = 0;
-        for (int currentValue : values) {
-            totalValue += currentValue;
+        
+        for (int i = 0; i < valueArray.getSize(); i++) {
+            totalValue += valueArray.getValueAt(i);
         }
         
         return totalValue;
