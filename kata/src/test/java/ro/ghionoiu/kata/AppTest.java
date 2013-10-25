@@ -28,45 +28,55 @@ public class AppTest {
     }
 
     @Test
-    public void when_current_value_is_smaller_then_next_value_it_is_substracted() {
+    public void when_current_value_is_smaller_then_next_value_operator_is_minus() {
         int currentValue = 1;
         int nextValue = 10;
         
-        Operation operation = getOperation(currentValue, nextValue);
+        Operator operator = getAdjustmentOperator(currentValue, nextValue);
         
-        assertThat(operation, is(Operation.SUBSTRACTION));
+        assertThat(operator, is(Operator.MINUS));
     }
     
     @Test
-    public void when_current_value_is_higher_then_next_value_it_is_added() {
+    public void when_current_value_is_higher_then_next_value_operator_is_plus() {
         int currentValue = 10;
         int nextValue = 5;
         
-        Operation operation = getOperation(currentValue, nextValue);
+        Operator operation = getAdjustmentOperator(currentValue, nextValue);
         
-        assertThat(operation, is(Operation.ADDITION));
+        assertThat(operation, is(Operator.PLUS));
     }
     
     @Test
-    public void when_current_value_is_equal_to_next_value_it_is_added() {
+    public void when_current_value_is_equal_to_next_value_operator_is_plus() {
         int currentValue = 10;
         int nextValue = 10;
         
-        Operation operation = getOperation(currentValue, nextValue);
+        Operator operation = getAdjustmentOperator(currentValue, nextValue);
         
-        assertThat(operation, is(Operation.ADDITION));
+        assertThat(operation, is(Operator.PLUS));
     }
     
     @Test
-    public void when_current_value_has_no_next_value_it_is_added() {
-        final boolean valueHasNoNext = true;
+    public void when_current_value_has_no_next_value_operator_is_plus() {
+        boolean valueHasNoNext = true;
         
-        Operation operation = null;
+        Operator operation = null;
         if (valueHasNoNext) {
-            operation = Operation.ADDITION;
+            operation = Operator.PLUS;
         }
         
-        assertThat(operation, is(Operation.ADDITION));
+        assertThat(operation, is(Operator.PLUS));
+    }
+    
+    @Test
+    public void adjusted_value_is_current_value_multiplied_with_operator() {
+        int operator = 1;
+        int currentValue = 1;
+        
+        int adjustedValue = operator*currentValue;
+        
+        assertThat(adjustedValue, is(operator*currentValue));
     }
     
     //~~~ test utils
@@ -81,16 +91,16 @@ public class AppTest {
     
     ///~~~~~~~~~~~~~~~~~~~
 
-    enum Operation {
-        ADDITION,
-        SUBSTRACTION
+    enum Operator {
+        PLUS,
+        MINUS
     }
     
-    protected Operation getOperation(int value, int nextValue) {
-        Operation operation = Operation.ADDITION;
+    protected Operator getAdjustmentOperator(int value, int nextValue) {
+        Operator operation = Operator.PLUS;
         
         if (value < nextValue) {
-            operation = Operation.SUBSTRACTION;
+            operation = Operator.MINUS;
         } 
         
         return operation;
