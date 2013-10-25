@@ -16,14 +16,15 @@ public class AppTest {
     public static final int SOME_VALUE = 1;
     
     @Test
-    public void value_of_numeral_is_sum_of_symbols_values() {
-        int value1 = SOME_VALUE;
-        int value2 = SOME_VALUE; 
-        Numeral romanNumeral = constructNumeral(value1, value2);
+    public void value_of_numeral_is_sum_of_adjusted_values() {
+        int adjustedValue1 = SOME_VALUE;
+        int adjustedValue2 = SOME_VALUE; 
+        Numeral romanNumeral = numeralWithAdjustedValues(
+                adjustedValue1, adjustedValue2);
         
         final int valueOfRomanNumeral = romanNumeral.getValue();
         
-        assertThat(valueOfRomanNumeral, is(value1 + value2));
+        assertThat(valueOfRomanNumeral, is(adjustedValue1 + adjustedValue2));
     }
 
     @Test
@@ -71,7 +72,7 @@ public class AppTest {
     
     //~~~ test utils
 
-    protected Numeral constructNumeral(int value1, int value2) {
+    protected Numeral numeralWithAdjustedValues(int value1, int value2) {
         int[] values = new int[] {
             value1,
             value2
