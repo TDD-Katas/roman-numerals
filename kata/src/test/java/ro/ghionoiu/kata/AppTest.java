@@ -103,18 +103,32 @@ public class AppTest {
     ///~~~~~~~~~~~~~~~~~~~
 
     enum Sign {
-        PLUS,
-        MINUS
+        PLUS(1),
+        MINUS(-1);
+        
+        int mutiplier;
+
+        private Sign(int mutiplier) {
+            this.mutiplier = mutiplier;
+        }
+        
+        private int applyOn(int value) {
+            return mutiplier*value;
+        }
+        
     }
     
     protected int adjust(Sign sign, int currentValue) {
         int adjustedValue = 0;
         
         int multiplier = 1;
+        if (sign == Sign.PLUS) {
+            multiplier = 1;
+        }
         if (sign == Sign.MINUS) {
             multiplier = -1;
         }
-        adjustedValue = multiplier*currentValue;
+        adjustedValue = sign.applyOn(currentValue);
         
         return adjustedValue;
     }
