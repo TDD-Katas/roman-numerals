@@ -74,7 +74,7 @@ public class AppTest {
         Sign sign = Sign.PLUS;
         int currentValue = SOME_VALUE;
         
-        int adjustedValue = adjust(sign, currentValue);
+        int adjustedValue = sign.adjust(currentValue);
         
         assertThat(adjustedValue, is(currentValue));
     }
@@ -84,7 +84,7 @@ public class AppTest {
         Sign sign = Sign.MINUS;
         int currentValue = SOME_VALUE;
         
-        int adjustedValue = adjust(sign, currentValue);
+        int adjustedValue = sign.adjust(currentValue);
         
         assertThat(adjustedValue, is(-currentValue));
     }
@@ -112,7 +112,7 @@ public class AppTest {
             this.mutiplier = mutiplier;
         }
         
-        private int applyOn(int value) {
+        private int adjust(int value) {
             return mutiplier*value;
         }
         
@@ -121,14 +121,7 @@ public class AppTest {
     protected int adjust(Sign sign, int currentValue) {
         int adjustedValue = 0;
         
-        int multiplier = 1;
-        if (sign == Sign.PLUS) {
-            multiplier = 1;
-        }
-        if (sign == Sign.MINUS) {
-            multiplier = -1;
-        }
-        adjustedValue = sign.applyOn(currentValue);
+        adjustedValue = sign.adjust(currentValue);
         
         return adjustedValue;
     }
