@@ -16,7 +16,7 @@ import static org.mockito.Mockito.*;
 public class StringToValuesConverterTest {
     
     @Test
-    public void roman_string_is_converted_into_values() {
+    public void roman_string_is_converted_into_array_of_values() {
         char char1 = 'X';
         char char2 = 'I';
         String roman = createRomanString(char1, char2);
