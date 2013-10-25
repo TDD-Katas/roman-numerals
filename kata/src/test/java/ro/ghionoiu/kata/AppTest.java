@@ -7,7 +7,6 @@ package ro.ghionoiu.kata;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
-import static org.mockito.Mockito.*;
 
 /**
  *
@@ -28,65 +27,46 @@ public class AppTest {
     }
 
     @Test
-    public void sign_is_minus_when_current_value_is_smaller_then_next_value() {
+    public void adjusted_value_is_negative_when_current_value_is_smaller_then_next_value() {
         int currentValue = 1;
         int nextValue = 10;
         
-        Sign sign = getSignForCurrentValue(currentValue, nextValue);
+        int adjustedValue = getAdjustedValue(currentValue, nextValue);
         
-        assertThat(sign, is(Sign.MINUS));
+        assertThat(adjustedValue, is(-currentValue));
     }
     
     @Test
-    public void sign_is_plus_when_current_value_is_higher_then_next_value() {
+    public void adjusted_value_is_positive_when_current_value_is_higher_then_next_value() {
         int currentValue = 10;
         int nextValue = 5;
         
-        Sign sign = getSignForCurrentValue(currentValue, nextValue);
-        
-        assertThat(sign, is(Sign.PLUS));
-    }
-    
-    @Test
-    public void sign_is_plus_when_current_value_is_equal_to_next_value() {
-        int currentValue = 10;
-        int nextValue = 10;
-        
-        Sign sign = getSignForCurrentValue(currentValue, nextValue);
-        
-        assertThat(sign, is(Sign.PLUS));
-    }
-    
-    @Test
-    public void sign_is_plus_when_current_value_has_no_next_value() {
-        boolean valueHasNoNext = true;
-        
-        Sign sign = null;
-        if (valueHasNoNext) {
-            sign = Sign.PLUS;
-        }
-        
-        assertThat(sign, is(Sign.PLUS));
-    }
-    
-    @Test
-    public void adjusted_value_is_current_value_when_sign_is_plus() {
-        Sign sign = Sign.PLUS;
-        int currentValue = SOME_VALUE;
-        
-        int adjustedValue = sign.adjust(currentValue);
+        int adjustedValue = getAdjustedValue(currentValue, nextValue);
         
         assertThat(adjustedValue, is(currentValue));
     }
     
     @Test
-    public void adjusted_value_is_negative_current_value_when_sign_is_minus() {
-        Sign sign = Sign.MINUS;
+    public void adjusted_value_is_positive_when_current_value_is_equal_to_next_value() {
+        int currentValue = 10;
+        int nextValue = 10;
+        
+        int adjustedValue = getAdjustedValue(currentValue, nextValue);
+        
+        assertThat(adjustedValue, is(currentValue));
+    }
+    
+    @Test
+    public void adjusted_value_is_positive_when_current_value_has_no_next_value() {
+        boolean valueHasNoNext = true;
         int currentValue = SOME_VALUE;
         
-        int adjustedValue = sign.adjust(currentValue);
+        int adjustedValue = 0;
+        if (valueHasNoNext) {
+            adjustedValue = currentValue;
+        }
         
-        assertThat(adjustedValue, is(-currentValue));
+        assertThat(adjustedValue, is(currentValue));
     }
     
     //~~~ test utils
@@ -118,13 +98,13 @@ public class AppTest {
         
     }
     
-    protected Sign getSignForCurrentValue(int value, int nextValue) {
-        Sign operation = Sign.PLUS;
+    protected int getAdjustedValue(int currentValue, int nextValue) {
+        int adjustedValue = currentValue;
         
-        if (value < nextValue) {
-            operation = Sign.MINUS;
+        if (currentValue < nextValue) {
+            adjustedValue = -currentValue;
         } 
         
-        return operation;
+        return adjustedValue;
     }
 }
