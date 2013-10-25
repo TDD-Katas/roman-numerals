@@ -1,0 +1,10 @@
+TooManyMethods
+UnusedLocalVariable
+JUnitAssertionsShouldIncludeMessage
+ShortVariable
+MethodArgumentCouldBeFinal
+LongVariable
+MethodNamingConventions
+LocalVariableCouldBeFinal
+DataflowAnomalyAnalysis
+BeanMembersShouldSerialize
