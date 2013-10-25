@@ -1,0 +1,5 @@
+MethodArgumentCouldBeFinal
+LongVariable
+DataflowAnomalyAnalysis
+LocalVariableCouldBeFinal
+BeanMembersShouldSerialize
