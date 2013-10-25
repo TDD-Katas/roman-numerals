@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package ro.ghionoiu.kata;
+package ro.ghionoiu.kata.data;
 
 import java.util.ArrayList;
 

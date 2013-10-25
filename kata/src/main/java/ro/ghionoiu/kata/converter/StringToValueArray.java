@@ -2,17 +2,19 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package ro.ghionoiu.kata;
+package ro.ghionoiu.kata.converter;
+
+import ro.ghionoiu.kata.data.ValueArray;
 
 
-public class StringToValueArrayConverter {
-    CharacterToValueConverter characterConverter;
+public class StringToValueArray {
+    CharacterToValue characterConverter;
 
-    public StringToValueArrayConverter() {
-        this.characterConverter = new CharacterToValueConverter();
+    public StringToValueArray() {
+        this.characterConverter = new CharacterToValue();
     }
     
-    public StringToValueArrayConverter(CharacterToValueConverter characterConverter) {
+    public StringToValueArray(CharacterToValue characterConverter) {
         this.characterConverter = characterConverter;
     }
     

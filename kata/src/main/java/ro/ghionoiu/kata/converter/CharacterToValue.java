@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package ro.ghionoiu.kata;
+package ro.ghionoiu.kata.converter;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +11,7 @@ import java.util.Map;
  *
  * @author Iulian Ghionoiu <iulian.ghionoiu@exenne.ro>
  */
-public class CharacterToValueConverter {
+public class CharacterToValue {
     private final static Map<String, Integer> SYMBOL_VALUES = new HashMap<String, Integer>();
     static {
         SYMBOL_VALUES.put("I", 1);

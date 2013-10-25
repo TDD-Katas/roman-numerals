@@ -2,8 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package ro.ghionoiu.kata;
+package ro.ghionoiu.kata.compute;
 
+import ro.ghionoiu.kata.compute.ValuesAdjuster;
+import ro.ghionoiu.kata.compute.IterationContext;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.is;
@@ -13,7 +15,7 @@ import static org.mockito.Mockito.*;
  *
  * @author Iulian Ghionoiu <iulian.ghionoiu@exenne.ro>
  */
-public class AdjustedValuesProviderTest {
+public class ValuesAdjusterTest {
     public static final int SOME_VALUE = 1;
     public static final int FIRST_POSITION = 0;
     
@@ -21,7 +23,7 @@ public class AdjustedValuesProviderTest {
     public void return_negative_when_current_value_is_smaller_then_next_value() {
         IterationContext iterationContext = 
                 mockIterationContext(SOME_VALUE, SOME_VALUE + 1);
-        AdjustedValuesProvider adjustedValuesProvider = new AdjustedValuesProvider();
+        ValuesAdjuster adjustedValuesProvider = new ValuesAdjuster();
         
         int adjustedValue = adjustedValuesProvider.compute(iterationContext);
         
@@ -32,7 +34,7 @@ public class AdjustedValuesProviderTest {
     public void return_positive_when_current_value_is_higher_then_next_value() {
         IterationContext iterationContext = 
                 mockIterationContext(SOME_VALUE, SOME_VALUE - 1);
-        AdjustedValuesProvider adjustedValuesProvider = new AdjustedValuesProvider();
+        ValuesAdjuster adjustedValuesProvider = new ValuesAdjuster();
         
         int adjustedValue = adjustedValuesProvider.compute(iterationContext);
         
@@ -43,7 +45,7 @@ public class AdjustedValuesProviderTest {
     public void return_positive_when_current_value_is_equal_to_next_value() {
         IterationContext iterationContext = 
                 mockIterationContext(SOME_VALUE, SOME_VALUE);
-        AdjustedValuesProvider adjustedValuesProvider = new AdjustedValuesProvider();
+        ValuesAdjuster adjustedValuesProvider = new ValuesAdjuster();
         
         int adjustedValue = adjustedValuesProvider.compute(iterationContext);
         

@@ -4,6 +4,9 @@
  */
 package ro.ghionoiu.kata;
 
+import ro.ghionoiu.kata.compute.ValuesAdjuster;
+import ro.ghionoiu.kata.compute.IterationContext;
+import ro.ghionoiu.kata.data.ValueArray;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.is;
@@ -13,7 +16,7 @@ import static org.mockito.Mockito.*;
  *
  * @author Iulian Ghionoiu <iulian.ghionoiu@exenne.ro>
  */
-public class AppTest {
+public class NumeralTest {
     public static final int SOME_VALUE = 1;
     public static final int FIRST_POSITION = 0;
     
@@ -21,7 +24,7 @@ public class AppTest {
     public void value_of_numeral_is_sum_of_each_value_adjusted_according_to_context() {
         int adjustedValue = 1;
         int numberOfValues = 2;
-        AdjustedValuesProvider adjustedValuesProvider = mockValueAdjuster(adjustedValue);
+        ValuesAdjuster adjustedValuesProvider = mockValueAdjuster(adjustedValue);
         Numeral romanNumeral = new Numeral(valueArrayOfSize(numberOfValues),
                 adjustedValuesProvider);
         
@@ -49,8 +52,8 @@ public class AppTest {
         return new ValueArray(new int[numberOfValues]);
     }
 
-    protected AdjustedValuesProvider mockValueAdjuster(int adjustedValue) {
-        AdjustedValuesProvider adjustedValuesProvider = mock(AdjustedValuesProvider.class);
+    protected ValuesAdjuster mockValueAdjuster(int adjustedValue) {
+        ValuesAdjuster adjustedValuesProvider = mock(ValuesAdjuster.class);
         when(adjustedValuesProvider.compute(any(IterationContext.class))).thenReturn(adjustedValue);
         return adjustedValuesProvider;
     }

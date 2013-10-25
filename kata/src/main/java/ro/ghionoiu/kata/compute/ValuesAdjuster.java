@@ -2,14 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package ro.ghionoiu.kata;
+package ro.ghionoiu.kata.compute;
 
 ///~~~~~~~~~~~~~~~~~~~
 
-import ro.ghionoiu.kata.IterationContext;
 
-
-public class AdjustedValuesProvider {
+public class ValuesAdjuster {
 
     public int compute(IterationContext iterationContext) {
         int currentValue = iterationContext.getCurrentValue();

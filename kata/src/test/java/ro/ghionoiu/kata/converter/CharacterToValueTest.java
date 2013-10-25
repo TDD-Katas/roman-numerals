@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package ro.ghionoiu.kata;
+package ro.ghionoiu.kata.converter;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -13,12 +13,12 @@ import org.junit.Before;
  *
  * @author Iulian Ghionoiu <iulian.ghionoiu@exenne.ro>
  */
-public class CharacterToValueConverterTest {
-    CharacterToValueConverter instance;
+public class CharacterToValueTest {
+    CharacterToValue instance;
 
     @Before
     public void setUp() throws Exception {
-        instance = new CharacterToValueConverter();
+        instance = new CharacterToValue();
     }
     
     @Test
