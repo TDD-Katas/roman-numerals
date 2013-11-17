@@ -55,30 +55,21 @@ public class AppTest {
     }
     
     @Test
-    public void first_frame_ends_at_index_1_if_first_roll_is_maximum_roll() {
+    public void first_frame_has_a_length_of_1_if_its_first_roll_is_maximum_value() {
         Rolls rolls = firstRollIsMaximumRoll();
         
         Frame firstFrame = rolls.getFirstFrame();
         
-        assertThat(firstFrame.getEndingIndex(), is(1));
+        assertThat(firstFrame.getLength(), is(1));
     }
         
     @Test
-    public void first_frame_ends_at_index_2_if_first_roll_is_not_maximum_roll() {
+    public void first_frame_has_a_length_of_2_if_its_first_roll_is_maximum_value() {
         Rolls rolls = firstRollNotMaximumRoll();
         
         Frame firstFrame = rolls.getFirstFrame();
         
-        assertThat(firstFrame.getEndingIndex(), is(2));
-    }
-    
-    @Test
-    public void second_frame_starts_at_ending_index_of_first_frame() {
-        Rolls rolls = firstFrameEndsAt(2);
-        
-        Frame secondFrame = rolls.getSecondFrame();
-        
-        assertThat(secondFrame.getStartingIndex(), is(2));
+        assertThat(firstFrame.getLength(), is(2));
     }
     
     //~~~~~~~~~~~~~~ Test helpers ~~~~~~~~
@@ -124,22 +115,21 @@ public class AppTest {
 
     static class Frame {
         int startingIndex;
-        int endingIndex;
+        int length;
 
-        public Frame(int startingIndex, int endingIndex) {
+        public Frame(int startingIndex, int length) {
             this.startingIndex = startingIndex;
-            this.endingIndex = endingIndex;
+            this.length = length;
         }
+        
 
         public int getStartingIndex() {
             return startingIndex;
         }
 
-        public int getEndingIndex() {
-            return endingIndex;
+        public int getLength() {
+            return length;
         }
-        
-        
     }
     
     static class Rolls {
@@ -159,28 +149,20 @@ public class AppTest {
         
         protected Frame getFirstFrame() {
             int startingIndex = getFirstFrameStartingIndex();
-            int endingIndex = getFirstFrameEndingIndex();
-            return new Frame(startingIndex, endingIndex);
+            int length = getFirstFrameLength();
+            return new Frame(startingIndex, length);
         }
 
         protected int getFirstFrameStartingIndex() {
             return 0;
         }
 
-        protected int getFirstFrameEndingIndex() {
+        protected int getFirstFrameLength() {
             if (array[0] == MAXIMUM_ROLL) {
                 return 1;
             } else {
                 return 2;
             }
-        }
-        
-        protected Frame getSecondFrame() {
-            Frame firstFrame = getFirstFrame();
-            
-            int startingIndex = firstFrame.getEndingIndex();
-            int endingIndex = getFirstFrameEndingIndex();
-            return new Frame(startingIndex, endingIndex);
         }
     }
 }
