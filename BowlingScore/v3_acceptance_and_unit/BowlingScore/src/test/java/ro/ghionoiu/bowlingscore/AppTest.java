@@ -106,6 +106,16 @@ public class AppTest {
         assertThat(frameScore, is(normalScore+bonusScore));
     }
     
+
+    @Test
+    public void frame_normal_score_is_sum_of_its_rolls() {
+        int sumOfRolls = 1;
+        
+        int frameNormalScore = sumOfRolls;
+        
+        assertThat(frameNormalScore, is(sumOfRolls));
+    }
+    
     
     //~~~~~~~~~~~~~~ Test helpers ~~~~~~~~
 
