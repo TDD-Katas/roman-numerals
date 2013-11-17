@@ -98,8 +98,12 @@ public class AppTest {
     
     @Test
     public void frame_score_is_normal_score_plus_bonus_score() {
+        int normalScore = 1;
+        int bonusScore = 1;
         
-        assertThat(2, is(1+1));
+        int frameScore = normalScore + bonusScore;
+        
+        assertThat(frameScore, is(normalScore+bonusScore));
     }
     
     
