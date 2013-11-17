@@ -76,7 +76,7 @@ public class AppTest {
     public void second_frame_starts_at_ending_index_of_first_frame() {
         Rolls rolls = firstFrameEndsAt(2);
         
-        Frame secondFrame = new Frame(2, 2);
+        Frame secondFrame = rolls.getSecondFrame();
         
         assertThat(secondFrame.getStartingIndex(), is(2));
     }
@@ -175,5 +175,12 @@ public class AppTest {
             }
         }
         
+        protected Frame getSecondFrame() {
+            Frame firstFrame = getFirstFrame();
+            
+            int startingIndex = firstFrame.getEndingIndex();
+            int endingIndex = getFirstFrameEndingIndex();
+            return new Frame(startingIndex, endingIndex);
+        }
     }
 }
