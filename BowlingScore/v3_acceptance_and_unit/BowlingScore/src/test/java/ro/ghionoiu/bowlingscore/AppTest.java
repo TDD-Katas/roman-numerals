@@ -14,6 +14,7 @@ import org.junit.Ignore;
  * @author Iulian Ghionoiu <iulian.ghionoiu@exenne.ro>
  */
 public class AppTest {
+    public static final int MAXIMUM_ROLL = 10;
     
     //~~~~~~~~~~~~~~ Integration Tests ~~~~~~~~
     
@@ -49,9 +50,9 @@ public class AppTest {
     }
     
     @Test
-    public void first_frame_is_first_roll_when_the_first_roll_is_ten() {
-        int[] rolls = {10, 1, 2};
-        int[] expectedFrame = {10};
+    public void first_frame_is_first_roll_when_the_first_roll_is_maximum_roll() {
+        int[] rolls = {MAXIMUM_ROLL, 1, 2};
+        int[] expectedFrame = {MAXIMUM_ROLL};
         
         int[] frame = getFrameFrom(rolls);
         
@@ -59,7 +60,7 @@ public class AppTest {
     }    
     
     @Test
-    public void first_frame_is_the_first_two_rolls_when_the_first_roll_is_not_ten() {
+    public void first_frame_is_the_first_two_rolls_when_the_first_roll_is_not_maximum_roll() {
         int[] rolls = {0, 1, 2};
         int[] expectedFrame = {0, 1};
         
@@ -94,7 +95,7 @@ public class AppTest {
     }
 
     protected int[] getFrameFrom(int[] rolls) {
-        if (rolls[0] == 10) {
+        if (rolls[0] == MAXIMUM_ROLL) {
             return new int[] {rolls[0]};
         } else {
             return new int[] {rolls[0], rolls[1]};
