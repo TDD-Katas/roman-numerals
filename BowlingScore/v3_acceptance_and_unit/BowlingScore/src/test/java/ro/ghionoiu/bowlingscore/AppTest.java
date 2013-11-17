@@ -73,10 +73,10 @@ public class AppTest {
     @Test
     public void the_remaining_rolls_after_the_first_frame() {
         Rolls rolls = Rolls.create(0, 1, 2, 3);
-        Rolls firstFrame = Rolls.create(0, 1);
+        Rolls firstFrameRolls = Rolls.create(0, 1);
         Rolls expectedRollsAfterFrame = Rolls.create(2, 3);
         
-        Rolls frameRolls = getRemainingRollsAfterFirstFrame(rolls, firstFrame);
+        Rolls frameRolls = rolls.getRemainingRollsAfterFirstFrame(firstFrameRolls);
         
         assertThat(frameRolls, is(expectedRollsAfterFrame));
     }
@@ -84,10 +84,10 @@ public class AppTest {
     @Test
     public void second_frame_is_the_frame_after_the_rolls_of_first_frame() {
         Rolls rolls = Rolls.create(0, 1, 2, 3);
-        Rolls firstFrameRolls = Rolls.create(0, 1);
+        Rolls firstFrameRolls = rolls.getFirstFrameRolls();
         Rolls expectedRolls = Rolls.create(2, 3);
         
-        Rolls rollsAfterFirstFrame = Rolls.create(2, 3);
+        Rolls rollsAfterFirstFrame = rolls.getRemainingRollsAfterFirstFrame(firstFrameRolls).getFirstFrameRolls();
         
         assertThat(rollsAfterFirstFrame, is(expectedRolls));
     }
@@ -117,10 +117,6 @@ public class AppTest {
         return gameScore;
     }
     
-    protected Rolls getRemainingRollsAfterFirstFrame(Rolls rolls, Rolls firstFrameRolls) {
-        return rolls.getRemainingRollsAfterFirstFrame(firstFrameRolls);
-    }
-    
     static class Rolls {
         private int[] array;
         
@@ -145,10 +141,10 @@ public class AppTest {
         }
         
         public Rolls getRemainingRollsAfterFirstFrame(Rolls firstFrameRolls) {
-            int endPos = firstFrameRolls.getArray().length;
+            int firstFrameEnding = firstFrameRolls.getArray().length;
             int totalLength = array.length;
 
-            return Rolls.create(Arrays.copyOfRange(array, endPos, totalLength));
+            return Rolls.create(Arrays.copyOfRange(array, firstFrameEnding, totalLength));
         }
         
         //~~~~~~~ Equals impl
