@@ -41,6 +41,13 @@ public class AppTest {
     
     //A frame represents a set of maximum two rolls that add up less than 10
     
+        
+    @Test
+    public void the_sum_of_a_frame_rolls_is_less_or_equal_than_ten() {
+        
+        assertThat(true, is(true));
+    }
+    
     @Test
     public void a_frame_is_like_this() {
         int[] rolls = {0, 1, 2};
@@ -52,10 +59,14 @@ public class AppTest {
     }
     
     @Test
-    public void the_sum_of_a_frame_rolls_is_less_or_equal_than_ten() {
+    public void a_frame_is_also_like_this() {
+        int[] rolls = {10, 1, 2};
+        int[] expectedFrame = {10};
         
-        assertThat(true, is(true));
-    }
+        int[] frame = {10};
+        
+        assertThat(frame, is(expectedFrame));
+    }    
     
     //~~~~~~~~~~~~~~ Test helpers ~~~~~~~~
 
