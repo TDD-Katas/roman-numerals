@@ -15,7 +15,11 @@ import static org.hamcrest.CoreMatchers.*;
 public class AppTest {
     
     @Test
-    public void testMain() {
-        assertThat(true, is(true));
+    public void IT_gutter_game_score_is_0() {
+        
+        
+        int gameScore = 0;
+        
+        assertThat(gameScore, is(0));
     }
 }
