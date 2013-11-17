@@ -98,29 +98,19 @@ public class AppTest {
         assertThat(currentFrame.getStartingIndex(), is(previousFrame.getEndingIndex()));
     }
     
-    //  __________ Frames score _____
+    //~~~~ Rolls subsets
     
     @Test
-    public void frame_score_is_normal_score_plus_bonus_score() {
-        int normalScore = 1;
-        int bonusScore = 1;
-        
-        int frameScore = normalScore + bonusScore;
-        
-        assertThat(frameScore, is(normalScore+bonusScore));
-    }
-    
-
-    @Test
-    public void frame_normal_score_is_sum_of_rolls_between_starting_and_ending_index() {
-        int sumOfRolls = 3;
+    public void frame_normal_rolls_are_rolls_between_starting_and_ending_index() {
         Rolls rolls = Rolls.create(0, 1, 2, 3);
-        Frame frame = new Frame(1, 2);
+        Frame frame = new Frame(0, 2);
+        Rolls expectedNormalRolls = Rolls.create(0, 1);
         
-        int frameNormalScore = computeFrameNormalScore(rolls, frame);
+        Rolls normalRolls = rolls.subset(frame.getStartingIndex(), frame.getEndingIndex());
         
-        assertThat(frameNormalScore, is(sumOfRolls));
+        assertThat(normalRolls, is(expectedNormalRolls));
     }
+    
     
            
     //~~~~~~~~~~~~~~ Test helpers ~~~~~~~~
@@ -157,15 +147,6 @@ public class AppTest {
             gameScore += frameScore;
         }
         return gameScore;
-    }
-
-    protected int computeFrameNormalScore(Rolls rolls, Frame frame) {
-        int frameNormalScore = 0;
-        int[] array = rolls.getArray();
-        for (int i = frame.getStartingIndex(); i < frame.getEndingIndex(); i++) {
-            frameNormalScore += array[i];
-        }
-        return frameNormalScore;
     }
 
 
@@ -205,6 +186,40 @@ public class AppTest {
         
         public int[] getArray() {
             return array;
+        }
+        
+        public Rolls subset(int startingIndex, int endingIndex) {
+            return create(Arrays.copyOfRange(array, startingIndex, endingIndex));
+        } 
+                
+        //~~ Equals
+
+        @Override
+        public int hashCode() {
+            int hash = 3;
+            hash = 89 * hash + Arrays.hashCode(this.array);
+            return hash;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (obj == null) {
+                return false;
+            }
+            if (getClass() != obj.getClass()) {
+                return false;
+            }
+            final Rolls other = (Rolls) obj;
+            if (!Arrays.equals(this.array, other.array)) {
+                return false;
+            }
+            return true;
+        }
+        
+        //To string
+        @Override
+        public String toString() {
+            return "Rolls{" + "array=" + Arrays.toString(array) + '}';
         }
     }
     
