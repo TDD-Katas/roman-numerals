@@ -25,7 +25,6 @@ public class AppTest {
     
     //~~~~~~~~~~~~~~ Integration Tests ~~~~~~~~
     
-    @Ignore
     @Test
     public void IT_gutter_game_score_is_0() {
         int[] rolls = rollAllAs(0);
@@ -146,7 +145,7 @@ public class AppTest {
 
     
     protected int[] rollAllAs(int rollValue) {
-        int[] rolls = new int[10];
+        int[] rolls = new int[20];
         for (int i = 0; i < rolls.length; i++) {
             rolls[i] = rollValue;
         }
