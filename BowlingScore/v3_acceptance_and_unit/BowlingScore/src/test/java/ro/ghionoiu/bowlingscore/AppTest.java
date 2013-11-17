@@ -9,6 +9,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 import org.junit.Ignore;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  *
@@ -25,7 +26,7 @@ public class AppTest {
     public void IT_gutter_game_score_is_0() {
         int[] rolls = rollAllAs(0);
         
-        int gameScore = computeGameScore(rolls);
+        int gameScore = targetComputeGameScore(rolls);
         
         assertThat(gameScore, is(0));
     }
@@ -90,7 +91,7 @@ public class AppTest {
     public void the_Nth_frame_starts_at_previous_frame_ending_index() {
         Rolls rolls = anyRolls();
         FrameExtractor frameExtractor = new FrameExtractor(rolls);
-        int currentFrameNumber = 2;
+        int currentFrameNumber = 1;
         
         Frame currentFrame = frameExtractor.getFrame(currentFrameNumber);
         
@@ -146,7 +147,16 @@ public class AppTest {
     
     
     protected int targetComputeGameScore(int[] rolls) {
-        return 0;
+        Rolls gameRolls = Rolls.create(rolls);
+        
+        int gameScore = 0;
+        FrameExtractor frameExtractor = new FrameExtractor(gameRolls);
+        for (int i = 0; i < 10; i++) {
+            Frame frame = frameExtractor.getFrame(0);
+            gameScore += frame.getScore();
+        }
+        
+        return gameScore;
     }
     
     protected int computeGameScore(int[] frameScores) {
@@ -157,7 +167,30 @@ public class AppTest {
         return gameScore;
     }
 
+    static class Game {
+        private FrameExtractor frameExtractor;
+        
+        public Game(FrameExtractor frameExtractor) {
+            this.frameExtractor = frameExtractor;
+        }
+        
+        public int computeScore(int[] rolls) {
+            Rolls gameRolls = Rolls.create(rolls);
 
+            int gameScore = 0;
+            FrameExtractor frameExtractor = new FrameExtractor(gameRolls);
+            for (int i = 0; i < 10; i++) {
+                Frame frame = frameExtractor.getFrame(0);
+                gameScore += frame.getScore();
+            }
+
+            return gameScore;
+        }
+        
+        
+        
+    }
+    
     static class Frame {
         int startingIndex;
         int length;
@@ -178,6 +211,10 @@ public class AppTest {
         
         public int getEndingIndex() {
             return startingIndex + length;
+        }
+        
+        public int getScore() {
+            throw new NotImplementedException();
         }
     }
     
@@ -231,6 +268,12 @@ public class AppTest {
         }
     }
     
+    static class FrameExtractorBuilder {
+        public FrameExtractor createExtractorFor(Rolls rolls) {
+            return new FrameExtractor(rolls);
+        }
+    }
+    
     static class FrameExtractor {
         Rolls rolls;
 
@@ -240,7 +283,7 @@ public class AppTest {
         
         
         public Frame getFrame(int frameNumber) {
-            if (frameNumber == 1) {
+            if (frameNumber == 0) {
                 return getFirstFrame();
             } else {
                 Frame previousFrame = getFrame(frameNumber-1);
