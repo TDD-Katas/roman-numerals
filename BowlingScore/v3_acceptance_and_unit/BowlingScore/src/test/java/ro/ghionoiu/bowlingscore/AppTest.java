@@ -49,17 +49,7 @@ public class AppTest {
     }
     
     @Test
-    public void a_frame_is_like_this() {
-        int[] rolls = {0, 1, 2};
-        int[] expectedFrame = {0, 1};
-        
-        int[] frame = getFrameFrom(rolls);
-        
-        assertThat(frame, is(expectedFrame));
-    }
-    
-    @Test
-    public void a_frame_is_also_like_this() {
+    public void first_frame_is_first_roll_when_the_first_roll_is_ten() {
         int[] rolls = {10, 1, 2};
         int[] expectedFrame = {10};
         
@@ -67,6 +57,16 @@ public class AppTest {
         
         assertThat(frame, is(expectedFrame));
     }    
+    
+    @Test
+    public void first_frame_is_the_first_two_rolls_when_the_first_roll_is_not_ten() {
+        int[] rolls = {0, 1, 2};
+        int[] expectedFrame = {0, 1};
+        
+        int[] frame = getFrameFrom(rolls);
+        
+        assertThat(frame, is(expectedFrame));
+    }
     
     //~~~~~~~~~~~~~~ Test helpers ~~~~~~~~
 
