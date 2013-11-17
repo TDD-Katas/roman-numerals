@@ -52,8 +52,8 @@ public class AppTest {
     
     @Test
     public void first_frame_is_first_roll_when_the_first_roll_is_maximum_roll() {
-        Rolls rolls = Rolls.fromArray(MAXIMUM_ROLL, 1, 2);
-        Rolls expectedFrameRolls = Rolls.fromArray(MAXIMUM_ROLL);
+        Rolls rolls = Rolls.create(MAXIMUM_ROLL, 1, 2);
+        Rolls expectedFrameRolls = Rolls.create(MAXIMUM_ROLL);
         
         Rolls frameRolls = rolls.getFirstFrameRolls();
         
@@ -62,8 +62,8 @@ public class AppTest {
     
     @Test
     public void first_frame_is_the_first_two_rolls_when_the_first_roll_is_not_maximum_roll() {
-        Rolls rolls = Rolls.fromArray(0, 1, 2);
-        Rolls expectedFrameRolls = Rolls.fromArray(0, 1);
+        Rolls rolls = Rolls.create(0, 1, 2);
+        Rolls expectedFrameRolls = Rolls.create(0, 1);
         
         Rolls frameRolls = rolls.getFirstFrameRolls();
         
@@ -71,12 +71,22 @@ public class AppTest {
     }
     
     @Test
-    public void second_frame_is_the_first_frame_for_the_rolls_after_first_frame() {
-        Rolls rolls = Rolls.fromArray(0, 1, 2, 3);
-        Rolls firstFrameRolls = Rolls.fromArray(0, 1);
-        Rolls expectedRolls = Rolls.fromArray(2, 3);
+    public void the_rolls_after_the_first_frame_example() {
+        Rolls rolls = Rolls.create(0, 1, 2, 3);
+        Rolls expectedRollsAfterFrame = Rolls.create(2, 3);
         
-        Rolls rollsAfterFirstFrame = Rolls.fromArray(2, 3);
+        Rolls frameRolls = rolls.getFirstFrameRolls();
+        
+        assertThat(frameRolls, is(expectedRollsAfterFrame));
+    }
+    
+    @Test
+    public void second_frame_is_the_frame_after_the_rolls_of_first_frame() {
+        Rolls rolls = Rolls.create(0, 1, 2, 3);
+        Rolls firstFrameRolls = Rolls.create(0, 1);
+        Rolls expectedRolls = Rolls.create(2, 3);
+        
+        Rolls rollsAfterFirstFrame = Rolls.create(2, 3);
         
         assertThat(rollsAfterFirstFrame, is(expectedRolls));
     }
@@ -100,7 +110,7 @@ public class AppTest {
             this.rolls = rolls;
         }
         
-        public static Rolls fromArray(int ... rolls) {
+        public static Rolls create(int ... rolls) {
             return new Rolls(rolls);
         }
 
@@ -110,9 +120,9 @@ public class AppTest {
         
         public Rolls getFirstFrameRolls() {
             if (rolls[0] == MAXIMUM_ROLL) {
-                return fromArray(rolls[0]);
+                return create(rolls[0]);
             } else {
-                return fromArray(rolls[0], rolls[1]);
+                return create(rolls[0], rolls[1]);
             }
         }
         
