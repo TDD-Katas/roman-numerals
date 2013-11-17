@@ -131,6 +131,15 @@ public class AppTest {
         
         assertThat(normalScore, is(expectedScore));
     }
+    
+    @Test
+    public void frame_score_equals_its_normal_score() {
+        int normalScore = 1;
+        
+        int frameScore = normalScore;
+        
+        assertThat(frameScore, is(normalScore));
+    }
          
     //~~~~~~~~~~~~~~ Unit Test helpers ~~~~~~~~
 
