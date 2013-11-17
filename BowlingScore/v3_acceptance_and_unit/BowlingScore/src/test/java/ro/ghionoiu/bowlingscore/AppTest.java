@@ -40,9 +40,13 @@ public class AppTest {
     
     @Test
     public void game_score_equals_sum_of_frames_score() {
-        int somOfFramesScore = 1;
+        int[] frameScores = {1, 2};
+        int somOfFramesScore = 3;
         
-        int gameScore = somOfFramesScore;
+        int gameScore = 0;
+        for (int frameScore : frameScores) {
+            gameScore += frameScore;
+        }
         
         assertThat(gameScore, is(somOfFramesScore));
     }
