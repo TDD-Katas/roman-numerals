@@ -34,6 +34,15 @@ public class AppTest {
         assertThat(gameScore, is(0));
     }
     
+    @Test
+    public void IT_all_ones_game_score_is_20() {
+        int[] rolls = rollAllAs(1);
+        
+        int gameScore = computeGameScore(rolls);
+        
+        assertThat(gameScore, is(20));
+    }
+    
     
     //~~~~~~~~~~~~~~ Integration Test helpers ~~~~~~~~
     
