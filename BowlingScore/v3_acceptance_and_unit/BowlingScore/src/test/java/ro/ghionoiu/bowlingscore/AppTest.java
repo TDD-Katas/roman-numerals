@@ -51,10 +51,12 @@ public class AppTest {
     
     @Test
     public void first_frame_is_first_roll_when_the_first_roll_is_maximum_roll() {
-        int[] rolls = {MAXIMUM_ROLL, 1, 2};
+        Rolls wrapper = new Rolls();
+        
+        wrapper.rolls = new int[]{MAXIMUM_ROLL, 1, 2};
         int[] expectedFrame = {MAXIMUM_ROLL};
         
-        int[] frame = getFirstFrame(rolls);
+        int[] frame = getFirstFrame(wrapper.rolls);
         
         assertThat(frame, is(expectedFrame));
     }    
@@ -101,6 +103,14 @@ public class AppTest {
     }
     
     //~~~~~~~~~~~~~~ Production ~~~~~~~~
+    
+    class Rolls {
+        public int[] rolls;
+
+        public Rolls() {
+        }
+        
+    }
     
     protected int targetComputeGameScore(int[] rolls) {
         return 0;
