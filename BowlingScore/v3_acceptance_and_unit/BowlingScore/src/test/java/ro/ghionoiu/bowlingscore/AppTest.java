@@ -39,6 +39,19 @@ public class AppTest {
         assertThat(gameScore, is(sumOfFramesScore));
     }
     
+    //A frame represents a set of maximum two rolls that add up less than 10
+    
+    @Test
+    public void a_frame_consists_of_maximum_2_rolls() {
+        
+        assertThat(true, is(true));
+    }
+    
+    @Test
+    public void the_sum_of_a_frame_rolls_is_less_or_equal_than_ten() {
+        
+        assertThat(true, is(true));
+    }
     
     //~~~~~~~~~~~~~~ Test helpers ~~~~~~~~
 
