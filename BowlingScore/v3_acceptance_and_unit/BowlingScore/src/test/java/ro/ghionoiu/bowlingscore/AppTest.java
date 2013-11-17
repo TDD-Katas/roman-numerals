@@ -53,7 +53,7 @@ public class AppTest {
         int[] rolls = {0, 1, 2};
         int[] expectedFrame = {0, 1};
         
-        int[] frame = {0, 1};
+        int[] frame = getFrameFrom(rolls);
         
         assertThat(frame, is(expectedFrame));
     }
@@ -91,5 +91,9 @@ public class AppTest {
             gameScore += frameScore;
         }
         return gameScore;
+    }
+
+    protected int[] getFrameFrom(int[] rolls) {
+        return new int[]{0, 1};
     }
 }
