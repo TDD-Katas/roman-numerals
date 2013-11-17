@@ -72,6 +72,15 @@ public class AppTest {
         assertThat(firstFrame.getEndingIndex(), is(2));
     }
     
+    @Test
+    public void second_frame_starts_at_ending_index_of_first_frame() {
+        Rolls rolls = Rolls.create(NORMAL_ROLL, NORMAL_ROLL, NORMAL_ROLL, NORMAL_ROLL);
+        
+        Frame secondFrame = new Frame(2, 2);
+        
+        assertThat(secondFrame.getStartingIndex(), is(2));
+    }
+    
     //~~~~~~~~~~~~~~ Test helpers ~~~~~~~~
 
     protected int[] rollAllAs(int rollValue) {
