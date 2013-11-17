@@ -40,15 +40,12 @@ public class AppTest {
     
     @Test
     public void game_score_equals_sum_of_frames_score() {
+        int sumOfFramesScore = 3;
         int[] frameScores = {1, 2};
-        int somOfFramesScore = 3;
         
-        int gameScore = 0;
-        for (int frameScore : frameScores) {
-            gameScore += frameScore;
-        }
+        int gameScore = computeGameScore(frameScores);
         
-        assertThat(gameScore, is(somOfFramesScore));
+        assertThat(gameScore, is(sumOfFramesScore));
     }
     
     
@@ -64,7 +61,12 @@ public class AppTest {
     
     //~~~~~~~~~~~~~~ Production ~~~~~~~~
     
-    protected int computeGameScore(int[] rolls) {
-        return 0;
+
+    protected int computeGameScore(int[] frameScores) {
+        int gameScore = 0;
+        for (int frameScore : frameScores) {
+            gameScore += frameScore;
+        }
+        return gameScore;
     }
 }
