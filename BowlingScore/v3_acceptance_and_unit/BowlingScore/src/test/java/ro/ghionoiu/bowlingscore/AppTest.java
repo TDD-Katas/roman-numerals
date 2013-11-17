@@ -14,16 +14,25 @@ import static org.hamcrest.CoreMatchers.*;
  */
 public class AppTest {
     
+    //~~~~~~~~~~~~~~ Production methods ~~~~~~~~
+
+    protected int computeGameScore(int[] rolls) {
+        return 0;
+    }
+    
+    //~~~~~~~~~~~~~~ Test methods ~~~~~~~~
+    
     @Test
     public void IT_gutter_game_score_is_0() {
-        int[] rolls = {0,0,0,0,0,0,0,0,0,0};
+        int[] rolls = new int[10];
+        for (int i = 0; i < rolls.length; i++) {
+            rolls[i] = 0;
+        }
         
         int gameScore = computeGameScore(rolls);
         
         assertThat(gameScore, is(0));
     }
-
-    protected int computeGameScore(int[] rolls) {
-        return 0;
-    }
+    
+    //~~~~~~~~~~~~~~ Helpers methods ~~~~~~~~
 }
