@@ -102,7 +102,7 @@ public class AppTest {
         int startingIndex = 1;
         int length = 2;
         
-        Frame frame = new Frame(startingIndex, length);
+        Frame frame = new Frame(anyRolls(), startingIndex, length);
         
         assertThat(frame.getEndingIndex(), is(startingIndex+length));
     }
@@ -122,18 +122,19 @@ public class AppTest {
     //~~~~ Rolls subsets
     
     @Test
-    public void frame_normal_rolls_are_rolls_between_starting_and_ending_index() {
-        Rolls rolls = Rolls.create(0, 1, 2, 3);
-        Frame frame = new Frame(0, 2);
-        Rolls expectedNormalRolls = Rolls.create(0, 1);
+    public void frame_normal_score_is_sum_of_rolls_between_starting_and_ending_index() {
+        Rolls rolls = Rolls.create(3, 2, 1, 0);
+        Frame frame = new Frame(rolls, 0, 2);
+        int expectedScore = 5;
         
-        Rolls normalRolls = getNormalRolls(rolls, frame);
+        int normalScore = 0;
+        for (int i = frame.getStartingIndex(); i < frame.getEndingIndex(); i++) {
+            normalScore += rolls.getValueAt(i);
+        }
         
-        assertThat(normalRolls, is(expectedNormalRolls));
+        assertThat(normalScore, is(expectedScore));
     }
-    
-    
-           
+         
     //~~~~~~~~~~~~~~ Unit Test helpers ~~~~~~~~
 
     
@@ -154,10 +155,6 @@ public class AppTest {
     
     protected Rolls firstRollNotMaximumRoll() {
         return Rolls.create(NORMAL_ROLL, NORMAL_ROLL);
-    }
-
-    protected Rolls getNormalRolls(Rolls rolls, Frame frame) {
-        return rolls.subset(frame.getStartingIndex(), frame.getEndingIndex());
     }
 
     //~~~~~~~~~~~~~~ Production ~~~~~~~~
@@ -197,14 +194,17 @@ public class AppTest {
     }
     
     static class Frame {
+        Rolls rolls;
         int startingIndex;
         int length;
 
-        public Frame(int startingIndex, int length) {
+        public Frame(Rolls rolls, int startingIndex, int length) {
+            this.rolls = rolls;
             this.startingIndex = startingIndex;
             this.length = length;
         }
         
+        //~~ Location
 
         public int getStartingIndex() {
             return startingIndex;
@@ -217,6 +217,8 @@ public class AppTest {
         public int getEndingIndex() {
             return startingIndex + length;
         }
+        
+        //~~ Score
         
         public int getScore() {
             throw new NotImplementedException();
@@ -238,38 +240,8 @@ public class AppTest {
             return array;
         }
         
-        public Rolls subset(int startingIndex, int endingIndex) {
-            return create(Arrays.copyOfRange(array, startingIndex, endingIndex));
-        } 
-                
-        //~~ Equals
-
-        @Override
-        public int hashCode() {
-            int hash = 3;
-            hash = 89 * hash + Arrays.hashCode(this.array);
-            return hash;
-        }
-
-        @Override
-        public boolean equals(Object obj) {
-            if (obj == null) {
-                return false;
-            }
-            if (getClass() != obj.getClass()) {
-                return false;
-            }
-            final Rolls other = (Rolls) obj;
-            if (!Arrays.equals(this.array, other.array)) {
-                return false;
-            }
-            return true;
-        }
-        
-        //To string
-        @Override
-        public String toString() {
-            return "Rolls{" + "array=" + Arrays.toString(array) + '}';
+        public int getValueAt(int index) {
+            return array[index];
         }
     }
     
@@ -296,7 +268,7 @@ public class AppTest {
 
         protected Frame createFrame(Rolls rolls,int startingIndex) {
             int length = computeFrameLength(rolls, startingIndex);
-            return new Frame(startingIndex, length);
+            return new Frame(rolls, startingIndex, length);
         }
     }
     
