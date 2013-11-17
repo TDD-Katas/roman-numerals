@@ -71,11 +71,11 @@ public class AppTest {
     }
     
     @Test
-    public void the_rolls_after_the_first_frame_example() {
+    public void the_remaining_rolls_after_the_first_frame() {
         Rolls rolls = Rolls.create(0, 1, 2, 3);
         Rolls expectedRollsAfterFrame = Rolls.create(2, 3);
         
-        Rolls frameRolls = rolls.getFirstFrameRolls();
+        Rolls frameRolls = getRemainingRollsAfterFirstFrame();
         
         assertThat(frameRolls, is(expectedRollsAfterFrame));
     }
@@ -103,9 +103,26 @@ public class AppTest {
 
     //~~~~~~~~~~~~~~ Production ~~~~~~~~
     
+    
+    protected int targetComputeGameScore(int[] rolls) {
+        return 0;
+    }
+    
+    protected int computeGameScore(int[] frameScores) {
+        int gameScore = 0;
+        for (int frameScore : frameScores) {
+            gameScore += frameScore;
+        }
+        return gameScore;
+    }
+    
+    protected Rolls getRemainingRollsAfterFirstFrame() {
+        return Rolls.create(2, 3);
+    }
+    
     static class Rolls {
         private int[] array;
-
+        
         public Rolls(int ... rolls) {
             this.array = rolls;
         }
@@ -113,7 +130,7 @@ public class AppTest {
         public static Rolls create(int ... rolls) {
             return new Rolls(rolls);
         }
-
+        
         public int[] getArray() {
             return array;
         }
@@ -127,14 +144,14 @@ public class AppTest {
         }
         
         //~~~~~~~ Equals impl
-
+        
         @Override
         public int hashCode() {
             int hash = 3;
             hash = 97 * hash + Arrays.hashCode(this.array);
             return hash;
         }
-
+        
         @Override
         public boolean equals(Object obj) {
             if (obj == null) {
@@ -155,18 +172,5 @@ public class AppTest {
         public String toString() {
             return "Rolls{" + "array=" + Arrays.toString(array) + '}';
         }
-    }
-    
-    protected int targetComputeGameScore(int[] rolls) {
-        return 0;
-    }
-    
-    
-    protected int computeGameScore(int[] frameScores) {
-        int gameScore = 0;
-        for (int frameScore : frameScores) {
-            gameScore += frameScore;
-        }
-        return gameScore;
     }
 }
