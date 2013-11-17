@@ -49,27 +49,27 @@ public class AppTest {
     public void first_frame_starts_at_index_0() {
         Rolls rolls = Rolls.create(NORMAL_ROLL, NORMAL_ROLL);
         
-        int firstFrameStartingIndex = getFirstFrameStartingIndex(rolls);
+        Frame firstFrame = getFirstFrame(rolls);
         
-        assertThat(firstFrameStartingIndex, is(0));
+        assertThat(firstFrame.getStartingIndex(), is(0));
     }
     
     @Test
     public void first_frame_ends_at_index_1_if_first_roll_is_maximum_roll() {
         Rolls rolls = Rolls.create(MAXIMUM_ROLL, NORMAL_ROLL);
         
-        int firstFrameEndingIndex = getFirstFrameEndingIndex(rolls);
+        Frame firstFrame = getFirstFrame(rolls);
         
-        assertThat(firstFrameEndingIndex, is(1));
+        assertThat(firstFrame.getEndingIndex(), is(1));
     }
         
     @Test
     public void first_frame_ends_at_index_2_if_first_roll_is_not_maximum_roll() {
         Rolls rolls = Rolls.create(NORMAL_ROLL, NORMAL_ROLL);
         
-        int firstFrameEndingIndex = getFirstFrameEndingIndex(rolls);
+        Frame firstFrame = getFirstFrame(rolls);
         
-        assertThat(firstFrameEndingIndex, is(2));
+        assertThat(firstFrame.getEndingIndex(), is(2));
     }
     
     //~~~~~~~~~~~~~~ Test helpers ~~~~~~~~
@@ -97,6 +97,13 @@ public class AppTest {
         return gameScore;
     }
 
+    
+    protected Frame getFirstFrame(Rolls rolls) {
+        int startingIndex = getFirstFrameStartingIndex(rolls);
+        int endingIndex = getFirstFrameEndingIndex(rolls);
+        return new Frame(startingIndex, endingIndex);
+    }
+    
     protected int getFirstFrameStartingIndex(Rolls rolls) {
         return 0;
     }
