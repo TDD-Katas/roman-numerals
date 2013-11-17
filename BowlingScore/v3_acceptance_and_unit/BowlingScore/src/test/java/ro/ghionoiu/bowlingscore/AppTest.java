@@ -15,6 +15,7 @@ import org.junit.Ignore;
  * @author Iulian Ghionoiu <iulian.ghionoiu@exenne.ro>
  */
 public class AppTest {
+    public static final int NORMAL_ROLL = 2;
     public static final int MAXIMUM_ROLL = 10;
     
     //~~~~~~~~~~~~~~ Integration Tests ~~~~~~~~
@@ -46,71 +47,29 @@ public class AppTest {
     
     @Test
     public void first_frame_starts_at_index_0() {
-        Rolls rolls = Rolls.create(0, 1, 2);
+        Rolls rolls = Rolls.create(NORMAL_ROLL, NORMAL_ROLL);
         
-        int firstFrameStartingIndex = 0;
+        int firstFrameStartingIndex = getFirstFrameStartingIndex(rolls);
         
         assertThat(firstFrameStartingIndex, is(0));
     }
     
     @Test
     public void first_frame_ends_at_index_1_if_first_roll_is_maximum_roll() {
-        Rolls rolls = Rolls.create(MAXIMUM_ROLL, 1, 2);
+        Rolls rolls = Rolls.create(MAXIMUM_ROLL, NORMAL_ROLL);
         
-        int firstFrameEndingIndex = 1;
+        int firstFrameEndingIndex = getFirstFrameEndingIndex(rolls);
         
         assertThat(firstFrameEndingIndex, is(1));
     }
         
     @Test
     public void first_frame_ends_at_index_2_if_first_roll_is_not_maximum_roll() {
-        Rolls rolls = Rolls.create(MAXIMUM_ROLL, 1, 2);
+        Rolls rolls = Rolls.create(NORMAL_ROLL, NORMAL_ROLL);
         
-        int firstFrameEndingIndex = 1;
+        int firstFrameEndingIndex = getFirstFrameEndingIndex(rolls);
         
-        assertThat(firstFrameEndingIndex, is(1));
-    }
-    
-    @Test
-    public void first_frame_is_first_roll_when_the_first_roll_is_maximum_roll() {
-        Rolls rolls = Rolls.create(MAXIMUM_ROLL, 1, 2);
-        Rolls expectedFrameRolls = Rolls.create(MAXIMUM_ROLL);
-        
-        Rolls frameRolls = rolls.getFirstFrameRolls();
-        
-        assertThat(frameRolls, is(expectedFrameRolls));
-    }    
-    
-    @Test
-    public void first_frame_is_the_first_two_rolls_when_the_first_roll_is_not_maximum_roll() {
-        Rolls rolls = Rolls.create(0, 1, 2);
-        Rolls expectedFrameRolls = Rolls.create(0, 1);
-        
-        Rolls frameRolls = rolls.getFirstFrameRolls();
-        
-        assertThat(frameRolls, is(expectedFrameRolls));
-    }
-    
-    @Test
-    public void the_remaining_rolls_after_the_first_frame() {
-        Rolls rolls = Rolls.create(0, 1, 2, 3);
-        Rolls firstFrameRolls = Rolls.create(0, 1);
-        Rolls expectedRollsAfterFrame = Rolls.create(2, 3);
-        
-        Rolls frameRolls = rolls.getRemainingRollsAfterFirstFrame(firstFrameRolls);
-        
-        assertThat(frameRolls, is(expectedRollsAfterFrame));
-    }
-    
-    @Test
-    public void second_frame_is_the_frame_after_the_rolls_of_first_frame() {
-        Rolls rolls = Rolls.create(0, 1, 2, 3);
-        Rolls firstFrameRolls = rolls.getFirstFrameRolls();
-        Rolls expectedRolls = Rolls.create(2, 3);
-        
-        Rolls rollsAfterFirstFrame = getSecondFrameRolls(rolls, firstFrameRolls);
-        
-        assertThat(rollsAfterFirstFrame, is(expectedRolls));
+        assertThat(firstFrameEndingIndex, is(2));
     }
     
     //~~~~~~~~~~~~~~ Test helpers ~~~~~~~~
@@ -138,10 +97,18 @@ public class AppTest {
         return gameScore;
     }
 
-    protected Rolls getSecondFrameRolls(Rolls rolls, Rolls firstFrameRolls) {
-        return rolls.getRemainingRollsAfterFirstFrame(firstFrameRolls).getFirstFrameRolls();
+    protected int getFirstFrameStartingIndex(Rolls rolls) {
+        return 0;
     }
-    
+
+    protected int getFirstFrameEndingIndex(Rolls rolls) {
+        if (rolls.getArray()[0] == MAXIMUM_ROLL) {
+            return 1;
+        } else {
+            return 2;
+        }
+    }
+
     static class Rolls {
         private int[] array;
         
@@ -157,48 +124,12 @@ public class AppTest {
             return array;
         }
         
-        public Rolls getFirstFrameRolls() {
+        public Rolls getFirstFrame() {
             if (array[0] == MAXIMUM_ROLL) {
                 return create(array[0]);
             } else {
                 return create(array[0], array[1]);
             }
-        }
-        
-        public Rolls getRemainingRollsAfterFirstFrame(Rolls firstFrameRolls) {
-            int firstFrameEnding = firstFrameRolls.getArray().length;
-            int totalLength = array.length;
-
-            return Rolls.create(Arrays.copyOfRange(array, firstFrameEnding, totalLength));
-        }
-        //~~~~~~~ Equals impl
-        
-        @Override
-        public int hashCode() {
-            int hash = 3;
-            hash = 97 * hash + Arrays.hashCode(this.array);
-            return hash;
-        }
-        
-        @Override
-        public boolean equals(Object obj) {
-            if (obj == null) {
-                return false;
-            }
-            if (getClass() != obj.getClass()) {
-                return false;
-            }
-            final Rolls other = (Rolls) obj;
-            if (!Arrays.equals(this.array, other.array)) {
-                return false;
-            }
-            return true;
-        }
-        
-        //~~~~~~~ To string
-        @Override
-        public String toString() {
-            return "Rolls{" + "array=" + Arrays.toString(array) + '}';
         }
     }
 }
