@@ -88,9 +88,9 @@ public class AppTest {
         int firstFrameEndingIndex = 2;
         Rolls rolls = firstFrameEndsAt(2);
         
-        int secondFrameStartingIndex = firstFrameEndingIndex;
+        Frame secondFrame = new Frame(firstFrameEndingIndex, 1);
         
-        assertThat(secondFrameStartingIndex, is(firstFrameEndingIndex));
+        assertThat(secondFrame.getStartingIndex(), is(firstFrameEndingIndex));
     }
     
     //~~~~~~~~~~~~~~ Test helpers ~~~~~~~~
