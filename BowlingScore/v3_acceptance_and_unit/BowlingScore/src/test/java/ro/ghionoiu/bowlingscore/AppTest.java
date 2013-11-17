@@ -128,8 +128,10 @@ public class AppTest {
         Frame frame = new Frame(rolls, 0, 2);
         int expectedScore = 5;
         
+        int startingPosition = frame.getStartingIndex();
+        int endingPosition = frame.getEndingIndex();
         int normalScore = 0;
-        for (int i = frame.getStartingIndex(); i < frame.getEndingIndex(); i++) {
+        for (int i = startingPosition; i < endingPosition; i++) {
             normalScore += rolls.getValueAt(i);
         }
         
