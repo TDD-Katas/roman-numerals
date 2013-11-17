@@ -73,9 +73,10 @@ public class AppTest {
     @Test
     public void the_remaining_rolls_after_the_first_frame() {
         Rolls rolls = Rolls.create(0, 1, 2, 3);
+        Rolls firstFrame = Rolls.create(0, 1);
         Rolls expectedRollsAfterFrame = Rolls.create(2, 3);
         
-        Rolls frameRolls = getRemainingRollsAfterFirstFrame();
+        Rolls frameRolls = getRemainingRollsAfterFirstFrame(rolls, firstFrame);
         
         assertThat(frameRolls, is(expectedRollsAfterFrame));
     }
@@ -116,7 +117,7 @@ public class AppTest {
         return gameScore;
     }
     
-    protected Rolls getRemainingRollsAfterFirstFrame() {
+    protected Rolls getRemainingRollsAfterFirstFrame(Rolls rolls, Rolls firstFrameRolls) {
         return Rolls.create(2, 3);
     }
     
