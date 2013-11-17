@@ -71,7 +71,7 @@ public class AppTest {
     }
     
     @Test
-    public void the_rolls_after_first_frame_example() {
+    public void second_frame_is_the_first_frame_for_the_rolls_after_first_frame() {
         Rolls rolls = Rolls.fromArray(0, 1, 2, 3);
         Rolls firstFrameRolls = Rolls.fromArray(0, 1);
         Rolls expectedRolls = Rolls.fromArray(2, 3);
