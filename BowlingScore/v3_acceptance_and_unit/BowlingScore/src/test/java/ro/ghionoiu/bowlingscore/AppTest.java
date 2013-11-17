@@ -118,10 +118,7 @@ public class AppTest {
     }
     
     protected Rolls getRemainingRollsAfterFirstFrame(Rolls rolls, Rolls firstFrameRolls) {
-        int endPos = firstFrameRolls.getArray().length;
-        int totalLength = rolls.getArray().length;
-        
-        return Rolls.create(Arrays.copyOfRange(rolls.getArray(), endPos, totalLength));
+        return rolls.getRemainingRollsAfterFirstFrame(firstFrameRolls);
     }
     
     static class Rolls {
@@ -145,6 +142,13 @@ public class AppTest {
             } else {
                 return create(array[0], array[1]);
             }
+        }
+        
+        public Rolls getRemainingRollsAfterFirstFrame(Rolls firstFrameRolls) {
+            int endPos = firstFrameRolls.getArray().length;
+            int totalLength = array.length;
+
+            return Rolls.create(Arrays.copyOfRange(array, endPos, totalLength));
         }
         
         //~~~~~~~ Equals impl
