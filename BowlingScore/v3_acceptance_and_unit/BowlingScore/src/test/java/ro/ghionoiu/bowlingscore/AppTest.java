@@ -85,13 +85,13 @@ public class AppTest {
     
     @Test
     public void the_Nth_frame_starts_at_previous_frame_ending_index() {
-        int previousFrameEndingIndex = 1;
-        Rolls rolls = previousFrameEndsAt(1);
+        Rolls rolls = anyRolls();
         int currentFrameNumber = 2;
         
         Frame currentFrame = rolls.getFrame(currentFrameNumber);
         
-        assertThat(currentFrame.getStartingIndex(), is(previousFrameEndingIndex));
+        Frame previousFrame = rolls.getFrame(currentFrameNumber-1);
+        assertThat(currentFrame.getStartingIndex(), is(previousFrame.getEndingIndex()));
     }
     
     //~~~~~~~~~~~~~~ Test helpers ~~~~~~~~
@@ -104,7 +104,7 @@ public class AppTest {
         return rolls;
     }
     protected Rolls anyRolls() {
-        return Rolls.create(NORMAL_ROLL, NORMAL_ROLL);
+        return Rolls.create(NORMAL_ROLL, NORMAL_ROLL, NORMAL_ROLL, NORMAL_ROLL);
     }
     
     protected Rolls firstRollIsMaximumRoll() {
@@ -113,10 +113,6 @@ public class AppTest {
     
     protected Rolls firstRollNotMaximumRoll() {
         return Rolls.create(NORMAL_ROLL, NORMAL_ROLL);
-    }
-    
-    protected Rolls previousFrameEndsAt(int firstFrameEnding) {
-        return Rolls.create(MAXIMUM_ROLL, NORMAL_ROLL, NORMAL_ROLL, NORMAL_ROLL);
     }
 
     //~~~~~~~~~~~~~~ Production ~~~~~~~~
