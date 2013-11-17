@@ -38,7 +38,14 @@ public class AppTest {
     
     //~~~~~~~~~~~~~~ Unit Tests ~~~~~~~~
     
-    
+    @Test
+    public void game_score_equals_sum_of_frames_score() {
+        int somOfFramesScore = 1;
+        
+        int gameScore = somOfFramesScore;
+        
+        assertThat(gameScore, is(somOfFramesScore));
+    }
     
     
     //~~~~~~~~~~~~~~ Test helpers ~~~~~~~~
