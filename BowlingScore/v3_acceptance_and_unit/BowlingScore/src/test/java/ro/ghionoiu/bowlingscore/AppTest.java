@@ -118,7 +118,10 @@ public class AppTest {
     }
     
     protected Rolls getRemainingRollsAfterFirstFrame(Rolls rolls, Rolls firstFrameRolls) {
-        return Rolls.create(2, 3);
+        int endPos = firstFrameRolls.getArray().length;
+        int totalLength = rolls.getArray().length;
+        
+        return Rolls.create(Arrays.copyOfRange(rolls.getArray(), endPos, totalLength));
     }
     
     static class Rolls {
