@@ -85,11 +85,12 @@ public class AppTest {
     
     @Test
     public void second_frame_starts_at_first_frame_ending_index() {
-        int firstFrameEndingIndex = 1;
+        int firstFrameEndingIndex = 2;
+        Rolls rolls = firstFrameEndsAt(2);
         
-        int firstFrameStartingIndex = firstFrameEndingIndex;
+        int secondFrameStartingIndex = firstFrameEndingIndex;
         
-        assertThat(firstFrameStartingIndex, is(firstFrameEndingIndex));
+        assertThat(secondFrameStartingIndex, is(firstFrameEndingIndex));
     }
     
     //~~~~~~~~~~~~~~ Test helpers ~~~~~~~~
