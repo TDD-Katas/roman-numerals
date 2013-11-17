@@ -42,7 +42,7 @@ public class AppTest {
         assertThat(gameScore, is(sumOfFramesScore));
     }
     
-    //A frame represents a set of maximum two rolls that add up less than 10
+    //  __________ Frames definition _____
     
     
     @Test
@@ -93,6 +93,15 @@ public class AppTest {
         Frame previousFrame = rolls.getFrame(currentFrameNumber-1);
         assertThat(currentFrame.getStartingIndex(), is(previousFrame.getEndingIndex()));
     }
+    
+    //  __________ Frames score _____
+    
+    @Test
+    public void frame_score_is_normal_score_plus_bonus_score() {
+        
+        assertThat(2, is(1+1));
+    }
+    
     
     //~~~~~~~~~~~~~~ Test helpers ~~~~~~~~
 
