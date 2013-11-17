@@ -16,10 +16,14 @@ public class AppTest {
     
     @Test
     public void IT_gutter_game_score_is_0() {
+        int[] rolls = {0,0,0,0,0,0,0,0,0,0};
         
-        
-        int gameScore = 0;
+        int gameScore = computeGameScore(rolls);
         
         assertThat(gameScore, is(0));
+    }
+
+    protected int computeGameScore(int[] rolls) {
+        return 0;
     }
 }
