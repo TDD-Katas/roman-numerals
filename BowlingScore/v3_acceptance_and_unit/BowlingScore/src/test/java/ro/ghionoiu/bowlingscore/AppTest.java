@@ -9,6 +9,9 @@ import org.junit.Test;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.eq;
 import org.junit.Ignore;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -27,21 +30,37 @@ public class AppTest {
     public void IT_gutter_game_score_is_0() {
         int[] rolls = rollAllAs(0);
         
-        int gameScore = targetComputeGameScore(rolls);
+        int gameScore = computeGameScore(rolls);
         
         assertThat(gameScore, is(0));
+    }
+    
+    
+    //~~~~~~~~~~~~~~ Integration Test helpers ~~~~~~~~
+    
+    protected int computeGameScore(int[] rolls) {
+        Game game = new Game();
+        return game.computeScore(rolls);
     }
     
     //~~~~~~~~~~~~~~ Unit Tests ~~~~~~~~
     
     @Test
     public void game_score_equals_sum_of_frames_score() {
-        Game game = new Game(null);
-        FrameExtractorBuilder frameExtractorBuilder = mock(FrameExtractorBuilder.class);
+        FrameExtractor frameExtractor = mock(FrameExtractor.class);
+        int[] frameScores = { 1, 10 };
+        for (int i = 0; i < frameScores.length; i++) {
+            int frameScore = frameScores[i];
+            Frame frame = mock(Frame.class);
+            when(frame.getScore()).thenReturn(frameScore);
+            when(frameExtractor.getFrame(any(Rolls.class), eq(i)))
+                    .thenReturn(frame);
+        }
+        Game game = new Game(frameScores.length, frameExtractor);
         
         int gameScore = game.computeScore(anyRolls().getArray());
         
-        assertThat(gameScore, is(0));
+        assertThat(gameScore, is(11));
     }
     
     //  __________ Frames definition _____
@@ -50,9 +69,9 @@ public class AppTest {
     @Test
     public void first_frame_starts_at_index_0() {
         Rolls rolls = anyRolls();
-        FrameExtractor frameExtractor = new FrameExtractor(rolls);
+        FrameExtractor frameExtractor = new FrameExtractor();
         
-        Frame firstFrame = frameExtractor.getFirstFrame();
+        Frame firstFrame = frameExtractor.getFrame(rolls, 0);
         
         assertThat(firstFrame.getStartingIndex(), is(0));
     }
@@ -60,9 +79,9 @@ public class AppTest {
     @Test
     public void first_frame_has_a_length_of_1_if_its_first_roll_is_maximum_value() {
         Rolls rolls = firstRollIsMaximumRoll();
-        FrameExtractor frameExtractor = new FrameExtractor(rolls);
+        FrameExtractor frameExtractor = new FrameExtractor();
         
-        Frame firstFrame = frameExtractor.getFirstFrame();
+        Frame firstFrame = frameExtractor.getFrame(rolls, 0);
         
         assertThat(firstFrame.getLength(), is(1));
     }
@@ -70,9 +89,9 @@ public class AppTest {
     @Test
     public void first_frame_has_a_length_of_2_if_its_first_roll_is_maximum_value() {
         Rolls rolls = firstRollNotMaximumRoll();
-        FrameExtractor frameExtractor = new FrameExtractor(rolls);
+        FrameExtractor frameExtractor = new FrameExtractor();
         
-        Frame firstFrame = frameExtractor.getFirstFrame();
+        Frame firstFrame = frameExtractor.getFrame(rolls, 0);
         
         assertThat(firstFrame.getLength(), is(2));
     }
@@ -91,12 +110,12 @@ public class AppTest {
     @Test
     public void the_Nth_frame_starts_at_previous_frame_ending_index() {
         Rolls rolls = anyRolls();
-        FrameExtractor frameExtractor = new FrameExtractor(rolls);
+        FrameExtractor frameExtractor = new FrameExtractor();
         int currentFrameNumber = 1;
         
-        Frame currentFrame = frameExtractor.getFrame(currentFrameNumber);
+        Frame currentFrame = frameExtractor.getFrame(rolls, currentFrameNumber);
         
-        Frame previousFrame = frameExtractor.getFrame(currentFrameNumber-1);
+        Frame previousFrame = frameExtractor.getFrame(rolls, currentFrameNumber-1);
         assertThat(currentFrame.getStartingIndex(), is(previousFrame.getEndingIndex()));
     }
     
@@ -123,8 +142,9 @@ public class AppTest {
     }
     
            
-    //~~~~~~~~~~~~~~ Test helpers ~~~~~~~~
+    //~~~~~~~~~~~~~~ Unit Test helpers ~~~~~~~~
 
+    
     protected int[] rollAllAs(int rollValue) {
         int[] rolls = new int[10];
         for (int i = 0; i < rolls.length; i++) {
@@ -146,34 +166,30 @@ public class AppTest {
 
     //~~~~~~~~~~~~~~ Production ~~~~~~~~
     
-    
-    protected int targetComputeGameScore(int[] rolls) {
-        Rolls gameRolls = Rolls.create(rolls);
+    static class Game {
+        public static final int DEFAUT_NUMBER_OF_FRAMES = 10;
+        private int numberOfFrames;
+        private FrameExtractor frameExtractor;
         
-        int gameScore = 0;
-        FrameExtractor frameExtractor = new FrameExtractor(gameRolls);
-        for (int i = 0; i < 10; i++) {
-            Frame frame = frameExtractor.getFrame(0);
-            gameScore += frame.getScore();
+        public Game() {
+            this(DEFAUT_NUMBER_OF_FRAMES, new FrameExtractor());
         }
         
-        return gameScore;
-    }
-    
-    static class Game {
-        private FrameExtractorBuilder frameExtractorBuilder;
+        public Game(FrameExtractor frameExtractor) {
+            this(DEFAUT_NUMBER_OF_FRAMES, frameExtractor);
+        }
         
-        public Game(FrameExtractorBuilder frameExtractorBuilder) {
-            this.frameExtractorBuilder = frameExtractorBuilder;
+        public Game(int numberOfFrames, FrameExtractor frameExtractor) {
+            this.numberOfFrames = numberOfFrames;
+            this.frameExtractor = frameExtractor;
         }
         
         public int computeScore(int[] rolls) {
             Rolls gameRolls = Rolls.create(rolls);
 
             int gameScore = 0;
-            FrameExtractor frameExtractor = frameExtractorBuilder.createExtractorFor(gameRolls);
-            for (int i = 0; i < 10; i++) {
-                Frame frame = frameExtractor.getFrame(0);
+            for (int i = 0; i < numberOfFrames; i++) {
+                Frame frame = frameExtractor.getFrame(gameRolls, i);
                 gameScore += frame.getScore();
             }
 
@@ -261,43 +277,30 @@ public class AppTest {
         }
     }
     
-    static class FrameExtractorBuilder {
-        public FrameExtractor createExtractorFor(Rolls rolls) {
-            return new FrameExtractor(rolls);
-        }
-    }
-    
     static class FrameExtractor {
-        Rolls rolls;
-
-        public FrameExtractor(Rolls rolls) {
-            this.rolls = rolls;
-        }
-        
-        
-        public Frame getFrame(int frameNumber) {
+        public Frame getFrame(Rolls rolls, int frameNumber) {
+            int startingIndex;
             if (frameNumber == 0) {
-                return getFirstFrame();
+                startingIndex = 0;
             } else {
-                Frame previousFrame = getFrame(frameNumber-1);
-                int startingIndex = previousFrame.getEndingIndex();
-                int length = computeFrameLength(startingIndex);
-                return new Frame(startingIndex, length);
+                Frame previousFrame = getFrame(rolls, frameNumber-1);
+                startingIndex = previousFrame.getEndingIndex();
             }
+            
+            return createFrame(rolls, startingIndex);
         }
         
-        public Frame getFirstFrame() {
-            int startingIndex = 0;
-            int length = computeFrameLength(startingIndex);
-            return new Frame(startingIndex, length);
-        }
-        
-        public int computeFrameLength(int startingPosition) {
+        public int computeFrameLength(Rolls rolls, int startingPosition) {
             if (rolls.getArray()[startingPosition] == MAXIMUM_ROLL) {
                 return 1;
             } else {
                 return 2;
             }
+        }
+
+        protected Frame createFrame(Rolls rolls,int startingIndex) {
+            int length = computeFrameLength(rolls, startingIndex);
+            return new Frame(startingIndex, length);
         }
     }
     
