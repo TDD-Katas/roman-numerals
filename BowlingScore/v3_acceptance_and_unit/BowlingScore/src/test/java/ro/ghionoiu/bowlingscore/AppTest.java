@@ -4,7 +4,6 @@
  */
 package ro.ghionoiu.bowlingscore;
 
-import java.util.Arrays;
 import org.junit.Test;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.CoreMatchers.is;
@@ -128,12 +127,7 @@ public class AppTest {
         Frame frame = new Frame(rolls, 0, 2);
         int expectedScore = 5;
         
-        int startingPosition = frame.getStartingIndex();
-        int endingPosition = frame.getEndingIndex();
-        int normalScore = 0;
-        for (int i = startingPosition; i < endingPosition; i++) {
-            normalScore += rolls.getValueAt(i);
-        }
+        int normalScore = frame.getNormalScore();
         
         assertThat(normalScore, is(expectedScore));
     }
@@ -226,6 +220,12 @@ public class AppTest {
         public int getScore() {
             throw new NotImplementedException();
         }
+        
+        protected int getNormalScore() {
+            int startingPosition = this.getStartingIndex();
+            int endingPosition = this.getEndingIndex();
+            return rolls.getSumOfRolls(startingPosition, endingPosition);
+        }
     }
     
     static class Rolls {
@@ -242,6 +242,15 @@ public class AppTest {
         public int getValueAt(int index) {
             return array[index];
         }
+        
+        public int getSumOfRolls(int startingPosition, int endingPosition) {
+            int sum = 0;
+            for (int i = startingPosition; i < endingPosition; i++) {
+                sum += this.getValueAt(i);
+            }
+            return sum;
+        }
+                
     }
     
     static class FrameExtractor {
