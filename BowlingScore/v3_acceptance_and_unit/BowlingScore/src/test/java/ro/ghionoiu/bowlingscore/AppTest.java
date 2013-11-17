@@ -108,7 +108,27 @@ public class AppTest {
             return 2;
         }
     }
+    
+    static class Frame {
+        int startingIndex;
+        int endingIndex;
 
+        public Frame(int startingIndex, int endingIndex) {
+            this.startingIndex = startingIndex;
+            this.endingIndex = endingIndex;
+        }
+
+        public int getStartingIndex() {
+            return startingIndex;
+        }
+
+        public int getEndingIndex() {
+            return endingIndex;
+        }
+        
+        
+    }
+    
     static class Rolls {
         private int[] array;
         
@@ -122,14 +142,6 @@ public class AppTest {
         
         public int[] getArray() {
             return array;
-        }
-        
-        public Rolls getFirstFrame() {
-            if (array[0] == MAXIMUM_ROLL) {
-                return create(array[0]);
-            } else {
-                return create(array[0], array[1]);
-            }
         }
     }
 }
