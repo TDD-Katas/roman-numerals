@@ -24,13 +24,7 @@ public class AppTest {
     public static final int NORMAL_ROLL = 2;
     public static final int MAXIMUM_ROLL = 10;
 
-
-    
     //~~~~~~~~~~~~~~ Integration Tests ~~~~~~~~
-    
-
-    
-    
     
     @Test
     public void IT_gutter_game() {
@@ -154,15 +148,48 @@ public class AppTest {
     }
     
     @Test
-    public void frame_score_equals_its_normal_score() {
+    public void frame_score_equals_its_normal_score_plus_bonus_score() {
         Rolls rolls = Rolls.create(3, 2, 1, 0);
         Frame frame = new Frame(rolls, 0, 2);
         
         int frameScore = frame.getScore();
         
-        assertThat(frameScore, is(frame.getNormalScore()));
+        assertThat(frameScore, is(frame.getNormalScore()+frame.getBonusScore("open")));
     }
-         
+       
+    @Test
+    public void frame_bonus_score_for_open_frame_is_0() {
+        String frameType = "open";
+        Rolls rolls = Rolls.create(3, 2, 1, 0);
+        Frame frame = new Frame(rolls, 0, 2);
+        
+        int bonusScore = frame.getBonusScore(frameType);
+        
+        assertThat(bonusScore, is(0));
+    }
+    
+    @Test
+    public void frame_bonus_score_for_spare_frame_is_value_of_next_roll() {
+        String frameType = "spare";
+        Rolls rolls = Rolls.create(3, 2, 1, 0);
+        Frame frame = new Frame(rolls, 0, 2);
+        
+        int bonusScore = frame.getBonusScore(frameType);
+        
+        assertThat(bonusScore, is(rolls.getValueAt(2)));
+    }
+    
+    @Test
+    public void frame_bonus_score_for_strike_frame_is_value_of_next_two_rolls() {
+        String frameType = "strike";
+        Rolls rolls = Rolls.create(0, 1, 2, 3);
+        Frame frame = new Frame(rolls, 0, 2);
+        
+        int bonusScore = frame.getBonusScore(frameType);
+        
+        assertThat(bonusScore, is(rolls.getValueAt(2) + rolls.getValueAt(3)));
+    }
+    
     //~~~~~~~~~~~~~~ Unit Test helpers ~~~~~~~~
 
     protected Rolls anyRolls() {
@@ -262,6 +289,20 @@ public class AppTest {
             int startingPosition = this.getStartingIndex();
             int endingPosition = this.getEndingIndex();
             return rolls.getSumOfRolls(startingPosition, endingPosition);
+        }
+
+        protected int getBonusScore(String frameType) {
+            if ("open".equals(frameType)) {
+                return 0;
+            } else 
+            if ("spare".equals(frameType)) {
+                return rolls.getValueAt(this.getEndingIndex());
+            } else
+            if ("strike".equals(frameType)) {
+                return rolls.getValueAt(this.getEndingIndex()) + rolls.getValueAt(this.getEndingIndex()+1);
+            }
+            
+            return 0;
         }
     }
     
