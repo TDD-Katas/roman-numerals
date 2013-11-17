@@ -53,11 +53,11 @@ public class AppTest {
     @Test
     public void first_frame_is_first_roll_when_the_first_roll_is_maximum_roll() {
         Rolls rolls = new Rolls( new int[]{MAXIMUM_ROLL, 1, 2});
-        int[] expectedFrame = {MAXIMUM_ROLL};
+        Rolls expectedFrameRolls = new Rolls(new int[]{MAXIMUM_ROLL});
         
-        int[] frame = getFirstFrame(rolls.getArray());
+        Rolls frameRolls = new Rolls(getFirstFrame(rolls.getArray()));
         
-        assertThat(frame, is(expectedFrame));
+        assertThat(frameRolls, is(expectedFrameRolls));
     }    
     
     @Test
@@ -107,6 +107,7 @@ public class AppTest {
         private int[] rolls;
 
         public Rolls(int[] rolls) {
+            this.rolls = rolls;
         }
 
         public int[] getArray() {
