@@ -111,6 +111,14 @@ public class AppTest {
         assertThat(normalRolls, is(expectedNormalRolls));
     }
     
+    @Test
+    public void frame_score_equals_normal_rolls_value() {
+        int normalRollsValue = 1;
+        
+        int frameScore = normalRollsValue;
+        
+        assertThat(frameScore, is(normalRollsValue));
+    }
     
            
     //~~~~~~~~~~~~~~ Test helpers ~~~~~~~~
