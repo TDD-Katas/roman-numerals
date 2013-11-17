@@ -72,11 +72,11 @@ public class AppTest {
     
     @Test
     public void the_rolls_after_first_frame_example() {
-        int[] rolls = {0, 1, 2, 3};
-        int[] firstFrame = {0, 1};
-        int[] expectedRolls = {2, 3};
+        Rolls rolls = Rolls.fromArray(0, 1, 2, 3);
+        Rolls firstFrameRolls = Rolls.fromArray(0, 1);
+        Rolls expectedRolls = Rolls.fromArray(2, 3);
         
-        int[] rollsAfterFirstFrame = {2, 3};
+        Rolls rollsAfterFirstFrame = Rolls.fromArray(2, 3);
         
         assertThat(rollsAfterFirstFrame, is(expectedRolls));
     }
@@ -115,6 +115,8 @@ public class AppTest {
                 return fromArray(rolls[0], rolls[1]);
             }
         }
+        
+        //~~~~~~~ Equals impl
 
         @Override
         public int hashCode() {
