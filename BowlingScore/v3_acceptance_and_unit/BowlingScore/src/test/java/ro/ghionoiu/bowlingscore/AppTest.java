@@ -7,6 +7,7 @@ package ro.ghionoiu.bowlingscore;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
+import org.junit.Ignore;
 
 /**
  *
@@ -18,12 +19,21 @@ public class AppTest {
     
     @Test
     public void IT_gutter_game_score_is_0() {
-        int rollValue = 0;
-        int[] rolls = rollAllAs(rollValue);
+        int[] rolls = rollAllAs(0);
         
         int gameScore = computeGameScore(rolls);
         
         assertThat(gameScore, is(0));
+    }
+    
+    @Ignore
+    @Test
+    public void IT_game_with_all_one_score_is_20() {
+        int[] rolls = rollAllAs(1);
+        
+        int gameScore = computeGameScore(rolls);
+        
+        assertThat(gameScore, is(20));
     }
     
     //~~~~~~~~~~~~~~ Unit Tests ~~~~~~~~
