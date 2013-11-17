@@ -55,7 +55,7 @@ public class AppTest {
         Rolls rolls = asRolls(MAXIMUM_ROLL, 1, 2);
         Rolls expectedFrameRolls = asRolls(MAXIMUM_ROLL);
         
-        Rolls frameRolls = asRolls(getFirstFrame(rolls.getArray()));
+        Rolls frameRolls = rolls.getFirstFrameRolls();
         
         assertThat(frameRolls, is(expectedFrameRolls));
     }    
@@ -65,7 +65,7 @@ public class AppTest {
         Rolls rolls = asRolls(0, 1, 2);
         Rolls expectedFrameRolls = asRolls(0, 1);
         
-        Rolls frameRolls = asRolls(getFirstFrame(rolls.getArray()));
+        Rolls frameRolls = rolls.getFirstFrameRolls();
         
         assertThat(frameRolls, is(expectedFrameRolls));
     }
@@ -109,7 +109,11 @@ public class AppTest {
         }
         
         public Rolls getFirstFrameRolls() {
-            return asRolls(getFirstFrame(rolls));
+            if (rolls[0] == MAXIMUM_ROLL) {
+                return asRolls(rolls[0]);
+            } else {
+                return asRolls(rolls[0], rolls[1]);
+            }
         }
 
         @Override
@@ -146,13 +150,5 @@ public class AppTest {
             gameScore += frameScore;
         }
         return gameScore;
-    }
-
-    protected int[] getFirstFrame(int[] rolls) {
-        if (rolls[0] == MAXIMUM_ROLL) {
-            return new int[] {rolls[0]};
-        } else {
-            return new int[] {rolls[0], rolls[1]};
-        }
     }
 }
