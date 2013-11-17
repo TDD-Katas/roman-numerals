@@ -20,7 +20,7 @@ public class AppTest {
         return 0;
     }
     
-    //~~~~~~~~~~~~~~ Test methods ~~~~~~~~
+    //~~~~~~~~~~~~~~ Integration Tests ~~~~~~~~
     
     @Test
     public void IT_gutter_game_score_is_0() {
@@ -33,6 +33,11 @@ public class AppTest {
         
         assertThat(gameScore, is(0));
     }
+    
+    //~~~~~~~~~~~~~~ Unit Tests ~~~~~~~~
+    
+    
+    
     
     //~~~~~~~~~~~~~~ Helpers methods ~~~~~~~~
 }
