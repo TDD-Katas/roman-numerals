@@ -48,8 +48,9 @@ public class AppTest {
     @Test
     public void first_frame_starts_at_index_0() {
         Rolls rolls = anyRolls();
+        FrameExtractor frameExtractor = new FrameExtractor(rolls);
         
-        Frame firstFrame = rolls.getFirstFrame();
+        Frame firstFrame = frameExtractor.getFirstFrame();
         
         assertThat(firstFrame.getStartingIndex(), is(0));
     }
@@ -57,8 +58,9 @@ public class AppTest {
     @Test
     public void first_frame_has_a_length_of_1_if_its_first_roll_is_maximum_value() {
         Rolls rolls = firstRollIsMaximumRoll();
+        FrameExtractor frameExtractor = new FrameExtractor(rolls);
         
-        Frame firstFrame = rolls.getFirstFrame();
+        Frame firstFrame = frameExtractor.getFirstFrame();
         
         assertThat(firstFrame.getLength(), is(1));
     }
@@ -66,8 +68,9 @@ public class AppTest {
     @Test
     public void first_frame_has_a_length_of_2_if_its_first_roll_is_maximum_value() {
         Rolls rolls = firstRollNotMaximumRoll();
+        FrameExtractor frameExtractor = new FrameExtractor(rolls);
         
-        Frame firstFrame = rolls.getFirstFrame();
+        Frame firstFrame = frameExtractor.getFirstFrame();
         
         assertThat(firstFrame.getLength(), is(2));
     }
@@ -86,11 +89,12 @@ public class AppTest {
     @Test
     public void the_Nth_frame_starts_at_previous_frame_ending_index() {
         Rolls rolls = anyRolls();
+        FrameExtractor frameExtractor = new FrameExtractor(rolls);
         int currentFrameNumber = 2;
         
-        Frame currentFrame = rolls.getFrame(currentFrameNumber);
+        Frame currentFrame = frameExtractor.getFrame(currentFrameNumber);
         
-        Frame previousFrame = rolls.getFrame(currentFrameNumber-1);
+        Frame previousFrame = frameExtractor.getFrame(currentFrameNumber-1);
         assertThat(currentFrame.getStartingIndex(), is(previousFrame.getEndingIndex()));
     }
     
@@ -202,34 +206,40 @@ public class AppTest {
         public int[] getArray() {
             return array;
         }
+    }
+    
+    static class FrameExtractor {
+        Rolls rolls;
+
+        public FrameExtractor(Rolls rolls) {
+            this.rolls = rolls;
+        }
         
-        protected Frame getFirstFrame() {
-            int startingIndex = getFirstFrameStartingIndex();
-            int length = getFrameLength(startingIndex);
+        
+        public Frame getFrame(int frameNumber) {
+            if (frameNumber == 1) {
+                return getFirstFrame();
+            } else {
+                Frame previousFrame = getFrame(frameNumber-1);
+                int startingIndex = previousFrame.getEndingIndex();
+                int length = computeFrameLength(startingIndex);
+                return new Frame(startingIndex, length);
+            }
+        }
+        
+        public Frame getFirstFrame() {
+            int startingIndex = 0;
+            int length = computeFrameLength(startingIndex);
             return new Frame(startingIndex, length);
         }
-
-        protected int getFirstFrameStartingIndex() {
-            return 0;
-        }
-
-        protected int getFrameLength(int statingPosition) {
-            if (array[statingPosition] == MAXIMUM_ROLL) {
+        
+        public int computeFrameLength(int startingPosition) {
+            if (rolls.getArray()[startingPosition] == MAXIMUM_ROLL) {
                 return 1;
             } else {
                 return 2;
             }
         }
-        
-        protected Frame getFrame(int frameNumber) {
-            if (frameNumber == 1) {
-                return getFirstFrame();
-            } else {
-                Frame prevoiusFrame = getFrame(frameNumber-1);
-                int startingIndex = prevoiusFrame.getEndingIndex();
-                int length = getFrameLength(startingIndex);
-                return new Frame(startingIndex, length);
-            }
-        }
     }
+    
 }
