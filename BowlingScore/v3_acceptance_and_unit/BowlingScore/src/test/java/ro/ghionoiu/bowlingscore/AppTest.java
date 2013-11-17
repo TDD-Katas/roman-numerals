@@ -87,7 +87,7 @@ public class AppTest {
         Rolls firstFrameRolls = rolls.getFirstFrameRolls();
         Rolls expectedRolls = Rolls.create(2, 3);
         
-        Rolls rollsAfterFirstFrame = rolls.getRemainingRollsAfterFirstFrame(firstFrameRolls).getFirstFrameRolls();
+        Rolls rollsAfterFirstFrame = getSecondFrameRolls(rolls, firstFrameRolls);
         
         assertThat(rollsAfterFirstFrame, is(expectedRolls));
     }
@@ -115,6 +115,10 @@ public class AppTest {
             gameScore += frameScore;
         }
         return gameScore;
+    }
+
+    protected Rolls getSecondFrameRolls(Rolls rolls, Rolls firstFrameRolls) {
+        return rolls.getRemainingRollsAfterFirstFrame(firstFrameRolls).getFirstFrameRolls();
     }
     
     static class Rolls {
@@ -146,7 +150,6 @@ public class AppTest {
 
             return Rolls.create(Arrays.copyOfRange(array, firstFrameEnding, totalLength));
         }
-        
         //~~~~~~~ Equals impl
         
         @Override
