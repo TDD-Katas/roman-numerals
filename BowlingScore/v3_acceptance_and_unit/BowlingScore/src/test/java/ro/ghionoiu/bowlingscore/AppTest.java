@@ -71,16 +71,6 @@ public class AppTest {
     }
     
     @Test
-    public void second_frame_is_the_first_frame_from_the_rolls_after_first_frame() {
-        Rolls rollsAfterFirstFrame = asRolls(0, 1, 2);
-        Rolls expectedSecondFrameRolls = asRolls(0, 1);
-        
-        Rolls secondFrameRolls = asRolls(getFirstFrame(rollsAfterFirstFrame.getArray()));
-        
-        assertThat(secondFrameRolls, is(expectedSecondFrameRolls));
-    }
-    
-    @Test
     public void the_rolls_after_first_frame_example() {
         int[] rolls = {0, 1, 2, 3};
         int[] firstFrame = {0, 1};
@@ -116,6 +106,10 @@ public class AppTest {
 
         public int[] getArray() {
             return rolls;
+        }
+        
+        public Rolls getFirstFrameRolls() {
+            return asRolls(getFirstFrame(rolls));
         }
 
         @Override
