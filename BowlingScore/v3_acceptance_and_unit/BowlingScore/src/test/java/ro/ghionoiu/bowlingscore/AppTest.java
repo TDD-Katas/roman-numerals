@@ -108,10 +108,16 @@ public class AppTest {
     
 
     @Test
-    public void frame_normal_score_is_sum_of_its_rolls() {
-        int sumOfRolls = 1;
+    public void frame_normal_score_is_sum_of_rolls_between_starting_and_ending_index() {
+        int sumOfRolls = 3;
+        Rolls rolls = Rolls.create(0, 1, 2, 3);
+        Frame frame = new Frame(1, 2);
         
-        int frameNormalScore = sumOfRolls;
+        int frameNormalScore = 0;
+        int[] array = rolls.getArray();
+        for (int i = frame.getStartingIndex(); i < frame.getEndingIndex(); i++) {
+            frameNormalScore += array[i];
+        }
         
         assertThat(frameNormalScore, is(sumOfRolls));
     }
