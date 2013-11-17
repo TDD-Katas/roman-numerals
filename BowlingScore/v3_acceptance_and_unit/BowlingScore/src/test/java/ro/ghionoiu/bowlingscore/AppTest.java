@@ -46,16 +46,38 @@ public class AppTest {
         assertThat(gameScore, is(20));
     }
     
-    @Ignore
     @Test
-    public void IT_first_frame_spare_rest_is_one() {
+    public void IT_first_frame_spare() {
         RollsBuilder rollsBuilder = new RollsBuilder();
         rollsBuilder.rollMany(5, 2);
-        rollsBuilder.rollMany(1, 18);
+        rollsBuilder.roll(1);
+        rollsBuilder.rollMany(0, 17);
         
         int gameScore = computeGameScore(rollsBuilder);
         
-        assertThat(gameScore, is(29));
+        assertThat(gameScore, is(12));
+    }
+    
+    @Test
+    public void IT_first_frame_strike() {
+        RollsBuilder rollsBuilder = new RollsBuilder();
+        rollsBuilder.roll(10);
+        rollsBuilder.rollMany(1, 2);
+        rollsBuilder.rollMany(0, 17);
+        
+        int gameScore = computeGameScore(rollsBuilder);
+        
+        assertThat(gameScore, is(14));
+    }
+    
+    @Test
+    public void IT_perfect_game() {
+        RollsBuilder rollsBuilder = new RollsBuilder();
+        rollsBuilder.rollMany(10, 12);
+        
+        int gameScore = computeGameScore(rollsBuilder);
+        
+        assertThat(gameScore, is(300));
     }
     
     //~~~~~~~~~~~~~~ Integration Test helpers ~~~~~~~~
@@ -148,8 +170,8 @@ public class AppTest {
     
     @Test
     public void frame_score_equals_its_normal_score_plus_bonus_score() {
-        Rolls rolls = Rolls.create(3, 2, 1, 0);
-        Frame frame = new Frame(rolls, 0, 2);
+        Rolls rolls = Rolls.create(10, 2, 3);
+        Frame frame = new Frame(rolls, 0, 1);
         
         int frameScore = frame.getScore();
         
@@ -352,7 +374,7 @@ public class AppTest {
         //~~ Score
         
         public int getScore() {
-            return getNormalScore();
+            return getNormalScore()+getBonusScore();
         }
         
         protected int getNormalScore() {
