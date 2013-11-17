@@ -42,9 +42,13 @@ public class AppTest {
     //A frame represents a set of maximum two rolls that add up less than 10
     
     @Test
-    public void a_frame_consists_of_maximum_2_rolls() {
+    public void a_frame_is_like_this() {
+        int[] rolls = {0, 1, 2};
+        int[] expectedFrame = {0, 1};
         
-        assertThat(true, is(true));
+        int[] frame = {0, 1};
+        
+        assertThat(frame, is(expectedFrame));
     }
     
     @Test
