@@ -84,13 +84,14 @@ public class AppTest {
     }
     
     @Test
-    public void second_frame_starts_at_first_frame_ending_index() {
-        int firstFrameEndingIndex = 2;
-        Rolls rolls = firstFrameEndsAt(2);
+    public void the_Nth_frame_starts_at_previous_frame_ending_index() {
+        int previousFrameEndingIndex = 1;
+        Rolls rolls = previousFrameEndsAt(1);
+        int currentFrameNumber = 2;
         
-        Frame secondFrame = rolls.getSecondFrame();
+        Frame currentFrame = rolls.getFrame(currentFrameNumber);
         
-        assertThat(secondFrame.getStartingIndex(), is(firstFrameEndingIndex));
+        assertThat(currentFrame.getStartingIndex(), is(previousFrameEndingIndex));
     }
     
     //~~~~~~~~~~~~~~ Test helpers ~~~~~~~~
@@ -114,8 +115,8 @@ public class AppTest {
         return Rolls.create(NORMAL_ROLL, NORMAL_ROLL);
     }
     
-    protected Rolls firstFrameEndsAt(int firstFrameEnding) {
-        return Rolls.create(NORMAL_ROLL, NORMAL_ROLL, NORMAL_ROLL, NORMAL_ROLL);
+    protected Rolls previousFrameEndsAt(int firstFrameEnding) {
+        return Rolls.create(MAXIMUM_ROLL, NORMAL_ROLL, NORMAL_ROLL, NORMAL_ROLL);
     }
 
     //~~~~~~~~~~~~~~ Production ~~~~~~~~
@@ -190,11 +191,15 @@ public class AppTest {
             }
         }
         
-        protected Frame getSecondFrame() {
-            Frame firstFrame = getFirstFrame();
-            int startingIndex = firstFrame.getEndingIndex();
-            int length = getFrameLength(startingIndex);
-            return new Frame(startingIndex, length);
+        protected Frame getFrame(int frameNumber) {
+            if (frameNumber == 1) {
+                return getFirstFrame();
+            } else {
+                Frame prevoiusFrame = getFrame(frameNumber-1);
+                int startingIndex = prevoiusFrame.getEndingIndex();
+                int length = getFrameLength(startingIndex);
+                return new Frame(startingIndex, length);
+            }
         }
     }
 }
