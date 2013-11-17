@@ -47,7 +47,7 @@ public class AppTest {
     
     @Test
     public void first_frame_starts_at_index_0() {
-        Rolls rolls = Rolls.create(NORMAL_ROLL, NORMAL_ROLL);
+        Rolls rolls = anyRolls();
         
         Frame firstFrame = rolls.getFirstFrame();
         
@@ -56,7 +56,7 @@ public class AppTest {
     
     @Test
     public void first_frame_ends_at_index_1_if_first_roll_is_maximum_roll() {
-        Rolls rolls = Rolls.create(MAXIMUM_ROLL, NORMAL_ROLL);
+        Rolls rolls = firstRollIsMaximumRoll();
         
         Frame firstFrame = rolls.getFirstFrame();
         
@@ -65,7 +65,7 @@ public class AppTest {
         
     @Test
     public void first_frame_ends_at_index_2_if_first_roll_is_not_maximum_roll() {
-        Rolls rolls = Rolls.create(NORMAL_ROLL, NORMAL_ROLL);
+        Rolls rolls = firstRollNotMaximumRoll();
         
         Frame firstFrame = rolls.getFirstFrame();
         
@@ -74,7 +74,7 @@ public class AppTest {
     
     @Test
     public void second_frame_starts_at_ending_index_of_first_frame() {
-        Rolls rolls = Rolls.create(NORMAL_ROLL, NORMAL_ROLL, NORMAL_ROLL, NORMAL_ROLL);
+        Rolls rolls = firstFrameEndsAt(2);
         
         Frame secondFrame = new Frame(2, 2);
         
@@ -89,6 +89,21 @@ public class AppTest {
             rolls[i] = rollValue;
         }
         return rolls;
+    }
+    protected Rolls anyRolls() {
+        return Rolls.create(NORMAL_ROLL, NORMAL_ROLL);
+    }
+    
+    protected Rolls firstRollIsMaximumRoll() {
+        return Rolls.create(MAXIMUM_ROLL, NORMAL_ROLL);
+    }
+    
+    protected Rolls firstRollNotMaximumRoll() {
+        return Rolls.create(NORMAL_ROLL, NORMAL_ROLL);
+    }
+    
+    protected Rolls firstFrameEndsAt(int firstFrameEnding) {
+        return Rolls.create(NORMAL_ROLL, NORMAL_ROLL, NORMAL_ROLL, NORMAL_ROLL);
     }
 
     //~~~~~~~~~~~~~~ Production ~~~~~~~~
@@ -105,6 +120,7 @@ public class AppTest {
         }
         return gameScore;
     }
+
 
     static class Frame {
         int startingIndex;
