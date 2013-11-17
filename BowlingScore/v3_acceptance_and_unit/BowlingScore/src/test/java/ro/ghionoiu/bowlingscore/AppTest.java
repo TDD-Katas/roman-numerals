@@ -23,32 +23,12 @@ import static org.mockito.Mockito.eq;
 public class AppTest {
     public static final int NORMAL_ROLL = 2;
     public static final int MAXIMUM_ROLL = 10;
-    public static final int[] ANY_ROLLS = new int[]{1, 2, 3, 4};
+
+
     
     //~~~~~~~~~~~~~~ Integration Tests ~~~~~~~~
     
-    class RollsBuilder {
-        List<Integer> rollsList;
 
-        public RollsBuilder() {
-            rollsList = new ArrayList<Integer>();
-        }
-        
-        public void roll(int number) {
-            rollsList.add(number);
-        }
-        
-        
-        public void rollMany(int number, int times) {
-            for (int i = 0; i < times; i++) {
-                roll(number);
-            }
-        }
-        
-        public Rolls build() {
-           return Rolls.create(rollsList);
-        }
-    }
     
     
     
@@ -95,18 +75,11 @@ public class AppTest {
     
     @Test
     public void game_score_equals_sum_of_frames_score() {
-        FrameExtractor frameExtractor = mock(FrameExtractor.class);
         int[] frameScores = { 1, 10 };
-        for (int i = 0; i < frameScores.length; i++) {
-            int frameScore = frameScores[i];
-            Frame frame = mock(Frame.class);
-            when(frame.getScore()).thenReturn(frameScore);
-            when(frameExtractor.getFrame(any(Rolls.class), eq(i)))
-                    .thenReturn(frame);
-        }
+        FrameExtractor frameExtractor = createMockedFrames(frameScores);
         Game game = new Game(frameScores.length, frameExtractor);
         
-        int gameScore = game.computeScore(mock(Rolls.class));
+        int gameScore = game.computeScore(anyRolls());
         
         assertThat(gameScore, is(11));
     }
@@ -116,7 +89,7 @@ public class AppTest {
     
     @Test
     public void first_frame_starts_at_index_0() {
-        Rolls rolls = anyRolls();
+        Rolls rolls = someRolls();
         FrameExtractor frameExtractor = new FrameExtractor();
         
         Frame firstFrame = frameExtractor.getFrame(rolls, 0);
@@ -150,14 +123,14 @@ public class AppTest {
         int startingIndex = 1;
         int length = 2;
         
-        Frame frame = new Frame(anyRolls(), startingIndex, length);
+        Frame frame = new Frame(someRolls(), startingIndex, length);
         
         assertThat(frame.getEndingIndex(), is(startingIndex+length));
     }
     
     @Test
     public void the_Nth_frame_starts_at_previous_frame_ending_index() {
-        Rolls rolls = anyRolls();
+        Rolls rolls = someRolls();
         FrameExtractor frameExtractor = new FrameExtractor();
         int currentFrameNumber = 1;
         
@@ -192,15 +165,23 @@ public class AppTest {
          
     //~~~~~~~~~~~~~~ Unit Test helpers ~~~~~~~~
 
-    
-    protected int[] roll(int rollValue, int times) {
-        int[] rolls = new int[times];
-        for (int i = 0; i < rolls.length; i++) {
-            rolls[i] = rollValue;
-        }
-        return rolls;
-    }
     protected Rolls anyRolls() {
+        return mock(Rolls.class);
+    }
+
+    protected FrameExtractor createMockedFrames(int[] frameScores) {
+        FrameExtractor frameExtractor = mock(FrameExtractor.class);
+        for (int i = 0; i < frameScores.length; i++) {
+            int frameScore = frameScores[i];
+            Frame frame = mock(Frame.class);
+            when(frame.getScore()).thenReturn(frameScore);
+            when(frameExtractor.getFrame(any(Rolls.class), eq(i)))
+                    .thenReturn(frame);
+        }
+        return frameExtractor;
+    }
+    
+    protected Rolls someRolls() {
         return Rolls.create(NORMAL_ROLL, NORMAL_ROLL, NORMAL_ROLL, NORMAL_ROLL);
     }
     
@@ -281,6 +262,29 @@ public class AppTest {
             int startingPosition = this.getStartingIndex();
             int endingPosition = this.getEndingIndex();
             return rolls.getSumOfRolls(startingPosition, endingPosition);
+        }
+    }
+    
+    class RollsBuilder {
+        List<Integer> rollsList;
+
+        public RollsBuilder() {
+            rollsList = new ArrayList<Integer>();
+        }
+        
+        public void roll(int number) {
+            rollsList.add(number);
+        }
+        
+        
+        public void rollMany(int number, int times) {
+            for (int i = 0; i < times; i++) {
+                roll(number);
+            }
+        }
+        
+        public Rolls build() {
+           return Rolls.create(rollsList);
         }
     }
     
