@@ -21,7 +21,7 @@ import static org.mockito.Mockito.eq;
  * @author Iulian Ghionoiu <iulian.ghionoiu@exenne.ro>
  */
 public class AppTest {
-    public static final int NORMAL_ROLL = 2;
+    public static final int NORMAL_ROLL = 1;
     public static final int MAXIMUM_ROLL = 10;
 
     //~~~~~~~~~~~~~~ Integration Tests ~~~~~~~~
@@ -154,12 +154,12 @@ public class AppTest {
         
         int frameScore = frame.getScore();
         
-        assertThat(frameScore, is(frame.getNormalScore()+frame.getBonusScore("open")));
+        assertThat(frameScore, is(frame.getNormalScore()+frame.getBonusScore(FrameType.OPEN)));
     }
        
     @Test
     public void frame_bonus_score_for_open_frame_is_0() {
-        String frameType = "open";
+        FrameType frameType = FrameType.OPEN;
         Rolls rolls = Rolls.create(3, 2, 1, 0);
         Frame frame = new Frame(rolls, 0, 2);
         
@@ -170,7 +170,7 @@ public class AppTest {
     
     @Test
     public void frame_bonus_score_for_spare_frame_is_value_of_next_roll() {
-        String frameType = "spare";
+        FrameType frameType = FrameType.SPARE;
         Rolls rolls = Rolls.create(3, 2, 1, 0);
         Frame frame = new Frame(rolls, 0, 2);
         
@@ -181,13 +181,23 @@ public class AppTest {
     
     @Test
     public void frame_bonus_score_for_strike_frame_is_value_of_next_two_rolls() {
-        String frameType = "strike";
+        FrameType frameType = FrameType.STRIKE;
         Rolls rolls = Rolls.create(0, 1, 2, 3);
         Frame frame = new Frame(rolls, 0, 2);
         
         int bonusScore = frame.getBonusScore(frameType);
         
         assertThat(bonusScore, is(rolls.getValueAt(2) + rolls.getValueAt(3)));
+    }
+    
+    @Test
+    public void frame_is_open_if_normal_score_not_maximum() {
+        Rolls rolls = Rolls.create(3, 2, 1, 0);
+        Frame frame = new Frame(rolls, 0, 2);
+        
+        FrameType frameType = frame.getFrameType();
+        
+        assertThat(frameType, is(FrameType.OPEN));
     }
     
     //~~~~~~~~~~~~~~ Unit Test helpers ~~~~~~~~
@@ -254,6 +264,12 @@ public class AppTest {
         
     }
     
+    static enum FrameType {
+        OPEN,
+        SPARE,
+        STRIKE
+    }
+    
     static class Frame {
         Rolls rolls;
         int startingIndex;
@@ -291,14 +307,22 @@ public class AppTest {
             return rolls.getSumOfRolls(startingPosition, endingPosition);
         }
 
-        protected int getBonusScore(String frameType) {
-            if ("open".equals(frameType)) {
+        protected FrameType getFrameType() {
+            if (getNormalScore() != MAXIMUM_ROLL) {
+                return FrameType.OPEN;
+            }
+            
+            return FrameType.OPEN;
+        }
+        
+        protected int getBonusScore(FrameType frameType) {
+            if (FrameType.OPEN.equals(frameType)) {
                 return 0;
             } else 
-            if ("spare".equals(frameType)) {
+            if (FrameType.SPARE.equals(frameType)) {
                 return rolls.getValueAt(this.getEndingIndex());
             } else
-            if ("strike".equals(frameType)) {
+            if (FrameType.STRIKE.equals(frameType)) {
                 return rolls.getValueAt(this.getEndingIndex()) + rolls.getValueAt(this.getEndingIndex()+1);
             }
             
