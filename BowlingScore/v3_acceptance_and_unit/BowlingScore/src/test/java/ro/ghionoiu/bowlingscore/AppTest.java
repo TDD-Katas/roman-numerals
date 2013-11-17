@@ -237,10 +237,6 @@ public class AppTest {
             return new Rolls(rolls);
         }
         
-        public int[] getArray() {
-            return array;
-        }
-        
         public int getValueAt(int index) {
             return array[index];
         }
@@ -260,7 +256,7 @@ public class AppTest {
         }
         
         public int computeFrameLength(Rolls rolls, int startingPosition) {
-            if (rolls.getArray()[startingPosition] == MAXIMUM_ROLL) {
+            if (rolls.getValueAt(startingPosition) == MAXIMUM_ROLL) {
                 return 1;
             } else {
                 return 2;
