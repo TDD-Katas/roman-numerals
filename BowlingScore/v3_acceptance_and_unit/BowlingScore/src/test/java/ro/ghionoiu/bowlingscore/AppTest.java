@@ -4,6 +4,7 @@
  */
 package ro.ghionoiu.bowlingscore;
 
+import java.util.Arrays;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
@@ -111,7 +112,28 @@ public class AppTest {
         public int[] getArray() {
             return rolls;
         }
-        
+
+        @Override
+        public int hashCode() {
+            int hash = 3;
+            hash = 97 * hash + Arrays.hashCode(this.rolls);
+            return hash;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (obj == null) {
+                return false;
+            }
+            if (getClass() != obj.getClass()) {
+                return false;
+            }
+            final Rolls other = (Rolls) obj;
+            if (!Arrays.equals(this.rolls, other.rolls)) {
+                return false;
+            }
+            return true;
+        }
     }
     
     protected int targetComputeGameScore(int[] rolls) {
