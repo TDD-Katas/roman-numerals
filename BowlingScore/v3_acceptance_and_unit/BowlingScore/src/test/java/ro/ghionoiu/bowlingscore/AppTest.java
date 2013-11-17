@@ -83,6 +83,15 @@ public class AppTest {
         assertThat(frame.getEndingIndex(), is(startingIndex+length));
     }
     
+    @Test
+    public void second_frame_starts_at_first_frame_ending_index() {
+        int firstFrameEndingIndex = 1;
+        
+        int firstFrameStartingIndex = firstFrameEndingIndex;
+        
+        assertThat(firstFrameStartingIndex, is(firstFrameEndingIndex));
+    }
+    
     //~~~~~~~~~~~~~~ Test helpers ~~~~~~~~
 
     protected int[] rollAllAs(int rollValue) {
