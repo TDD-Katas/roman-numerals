@@ -104,10 +104,10 @@ public class AppTest {
     //~~~~~~~~~~~~~~ Production ~~~~~~~~
     
     static class Rolls {
-        private int[] rolls;
+        private int[] array;
 
         public Rolls(int ... rolls) {
-            this.rolls = rolls;
+            this.array = rolls;
         }
         
         public static Rolls create(int ... rolls) {
@@ -115,14 +115,14 @@ public class AppTest {
         }
 
         public int[] getArray() {
-            return rolls;
+            return array;
         }
         
         public Rolls getFirstFrameRolls() {
-            if (rolls[0] == MAXIMUM_ROLL) {
-                return create(rolls[0]);
+            if (array[0] == MAXIMUM_ROLL) {
+                return create(array[0]);
             } else {
-                return create(rolls[0], rolls[1]);
+                return create(array[0], array[1]);
             }
         }
         
@@ -131,7 +131,7 @@ public class AppTest {
         @Override
         public int hashCode() {
             int hash = 3;
-            hash = 97 * hash + Arrays.hashCode(this.rolls);
+            hash = 97 * hash + Arrays.hashCode(this.array);
             return hash;
         }
 
@@ -144,10 +144,16 @@ public class AppTest {
                 return false;
             }
             final Rolls other = (Rolls) obj;
-            if (!Arrays.equals(this.rolls, other.rolls)) {
+            if (!Arrays.equals(this.array, other.array)) {
                 return false;
             }
             return true;
+        }
+        
+        //~~~~~~~ To string
+        @Override
+        public String toString() {
+            return "Rolls{" + "array=" + Arrays.toString(array) + '}';
         }
     }
     
