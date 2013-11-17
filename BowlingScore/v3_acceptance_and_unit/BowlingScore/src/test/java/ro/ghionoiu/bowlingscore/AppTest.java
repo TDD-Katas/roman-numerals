@@ -17,6 +17,7 @@ public class AppTest {
     
     //~~~~~~~~~~~~~~ Integration Tests ~~~~~~~~
     
+    @Ignore
     @Test
     public void IT_gutter_game_score_is_0() {
         int[] rolls = rollAllAs(0);
@@ -24,16 +25,6 @@ public class AppTest {
         int gameScore = computeGameScore(rolls);
         
         assertThat(gameScore, is(0));
-    }
-    
-    @Ignore
-    @Test
-    public void IT_game_with_all_one_score_is_20() {
-        int[] rolls = rollAllAs(1);
-        
-        int gameScore = computeGameScore(rolls);
-        
-        assertThat(gameScore, is(20));
     }
     
     //~~~~~~~~~~~~~~ Unit Tests ~~~~~~~~
@@ -61,7 +52,11 @@ public class AppTest {
     
     //~~~~~~~~~~~~~~ Production ~~~~~~~~
     
-
+    protected int targetComputeGameScore(int[] rolls) {
+        return 0;
+    }
+    
+    
     protected int computeGameScore(int[] frameScores) {
         int gameScore = 0;
         for (int frameScore : frameScores) {
