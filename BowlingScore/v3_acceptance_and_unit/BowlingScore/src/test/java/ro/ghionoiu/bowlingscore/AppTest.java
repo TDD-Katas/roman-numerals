@@ -69,6 +69,16 @@ public class AppTest {
         assertThat(frame, is(expectedFrame));
     }
     
+    @Test
+    public void second_frame_is_the_first_frame_from_the_rolls_after_first_frame() {
+        int[] rollsAfterFirstFrame = {0, 1, 2};
+        int[] expectedFrame = {0, 1};
+        
+        int[] frame = getFirstFrame(rollsAfterFirstFrame);
+        
+        assertThat(frame, is(expectedFrame));
+    }
+    
     //~~~~~~~~~~~~~~ Test helpers ~~~~~~~~
 
     protected int[] rollAllAs(int rollValue) {
