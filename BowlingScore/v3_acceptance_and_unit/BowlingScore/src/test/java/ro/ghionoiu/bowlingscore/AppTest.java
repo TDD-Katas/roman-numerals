@@ -4,15 +4,17 @@
  */
 package ro.ghionoiu.bowlingscore;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.CoreMatchers.is;
+import org.junit.Ignore;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.eq;
-import org.junit.Ignore;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  *
@@ -25,30 +27,68 @@ public class AppTest {
     
     //~~~~~~~~~~~~~~ Integration Tests ~~~~~~~~
     
-    @Test
-    public void IT_gutter_game_score_is_0() {
-        int[] rolls = rollAllAs(0);
+    class RollsBuilder {
+        List<Integer> rollsList;
+
+        public RollsBuilder() {
+            rollsList = new ArrayList<Integer>();
+        }
         
-        int gameScore = computeGameScore(rolls);
+        public void roll(int number) {
+            rollsList.add(number);
+        }
+        
+        
+        public void rollMany(int number, int times) {
+            for (int i = 0; i < times; i++) {
+                roll(number);
+            }
+        }
+        
+        public Rolls build() {
+           return Rolls.create(rollsList);
+        }
+    }
+    
+    
+    
+    @Test
+    public void IT_gutter_game() {
+        RollsBuilder rollsBuilder = new RollsBuilder();
+        rollsBuilder.rollMany(0, 20);
+        
+        int gameScore = computeGameScore(rollsBuilder);
         
         assertThat(gameScore, is(0));
     }
     
     @Test
-    public void IT_all_ones_game_score_is_20() {
-        int[] rolls = rollAllAs(1);
+    public void IT_all_ones_game() {
+        RollsBuilder rollsBuilder = new RollsBuilder();
+        rollsBuilder.rollMany(1, 20);
         
-        int gameScore = computeGameScore(rolls);
+        int gameScore = computeGameScore(rollsBuilder);
         
         assertThat(gameScore, is(20));
     }
     
+    @Ignore
+    @Test
+    public void IT_first_frame_spare_rest_is_one() {
+        RollsBuilder rollsBuilder = new RollsBuilder();
+        rollsBuilder.rollMany(5, 2);
+        rollsBuilder.rollMany(1, 18);
+        
+        int gameScore = computeGameScore(rollsBuilder);
+        
+        assertThat(gameScore, is(29));
+    }
     
     //~~~~~~~~~~~~~~ Integration Test helpers ~~~~~~~~
     
-    protected int computeGameScore(int[] rolls) {
+    protected int computeGameScore(RollsBuilder builder) {
         Game game = new Game();
-        return game.computeScore(rolls);
+        return game.computeScore(builder.build());
     }
     
     //~~~~~~~~~~~~~~ Unit Tests ~~~~~~~~
@@ -66,7 +106,7 @@ public class AppTest {
         }
         Game game = new Game(frameScores.length, frameExtractor);
         
-        int gameScore = game.computeScore(ANY_ROLLS);
+        int gameScore = game.computeScore(mock(Rolls.class));
         
         assertThat(gameScore, is(11));
     }
@@ -153,8 +193,8 @@ public class AppTest {
     //~~~~~~~~~~~~~~ Unit Test helpers ~~~~~~~~
 
     
-    protected int[] rollAllAs(int rollValue) {
-        int[] rolls = new int[20];
+    protected int[] roll(int rollValue, int times) {
+        int[] rolls = new int[times];
         for (int i = 0; i < rolls.length; i++) {
             rolls[i] = rollValue;
         }
@@ -192,12 +232,10 @@ public class AppTest {
             this.frameExtractor = frameExtractor;
         }
         
-        public int computeScore(int[] rolls) {
-            Rolls gameRolls = Rolls.create(rolls);
-
+        public int computeScore(Rolls rolls) {
             int gameScore = 0;
             for (int i = 0; i < numberOfFrames; i++) {
-                Frame frame = frameExtractor.getFrame(gameRolls, i);
+                Frame frame = frameExtractor.getFrame(rolls, i);
                 gameScore += frame.getScore();
             }
 
@@ -247,18 +285,23 @@ public class AppTest {
     }
     
     static class Rolls {
-        private int[] array;
+        private List<Integer> backingList;
         
-        public Rolls(int ... rolls) {
-            this.array = rolls;
+        private Rolls(List<Integer> rolls) {
+            this.backingList = rolls;
         }
         
-        public static Rolls create(int ... rolls) {
+        public static Rolls create(Integer ... rolls) {
+            List<Integer> list = Arrays.asList(rolls);
+            return new Rolls(list);
+        }
+        
+        public static Rolls create(List<Integer> rolls) {
             return new Rolls(rolls);
         }
         
         public int getValueAt(int index) {
-            return array[index];
+            return backingList.get(index);
         }
         
         public int getSumOfRolls(int startingPosition, int endingPosition) {
