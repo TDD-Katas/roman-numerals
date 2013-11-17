@@ -54,7 +54,7 @@ public class AppTest {
         int[] rolls = {MAXIMUM_ROLL, 1, 2};
         int[] expectedFrame = {MAXIMUM_ROLL};
         
-        int[] frame = getFrameFrom(rolls);
+        int[] frame = getFirstFrame(rolls);
         
         assertThat(frame, is(expectedFrame));
     }    
@@ -64,7 +64,7 @@ public class AppTest {
         int[] rolls = {0, 1, 2};
         int[] expectedFrame = {0, 1};
         
-        int[] frame = getFrameFrom(rolls);
+        int[] frame = getFirstFrame(rolls);
         
         assertThat(frame, is(expectedFrame));
     }
@@ -94,7 +94,7 @@ public class AppTest {
         return gameScore;
     }
 
-    protected int[] getFrameFrom(int[] rolls) {
+    protected int[] getFirstFrame(int[] rolls) {
         if (rolls[0] == MAXIMUM_ROLL) {
             return new int[] {rolls[0]};
         } else {
