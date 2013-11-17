@@ -127,19 +127,11 @@ public class AppTest {
         Frame frame = new Frame(0, 2);
         Rolls expectedNormalRolls = Rolls.create(0, 1);
         
-        Rolls normalRolls = rolls.subset(frame.getStartingIndex(), frame.getEndingIndex());
+        Rolls normalRolls = getNormalRolls(rolls, frame);
         
         assertThat(normalRolls, is(expectedNormalRolls));
     }
     
-    @Test
-    public void frame_score_equals_normal_rolls_value() {
-        int normalRollsValue = 1;
-        
-        int frameScore = normalRollsValue;
-        
-        assertThat(frameScore, is(normalRollsValue));
-    }
     
            
     //~~~~~~~~~~~~~~ Unit Test helpers ~~~~~~~~
@@ -162,6 +154,10 @@ public class AppTest {
     
     protected Rolls firstRollNotMaximumRoll() {
         return Rolls.create(NORMAL_ROLL, NORMAL_ROLL);
+    }
+
+    protected Rolls getNormalRolls(Rolls rolls, Frame frame) {
+        return rolls.subset(frame.getStartingIndex(), frame.getEndingIndex());
     }
 
     //~~~~~~~~~~~~~~ Production ~~~~~~~~
