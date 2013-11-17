@@ -99,21 +99,7 @@ public class AppTest {
 
     
     protected Frame getFirstFrame(Rolls rolls) {
-        int startingIndex = getFirstFrameStartingIndex(rolls);
-        int endingIndex = getFirstFrameEndingIndex(rolls);
-        return new Frame(startingIndex, endingIndex);
-    }
-    
-    protected int getFirstFrameStartingIndex(Rolls rolls) {
-        return 0;
-    }
-
-    protected int getFirstFrameEndingIndex(Rolls rolls) {
-        if (rolls.getArray()[0] == MAXIMUM_ROLL) {
-            return 1;
-        } else {
-            return 2;
-        }
+        return rolls.getFirstFrame();
     }
     
     static class Frame {
@@ -150,5 +136,24 @@ public class AppTest {
         public int[] getArray() {
             return array;
         }
+        
+        protected Frame getFirstFrame() {
+            int startingIndex = getFirstFrameStartingIndex();
+            int endingIndex = getFirstFrameEndingIndex();
+            return new Frame(startingIndex, endingIndex);
+        }
+
+        protected int getFirstFrameStartingIndex() {
+            return 0;
+        }
+
+        protected int getFirstFrameEndingIndex() {
+            if (array[0] == MAXIMUM_ROLL) {
+                return 1;
+            } else {
+                return 2;
+            }
+        }
+        
     }
 }
