@@ -6,8 +6,9 @@ package ro.ghionoiu.bowlingscore;
 
 import java.util.Arrays;
 import org.junit.Test;
-import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.is;
+import static org.mockito.Mockito.mock;
 import org.junit.Ignore;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -35,12 +36,12 @@ public class AppTest {
     
     @Test
     public void game_score_equals_sum_of_frames_score() {
-        int sumOfFramesScore = 3;
-        int[] frameScores = {1, 2};
+        Game game = new Game(null);
+        FrameExtractorBuilder frameExtractorBuilder = mock(FrameExtractorBuilder.class);
         
-        int gameScore = computeGameScore(frameScores);
+        int gameScore = game.computeScore(anyRolls().getArray());
         
-        assertThat(gameScore, is(sumOfFramesScore));
+        assertThat(gameScore, is(0));
     }
     
     //  __________ Frames definition _____
@@ -159,26 +160,18 @@ public class AppTest {
         return gameScore;
     }
     
-    protected int computeGameScore(int[] frameScores) {
-        int gameScore = 0;
-        for (int frameScore : frameScores) {
-            gameScore += frameScore;
-        }
-        return gameScore;
-    }
-
     static class Game {
-        private FrameExtractor frameExtractor;
+        private FrameExtractorBuilder frameExtractorBuilder;
         
-        public Game(FrameExtractor frameExtractor) {
-            this.frameExtractor = frameExtractor;
+        public Game(FrameExtractorBuilder frameExtractorBuilder) {
+            this.frameExtractorBuilder = frameExtractorBuilder;
         }
         
         public int computeScore(int[] rolls) {
             Rolls gameRolls = Rolls.create(rolls);
 
             int gameScore = 0;
-            FrameExtractor frameExtractor = new FrameExtractor(gameRolls);
+            FrameExtractor frameExtractor = frameExtractorBuilder.createExtractorFor(gameRolls);
             for (int i = 0; i < 10; i++) {
                 Frame frame = frameExtractor.getFrame(0);
                 gameScore += frame.getScore();
