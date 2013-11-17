@@ -113,16 +113,12 @@ public class AppTest {
         Rolls rolls = Rolls.create(0, 1, 2, 3);
         Frame frame = new Frame(1, 2);
         
-        int frameNormalScore = 0;
-        int[] array = rolls.getArray();
-        for (int i = frame.getStartingIndex(); i < frame.getEndingIndex(); i++) {
-            frameNormalScore += array[i];
-        }
+        int frameNormalScore = computeFrameNormalScore(rolls, frame);
         
         assertThat(frameNormalScore, is(sumOfRolls));
     }
     
-    
+           
     //~~~~~~~~~~~~~~ Test helpers ~~~~~~~~
 
     protected int[] rollAllAs(int rollValue) {
@@ -157,6 +153,15 @@ public class AppTest {
             gameScore += frameScore;
         }
         return gameScore;
+    }
+
+    protected int computeFrameNormalScore(Rolls rolls, Frame frame) {
+        int frameNormalScore = 0;
+        int[] array = rolls.getArray();
+        for (int i = frame.getStartingIndex(); i < frame.getEndingIndex(); i++) {
+            frameNormalScore += array[i];
+        }
+        return frameNormalScore;
     }
 
 
