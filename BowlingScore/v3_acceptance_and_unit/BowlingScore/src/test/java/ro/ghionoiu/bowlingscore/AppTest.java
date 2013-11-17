@@ -72,6 +72,17 @@ public class AppTest {
         assertThat(firstFrame.getLength(), is(2));
     }
     
+        
+    @Test
+    public void frame_ends_at_starting_index_plus_length() {
+        int startingIndex = 1;
+        int length = 2;
+        
+        Frame frame = new Frame(startingIndex, length);
+        
+        assertThat(frame.getEndingIndex(), is(startingIndex+length));
+    }
+    
     //~~~~~~~~~~~~~~ Test helpers ~~~~~~~~
 
     protected int[] rollAllAs(int rollValue) {
@@ -129,6 +140,10 @@ public class AppTest {
 
         public int getLength() {
             return length;
+        }
+        
+        public int getEndingIndex() {
+            return startingIndex + length;
         }
     }
     
