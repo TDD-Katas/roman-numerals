@@ -88,7 +88,7 @@ public class AppTest {
         int firstFrameEndingIndex = 2;
         Rolls rolls = firstFrameEndsAt(2);
         
-        Frame secondFrame = new Frame(firstFrameEndingIndex, 1);
+        Frame secondFrame = rolls.getSecondFrame();
         
         assertThat(secondFrame.getStartingIndex(), is(firstFrameEndingIndex));
     }
@@ -174,7 +174,7 @@ public class AppTest {
         
         protected Frame getFirstFrame() {
             int startingIndex = getFirstFrameStartingIndex();
-            int length = getFirstFrameLength();
+            int length = getFrameLength(startingIndex);
             return new Frame(startingIndex, length);
         }
 
@@ -182,12 +182,19 @@ public class AppTest {
             return 0;
         }
 
-        protected int getFirstFrameLength() {
-            if (array[0] == MAXIMUM_ROLL) {
+        protected int getFrameLength(int statingPosition) {
+            if (array[statingPosition] == MAXIMUM_ROLL) {
                 return 1;
             } else {
                 return 2;
             }
+        }
+        
+        protected Frame getSecondFrame() {
+            Frame firstFrame = getFirstFrame();
+            int startingIndex = firstFrame.getEndingIndex();
+            int length = getFrameLength(startingIndex);
+            return new Frame(startingIndex, length);
         }
     }
 }
