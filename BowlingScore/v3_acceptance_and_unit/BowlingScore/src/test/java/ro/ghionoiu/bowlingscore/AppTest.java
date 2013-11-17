@@ -10,7 +10,6 @@ import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.CoreMatchers.is;
-import org.junit.Ignore;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.when;
@@ -22,67 +21,67 @@ import static org.mockito.Mockito.eq;
  */
 public class AppTest {
     public static final int NORMAL_ROLL = 1;
-    public static final int MAXIMUM_ROLL = 10;
+    public static final int TEN = 10;
 
     //~~~~~~~~~~~~~~ Integration Tests ~~~~~~~~
     
     @Test
     public void IT_gutter_game() {
-        RollsBuilder rollsBuilder = new RollsBuilder();
-        rollsBuilder.rollMany(0, 20);
+        RollsTracker tracker = new RollsTracker();
+        tracker.rollMany(0, 20);
         
-        int gameScore = computeGameScore(rollsBuilder);
+        int gameScore = computeGameScore(tracker);
         
         assertThat(gameScore, is(0));
     }
     
     @Test
     public void IT_all_ones_game() {
-        RollsBuilder rollsBuilder = new RollsBuilder();
-        rollsBuilder.rollMany(1, 20);
+        RollsTracker tracker = new RollsTracker();
+        tracker.rollMany(1, 20);
         
-        int gameScore = computeGameScore(rollsBuilder);
+        int gameScore = computeGameScore(tracker);
         
         assertThat(gameScore, is(20));
     }
     
     @Test
     public void IT_first_frame_spare() {
-        RollsBuilder rollsBuilder = new RollsBuilder();
-        rollsBuilder.rollMany(5, 2);
-        rollsBuilder.roll(1);
-        rollsBuilder.rollMany(0, 17);
+        RollsTracker tracker = new RollsTracker();
+        tracker.rollMany(5, 2);
+        tracker.roll(1);
+        tracker.rollMany(0, 17);
         
-        int gameScore = computeGameScore(rollsBuilder);
+        int gameScore = computeGameScore(tracker);
         
         assertThat(gameScore, is(12));
     }
     
     @Test
     public void IT_first_frame_strike() {
-        RollsBuilder rollsBuilder = new RollsBuilder();
-        rollsBuilder.roll(10);
-        rollsBuilder.rollMany(1, 2);
-        rollsBuilder.rollMany(0, 17);
+        RollsTracker tracker = new RollsTracker();
+        tracker.roll(10);
+        tracker.rollMany(1, 2);
+        tracker.rollMany(0, 17);
         
-        int gameScore = computeGameScore(rollsBuilder);
+        int gameScore = computeGameScore(tracker);
         
         assertThat(gameScore, is(14));
     }
     
     @Test
     public void IT_perfect_game() {
-        RollsBuilder rollsBuilder = new RollsBuilder();
-        rollsBuilder.rollMany(10, 12);
+        RollsTracker tracker = new RollsTracker();
+        tracker.rollMany(10, 12);
         
-        int gameScore = computeGameScore(rollsBuilder);
+        int gameScore = computeGameScore(tracker);
         
         assertThat(gameScore, is(300));
     }
     
     //~~~~~~~~~~~~~~ Integration Test helpers ~~~~~~~~
     
-    protected int computeGameScore(RollsBuilder builder) {
+    protected int computeGameScore(RollsTracker builder) {
         Game game = new Game();
         return game.computeScore(builder.build());
     }
@@ -92,8 +91,7 @@ public class AppTest {
     @Test
     public void game_score_equals_sum_of_frames_score() {
         int[] frameScores = { 1, 10 };
-        FrameExtractor frameExtractor = createMockedFrames(frameScores);
-        Game game = new Game(frameScores.length, frameExtractor);
+        Game game = gameWithGivenFrames(frameScores);
         
         int gameScore = game.computeScore(anyRolls());
         
@@ -105,17 +103,16 @@ public class AppTest {
     
     @Test
     public void first_frame_starts_at_index_0() {
-        Rolls rolls = someRolls();
         FrameExtractor frameExtractor = new FrameExtractor();
         
-        Frame firstFrame = frameExtractor.getFrame(rolls, 0);
+        Frame firstFrame = frameExtractor.getFrame(someRolls(), 0);
         
         assertThat(firstFrame.getStartingIndex(), is(0));
     }
     
     @Test
-    public void first_frame_has_a_length_of_1_if_its_first_roll_is_maximum_value() {
-        Rolls rolls = firstRollIsMaximumRoll();
+    public void first_frame_has_a_length_of_1_if_its_first_roll_is_10() {
+        Rolls rolls = firstRollIsTen();
         FrameExtractor frameExtractor = new FrameExtractor();
         
         Frame firstFrame = frameExtractor.getFrame(rolls, 0);
@@ -124,8 +121,8 @@ public class AppTest {
     }
         
     @Test
-    public void first_frame_has_a_length_of_2_if_its_first_roll_is_maximum_value() {
-        Rolls rolls = firstRollNotMaximumRoll();
+    public void first_frame_has_a_length_of_2_if_its_first_roll_is_10() {
+        Rolls rolls = firstRollNotTen();
         FrameExtractor frameExtractor = new FrameExtractor();
         
         Frame firstFrame = frameExtractor.getFrame(rolls, 0);
@@ -269,11 +266,11 @@ public class AppTest {
         return Rolls.create(NORMAL_ROLL, NORMAL_ROLL, NORMAL_ROLL, NORMAL_ROLL);
     }
     
-    protected Rolls firstRollIsMaximumRoll() {
-        return Rolls.create(MAXIMUM_ROLL, NORMAL_ROLL);
+    protected Rolls firstRollIsTen() {
+        return Rolls.create(TEN, NORMAL_ROLL);
     }
     
-    protected Rolls firstRollNotMaximumRoll() {
+    protected Rolls firstRollNotTen() {
         return Rolls.create(NORMAL_ROLL, NORMAL_ROLL);
     }
 
@@ -281,6 +278,12 @@ public class AppTest {
         FrameTypeDetector frameTypeDetector = mock(FrameTypeDetector.class);
         when(frameTypeDetector.getType(any(Frame.class))).thenReturn(frameType);
         return frameTypeDetector;
+    }
+
+    protected Game gameWithGivenFrames(int[] frameScores) {
+        FrameExtractor frameExtractor = createMockedFrames(frameScores);
+        Game game = new Game(frameScores.length, frameExtractor);
+        return game;
     }
 
     //~~~~~~~~~~~~~~ Production ~~~~~~~~
@@ -325,7 +328,7 @@ public class AppTest {
     
     static class FrameTypeDetector {
         public FrameType getType(Frame frame) {
-            if (frame.getNormalScore() != MAXIMUM_ROLL) {
+            if (frame.getNormalScore() != TEN) {
                 return FrameType.OPEN;
             } else {
                 if (frame.getLength() == 2) {
@@ -400,10 +403,10 @@ public class AppTest {
         }
     }
     
-    class RollsBuilder {
+    class RollsTracker {
         List<Integer> rollsList;
 
-        public RollsBuilder() {
+        public RollsTracker() {
             rollsList = new ArrayList<Integer>();
         }
         
@@ -467,7 +470,7 @@ public class AppTest {
         }
         
         public int computeFrameLength(Rolls rolls, int startingPosition) {
-            if (rolls.getValueAt(startingPosition) == MAXIMUM_ROLL) {
+            if (rolls.getValueAt(startingPosition) == TEN) {
                 return 1;
             } else {
                 return 2;
