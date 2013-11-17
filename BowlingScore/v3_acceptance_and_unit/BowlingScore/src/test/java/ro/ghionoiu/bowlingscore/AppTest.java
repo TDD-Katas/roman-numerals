@@ -22,6 +22,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 public class AppTest {
     public static final int NORMAL_ROLL = 2;
     public static final int MAXIMUM_ROLL = 10;
+    public static final int[] ANY_ROLLS = new int[]{1, 2, 3, 4};
     
     //~~~~~~~~~~~~~~ Integration Tests ~~~~~~~~
     
@@ -58,7 +59,7 @@ public class AppTest {
         }
         Game game = new Game(frameScores.length, frameExtractor);
         
-        int gameScore = game.computeScore(anyRolls().getArray());
+        int gameScore = game.computeScore(ANY_ROLLS);
         
         assertThat(gameScore, is(11));
     }
