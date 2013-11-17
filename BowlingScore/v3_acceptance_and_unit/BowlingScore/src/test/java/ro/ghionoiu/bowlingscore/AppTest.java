@@ -110,7 +110,6 @@ public class AppTest {
         
         assertThat(firstFrame.getLength(), is(2));
     }
-    
         
     @Test
     public void frame_ends_at_starting_index_plus_length() {
@@ -154,16 +153,17 @@ public class AppTest {
         
         int frameScore = frame.getScore();
         
-        assertThat(frameScore, is(frame.getNormalScore()+frame.getBonusScore(FrameType.OPEN)));
+        assertThat(frameScore, is(frame.getNormalScore()+frame.getBonusScore()));
     }
        
     @Test
     public void frame_bonus_score_for_open_frame_is_0() {
         FrameType frameType = FrameType.OPEN;
+        FrameTypeDetector mockTypeDetector = useGivenType(frameType);
         Rolls rolls = Rolls.create(3, 2, 1, 0);
-        Frame frame = new Frame(rolls, 0, 2);
+        Frame frame = new Frame(rolls, 0, 2, mockTypeDetector);
         
-        int bonusScore = frame.getBonusScore(frameType);
+        int bonusScore = frame.getBonusScore();
         
         assertThat(bonusScore, is(0));
     }
@@ -171,10 +171,11 @@ public class AppTest {
     @Test
     public void frame_bonus_score_for_spare_frame_is_value_of_next_roll() {
         FrameType frameType = FrameType.SPARE;
+        FrameTypeDetector mockTypeDetector = useGivenType(frameType);
         Rolls rolls = Rolls.create(3, 2, 1, 0);
-        Frame frame = new Frame(rolls, 0, 2);
+        Frame frame = new Frame(rolls, 0, 2, mockTypeDetector);
         
-        int bonusScore = frame.getBonusScore(frameType);
+        int bonusScore = frame.getBonusScore();
         
         assertThat(bonusScore, is(rolls.getValueAt(2)));
     }
@@ -182,10 +183,11 @@ public class AppTest {
     @Test
     public void frame_bonus_score_for_strike_frame_is_value_of_next_two_rolls() {
         FrameType frameType = FrameType.STRIKE;
+        FrameTypeDetector mockTypeDetector = useGivenType(frameType);
         Rolls rolls = Rolls.create(0, 1, 2, 3);
-        Frame frame = new Frame(rolls, 0, 2);
+        Frame frame = new Frame(rolls, 0, 2, mockTypeDetector);
         
-        int bonusScore = frame.getBonusScore(frameType);
+        int bonusScore = frame.getBonusScore();
         
         assertThat(bonusScore, is(rolls.getValueAt(2) + rolls.getValueAt(3)));
     }
@@ -194,10 +196,33 @@ public class AppTest {
     public void frame_is_open_if_normal_score_not_maximum() {
         Rolls rolls = Rolls.create(3, 2, 1, 0);
         Frame frame = new Frame(rolls, 0, 2);
+        FrameTypeDetector frameTypeDetector = new FrameTypeDetector();
         
-        FrameType frameType = frame.getFrameType();
+        FrameType frameType = frameTypeDetector.getType(frame);
         
         assertThat(frameType, is(FrameType.OPEN));
+    }
+    
+    @Test
+    public void frame_is_spare_if_normal_score_is_10_and_length_is_2() {
+        Rolls rolls = Rolls.create(5, 5, 1, 0);
+        Frame frame = new Frame(rolls, 0, 2);
+        FrameTypeDetector frameTypeDetector = new FrameTypeDetector();
+        
+        FrameType frameType = frameTypeDetector.getType(frame);
+        
+        assertThat(frameType, is(FrameType.SPARE));
+    }
+    
+    @Test
+    public void frame_is_strike_if_normal_score_is_10_and_length_is_1() {
+        Rolls rolls = Rolls.create(10, 1, 0);
+        Frame frame = new Frame(rolls, 0, 1);
+        FrameTypeDetector frameTypeDetector = new FrameTypeDetector();
+        
+        FrameType frameType = frameTypeDetector.getType(frame);
+        
+        assertThat(frameType, is(FrameType.STRIKE));
     }
     
     //~~~~~~~~~~~~~~ Unit Test helpers ~~~~~~~~
@@ -228,6 +253,12 @@ public class AppTest {
     
     protected Rolls firstRollNotMaximumRoll() {
         return Rolls.create(NORMAL_ROLL, NORMAL_ROLL);
+    }
+
+    protected FrameTypeDetector useGivenType(FrameType frameType) {
+        FrameTypeDetector frameTypeDetector = mock(FrameTypeDetector.class);
+        when(frameTypeDetector.getType(any(Frame.class))).thenReturn(frameType);
+        return frameTypeDetector;
     }
 
     //~~~~~~~~~~~~~~ Production ~~~~~~~~
@@ -270,15 +301,38 @@ public class AppTest {
         STRIKE
     }
     
+    static class FrameTypeDetector {
+        public FrameType getType(Frame frame) {
+            if (frame.getNormalScore() != MAXIMUM_ROLL) {
+                return FrameType.OPEN;
+            } else {
+                if (frame.getLength() == 2) {
+                    return FrameType.SPARE;
+                } else 
+                if (frame.getLength() == 1) {
+                    return FrameType.STRIKE;
+                }
+            }
+            
+            return FrameType.OPEN;
+        }
+    }
+    
     static class Frame {
         Rolls rolls;
         int startingIndex;
         int length;
+        FrameTypeDetector frameTypeDetector;
 
         public Frame(Rolls rolls, int startingIndex, int length) {
+            this(rolls, startingIndex, length, new FrameTypeDetector());
+        }
+        
+        public Frame(Rolls rolls, int startingIndex, int length, FrameTypeDetector frameTypeDetector) {
             this.rolls = rolls;
             this.startingIndex = startingIndex;
             this.length = length;
+            this.frameTypeDetector = frameTypeDetector;
         }
         
         //~~ Location
@@ -307,15 +361,9 @@ public class AppTest {
             return rolls.getSumOfRolls(startingPosition, endingPosition);
         }
 
-        protected FrameType getFrameType() {
-            if (getNormalScore() != MAXIMUM_ROLL) {
-                return FrameType.OPEN;
-            }
-            
-            return FrameType.OPEN;
-        }
         
-        protected int getBonusScore(FrameType frameType) {
+        protected int getBonusScore() {
+            FrameType frameType = frameTypeDetector.getType(this);
             if (FrameType.OPEN.equals(frameType)) {
                 return 0;
             } else 
