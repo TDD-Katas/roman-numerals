@@ -52,7 +52,7 @@ public class AppTest {
     
     @Test
     public void first_frame_is_first_roll_when_the_first_roll_is_maximum_roll() {
-        Rolls rolls = new Rolls( new int[]{MAXIMUM_ROLL, 1, 2});
+        Rolls rolls = roll(MAXIMUM_ROLL, 1, 2);
         Rolls expectedFrameRolls = new Rolls(new int[]{MAXIMUM_ROLL});
         
         Rolls frameRolls = new Rolls(getFirstFrame(rolls.getArray()));
@@ -99,6 +99,10 @@ public class AppTest {
             rolls[i] = rollValue;
         }
         return rolls;
+    }
+
+    protected Rolls roll(int ... rolls) {
+        return new Rolls(rolls);
     }
     
     //~~~~~~~~~~~~~~ Production ~~~~~~~~
