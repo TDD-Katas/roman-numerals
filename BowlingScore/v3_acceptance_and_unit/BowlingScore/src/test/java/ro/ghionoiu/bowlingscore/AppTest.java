@@ -134,11 +134,12 @@ public class AppTest {
     
     @Test
     public void frame_score_equals_its_normal_score() {
-        int normalScore = 1;
+        Rolls rolls = Rolls.create(3, 2, 1, 0);
+        Frame frame = new Frame(rolls, 0, 2);
         
-        int frameScore = normalScore;
+        int frameScore = frame.getScore();
         
-        assertThat(frameScore, is(normalScore));
+        assertThat(frameScore, is(frame.getNormalScore()));
     }
          
     //~~~~~~~~~~~~~~ Unit Test helpers ~~~~~~~~
@@ -227,7 +228,7 @@ public class AppTest {
         //~~ Score
         
         public int getScore() {
-            throw new NotImplementedException();
+            return getNormalScore();
         }
         
         protected int getNormalScore() {
