@@ -43,11 +43,32 @@ public class AppTest {
     
     //A frame represents a set of maximum two rolls that add up less than 10
     
+    
+    @Test
+    public void first_frame_starts_at_index_0() {
+        Rolls rolls = Rolls.create(0, 1, 2);
+        
+        int firstFrameStartingIndex = 0;
+        
+        assertThat(firstFrameStartingIndex, is(0));
+    }
+    
+    @Test
+    public void first_frame_ends_at_index_1_if_first_roll_is_maximum_roll() {
+        Rolls rolls = Rolls.create(MAXIMUM_ROLL, 1, 2);
+        
+        int firstFrameEndingIndex = 1;
+        
+        assertThat(firstFrameEndingIndex, is(1));
+    }
         
     @Test
-    public void the_sum_of_a_frame_rolls_is_less_or_equal_than_ten() {
+    public void first_frame_ends_at_index_2_if_first_roll_is_not_maximum_roll() {
+        Rolls rolls = Rolls.create(MAXIMUM_ROLL, 1, 2);
         
-        assertThat(true, is(true));
+        int firstFrameEndingIndex = 1;
+        
+        assertThat(firstFrameEndingIndex, is(1));
     }
     
     @Test
