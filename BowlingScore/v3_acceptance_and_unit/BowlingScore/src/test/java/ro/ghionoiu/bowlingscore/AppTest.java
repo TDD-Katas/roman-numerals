@@ -63,7 +63,7 @@ public class AppTest {
         int[] rolls = {10, 1, 2};
         int[] expectedFrame = {10};
         
-        int[] frame = {10};
+        int[] frame = getFrameFrom(rolls);
         
         assertThat(frame, is(expectedFrame));
     }    
@@ -94,6 +94,10 @@ public class AppTest {
     }
 
     protected int[] getFrameFrom(int[] rolls) {
-        return new int[]{0, 1};
+        if (rolls[0] == 10) {
+            return new int[] {rolls[0]};
+        } else {
+            return new int[] {rolls[0], rolls[1]};
+        }
     }
 }
