@@ -4,10 +4,10 @@ TDD Katas
 In order to discover TDD I have done a series of simple Katas.
 
 Here they are:
-*   [RomanToDecimal](#roman)
-*   [BowlingScore](#bowling)
+*   [RomanToDecimal](#romantodecimal)
+*   [BowlingScore](#bowlingscore)
 
-<h2 id="roman">RomanToDecimal</h2>
+<h2>RomanToDecimal</h2>
 
 The Kata says you should write a function to convert from Roman Numerals to decimal numerals.
 In order to keep the kata light, we will not check for valid Roman Numeral.
@@ -39,7 +39,7 @@ Example:
 | MMVI          |  1000 + 1000 + 5 + 1                           | 2006       | only addition                   |
 | MCMXLIV       |   1000 + (1000 - 100) + (50 - 10) + (5 - 1)    | 1944       | addition and substraction       |
 
-<h2 id="bowling">BowlingScore</h2>
+<h2>BowlingScore</h2>
 
 Create a program, which, given a valid sequence of rolls for one line of American Ten-Pin Bowling, produces the total score for the game. Here are some things that the program will not do:
 * We will not check for valid rolls.
