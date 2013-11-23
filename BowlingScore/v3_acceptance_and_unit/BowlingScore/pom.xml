@@ -112,6 +112,7 @@
                         </goals>
                         <configuration>
                             <skip>false</skip>
+                            <reportsDirectory>target/failsafe-acceptance</reportsDirectory>
                             <testSourceDirectory>src/test/specs</testSourceDirectory>
                             <includes>
                                 <include>**/*Fixture.java</include>
