@@ -39,31 +39,4 @@ Example:
 
 <h2>TDD Approaches</h2>
 
-The intent of this kata was to experiment with various forms of doing TDD. 
-
-<h3> 1. Only functional tests </h3>
-
-**The rules** where:
-*   write the dumbest end to end test and see it fail (red)
-*   write the dumbest code that makes the test pass (green)
-*   refactor like you really meant it
-
-**Findings**
-
-It took over 40 tests to complete the kata. 
-The increments where really really tiny. It felt like discovering an algorithm to compute the roman number decimal value. 
-I was totaly surprised by the result. A recursive algorithm emerged for computing the value of a roman number.
-
-The algorithm can be described like this:
-* find the biggest symbol in a roman numeral
-* the value of that numberal is the the value of that symbol minus the value of the roman numeral on the left plus the value of the roman numeral on the right.
-* an empty roman numeral has the value of 0
-
-*Example: XLII*
-* The biggest symbol is L and will be splitted in (X)(L)(II)
-* XLII = (L) - (X) + (II) = (L) - (X) + (I) + (I) = 50 - 10 + 1 + 1 = 42
-
-**Downsides**
-
-It took a long time to go throught the whole process
-
+To read more about the approaches used to perform this katas,  visit the [Wiki](https://github.com/iulianghionoiu/kata-roman-numerals/wiki)
