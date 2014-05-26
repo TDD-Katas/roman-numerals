@@ -1,32 +1,28 @@
-<h1> V2. Only unit tests
+# V2. Only unit tests
 
 Content:
 *   [Rules](#rules)
 *   [Findings](#findings)
 *   [Conclusions](#conclusions)
 
-<h2>Rules</h2>
+## Rules
 *   pick the smallest behaviour from the domain space
 *   write the test that describes it (red)
 *   write the minimum amount of code to make the test pass (green)
 *   continue to the next behaviour
 *   refactor any duplication between tests
 
-<h2>Findings</h2>
+## Findings
 
-<p>
 I found that focusing on small units of behaviour makes it easy to start with.
 In just a couple of tests the core domain behaviours are nailed down.
 Using this approach focused on behaviours you get the domain objects emerging from the very begining.
-</p>
-<p>
- The tricky bit has after all the behaviours where written as unit tests. Looking at the code, I had really nice units of functionality but they where not interacting with eachother. 
-</p>
-<p>
- In order to produce a working software I ended up adding tests in order to glue all the pieces together. This felt a bit unnatural and the tests where syntetic, not representing domain concepts.
-</p>
 
-<h2>Conclusions</h2>
+ The tricky bit has after all the behaviours where written as unit tests. Looking at the code, I had really nice units of functionality but they where not interacting with eachother. 
+
+ In order to produce a working software I ended up adding tests in order to glue all the pieces together. This felt a bit unnatural and the tests where syntetic, not representing domain concepts.
+
+## Conclusions
 
 **Benefits:**
 * It is easy to get up to speed
