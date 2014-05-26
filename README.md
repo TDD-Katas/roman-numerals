@@ -39,4 +39,4 @@ Example:
 
 <h2>TDD Approaches</h2>
 
-Discussions about the approaches use to perform the kata have been moved to the [Wiki](https://github.com/iulianghionoiu/kata-roman-numerals/wiki)
+Discussions about the approaches use to perform the individual katas can be found by navigating to their directory.
