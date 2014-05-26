@@ -25,7 +25,7 @@ Using this approach focused on behaviours you get the domain objects emerging fr
 **Benefits:**
 * It is easy to get up to speed
 * Most of the resulting unit tests are focused on behaviour and are easy to maintain
-* The emerged code feels more like object oriented
+* The emerged code is clean and object oriented
 
 **Downsides:**
 * As a bottom-up approach, you can miss scope by over-engineering the units

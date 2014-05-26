@@ -13,8 +13,8 @@ Content:
 <h2>Findings</h2>
 
 It took over 40 tests to complete the kata. 
-The increments where really really tiny. It felt like slowly uncovering an algorithm to compute the roman number decimal value. 
-And indeed an algorithm emerged. I was totally surprised by that.
+The increments where really really tiny. It felt like slowly uncovering an algorithm to compute the roman number decimal value. The refactoring stage was really crucial. Most of the time was spent on exposing and refactoring duplication.
+In the end an new algorithm emerged. I was totally surprised by that.
 
 The algorithm found can be described like this:
 * locate the biggest symbol in a roman numeral
