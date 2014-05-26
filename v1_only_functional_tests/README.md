@@ -1,21 +1,19 @@
-<h1> V1. Only functional tests
+# V1. Only functional tests
 
 Content:
 *   [Rules](#rules)
 *   [Findings](#findings)
 *   [Conclusions](#conclusions)
 
-<h2>Rules</h2>
+## Rules
 *   write the dumbest end to end test and see it fail (red)
 *   write the dumbest code that makes the test pass (green)
 *   refactor like you really meant it
 
-<h2>Findings</h2>
+## Findings
 
-<p>
 It took over 40 tests to complete the kata. 
 The increments where really really tiny. It felt like slowly uncovering an algorithm to compute the roman number decimal value. The refactoring stage was really crucial. Most of the time was spent on exposing and refactoring duplication.
-</p>
 
 In the end an new algorithm emerged. I was totally surprised by that.
 The algorithm found can be described like this:
@@ -27,7 +25,7 @@ The algorithm found can be described like this:
 * The biggest symbol is L and thus XLII can be splitted in (L) - (X) + (IV)
 * For IV we do the same. Biggest simbol is V an IV ca be splitted in (V) - (I)
 
-<h2>Conclusions</h2>
+## Conclusions
 
 **Benefits:**
 * This approach can be used to discover an algorithm
