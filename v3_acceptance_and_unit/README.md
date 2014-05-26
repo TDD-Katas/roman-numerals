@@ -7,8 +7,8 @@ Content:
 
 <h2>Rules</h2>
 *   Write on acceptance test an see it fail
-*   Step by step, write unit tests to describe the behaviours needed for the acceptance test to pass
-*   Once implemented all the behaviours and the acceptance test passes, move to the next acceptance test
+*   Step by step, write unit tests to describe the behaviour needed for the acceptance test to pass
+*   Once the acceptance test passes, move to the next one
 
 <h2>Findings</h2>
 
