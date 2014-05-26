@@ -30,6 +30,8 @@ The algorithm found can be described like this:
 **Benefits:**
 * This approach can be used to discover an algorithm
 * The amount of production code produced is minimal
+* As a top-down approach, it keeps you focused on solving the problem
+* You have acceptance tests to prove that the software works
 
 **Downsides:**
 * It took a long time to go through the whole process.
