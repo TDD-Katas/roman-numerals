@@ -14,11 +14,17 @@ Content:
 
 <h2>Findings</h2>
 
- I found that focusing on small units of behaviour makes it easy to start with.
+<p>
+I found that focusing on small units of behaviour makes it easy to start with.
 In just a couple of tests the core domain behaviours are nailed down.
 Using this approach focused on behaviours you get the domain objects emerging from the very begining.
+</p>
+<p>
  The tricky bit has after all the behaviours where written as unit tests. Looking at the code, I had really nice units of functionality but they where not interacting with eachother. 
+</p>
+<p>
  In order to produce a working software I ended up adding tests in order to glue all the pieces together. This felt a bit unnatural and the tests where syntetic, not representing domain concepts.
+</p>
 
 <h2>Conclusions</h2>
 
