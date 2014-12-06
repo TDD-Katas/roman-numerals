@@ -56,8 +56,13 @@ public class AppTest {
     }
 
     @Test
-    public void value_of_two_numeral_are_added() {
+    public void value_of_two_character_numeral_is_their_sum() {
         assertThat(valueOf("VI"), is(6));
+    }
+
+    @Test
+    public void value_of_three_character_numeral_is_their_sum() {
+        assertThat(valueOf("XVI"), is(16));
     }
 
     //~~~ Impl
@@ -91,12 +96,9 @@ public class AppTest {
             return 0;
         } else {
             int sum = 0;
-            sum += valueOfLiteral(numeral.charAt(0));
-
-            if (numeral.length() > 1) {
-                sum += valueOfLiteral(numeral.charAt(1));
+            for (int i = 0; i < numeral.length(); i++) {
+                sum += valueOfLiteral(numeral.charAt(i));
             }
-                    
             return sum;
         }
     }
