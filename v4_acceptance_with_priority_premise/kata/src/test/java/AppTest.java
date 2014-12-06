@@ -76,18 +76,24 @@ public class AppTest {
 
     }
     private static class Numeral {
+        private String characters;
 
-        private String value;
-        private Numeral(String value) {
-            this.value = value;
+        private Numeral(String characters) {
+            this.characters = characters;
         }
 
         public int length() {
-            return value.length();
+            return characters.length();
         }
 
-        public char charAt(int index) {
-            return value.charAt(index);
+        public Character charAt(int index) {
+            Character charAt = null;
+
+            if (index < characters.length()) {
+                charAt =  characters.charAt(index);
+            }
+
+            return charAt;
         }
     }
 
@@ -97,6 +103,7 @@ public class AppTest {
 
     private static final Map<Character, Integer> VALUES = new HashMap<>();
     static {
+        VALUES.put(null,0);
         VALUES.put('I', 1);
         VALUES.put('V', 5);
         VALUES.put('X', 10);
@@ -106,7 +113,7 @@ public class AppTest {
         VALUES.put('M', 1000);
     }
 
-    private static int valueOfLiteral(char literal) {
+    private static int valueOfLiteral(Character literal) {
         Integer value = VALUES.get(literal);
         if (value == null) {
             throw new IllegalCharacterException();
@@ -120,11 +127,7 @@ public class AppTest {
         for (int i = 0; i < numeral.length(); i++) {
 
             int currentValue = valueOfLiteral(numeral.charAt(i));
-            int nextValue = 0;
-
-            if (i+1 < numeral.length()) {
-                nextValue = valueOfLiteral(numeral.charAt(i + 1));
-            }
+            int nextValue = valueOfLiteral(numeral.charAt(i + 1));
 
             if (currentValue < nextValue) {
                 sum -= currentValue;
