@@ -7,6 +7,12 @@ public class AppTest {
 
     @Test
     public void value_of_empty_is_zero() {
-        assertThat(1, is(1));
+        assertThat(valueOf(""), is(0));
+    }
+
+    //~~~ Impl
+
+    private int valueOf(String numeral) {
+        return 0;
     }
 }
