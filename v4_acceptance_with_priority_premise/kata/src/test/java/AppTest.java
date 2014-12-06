@@ -20,6 +20,11 @@ public class AppTest {
         assertThat(valueOf("V"), is(5));
     }
 
+    @Test
+    public void value_of_X_is_ten() {
+        assertThat(valueOf("X"), is(10));
+    }
+
     //~~~ Impl
 
     private int valueOf(String numeral) {
@@ -29,7 +34,10 @@ public class AppTest {
         if (numeral == "I") {
             return 1;
         }
+        if (numeral == "V") {
+            return 5;
+        }
 
-        return 5;
+        return 10;
     }
 }
