@@ -50,29 +50,41 @@ public class AppTest {
         assertThat(valueOf("M"), is(1000));
     }
 
-    @Test( expected = IllegalArgumentException.class )
+    @Test( expected = IllegalCharacterException.class )
     public void throws_exception_for_unrecognized_character() {
         valueOf(UNRECOGNIZED_CHARACTER);
     }
 
+//    @Test
+//    public void value_of_two_numeral_are_added() {
+//        assertThat(valueOf("VI"), is(6));
+//    }
+
     //~~~ Impl
 
-    private static final Map<String, Integer> VALUES = new HashMap<String, Integer>();
+    public class IllegalCharacterException extends RuntimeException {
+    }
+
+
+    private static final Map<Character, Integer> VALUES = new HashMap<>();
     static {
-        VALUES.put( "", 0);
-        VALUES.put("I", 1);
-        VALUES.put("V", 5);
-        VALUES.put("X", 10);
-        VALUES.put("L", 50);
-        VALUES.put("C", 100);
-        VALUES.put("D", 500);
-        VALUES.put("M", 1000);
+        VALUES.put('I', 1);
+        VALUES.put('V', 5);
+        VALUES.put('X', 10);
+        VALUES.put('L', 50);
+        VALUES.put('C', 100);
+        VALUES.put('D', 500);
+        VALUES.put('M', 1000);
     }
 
     private int valueOf(String numeral) {
-        Integer value = VALUES.get(numeral);
+        if (numeral.isEmpty()) {
+            return 0;
+        }
+
+        Integer value = VALUES.get(numeral.charAt(0));
         if (value == null) {
-            throw new IllegalArgumentException();
+            throw new IllegalCharacterException();
         }
 
         return value;
