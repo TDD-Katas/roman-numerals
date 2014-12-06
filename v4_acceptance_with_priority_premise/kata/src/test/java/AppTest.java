@@ -15,12 +15,21 @@ public class AppTest {
         assertThat(valueOf("I"), is(1));
     }
 
+    @Test
+    public void value_of_V_is_five() {
+        assertThat(valueOf("V"), is(5));
+    }
+
     //~~~ Impl
 
     private int valueOf(String numeral) {
         if (numeral == "") {
             return 0;
         }
-        return 1;
+        if (numeral == "I") {
+            return 1;
+        }
+
+        return 5;
     }
 }
