@@ -1,7 +1,11 @@
 import org.junit.Test;
+import sun.tools.jstat.Literal;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Spliterator;
+import java.util.function.Consumer;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
@@ -75,6 +79,7 @@ public class AppTest {
     public static class IllegalCharacterException extends RuntimeException {
 
     }
+
     private static class Numeral {
         private String characters;
 
@@ -114,26 +119,20 @@ public class AppTest {
     }
 
     private static int valueOfLiteral(Character literal) {
-        Integer value = VALUES.get(literal);
-        if (value == null) {
+        if (!VALUES.containsKey(literal)) {
             throw new IllegalCharacterException();
         }
 
-        return value;
+        return VALUES.get(literal);
     }
 
     private int valueOf(Numeral numeral) {
         int sum = 0;
+
         for (int i = 0; i < numeral.length(); i++) {
-
-            int currentValue = valueOfLiteral(numeral.charAt(i));
             int nextValue = valueOfLiteral(numeral.charAt(i + 1));
-
-            if (currentValue < nextValue) {
-                sum -= currentValue;
-            } else {
-                sum += currentValue;
-            }
+            int currentValue = valueOfLiteral(numeral.charAt(i));
+            sum += Math.signum(currentValue - nextValue) * currentValue;
         }
         return sum;
     }
