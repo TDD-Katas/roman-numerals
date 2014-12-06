@@ -2,3 +2,4 @@ target/
 /v2_only_unit_tests/RomanNumerals/nbproject/private/
 *~
 /v1_only_functional_tests/kata/nbproject/private/
+.idea
