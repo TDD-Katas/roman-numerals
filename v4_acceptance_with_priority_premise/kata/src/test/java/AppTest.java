@@ -92,14 +92,10 @@ public class AppTest {
     }
 
     private int valueOf(String numeral) {
-        if (numeral.isEmpty()) {
-            return 0;
-        } else {
-            int sum = 0;
-            for (int i = 0; i < numeral.length(); i++) {
-                sum += valueOfLiteral(numeral.charAt(i));
-            }
-            return sum;
+        int sum = 0;
+        for (int i = 0; i < numeral.length(); i++) {
+            sum += valueOfLiteral(numeral.charAt(i));
         }
+        return sum;
     }
 }
