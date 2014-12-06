@@ -25,11 +25,25 @@ public class AppTest {
         assertThat(valueOf("X"), is(10));
     }
 
+    @Test
+    public void value_of_L_is_50() {
+        assertThat(valueOf("L"), is(50));
+    }
 
-//    L	50
-//    C	100
-//    D	500
-//    M 1000
+    @Test
+    public void value_of_C_is_100() {
+        assertThat(valueOf("C"), is(100));
+    }
+
+    @Test
+    public void value_of_D_is_500() {
+        assertThat(valueOf("D"), is(500));
+    }
+
+    @Test
+    public void value_of_M_is_1000() {
+        assertThat(valueOf("M"), is(1000));
+    }
 
     //~~~ Impl
 
@@ -43,7 +57,18 @@ public class AppTest {
         if (numeral.equals("V")) {
             return 5;
         }
-
-        return 10;
+        if (numeral.equals("X")) {
+            return 10;
+        }
+        if (numeral.equals("L")) {
+            return 50;
+        }
+        if (numeral.equals("C")) {
+            return 100;
+        }
+        if (numeral.equals("D")) {
+            return 500;
+        }
+        return 1000;
     }
 }
