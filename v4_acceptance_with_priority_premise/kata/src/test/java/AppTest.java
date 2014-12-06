@@ -10,9 +10,17 @@ public class AppTest {
         assertThat(valueOf(""), is(0));
     }
 
+    @Test
+    public void value_of_I_is_one() {
+        assertThat(valueOf("I"), is(1));
+    }
+
     //~~~ Impl
 
     private int valueOf(String numeral) {
-        return 0;
+        if (numeral == "") {
+            return 0;
+        }
+        return 1;
     }
 }
