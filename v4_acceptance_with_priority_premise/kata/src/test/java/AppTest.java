@@ -55,10 +55,10 @@ public class AppTest {
         valueOf(UNRECOGNIZED_CHARACTER);
     }
 
-//    @Test
-//    public void value_of_two_numeral_are_added() {
-//        assertThat(valueOf("VI"), is(6));
-//    }
+    @Test
+    public void value_of_two_numeral_are_added() {
+        assertThat(valueOf("VI"), is(6));
+    }
 
     //~~~ Impl
 
@@ -90,7 +90,14 @@ public class AppTest {
         if (numeral.isEmpty()) {
             return 0;
         } else {
-            return valueOfLiteral(numeral.charAt(0));
+            int sum = 0;
+            sum += valueOfLiteral(numeral.charAt(0));
+
+            if (numeral.length() > 1) {
+                sum += valueOfLiteral(numeral.charAt(1));
+            }
+                    
+            return sum;
         }
     }
 }
