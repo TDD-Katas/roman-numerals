@@ -65,6 +65,11 @@ public class AppTest {
         assertThat(valueOf("XVI"), is(16));
     }
 
+    @Test
+    public void value_of_small_literal_before_big_literal_is_substracted() {
+        assertThat(valueOf("IV"), is(4));
+    }
+
     //~~~ Impl
 
     public static class IllegalCharacterException extends RuntimeException {
@@ -94,7 +99,21 @@ public class AppTest {
     private int valueOf(String numeral) {
         int sum = 0;
         for (int i = 0; i < numeral.length(); i++) {
-            sum += valueOfLiteral(numeral.charAt(i));
+
+            int currentValue = valueOfLiteral(numeral.charAt(i));
+
+            if (i+1 < numeral.length()) {
+                int nextValue = valueOfLiteral(numeral.charAt(i + 1));
+
+
+                if (currentValue < nextValue) {
+                    sum -= currentValue;
+                } else {
+                    sum += currentValue;
+                }
+            } else {
+                sum += currentValue;
+            }
         }
         return sum;
     }
