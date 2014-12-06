@@ -14,12 +14,15 @@ http://blog.8thlight.com/uncle-bob/2013/05/27/TheTransformationPriorityPremise.h
 
 ## Findings
 
-I have started with the test "value of an empty roman numeral is 0". 
-This forced the transformation:  *nil -> constant*
-The next higher transformation I could force was: *unconditional -> if* by adding the test for the value of I.
-I then refactored the multiple IFs into a Map.  The transformation could be called: *Constants -> Map*
-I have introduced the test for adding two numbers to force the transformation *unconditional -> if*
-I have used the test for adding three numbers to force the transformation: *if -> for*
+I have started with the test "value of an empty roman numeral is 0". This forced the transformation:  **(nil -> constant)**
+
+The next higher transformation I could force was: **(unconditional -> if)** by adding the test for the value of I.
+
+I then refactored the multiple IFs into a Map.  The transformation could be called: **(constants -> map)**
+
+I have introduced the test for adding two numbers to force the transformation **(unconditional -> if)**
+
+I have used the test for adding three numbers to force the transformation: **(if -> for)**
 
 The last test, the one for subtracting two numbers forced a bigger change on the code base. 
 This suggest that I should have introduced the test earlier. Probably at the same time I have introduced the test for adding the two numbers.
