@@ -62,7 +62,7 @@ public class AppTest {
 
     //~~~ Impl
 
-    public class IllegalCharacterException extends RuntimeException {
+    public static class IllegalCharacterException extends RuntimeException {
     }
 
 
@@ -77,16 +77,20 @@ public class AppTest {
         VALUES.put('M', 1000);
     }
 
-    private int valueOf(String numeral) {
-        if (numeral.isEmpty()) {
-            return 0;
-        }
-
-        Integer value = VALUES.get(numeral.charAt(0));
+    private static int valueOfLiteral(char literal) {
+        Integer value = VALUES.get(literal);
         if (value == null) {
             throw new IllegalCharacterException();
         }
 
         return value;
+    }
+
+    private int valueOf(String numeral) {
+        if (numeral.isEmpty()) {
+            return 0;
+        } else {
+            return valueOfLiteral(numeral.charAt(0));
+        }
     }
 }
