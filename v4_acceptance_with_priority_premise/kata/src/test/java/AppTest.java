@@ -57,32 +57,24 @@ public class AppTest {
 
     //~~~ Impl
 
+    private static final Map<String, Integer> VALUES = new HashMap<String, Integer>();
+    static {
+        VALUES.put( "", 0);
+        VALUES.put("I", 1);
+        VALUES.put("V", 5);
+        VALUES.put("X", 10);
+        VALUES.put("L", 50);
+        VALUES.put("C", 100);
+        VALUES.put("D", 500);
+        VALUES.put("M", 1000);
+    }
 
     private int valueOf(String numeral) {
-        if (numeral.equals("")) {
-            return 0;
+        Integer value = VALUES.get(numeral);
+        if (value == null) {
+            throw new IllegalArgumentException();
         }
-        if (numeral.equals("I")) {
-            return 1;
-        }
-        if (numeral.equals("V")) {
-            return 5;
-        }
-        if (numeral.equals("X")) {
-            return 10;
-        }
-        if (numeral.equals("L")) {
-            return 50;
-        }
-        if (numeral.equals("C")) {
-            return 100;
-        }
-        if (numeral.equals("D")) {
-            return 500;
-        }
-        if (numeral.equals("M")) {
-            return 1000;
-        }
-        throw new IllegalArgumentException();
+
+        return value;
     }
 }
