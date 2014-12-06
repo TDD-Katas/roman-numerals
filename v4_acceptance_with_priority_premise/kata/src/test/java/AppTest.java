@@ -1,9 +1,14 @@
 import org.junit.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
 public class AppTest {
+
+    private static final String UNRECOGNIZED_CHARACTER = "_";
 
     @Test
     public void value_of_empty_is_0() {
@@ -45,7 +50,13 @@ public class AppTest {
         assertThat(valueOf("M"), is(1000));
     }
 
+    @Test( expected = IllegalArgumentException.class )
+    public void throws_exception_for_unrecognized_character() {
+        valueOf(UNRECOGNIZED_CHARACTER);
+    }
+
     //~~~ Impl
+
 
     private int valueOf(String numeral) {
         if (numeral.equals("")) {
@@ -69,6 +80,9 @@ public class AppTest {
         if (numeral.equals("D")) {
             return 500;
         }
-        return 1000;
+        if (numeral.equals("M")) {
+            return 1000;
+        }
+        throw new IllegalArgumentException();
     }
 }
